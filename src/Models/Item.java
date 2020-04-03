@@ -1,7 +1,7 @@
 package Models;
 
 public class Item {
-    
+
     private String name;
     private double price;
     private String description;
