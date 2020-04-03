@@ -1,6 +1,7 @@
 package Controllers;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -22,7 +23,7 @@ public final class SceneChanger {
 
             Parent root = FXMLLoader.load(SceneChanger.class.getResource(path));
             Scene newScene = new Scene(root);
-
+            newScene.getStylesheets().add("Resources/CSS.css");
             stage.setTitle(title);
             stage.setScene(newScene);
         } catch (IOException e) {

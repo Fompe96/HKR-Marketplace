@@ -2,11 +2,29 @@
     -fx-prompt-text-fill: #e49e2e;
 }
 
-.button:hover{
+#loginButton:hover {
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );
         -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 20,0,0,0 );
 }
 
-.label:hover {
+#registerButton:hover {
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );
+        -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 20,0,0,0 );
+}
+
+#backButton:hover {
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );
+        -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 20,0,0,0 );
+}
+
+#registerButton:hover {
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );
+        -fx-effect: innershadow( gaussian , rgba(0,0,0,0.7) , 20,0,0,0 );
+}
+
+#credentialsButton:hover {
     -fx-text-fill: #c94444;
 }
+
+
+

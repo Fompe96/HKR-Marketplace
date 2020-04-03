@@ -39,15 +39,16 @@
             <Font size="13.0" />
          </font>
       </TextField>
-      <Button layoutX="371.0" layoutY="332.0" mnemonicParsing="false" onAction="#logIn" prefHeight="40.0" prefWidth="102.0" style="-fx-background-color: #e49e2e;" text="Login">
+      <Button fx:id="loginButton" layoutX="371.0" layoutY="332.0" mnemonicParsing="false" onAction="#logIn" prefHeight="40.0" prefWidth="102.0" style="-fx-background-color: #e49e2e;" text="Login">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Label layoutX="244.0" layoutY="344.0" text="Forgot Credentials?" textFill="#e49e2e" underline="true">
+      <Button fx:id="credentialsButton" layoutX="235.0" layoutY="340.0" mnemonicParsing="false" onAction="#retrieveCredentialsButtonAction" style="-fx-background-color: #101010;" text="Forgot Credentials?" textFill="#e49e2e" underline="true" />
+      <Button fx:id="registerButton" layoutX="558.0" layoutY="32.0" mnemonicParsing="false" onAction="#registerButtonAction" prefHeight="40.0" prefWidth="102.0" style="-fx-background-color: #e49e2e;" text="Register">
          <font>
-            <Font size="13.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
-      </Label>
+      </Button>
    </children>
 </AnchorPane>
