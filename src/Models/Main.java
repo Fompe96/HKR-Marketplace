@@ -12,7 +12,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../Views/Login.fxml"));
         primaryStage.setTitle("HKR-Marketplace");
-        primaryStage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("Resources/CSS.css");
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
