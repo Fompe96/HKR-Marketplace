@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SellController">
    <children>
@@ -14,5 +14,7 @@
       <Label layoutX="61.0" layoutY="48.0" text="Name of product:" />
       <Label layoutX="61.0" layoutY="121.0" text="Price:" />
       <Label layoutX="300.0" layoutY="48.0" text="Description:" />
+      <Button layoutX="61.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="25.0" prefWidth="63.0" text="Back" />
+      <Button layoutX="455.0" layoutY="320.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="94.0" text="Add to sale" />
    </children>
 </AnchorPane>

@@ -1,5 +1,6 @@
 package Controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
@@ -24,5 +25,8 @@ public class SellController implements Initializable {
 
     }
 
-
+    @FXML
+    private void handleBackButton(ActionEvent event){
+        SceneChanger.changeScene(event, "../Views/Marketplace.fxml");
+    }
 }
