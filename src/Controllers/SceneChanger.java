@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public final class SceneChanger {
 
-    SceneChanger() {
+    private SceneChanger() {
     }
 
     public static void changeScene(ActionEvent event, String path, String title) {

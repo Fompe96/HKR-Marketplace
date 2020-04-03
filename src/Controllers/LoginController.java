@@ -1,13 +1,16 @@
 package Controllers;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 
 public class LoginController {
-    SceneChanger sceneChanger = new SceneChanger();
 
-    public void logIn() {
+
+    @FXML
+    public void logIn(ActionEvent event) {
 
         //if (retrieveCredentials) kalla sceneChanger och byt scene.
+        SceneChanger.changeScene(event, "../Views/Marketplace.fxml", "HKR Marketplace");
     }
 
     public void register() {
@@ -15,9 +18,5 @@ public class LoginController {
     }
 
     public void retrieveCredentials() {
-    }
-
-    void loadMarket(ActionEvent event) {
-        SceneChanger.changeScene(event, "Market.fxml", "HKR Marketplace");
     }
 }

@@ -39,7 +39,7 @@
             <Font size="13.0" />
          </font>
       </TextField>
-      <Button layoutX="371.0" layoutY="332.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="102.0" style="-fx-background-color: #e49e2e;" text="Login">
+      <Button layoutX="371.0" layoutY="332.0" mnemonicParsing="false" onAction="#logIn" prefHeight="40.0" prefWidth="102.0" style="-fx-background-color: #e49e2e;" text="Login">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
