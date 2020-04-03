@@ -1,17 +1,23 @@
 package Controllers;
 
+import javafx.event.ActionEvent;
+
 public class LoginController {
-    //test
+    SceneChanger sceneChanger = new SceneChanger();
 
-    public void logIn(){
+    public void logIn() {
+
+        //if (retrieveCredentials) kalla sceneChanger och byt scene.
+    }
+
+    public void register() {
 
     }
 
-    public void register(){
-
+    public void retrieveCredentials() {
     }
 
-    public void retrieveCredentials(){
-        
+    void loadMarket(ActionEvent event) {
+        SceneChanger.changeScene(event, "Market.fxml", "HKR Marketplace");
     }
 }
