@@ -29,4 +29,12 @@ public class SellController implements Initializable {
     private void handleBackButton(ActionEvent event){
         SceneChanger.changeScene(event, "../Views/Marketplace.fxml");
     }
+
+    @FXML
+    private void handleAddSaleButton(ActionEvent event){
+
+    }
 }
+
+
+

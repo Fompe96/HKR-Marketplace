@@ -14,6 +14,6 @@
          </font>
       </Text>
       <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="34.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="585.0" layoutY="177.0" mnemonicParsing="false" onAction="#sellButton" prefHeight="70.0" prefWidth="135.0" text="Sell Product" />
+      <Button fx:id="sellButton" layoutX="585.0" layoutY="177.0" mnemonicParsing="false" onAction="#sellButton" prefHeight="70.0" prefWidth="135.0" text="Sell Product" />
    </children>
 </AnchorPane>

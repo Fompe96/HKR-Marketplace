@@ -14,7 +14,7 @@
       <Label layoutX="61.0" layoutY="48.0" text="Name of product:" />
       <Label layoutX="61.0" layoutY="121.0" text="Price:" />
       <Label layoutX="300.0" layoutY="48.0" text="Description:" />
-      <Button layoutX="61.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="25.0" prefWidth="63.0" text="Back" />
-      <Button layoutX="455.0" layoutY="320.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="94.0" text="Add to sale" />
+      <Button fx:id="handleBackButton" layoutX="61.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="25.0" prefWidth="63.0" text="Back" />
+      <Button fx:id="handleAddSaleButton" layoutX="455.0" layoutY="320.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="94.0" text="Add to sale" />
    </children>
 </AnchorPane>
