@@ -1,13 +1,13 @@
 package Models;
 
-public class Item {
+public class Product {
 
     private String name;
     private double price;
     private String description;
     private String category;
 
-    public Item() {
+    public Product() {
     }
 
     public String getName() {

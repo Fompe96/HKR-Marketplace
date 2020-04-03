@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SellController">
+   <children>
+      <TextField fx:id="nameOfProductTextField" layoutX="61.0" layoutY="75.0" />
+      <TextField fx:id="priceOfProductTextField" layoutX="61.0" layoutY="146.0" />
+      <TextArea fx:id="descriptionTextArea" layoutX="300.0" layoutY="75.0" prefHeight="235.0" prefWidth="249.0" />
+      <Label layoutX="61.0" layoutY="48.0" text="Name of product:" />
+      <Label layoutX="61.0" layoutY="121.0" text="Price:" />
+      <Label layoutX="300.0" layoutY="48.0" text="Description:" />
+   </children>
+</AnchorPane>

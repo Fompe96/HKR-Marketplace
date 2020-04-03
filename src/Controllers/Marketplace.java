@@ -1,5 +1,6 @@
 package Controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
@@ -13,8 +14,14 @@ public class Marketplace implements Initializable {
     @FXML
     private ImageView imageView;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         imageView.setImage(new Image("https://usercontent1.hubstatic.com/11310434_f520.jpg"));
+    }
+
+    @FXML
+    public void sellButton(ActionEvent event){
+        SceneChanger.changeScene(event, "../Views/Sell.fxml");
     }
 }
