@@ -13,11 +13,14 @@ public class Marketplace implements Initializable {
 
     @FXML
     private ImageView imageView;
+    @FXML
+    private ImageView imageView2;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         imageView.setImage(new Image("https://usercontent1.hubstatic.com/11310434_f520.jpg"));
+        imageView2.setImage(new Image("https://www.kattkompaniet.nu/images/5.63.1606161417/kattleksaker-fatcat.jpeg"));
     }
 
     @FXML
