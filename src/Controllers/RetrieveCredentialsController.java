@@ -25,7 +25,7 @@ public class RetrieveCredentialsController implements Initializable {
     }
 
     @FXML
-    public void findUserCredentials() {
+    public void retrieveCredentialsButtonAction() {
         findUser(userEmail.getText());
         EmailSender emailSender = new EmailSender();
         emailSender.sendEmail(userEmail.getText(), "Retrieved login details", "Here are your account details" +
