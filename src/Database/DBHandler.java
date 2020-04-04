@@ -32,6 +32,18 @@ public class DBHandler extends DBConfig {
         }
     }
 
+    public boolean seeIfEmailAlreadyRegistered(String userEmail) {
+        String query = "SELECT * FROM ACCOUNT WHERE Email = " + "'" + userEmail + "';";
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                return resultSet.next();
+            }
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        }
+    }
+
     public void closeConnection() {
         try {
             dbConnection.close();
