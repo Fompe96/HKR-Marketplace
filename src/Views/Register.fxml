@@ -34,8 +34,9 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <TextField fx:id="userEmail" layoutX="264.0" layoutY="163.0" promptText="Enter Email" />
-      <TextField fx:id="userPassword" layoutX="264.0" layoutY="202.0" promptText="Enter password" />
       <TextField fx:id="userName" layoutX="264.0" layoutY="127.0" promptText="Enter full name" />
+      <TextField fx:id="userEmail" layoutX="264.0" layoutY="161.0" promptText="Enter Email" />
+      <TextField fx:id="userPassword" layoutX="264.0" layoutY="193.0" promptText="Enter password" />
+      <TextField fx:id="userPassword1" layoutX="264.0" layoutY="225.0" promptText="Re-enter password" />
    </children>
 </AnchorPane>
