@@ -37,7 +37,7 @@
       <Line endX="-17.0" endY="-98.0" layoutX="301.0" layoutY="256.0" opacity="0.6" startX="-17.0" startY="85.0" stroke="#e8e8e8" strokeWidth="2.0" />
       <Pane layoutX="315.0" layoutY="152.0" prefHeight="188.0" prefWidth="262.0">
          <children>
-            <TextField layoutX="3.0" layoutY="14.0" prefHeight="35.0" prefWidth="250.0" promptText="Username" styleClass="regulartextfield">
+            <TextField fx:id="userEmail" layoutX="3.0" layoutY="14.0" prefHeight="35.0" prefWidth="250.0" promptText="Username" styleClass="regulartextfield">
                <padding>
                   <Insets left="15.0" />
                </padding>
@@ -45,7 +45,7 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <PasswordField layoutX="3.0" layoutY="65.0" prefHeight="35.0" prefWidth="250.0" promptText="Password" styleClass="regularpasswordfield">
+            <PasswordField fx:id="userPassword" layoutX="3.0" layoutY="65.0" prefHeight="35.0" prefWidth="250.0" promptText="Password" styleClass="regularpasswordfield">
                <padding>
                   <Insets left="15.0" />
                </padding>

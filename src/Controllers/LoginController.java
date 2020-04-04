@@ -1,7 +1,6 @@
 package Controllers;
 
 import Database.DBHandler;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -50,6 +49,4 @@ public class LoginController implements Initializable {
     private void retrieveCredentialsButtonAction() {
         SceneChanger.changeScene("../Views/RetrieveCredentials.fxml", "Retrieve Credentials");
     }
-
-
 }
