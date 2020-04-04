@@ -4,17 +4,59 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SellController">
+<AnchorPane prefHeight="673.0" prefWidth="1235.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SellController">
    <children>
-      <TextField fx:id="nameOfProductTextField" layoutX="61.0" layoutY="75.0" />
-      <TextField fx:id="priceOfProductTextField" layoutX="61.0" layoutY="146.0" />
-      <TextArea fx:id="descriptionTextArea" layoutX="300.0" layoutY="75.0" prefHeight="235.0" prefWidth="249.0" style="-fx-wrap-text: true;" />
-      <Label layoutX="61.0" layoutY="48.0" text="Name of product:" />
-      <Label layoutX="61.0" layoutY="121.0" text="Price:" />
-      <Label layoutX="300.0" layoutY="48.0" text="Description:" />
-      <Button fx:id="handleBackButton" layoutX="61.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="25.0" prefWidth="63.0" text="Back" />
-      <Button layoutX="455.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleAddSaleButton" prefHeight="50.0" prefWidth="94.0" text="Add to sale" />
+      <TextField fx:id="nameOfProductTextField" layoutX="415.0" layoutY="75.0" />
+      <TextField fx:id="priceOfProductTextField" layoutX="415.0" layoutY="138.0" />
+      <TextArea fx:id="descriptionTextArea" layoutX="712.0" layoutY="75.0" prefHeight="235.0" prefWidth="249.0" style="-fx-wrap-text: true;" />
+      <Label layoutX="415.0" layoutY="57.0" text="Name of product:" />
+      <Label layoutX="415.0" layoutY="121.0" text="Price:" />
+      <Label layoutX="712.0" layoutY="57.0" text="Description:" />
+      <Button layoutX="712.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleAddSaleButton" prefHeight="50.0" prefWidth="94.0" text="Add to sale" />
+      <Pane prefHeight="673.0" prefWidth="60.0" style="-fx-background-color: #242424;">
+         <children>
+            <Pane layoutX="-1.0" prefHeight="56.0" prefWidth="60.0" style="-fx-background-color: #6ea5ff;">
+               <children>
+                  <Text fill="WHITE" layoutX="11.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="m" wrappingWidth="37.556640625">
+                     <font>
+                        <Font name="System Bold" size="41.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="13.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/marketIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="43.0" fitWidth="35.0" layoutX="13.0" layoutY="618.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/gear.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="12.0" layoutY="92.0" mnemonicParsing="false" onAction="#handleBackButton" opacity="0.0" prefHeight="35.0" prefWidth="35.0" />
+            <Text fill="#b5b5b5" layoutX="12.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU" />
+            <Line endX="100.0" layoutX="-100.0" layoutY="170.0" startX="100.0" startY="-29.2431640625" stroke="#6ea5ff" strokeWidth="5.0" />
+            <Line endX="-45.0" layoutX="104.0" layoutY="602.0" startX="-105.0" stroke="#242424">
+               <effect>
+                  <DropShadow color="#6b6b6b" height="10.0" offsetY="2.0" radius="2.5" width="2.0" />
+               </effect>
+            </Line>
+            <ImageView fitHeight="34.0" fitWidth="38.0" layoutX="12.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/sell.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

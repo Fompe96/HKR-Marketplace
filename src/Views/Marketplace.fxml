@@ -1,68 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="623.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MarketplaceController">
+<AnchorPane prefHeight="673.0" prefWidth="1235.0" style="-fx-background-color: #3c3c3c;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MarketplaceController">
    <children>
-      <Pane prefHeight="625.0" prefWidth="149.0" style="-fx-background-color: #242424;">
+      <Text fill="WHITE" layoutX="80.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Latest Sales">
+         <font>
+            <Font name="Arial" size="34.0" />
+         </font>
+      </Text>
+      <Pane layoutX="105.0" layoutY="89.0" prefHeight="203.0" prefWidth="1100.0" style="-fx-background-color: #242424;">
          <children>
-            <ImageView fitHeight="29.0" fitWidth="26.0" layoutX="7.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="235.0" layoutX="33.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
+            <Text fill="WHITE" layoutX="33.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Race car">
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
+            </Text>
+            <Line endX="199.419921875" endY="-29.2431640625" layoutX="200.0" layoutY="63.0" startX="100.0" startY="-29.2431640625" stroke="#6ea5ff" strokeWidth="2.0" />
+            <Text fill="WHITE" layoutX="299.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="299.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The car is really fast so i cant keep it. " />
+            <Text fill="WHITE" layoutX="299.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I would like to sell it for around 3 000kr" />
+            <Button layoutX="1013.0" layoutY="167.0" mnemonicParsing="false" style="-fx-background-color: green;" text="Go To Sale" textFill="WHITE" />
+            <Line endX="173.0263671875" endY="-29.185546875" layoutX="-68.0" layoutY="63.0" startX="101.0" startY="-29.185546875" stroke="#6ea5ff" strokeWidth="2.0" />
+            <Text fill="WHITE" layoutX="606.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seller">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Line endX="148.18359375" endY="-27.98046875" layoutX="506.0" layoutY="64.0" startX="100.0" startY="-27.98046875" stroke="#6ea5ff" strokeWidth="2.0" />
+            <Text fill="WHITE" layoutX="605.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maria Viklund" />
+            <Text fill="WHITE" layoutX="605.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Member since 2012-08-13" />
+            <Text fill="GREEN" layoutX="685.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(trusted seller)" />
+         </children>
+      </Pane>
+      <Pane layoutX="105.0" layoutY="298.0" prefHeight="203.0" prefWidth="1100.0" style="-fx-background-color: #242424;">
+         <children>
+            <ImageView fx:id="imageView1" fitHeight="150.0" fitWidth="235.0" layoutX="33.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
+            <Text fill="WHITE" layoutX="33.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="House">
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
+            </Text>
+            <Line endX="199.419921875" endY="-29.2431640625" layoutX="200.0" layoutY="63.0" startX="100.0" startY="-29.2431640625" stroke="#6ea5ff" strokeWidth="2.0" />
+            <Text fill="WHITE" layoutX="299.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="299.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nice location in North sweden" />
+            <Text fill="WHITE" layoutX="299.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I was thinking around 1.2 Million (SEK)" />
+            <Button layoutX="1013.0" layoutY="167.0" mnemonicParsing="false" style="-fx-background-color: green;" text="Go To Sale" textFill="WHITE" />
+            <Line endX="153.03125" endY="-29.185546875" layoutX="-68.0" layoutY="63.0" startX="101.0" startY="-29.185546875" stroke="#6ea5ff" strokeWidth="2.0" />
+            <Text fill="WHITE" layoutX="604.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seller">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Line endX="145.18359375" endY="-26.98046875" layoutX="507.0" layoutY="63.0" startX="97.0" startY="-26.98046875" stroke="#6ea5ff" strokeWidth="2.0" />
+            <Text fill="WHITE" layoutX="603.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tobbe snabb" />
+            <Text fill="WHITE" layoutX="603.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Member since 2020-01-13" />
+         </children>
+      </Pane>
+      <Pane prefHeight="673.0" prefWidth="60.0" style="-fx-background-color: #242424;">
+         <children>
+            <Pane layoutX="-1.0" prefHeight="56.0" prefWidth="60.0" style="-fx-background-color: #6ea5ff;">
+               <children>
+                  <Text fill="WHITE" layoutX="11.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="m" wrappingWidth="37.556640625">
+                     <font>
+                        <Font name="System Bold" size="41.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="13.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Resources/marketIcon.png" />
                </image>
             </ImageView>
-            <Button fx:id="sellButton" layoutX="33.0" layoutY="28.0" mnemonicParsing="false" onAction="#sellButton" prefHeight="29.0" prefWidth="107.0" style="-fx-background-color: #242424;" text="Sell Product" textFill="WHITE">
-               <font>
-                  <Font name="Arial Bold" size="13.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
-      <Text layoutX="181.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Latest Sales">
-         <font>
-            <Font size="34.0" />
-         </font>
-      </Text>
-      <Pane layoutX="181.0" layoutY="89.0" prefHeight="265.0" prefWidth="385.0" style="-fx-background-color: #242424;">
-         <children>
-            <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="24.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
-            <Text fill="WHITE" layoutX="246.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Race car">
-               <font>
-                  <Font name="Arial" size="18.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" layoutX="24.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" layoutX="24.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The car is really fast so i cant keep it. " />
-            <Text fill="WHITE" layoutX="24.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I would like to sell it for around 3 000kr" />
-            <Button layoutX="298.0" layoutY="226.0" mnemonicParsing="false" style="-fx-background-color: green;" text="Go To Sale" textFill="WHITE" />
-         </children>
-      </Pane>
-      <Pane layoutX="631.0" layoutY="89.0" prefHeight="265.0" prefWidth="385.0" style="-fx-background-color: #242424;">
-         <children>
-            <ImageView fx:id="imageView2" fitHeight="150.0" fitWidth="200.0" layoutX="24.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
-            <Text fill="WHITE" layoutX="246.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cute Cat">
-               <font>
-                  <Font name="Arial" size="18.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" layoutX="24.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" layoutX="24.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cant keep the cat because my dog is crazy. Really cozy cat" />
-            <Text fill="WHITE" layoutX="24.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Im selling him for 6 000kr" />
-            <Button layoutX="303.0" layoutY="230.0" mnemonicParsing="false" style="-fx-background-color: green;" text="Go To Sale" textFill="WHITE" />
+            <ImageView fitHeight="43.0" fitWidth="35.0" layoutX="13.0" layoutY="618.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/gear.png" />
+               </image>
+            </ImageView>
+            <Text fill="#b5b5b5" layoutX="12.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU" />
+            <Line endX="100.0" layoutX="-100.0" layoutY="124.0" startX="100.0" startY="-29.2431640625" stroke="#6ea5ff" strokeWidth="5.0" />
+            <Line endX="-45.0" layoutX="104.0" layoutY="602.0" startX="-105.0" stroke="#242424">
+               <effect>
+                  <DropShadow color="#6b6b6b" height="10.0" offsetY="2.0" radius="2.5" width="2.0" />
+               </effect>
+            </Line>
+            <ImageView fitHeight="34.0" fitWidth="38.0" layoutX="12.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/sell.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="13.0" layoutY="138.0" mnemonicParsing="false" onAction="#sellButton" opacity="0.0" prefHeight="35.0" prefWidth="35.0" />
          </children>
       </Pane>
    </children>
