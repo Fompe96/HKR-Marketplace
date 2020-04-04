@@ -35,7 +35,7 @@ public class RegisterController implements Initializable {
 
     @FXML
     private void backButtonAction(ActionEvent event) {
-        SceneChanger.changeScene(event, "../Views/Login.fxml", "Login Page");
+        SceneChanger.changeScene("../Views/Login.fxml", "Login Page");
     }
 
     @FXML

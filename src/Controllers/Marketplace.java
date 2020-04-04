@@ -25,6 +25,6 @@ public class Marketplace implements Initializable {
 
     @FXML
     public void sellButton(ActionEvent event){
-        SceneChanger.changeScene(event, "../Views/Sell.fxml");
+        SceneChanger.changeScene("../Views/Sell.fxml", "Sell");
     }
 }

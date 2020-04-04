@@ -1,7 +1,6 @@
 package Controllers;
 
 import Database.DBHandler;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -25,13 +24,13 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void logIn(ActionEvent event) {
+    private void logInButtonAction() {
 
         DBHandler dbHandler = new DBHandler();
         dbHandler.getConnection();
         boolean checkIfExists = dbHandler.findUser(userEmail.getText(), userPassword.getText());
         if (checkIfExists) {
-            SceneChanger.changeScene(event, "../Views/Marketplace.fxml", "HKR Marketplace");
+            SceneChanger.changeScene("../Views/Marketplace.fxml", "HKR Marketplace");
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -42,14 +41,12 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void registerButtonAction(ActionEvent event) {
-        SceneChanger.changeScene(event, "../Views/Register.fxml", "Retrieve Credentials");
+    private void registerButtonAction() {
+        SceneChanger.changeScene("../Views/Register.fxml", "Register account");
     }
 
     @FXML
-    private void retrieveCredentialsButtonAction(ActionEvent event) {
-        SceneChanger.changeScene(event, "../Views/RetrieveCredentials.fxml", "Retrieve Credentials");
+    private void retrieveCredentialsButtonAction() {
+        SceneChanger.changeScene("../Views/RetrieveCredentials.fxml", "Retrieve Credentials");
     }
-
-
 }

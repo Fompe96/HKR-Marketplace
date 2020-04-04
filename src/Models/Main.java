@@ -1,5 +1,6 @@
 package Models;
 
+import Controllers.SceneChanger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        SceneChanger.setProgramStage(primaryStage);
         Parent root = FXMLLoader.load(getClass().getResource("../Views/Login.fxml"));
         primaryStage.setTitle("HKR-Marketplace");
         Scene scene = new Scene(root);
