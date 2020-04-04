@@ -38,6 +38,7 @@ public class LoginController implements Initializable {
             alert.setContentText("Login credentials not found");
             alert.showAndWait();
         }
+        dbHandler.closeConnection();
     }
 
     @FXML

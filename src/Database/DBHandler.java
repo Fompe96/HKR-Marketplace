@@ -22,7 +22,6 @@ public class DBHandler extends DBConfig {
 
     public boolean findUser(String userEmail, String userPassword) {
         String query = "SELECT * FROM ACCOUNT WHERE Email = " + "'" + userEmail + "'" + " AND Password = " + "'" + userPassword + "';";
-        System.out.println(query);
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 return resultSet.next();
