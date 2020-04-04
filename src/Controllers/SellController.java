@@ -27,7 +27,7 @@ public class SellController implements Initializable {
 
     @FXML
     private void handleBackButton(ActionEvent event){
-        SceneChanger.changeScene(event, "../Views/Marketplace.fxml");
+        SceneChanger.changeScene("../Views/Marketplace.fxml", "Marketplace");
     }
 
     @FXML
