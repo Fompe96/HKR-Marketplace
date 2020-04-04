@@ -31,13 +31,12 @@ public class SellController implements Initializable {
     DBHandler dbHandler = new DBHandler();
     private Connection dbConnection;
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
     @FXML
-    private void handleBackButton(ActionEvent event){
+    private void handleBackButton(ActionEvent event) {
         SceneChanger.changeScene("../Views/Marketplace.fxml", "Marketplace");
     }
 
@@ -59,13 +58,9 @@ public class SellController implements Initializable {
                     setIdProduct(idProduct);
                 }
                 statement.setInt(1, getIdProduct() + 1);
-                System.out.println(getIdProduct() + 1);
                 statement.setString(2, nameOfProductTextField.getText());
-                System.out.println(nameOfProductTextField.getText());
                 statement.setDouble(3, Double.parseDouble(priceOfProductTextField.getText()));
-                System.out.println(Double.parseDouble(priceOfProductTextField.getText()));
                 statement.setString(4, descriptionTextArea.getText());
-                System.out.println(descriptionTextArea.getText());
 
                 statement.executeUpdate();
                 dbHandler.closeConnection();
@@ -74,6 +69,11 @@ public class SellController implements Initializable {
                 alert.setTitle("Success");
                 alert.setContentText("Congratulations! your product is now up for sale!");
                 alert.showAndWait();
+
+                nameOfProductTextField.setText("");
+                priceOfProductTextField.setText("");
+                descriptionTextArea.setText("");
+
             } catch (Exception e) {
                 System.out.println(e);
             }
