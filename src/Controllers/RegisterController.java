@@ -1,6 +1,7 @@
 package Controllers;
 
 
+import Database.DBHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,10 +25,12 @@ public class RegisterController implements Initializable {
 
     private int idAccount;
 
+    private DBHandler dbHandler;
+    private Connection dbConnection;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        dbHandler = new DBHandler();
     }
 
     @FXML
@@ -43,12 +46,10 @@ public class RegisterController implements Initializable {
             alert.setContentText("Please enter all fields to register!");
             alert.showAndWait();
         } else {
+            dbConnection = dbHandler.getConnection();
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                Connection con = DriverManager.getConnection(
-                        "jdbc:mysql://den1.mysql6.gear.host/hkrmarketplace", "hkrmarketplace", "Ez0ezh-~e3pf");
-                PreparedStatement stmt = con.prepareStatement("INSERT INTO `hkrmarketplace`.`account` (`idAccount`, `Username`, `Password`, `Email`, `Admin`) VALUES (?, ?, ?, ?, ?);\n");
-                PreparedStatement count = con.prepareStatement("select count(idAccount) from account;");
+                PreparedStatement stmt = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`account` (`idAccount`, `Username`, `Password`, `Email`, `Admin`) VALUES (?, ?, ?, ?, ?);\n");
+                PreparedStatement count = dbConnection.prepareStatement("select count(idAccount) from account;");
                 ResultSet rs = count.executeQuery();
                 while (rs.next()) { //Finds the amount of idAccount since its PK
                     int idAccount = rs.getInt(1);
@@ -60,7 +61,7 @@ public class RegisterController implements Initializable {
                 stmt.setString(4, userEmail.getText());
                 stmt.setBoolean(5, false);
                 stmt.executeUpdate();
-                con.close();
+                dbHandler.closeConnection();
                 EmailSender emailSender = new EmailSender();
                 emailSender.sendEmail(userEmail.getText(), "Your new account", "Welcome to HKR Marketplace! Here are your account details. \n \n" +
                         "Username: " + userName.getText() + "\n" + "Password: " + userPassword.getText() + "\n" + "Account-Email: " + userEmail.getText());
