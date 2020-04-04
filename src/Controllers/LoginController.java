@@ -1,6 +1,7 @@
 package Controllers;
 
 import Database.DBHandler;
+import Models.SceneChanger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -42,7 +43,7 @@ public class LoginController implements Initializable {
 
     @FXML
     private void registerButtonAction() {
-        SceneChanger.changeScene("../Views/Register.fxml", "Register account");
+        SceneChanger.changeScene("../Views/SignUp.fxml", "Sign Up");
     }
 
     @FXML

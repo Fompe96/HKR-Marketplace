@@ -1,7 +1,8 @@
 package Controllers;
 
 import Database.DBHandler;
-import javafx.event.ActionEvent;
+import Models.EmailSender;
+import Models.SceneChanger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;

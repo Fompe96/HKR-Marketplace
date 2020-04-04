@@ -1,7 +1,7 @@
 package Controllers;
 
-import Database.DBConfig;
 import Database.DBHandler;
+import Models.SceneChanger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

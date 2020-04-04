@@ -1,4 +1,4 @@
-package Controllers;
+package Models;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;

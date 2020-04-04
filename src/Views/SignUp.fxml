@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RegisterController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SignUpController">
    <children>
       <Label layoutX="287.0" layoutY="67.0" text="Sign" textFill="#e8e8e8">
          <font>
@@ -38,7 +38,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <PasswordField fx:id="userPassword1" layoutX="14.0" layoutY="151.0" prefHeight="35.0" prefWidth="250.0" promptText="Enter Password" styleClass="regularpasswordfield" />
+            <PasswordField fx:id="userPassword1" layoutX="14.0" layoutY="151.0" prefHeight="35.0" prefWidth="250.0" promptText="Confirm Password" styleClass="regularpasswordfield" />
          </children>
       </Pane>
       <Pane layoutX="7.0" layoutY="-11.0" prefHeight="100.0" prefWidth="92.0">

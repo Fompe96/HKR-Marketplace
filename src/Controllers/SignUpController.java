@@ -2,6 +2,8 @@ package Controllers;
 
 
 import Database.DBHandler;
+import Models.EmailSender;
+import Models.SceneChanger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,7 +14,7 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
-public class RegisterController implements Initializable {
+public class SignUpController implements Initializable {
 
     @FXML
     private TextField userEmail;
