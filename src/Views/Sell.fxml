@@ -10,7 +10,7 @@
    <children>
       <TextField fx:id="nameOfProductTextField" layoutX="61.0" layoutY="75.0" />
       <TextField fx:id="priceOfProductTextField" layoutX="61.0" layoutY="146.0" />
-      <TextArea fx:id="descriptionTextArea" layoutX="300.0" layoutY="75.0" prefHeight="235.0" prefWidth="249.0" />
+      <TextArea fx:id="descriptionTextArea" layoutX="300.0" layoutY="75.0" prefHeight="235.0" prefWidth="249.0" style="-fx-wrap-text: true;" />
       <Label layoutX="61.0" layoutY="48.0" text="Name of product:" />
       <Label layoutX="61.0" layoutY="121.0" text="Price:" />
       <Label layoutX="300.0" layoutY="48.0" text="Description:" />
