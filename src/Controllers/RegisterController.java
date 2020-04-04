@@ -63,7 +63,7 @@ public class RegisterController implements Initializable {
                 con.close();
                 EmailSender emailSender = new EmailSender();
                 emailSender.sendEmail(userEmail.getText(), "Your new account", "Welcome to HKR Marketplace! Here are your account details. \n \n" +
-                        "Username: " + userPassword.getText() + "\n" + "Password: " + userName.getText() + "\n" + "Account-Email: " + userEmail.getText());
+                        "Username: " + userName.getText() + "\n" + "Password: " + userPassword.getText() + "\n" + "Account-Email: " + userEmail.getText());
             } catch (Exception e) {
                 System.out.println(e);
             }
