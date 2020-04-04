@@ -4,6 +4,7 @@ package Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
@@ -36,26 +37,33 @@ public class RegisterController implements Initializable {
 
     @FXML
     private void registerButton(ActionEvent event) {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection(
-                    "jdbc:mysql://den1.mysql6.gear.host/hkrmarketplace", "hkrmarketplace", "Ez0ezh-~e3pf");
-            PreparedStatement stmt = con.prepareStatement("INSERT INTO `hkrmarketplace`.`account` (`idAccount`, `Username`, `Password`, `Email`, `Admin`) VALUES (?, ?, ?, ?, ?);\n");
-            PreparedStatement count = con.prepareStatement("select count(idAccount) from account;");
-            ResultSet rs = count.executeQuery();
-            while (rs.next()) { //Finds the amount of idAccount since its PK
-                int idAccount = rs.getInt(1);
-                setIdAccount(idAccount);
+        if (userName.getText().equals("") || userEmail.getText().equals("") || userPassword.getText().equals("")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Please enter all fields to register!");
+            alert.showAndWait();
+        } else {
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection con = DriverManager.getConnection(
+                        "jdbc:mysql://den1.mysql6.gear.host/hkrmarketplace", "hkrmarketplace", "Ez0ezh-~e3pf");
+                PreparedStatement stmt = con.prepareStatement("INSERT INTO `hkrmarketplace`.`account` (`idAccount`, `Username`, `Password`, `Email`, `Admin`) VALUES (?, ?, ?, ?, ?);\n");
+                PreparedStatement count = con.prepareStatement("select count(idAccount) from account;");
+                ResultSet rs = count.executeQuery();
+                while (rs.next()) { //Finds the amount of idAccount since its PK
+                    int idAccount = rs.getInt(1);
+                    setIdAccount(idAccount);
+                }
+                stmt.setInt(1, getIdAccount() + 1); //Gets the amount of idAccount and adds one
+                stmt.setString(2, userName.getText());
+                stmt.setString(3, userPassword.getText());
+                stmt.setString(4, userEmail.getText());
+                stmt.setBoolean(5, false);
+                stmt.executeUpdate();
+                con.close();
+            } catch (Exception e) {
+                System.out.println(e);
             }
-            stmt.setInt(1, getIdAccount() + 1); //Gets the amount of idAccount and adds one
-            stmt.setString(2, userName.getText());
-            stmt.setString(3, userPassword.getText());
-            stmt.setString(4, userEmail.getText());
-            stmt.setBoolean(5, false);
-            stmt.executeUpdate();
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
         }
     }
 
