@@ -29,6 +29,7 @@ public class RetrieveCredentialsController implements Initializable {
         EmailSender emailSender = new EmailSender();
         emailSender.sendEmail(userEmail.getText(), "Retrieved login details", "Here are your account details" +
                 "\nEmail: " + userEmail.getText() + "\nPassword: " + getUserPassword());
+        backButtonAction();
     }
 
 
@@ -45,7 +46,7 @@ public class RetrieveCredentialsController implements Initializable {
     }
 
     @FXML
-    private void backButtonAction(ActionEvent event) {
+    private void backButtonAction() {
         SceneChanger.changeScene("../Views/Login.fxml", "Login Page");
     }
 

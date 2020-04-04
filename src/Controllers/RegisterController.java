@@ -34,7 +34,7 @@ public class RegisterController implements Initializable {
     }
 
     @FXML
-    private void backButtonAction(ActionEvent event) {
+    private void backButtonAction() {
         SceneChanger.changeScene("../Views/Login.fxml", "Login Page");
     }
 
@@ -84,6 +84,7 @@ public class RegisterController implements Initializable {
                         emailSender.sendEmail(userEmail.getText(), "Your new account", "Welcome to HKR Marketplace! Here are your account details. \n \n" +
                                 "Username: " + userName.getText() + "\n" + "Password: " + userPassword.getText() + "\n" + "Account-Email: " + userEmail.getText());
                     }
+                    backButtonAction();
                 } catch (Exception e) {
                     System.out.println(e);
                 }
