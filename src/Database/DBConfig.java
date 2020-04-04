@@ -1,6 +1,6 @@
 package Database;
 
-public class DBConfig {
+public abstract class DBConfig {    // TEST IF IT CAN BE ABSTRACT
 
     // Sets up all required variables for connecting to the DB.
     String host = "den1.mysql6.gear.host";

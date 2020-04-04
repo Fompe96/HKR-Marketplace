@@ -44,7 +44,7 @@ public class SignUpController implements Initializable {
     }
 
     @FXML
-    private void registerButton(ActionEvent event) {
+    private void registerButton() {
         if (userName.getText().equals("") || userEmail.getText().equals("") || userPassword.getText().equals("")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -106,17 +106,17 @@ public class SignUpController implements Initializable {
         }
     }
 
-    static boolean isValid(String userEmail) {
+    private static boolean isValid(String userEmail) {
         String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         return userEmail.matches(regex);
     }
 
 
-    public int getIdAccount() {
+    private int getIdAccount() {
         return idAccount;
     }
 
-    public void setIdAccount(int idAccount) {
+    private void setIdAccount(int idAccount) {
         this.idAccount = idAccount;
     }
 }

@@ -2,6 +2,7 @@ package Controllers;
 
 import Database.DBHandler;
 import Models.SceneChanger;
+import Models.Singleton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -31,6 +32,7 @@ public class LoginController implements Initializable {
         dbHandler.getConnection();
         boolean checkIfExists = dbHandler.findUser(userEmail.getText(), userPassword.getText());
         if (checkIfExists) {
+            Singleton.getInstance().setLoggedInUser(dbHandler.getUserInformation(userEmail.getText()));
             SceneChanger.changeScene("../Views/Marketplace.fxml", "HKR Marketplace");
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
