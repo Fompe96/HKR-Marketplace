@@ -1,8 +1,6 @@
 package Database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DBHandler extends DBConfig {
     private Connection dbConnection;
@@ -20,6 +18,19 @@ public class DBHandler extends DBConfig {
             e.printStackTrace();
         }
         return dbConnection;
+    }
+
+    public boolean findUser(String userEmail, String userPassword) {
+        String query = "SELECT * FROM ACCOUNT WHERE Email = " + "'" + userEmail + "'" + " AND Password = " + "'" + userPassword + "';";
+        System.out.println(query);
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                return resultSet.next();
+            }
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        }
     }
 
     public void closeConnection() {

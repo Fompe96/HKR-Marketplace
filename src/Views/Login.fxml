@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #101010;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
    <children>
-      <TextField fx:id="username1" layoutX="225.0" layoutY="260.0" prefWidth="250.0" promptText="Enter Your Password" style="-fx-background-color: #101010; -fx-border-color: #e49e2e; -fx-border-width: 0 0 1 0; -fx-text-fill: #e49e2e;">
+      <TextField fx:id="userPassword" layoutX="225.0" layoutY="260.0" prefWidth="250.0" promptText="Enter Your Password" style="-fx-background-color: #101010; -fx-border-color: #e49e2e; -fx-border-width: 0 0 1 0; -fx-text-fill: #e49e2e;">
          <font>
             <Font size="13.0" />
          </font>
@@ -34,7 +34,7 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <TextField fx:id="username" layoutX="225.0" layoutY="188.0" prefWidth="250.0" promptText="Enter Your Username" style="-fx-background-color: #101010; -fx-border-color: #e49e2e; -fx-border-width: 0 0 1 0; -fx-text-fill: #e49e2e;">
+      <TextField fx:id="userEmail" layoutX="225.0" layoutY="188.0" prefWidth="250.0" promptText="Enter Your Email" style="-fx-background-color: #101010; -fx-border-color: #e49e2e; -fx-border-width: 0 0 1 0; -fx-text-fill: #e49e2e;">
          <font>
             <Font size="13.0" />
          </font>
