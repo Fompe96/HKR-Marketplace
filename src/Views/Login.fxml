@@ -8,7 +8,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -73,5 +75,10 @@
       </Pane>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e8e8e8" height="319.0" layoutX="619.0" layoutY="292.0" rotate="48.4" stroke="TRANSPARENT" strokeType="INSIDE" width="14.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#46ab57" height="315.0" layoutX="629.0" layoutY="301.0" rotate="48.4" stroke="TRANSPARENT" strokeType="INSIDE" width="26.0" />
+      <HBox onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="56.0" prefWidth="700.0" />
+      <Circle fill="#0073ff" layoutX="650.0" layoutY="27.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+      <Circle fill="#fc2b2b" layoutX="678.0" layoutY="27.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+      <Button layoutX="670.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
+      <Button layoutX="642.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
    </children>
 </AnchorPane>

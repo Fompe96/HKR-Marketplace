@@ -5,13 +5,16 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="673.0" prefWidth="1235.0" style="-fx-background-color: #3c3c3c;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MarketplaceController">
    <children>
+      <HBox onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="56.0" prefWidth="1235.0" />
       <Text fill="WHITE" layoutX="80.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Latest Sales">
          <font>
             <Font name="Arial" size="34.0" />
@@ -108,7 +111,12 @@
                </image>
             </ImageView>
             <Button layoutX="13.0" layoutY="138.0" mnemonicParsing="false" onAction="#sellButton" opacity="0.0" prefHeight="35.0" prefWidth="35.0" />
+            <Button layoutX="14.0" layoutY="618.0" mnemonicParsing="false" onAction="#handleSettingsButton" opacity="0.0" prefHeight="35.0" prefWidth="35.0" />
          </children>
       </Pane>
+      <Circle fill="#0073ff" layoutX="1193.0" layoutY="27.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+      <Circle fill="#fc2b2b" layoutX="1217.0" layoutY="27.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+      <Button layoutX="1209.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
+      <Button layoutX="1185.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
    </children>
 </AnchorPane>

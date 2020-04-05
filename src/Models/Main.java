@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
@@ -14,6 +15,8 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("../Views/Login.fxml"));
         primaryStage.setTitle("HKR-Marketplace");
         Scene scene = new Scene(root);
+        primaryStage.setResizable(false);
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
         scene.getStylesheets().add("Resources/CSS.css");
         primaryStage.setScene(scene);
         primaryStage.show();
