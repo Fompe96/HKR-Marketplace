@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -30,6 +31,18 @@ public class SellController implements Initializable {
     @FXML
     private TextArea descriptionTextArea;
 
+    @FXML
+    private CheckBox excellentBox;
+
+    @FXML
+    private CheckBox veryGoodBox;
+
+    @FXML
+    private CheckBox goodBox;
+
+    @FXML
+    private CheckBox poorBox;
+
     private int idProduct;
 
     DBHandler dbHandler = new DBHandler();
@@ -37,6 +50,42 @@ public class SellController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+    }
+
+    @FXML
+    private void handleExcellentBox(){
+        if(excellentBox.isSelected()){
+            veryGoodBox.setSelected(false);
+            goodBox.setSelected(false);
+            poorBox.setSelected(false);
+        }
+    }
+
+    @FXML
+    private void handleVeryGoodBox(){
+        if(veryGoodBox.isSelected()){
+            excellentBox.setSelected(false);
+            goodBox.setSelected(false);
+            poorBox.setSelected(false);
+        }
+    }
+
+    @FXML
+    private void handleGoodBox(){
+        if(goodBox.isSelected()){
+            veryGoodBox.setSelected(false);
+            excellentBox.setSelected(false);
+            poorBox.setSelected(false);
+        }
+    }
+
+    @FXML
+    private void handlePoorBox(){
+        if(poorBox.isSelected()){
+            veryGoodBox.setSelected(false);
+            goodBox.setSelected(false);
+            excellentBox.setSelected(false);
+        }
     }
 
 
