@@ -20,6 +20,10 @@ public class Singleton {
         return loggedInUser;
     }
 
+    public String getLoggedInName() {
+        return loggedInUser.getUserName();
+    }
+
     public void setLoggedInUser(User loggedInUser) {
         this.loggedInUser = loggedInUser;
     }

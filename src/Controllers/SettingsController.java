@@ -1,16 +1,24 @@
 package Controllers;
 
 import Models.SceneChanger;
+import Models.Singleton;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class SettingsController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class SettingsController implements Initializable {
 
 
+    @FXML
+    private Label loggedInAs;
     double x, y;
 
     @FXML
@@ -44,5 +52,10 @@ public class SettingsController {
     @FXML
     public void sellButton(ActionEvent event) {
         SceneChanger.changeScene("../Views/Sell.fxml", "Sell");
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loggedInAs.setText(Singleton.getInstance().getLoggedInName());
     }
 }
