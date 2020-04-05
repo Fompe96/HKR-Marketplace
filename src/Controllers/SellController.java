@@ -12,6 +12,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -50,6 +51,13 @@ public class SellController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+    }
+
+    @FXML
+    private void handleUploadImage(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open");
+        fileChooser.showOpenDialog(null);
     }
 
     @FXML
