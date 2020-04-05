@@ -21,9 +21,9 @@
       <TextField fx:id="nameOfProductTextField" layoutX="155.0" layoutY="75.0" />
       <TextField fx:id="priceOfProductTextField" layoutX="155.0" layoutY="147.0" />
       <TextArea fx:id="descriptionTextArea" layoutX="712.0" layoutY="75.0" prefHeight="235.0" prefWidth="249.0" style="-fx-wrap-text: true;" />
-      <Label layoutX="155.0" layoutY="57.0" text="Name of product:" />
-      <Label layoutX="155.0" layoutY="129.0" text="Price:" />
-      <Label layoutX="712.0" layoutY="57.0" text="Describe your item:" />
+      <Label layoutX="155.0" layoutY="57.0" text="Name of product:" textFill="#dacece" />
+      <Label layoutX="155.0" layoutY="129.0" text="Price:" textFill="#dacece" />
+      <Label layoutX="712.0" layoutY="57.0" text="Describe your item:" textFill="#dacece" />
       <Button layoutX="712.0" layoutY="320.0" mnemonicParsing="false" onAction="#handleAddSaleButton" prefHeight="50.0" prefWidth="94.0" text="Add to sale" />
       <Pane prefHeight="673.0" prefWidth="60.0" style="-fx-background-color: #242424;">
          <children>
@@ -67,10 +67,10 @@
       <Circle fill="#fc2b2b" layoutX="1217.0" layoutY="27.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
       <Button layoutX="1209.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
       <Button layoutX="1185.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
-      <Label layoutX="155.0" layoutY="213.0" text="Condition:" />
-      <CheckBox fx:id="excellentBox" layoutX="153.0" layoutY="239.0" mnemonicParsing="false" onAction="#handleExcellentBox" text="Excellent" />
-      <CheckBox fx:id="veryGoodBox" layoutX="153.0" layoutY="275.0" mnemonicParsing="false" onAction="#handleVeryGoodBox" text="Very Good" />
-      <CheckBox fx:id="goodBox" layoutX="153.0" layoutY="312.0" mnemonicParsing="false" onAction="#handleGoodBox" text="Good" />
-      <CheckBox fx:id="poorBox" layoutX="153.0" layoutY="345.0" mnemonicParsing="false" onAction="#handlePoorBox" text="Poor" />
+      <Label layoutX="155.0" layoutY="213.0" text="Condition:" textFill="#dacece" />
+      <CheckBox fx:id="excellentBox" layoutX="153.0" layoutY="239.0" mnemonicParsing="false" onAction="#handleExcellentBox" text="Excellent" textFill="#dacece" />
+      <CheckBox fx:id="veryGoodBox" layoutX="153.0" layoutY="275.0" mnemonicParsing="false" onAction="#handleVeryGoodBox" text="Very Good" textFill="#dacece" />
+      <CheckBox fx:id="goodBox" layoutX="153.0" layoutY="312.0" mnemonicParsing="false" onAction="#handleGoodBox" text="Good" textFill="#dacece" />
+      <CheckBox fx:id="poorBox" layoutX="153.0" layoutY="345.0" mnemonicParsing="false" onAction="#handlePoorBox" text="Poor" textFill="#dacece" />
    </children>
 </AnchorPane>
