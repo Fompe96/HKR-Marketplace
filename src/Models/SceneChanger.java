@@ -1,8 +1,8 @@
 package Models;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -13,7 +13,7 @@ public final class SceneChanger {
 
     public static void changeScene(String path, String title) {
         try {
-            AnchorPane root = FXMLLoader.load(SceneChanger.class.getResource(path));
+            Parent root = FXMLLoader.load(SceneChanger.class.getResource(path));
             Scene scene = new Scene(root);
             scene.getStylesheets().add("Resources/CSS.css");
             programStage.setTitle(title);

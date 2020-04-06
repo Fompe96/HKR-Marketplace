@@ -46,7 +46,7 @@ public class SellController implements Initializable {
 
     private int idProduct;
 
-    DBHandler dbHandler = new DBHandler();
+    private DBHandler dbHandler = new DBHandler();
     private Connection dbConnection;
 
     @Override

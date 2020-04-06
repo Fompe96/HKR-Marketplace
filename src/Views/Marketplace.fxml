@@ -112,6 +112,12 @@
             </ImageView>
             <Button layoutX="13.0" layoutY="138.0" mnemonicParsing="false" onAction="#sellButton" opacity="0.0" prefHeight="35.0" prefWidth="35.0" />
             <Button layoutX="14.0" layoutY="618.0" mnemonicParsing="false" onAction="#handleSettingsButton" opacity="0.0" prefHeight="35.0" prefWidth="35.0" />
+            <ImageView fx:id="adminview" fitHeight="40.0" fitWidth="40.0" layoutX="11.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../Resources/admin.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="adminButton" disable="true" layoutX="10.0" layoutY="551.0" mnemonicParsing="false" onAction="#handleAdminButton" opacity="0.0" prefHeight="40.0" prefWidth="40.0" />
          </children>
       </Pane>
       <Circle fill="#0073ff" layoutX="1193.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />

@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -19,9 +20,10 @@ public class MarketplaceController implements Initializable {
 
     double x, y;
     @FXML
-    private ImageView imageView;
+    private ImageView imageView, imageView1, adminview;
+
     @FXML
-    private ImageView imageView1;
+    private Button adminButton;
 
 
     @Override
@@ -29,6 +31,11 @@ public class MarketplaceController implements Initializable {
         imageView.setImage(new Image("https://usercontent1.hubstatic.com/11310434_f520.jpg"));
         imageView1.setImage(new Image("https://www.kattkompaniet.nu/images/5.63.1606161417/kattleksaker-fatcat.jpeg"));
         System.out.println("The user who just logged in is: " + Singleton.getInstance().getLoggedInUser()); // This is here for testing purposes!
+
+        if (Singleton.getInstance().getLoggedInUser().isAdmin()) {
+            adminview.setVisible(true);
+            adminButton.setDisable(false);
+        }
     }
 
     @FXML
@@ -63,5 +70,10 @@ public class MarketplaceController implements Initializable {
     @FXML
     private void handleSettingsButton(ActionEvent event) {
         SceneChanger.changeScene("../Views/Settings.fxml", "Sell");
+    }
+
+    @FXML
+    private void handleAdminButton(ActionEvent event) {
+        SceneChanger.changeScene("../Views/Administration.fxml", "Administration Page");
     }
 }

@@ -19,7 +19,6 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class RetrieveCredentialsController implements Initializable {
-
     private DBHandler dbHandler = new DBHandler();
     @FXML
     private TextField userEmail;
