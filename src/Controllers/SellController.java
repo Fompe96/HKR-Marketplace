@@ -142,7 +142,7 @@ public class SellController implements Initializable {
         } else {
             dbConnection = dbHandler.getConnection();
             try {
-                PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`product` (`idProduct`, `name`, `price`, `description`) VALUES (?, ?, ?, ?);\n");
+                PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`product` (`idProduct`, `name`, `price`, `description`, `condition`) VALUES (?, ?, ?, ?, ?);\n");
                 PreparedStatement count = dbConnection.prepareStatement("SELECT count(idProduct) FROM product;");
                 ResultSet rs = count.executeQuery();
                 while (rs.next()) {
@@ -153,6 +153,15 @@ public class SellController implements Initializable {
                 statement.setString(2, nameOfProductTextField.getText());
                 statement.setDouble(3, Double.parseDouble(priceOfProductTextField.getText()));
                 statement.setString(4, descriptionTextArea.getText());
+                if (excellentBox.isSelected()) {
+                    statement.setString(5,excellentBox.getText());
+                } else if (veryGoodBox.isSelected()) {
+                    statement.setString(5, veryGoodBox.getText());
+                } else if (goodBox.isSelected()){
+                    statement.setString(5, goodBox.getText());
+                } else if (poorBox.isSelected()){
+                    statement.setString(5, poorBox.getText());
+                }
 
                 statement.executeUpdate();
                 dbHandler.closeConnection();
