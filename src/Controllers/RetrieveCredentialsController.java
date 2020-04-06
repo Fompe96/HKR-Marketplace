@@ -66,7 +66,7 @@ public class RetrieveCredentialsController implements Initializable {
 
     public void findUser(String userEmail) {
         String query = "SELECT * FROM ACCOUNT WHERE Email = " + "'" + userEmail + "';";
-        try (PreparedStatement statement = dbHandler.getConnection().prepareStatement(query)) {
+        try (PreparedStatement statement = dbHandler.getDbConnection().prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 resultSet.next();
                 setUserPassword(resultSet.getString(3));

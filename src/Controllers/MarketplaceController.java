@@ -32,13 +32,13 @@ public class MarketplaceController implements Initializable {
     }
 
     @FXML
-    public void sellButton(ActionEvent event) {
+    public void sellButton() {
         SceneChanger.changeScene("../Views/Sell.fxml", "Sell");
     }
 
 
     @FXML
-    private void handleClosingButton(ActionEvent event) {
+    private void handleClosingButton() {
         Platform.exit();
     }
 
@@ -61,7 +61,7 @@ public class MarketplaceController implements Initializable {
     }
 
     @FXML
-    private void handleSettingsButton(ActionEvent event) {
+    private void handleSettingsButton() {
         SceneChanger.changeScene("../Views/Settings.fxml", "Sell");
     }
 }

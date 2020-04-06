@@ -7,7 +7,7 @@ import java.sql.*;
 public class DBHandler extends DBConfig {
     private Connection dbConnection;
 
-    public Connection getConnection() {
+    public void createConnection() {
         String connectionString = "jdbc:mysql://" + host + "/" + dbName;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -19,12 +19,12 @@ public class DBHandler extends DBConfig {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return dbConnection;
+        setDbConnection(dbConnection);
     }
 
     public boolean findUser(String userEmail, String userPassword) {
         String query = "SELECT * FROM ACCOUNT WHERE Email = " + "'" + userEmail + "'" + " AND Password = " + "'" + userPassword + "';";
-        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+        try (PreparedStatement statement = getDbConnection().prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 return resultSet.next();
             }
@@ -36,7 +36,7 @@ public class DBHandler extends DBConfig {
 
     public boolean seeIfEmailAlreadyRegistered(String userEmail) {
         String query = "SELECT * FROM ACCOUNT WHERE Email = " + "'" + userEmail + "';";
-        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+        try (PreparedStatement statement = getDbConnection().prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 return resultSet.next();
             }
@@ -48,7 +48,7 @@ public class DBHandler extends DBConfig {
 
     public User getUserInformation(String userEmail) {  // Returns an object containing all information about a user. Takes the email as parameter
         String query = "SELECT * FROM account WHERE Email = '" + userEmail + "';";
-        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+        try (PreparedStatement statement = getDbConnection().prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 resultSet.first();
                 return new User(resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getBoolean(5));
@@ -65,6 +65,15 @@ public class DBHandler extends DBConfig {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public Connection getDbConnection() {
+        return dbConnection;
+    }
+
+    public void setDbConnection(Connection dbConnection) {
+        this.dbConnection = dbConnection;
     }
 }
 
