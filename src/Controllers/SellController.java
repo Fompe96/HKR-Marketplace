@@ -140,7 +140,7 @@ public class SellController implements Initializable {
             alert.setContentText("Please Enter your information in all fields");
             alert.showAndWait();
         } else {
-            dbConnection = dbHandler.getDbConnection();
+            dbConnection = dbHandler.getConnection();
             try {
                 PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`product` (`idProduct`, `name`, `price`, `description`, `condition`) VALUES (?, ?, ?, ?, ?);\n");
                 PreparedStatement count = dbConnection.prepareStatement("SELECT count(idProduct) FROM product;");

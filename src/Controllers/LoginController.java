@@ -26,11 +26,10 @@ public class LoginController implements Initializable {
     private TextField userEmail;
 
     private double x, y;
-    public DBHandler dbHandler = new DBHandler();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        dbHandler.createConnection();
+
     }
 
     @FXML
@@ -59,6 +58,8 @@ public class LoginController implements Initializable {
     @FXML
     private void logInButtonAction() {
 
+        DBHandler dbHandler = new DBHandler();
+        dbHandler.getConnection();
         boolean checkIfExists = dbHandler.findUser(userEmail.getText(), userPassword.getText());
         if (checkIfExists) {
             Singleton.getInstance().setLoggedInUser(dbHandler.getUserInformation(userEmail.getText()));
@@ -69,6 +70,7 @@ public class LoginController implements Initializable {
             alert.setContentText("Login credentials not found");
             alert.showAndWait();
         }
+        dbHandler.closeConnection();
     }
 
     @FXML

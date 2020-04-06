@@ -44,7 +44,7 @@ public class SignUpController implements Initializable {
     }
 
     @FXML
-    private void handleClosingButton() {
+    private void handleClosingButton(ActionEvent event) {
         Platform.exit();
     }
 
@@ -93,7 +93,7 @@ public class SignUpController implements Initializable {
                     alert.setContentText("Please enter a valid email");
                     alert.showAndWait();
                 } else {
-                    dbConnection = dbHandler.getDbConnection();
+                    dbConnection = dbHandler.getConnection();
                     try {
                         if (dbHandler.seeIfEmailAlreadyRegistered(userEmail.getText())) {
                             Alert alert = new Alert(Alert.AlertType.ERROR);

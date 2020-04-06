@@ -22,7 +22,7 @@ public class SettingsController implements Initializable {
     double x, y;
 
     @FXML
-    private void handleClosingButton() {
+    private void handleClosingButton(ActionEvent event) {
         Platform.exit();
     }
 
@@ -45,12 +45,12 @@ public class SettingsController implements Initializable {
     }
 
     @FXML
-    private void handleMarketButton() {
+    private void handleMarketButton(ActionEvent event) {
         SceneChanger.changeScene("../Views/Marketplace.fxml", "Marketplace");
     }
 
     @FXML
-    public void sellButton() {
+    public void sellButton(ActionEvent event) {
         SceneChanger.changeScene("../Views/Sell.fxml", "Sell");
     }
 
