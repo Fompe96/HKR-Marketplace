@@ -15,7 +15,7 @@
 
 <AnchorPane prefHeight="673.0" prefWidth="1235.0" style="-fx-background-color: #3c3c3c;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SettingsController">
    <children>
-      <HBox onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="56.0" prefWidth="1235.0" />
+      <HBox onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="30.0" prefWidth="1235.0" styleClass="regularWindowBar" />
       <Pane prefHeight="673.0" prefWidth="60.0" style="-fx-background-color: #242424;">
          <children>
             <Pane layoutX="-1.0" prefHeight="56.0" prefWidth="60.0" style="-fx-background-color: #6ea5ff;">
@@ -53,11 +53,11 @@
             <Button layoutX="12.0" layoutY="92.0" mnemonicParsing="false" onAction="#handleMarketButton" opacity="0.0" prefHeight="35.0" prefWidth="35.0" />
          </children>
       </Pane>
-      <Circle fill="#0073ff" layoutX="1193.0" layoutY="27.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
-      <Circle fill="#fc2b2b" layoutX="1217.0" layoutY="27.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
-      <Button layoutX="1209.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
-      <Button layoutX="1185.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
-      <Pane layoutX="323.0" layoutY="37.0" prefHeight="600.0" prefWidth="589.0" style="-fx-background-color: #242424;">
+      <Circle fill="#0073ff" layoutX="1193.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+      <Circle fill="#fc2b2b" layoutX="1217.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+      <Button layoutX="1209.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
+      <Button layoutX="1185.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
+      <Pane layoutX="323.0" layoutY="50.0" prefHeight="600.0" prefWidth="589.0" style="-fx-background-color: #242424;">
          <children>
             <Circle fill="GREY" layoutX="295.0" layoutY="183.0" radius="100.0" stroke="#6ea5ff" strokeType="INSIDE" strokeWidth="3.0" />
             <Label fx:id="loggedInAs" layoutX="198.0" layoutY="30.0" text="Logged in as" textFill="WHITE">

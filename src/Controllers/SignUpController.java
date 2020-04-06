@@ -27,13 +27,13 @@ public class SignUpController implements Initializable {
     private TextField userPassword;
 
     @FXML
-    private TextField userPassword1;
+    private TextField confirmPassword;
 
     @FXML
     private TextField userName;
 
     private int idAccount;
-    double x, y;
+    private double x, y;
 
     private DBHandler dbHandler;
     private Connection dbConnection;
@@ -79,13 +79,13 @@ public class SignUpController implements Initializable {
             alert.setContentText("Please enter all fields to register!");
             alert.showAndWait();
         } else {
-            if (!userPassword.getText().equals(userPassword1.getText())) {
+            if (!userPassword.getText().equals(confirmPassword.getText())) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setContentText("Passwords do not match, please re-enter");
                 alert.showAndWait();
                 userPassword.clear();
-                userPassword1.clear();
+                confirmPassword.clear();
             } else {
                 if (!isValid(userEmail.getText())) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);

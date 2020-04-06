@@ -25,7 +25,7 @@ public class LoginController implements Initializable {
     @FXML
     private TextField userEmail;
 
-    double x, y;
+    private double x, y;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -33,7 +33,7 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void handleClosingButton(ActionEvent event) {
+    private void handleClosingButton() {
         Platform.exit();
     }
 

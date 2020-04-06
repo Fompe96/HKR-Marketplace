@@ -3,7 +3,7 @@
 }
 
 .regulartextfield {
-    -fx-background-color:  #3c3c3c;
+    -fx-background-color:   #242424;
     -fx-text-fill: #e8e8e8;
     -fx-border-color:  #e8e8e8;
     -fx-border-radius: 5;
@@ -14,7 +14,7 @@
 }
 
 .regularpasswordfield {
-    -fx-background-color:  #3c3c3c;
+    -fx-background-color:   #242424;
     -fx-text-fill: #e8e8e8;
     -fx-border-color:  #e8e8e8;
     -fx-border-radius: 5;
@@ -51,4 +51,18 @@
 
 .regularlabel:pressed:hover {
     -fx-text-fill: #46ab57;
+}
+
+.regularWindowBar {
+    -fx-background-color:   #242424;
+    -fx-opacity: 0.8;
+}
+
+.regularcheckbox:selected .mark {
+    -fx-background-color: #46ab57;
+}
+
+.regularcheckbox .box {
+    -fx-background-color: #242424;
+    -fx-border-color: #e8e8e8;
 }
