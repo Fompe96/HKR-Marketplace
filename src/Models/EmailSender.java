@@ -7,7 +7,6 @@ import java.util.Properties;
 
 public class EmailSender {
     public void sendEmail(String userEmail, String emailSubject, String emailMessage) {
-        String to = userEmail;
 
         String from = "HKRMarketplace@gmail.com";
 
@@ -35,7 +34,7 @@ public class EmailSender {
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(from));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(userEmail));
             message.setSubject(emailSubject);
             message.setText(emailMessage);
             Transport.send(message);

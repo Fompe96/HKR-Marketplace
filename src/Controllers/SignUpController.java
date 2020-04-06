@@ -21,30 +21,21 @@ import java.util.ResourceBundle;
 public class SignUpController implements Initializable {
 
     @FXML
-    private TextField userEmail;
-
-    @FXML
-    private TextField userPassword;
-
-    @FXML
-    private TextField confirmPassword;
-
-    @FXML
-    private TextField userName;
-
+    private TextField userEmail, userName, userPassword, confirmPassword;
     private int idAccount;
     private double x, y;
 
     private DBHandler dbHandler;
-    private Connection dbConnection;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        dbHandler = new DBHandler();
+        if (dbHandler == null) {
+            dbHandler = new DBHandler();
+        }
     }
 
     @FXML
-    private void handleClosingButton(ActionEvent event) {
+    private void handleClosingButton() {
         Platform.exit();
     }
 
@@ -93,7 +84,7 @@ public class SignUpController implements Initializable {
                     alert.setContentText("Please enter a valid email");
                     alert.showAndWait();
                 } else {
-                    dbConnection = dbHandler.getConnection();
+                    Connection dbConnection = dbHandler.getConnection();
                     try {
                         if (dbHandler.seeIfEmailAlreadyRegistered(userEmail.getText())) {
                             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -126,7 +117,7 @@ public class SignUpController implements Initializable {
                                     "Username: " + userName.getText() + "\n" + "Password: " + userPassword.getText() + "\n" + "Account-Email: " + userEmail.getText());
                         }
                     } catch (Exception e) {
-                        System.out.println(e);
+                        e.printStackTrace();
                     }
                     backButtonAction();
                 }
@@ -135,7 +126,7 @@ public class SignUpController implements Initializable {
     }
 
     private static boolean isValid(String userEmail) {
-        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        String regex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
         return userEmail.matches(regex);
     }
 

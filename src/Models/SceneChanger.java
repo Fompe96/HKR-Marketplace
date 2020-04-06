@@ -25,7 +25,7 @@ public final class SceneChanger {
         }
     }
 
-    public static void setProgramStage(Stage programStage) {
+    static void setProgramStage(Stage programStage) {
         SceneChanger.programStage = programStage;
     }
 }

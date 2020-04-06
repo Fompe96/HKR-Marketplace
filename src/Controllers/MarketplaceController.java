@@ -1,5 +1,6 @@
 package Controllers;
 
+import Database.DBHandler;
 import Models.SceneChanger;
 import Models.Singleton;
 import javafx.application.Platform;
@@ -18,7 +19,8 @@ import java.util.ResourceBundle;
 
 public class MarketplaceController implements Initializable {
 
-    double x, y;
+    private double x, y;
+    private DBHandler dbHandler;
     @FXML
     private ImageView imageView, imageView1, adminview;
 
@@ -28,6 +30,9 @@ public class MarketplaceController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (dbHandler == null) {
+            dbHandler = new DBHandler();
+        }
         imageView.setImage(new Image("https://usercontent1.hubstatic.com/11310434_f520.jpg"));
         imageView1.setImage(new Image("https://www.kattkompaniet.nu/images/5.63.1606161417/kattleksaker-fatcat.jpeg"));
         System.out.println("The user who just logged in is: " + Singleton.getInstance().getLoggedInUser()); // This is here for testing purposes!
@@ -39,13 +44,13 @@ public class MarketplaceController implements Initializable {
     }
 
     @FXML
-    public void sellButton(ActionEvent event) {
+    public void sellButton() {
         SceneChanger.changeScene("../Views/Sell.fxml", "Sell");
     }
 
 
     @FXML
-    private void handleClosingButton(ActionEvent event) {
+    private void handleClosingButton() {
         Platform.exit();
     }
 
@@ -68,12 +73,12 @@ public class MarketplaceController implements Initializable {
     }
 
     @FXML
-    private void handleSettingsButton(ActionEvent event) {
+    private void handleSettingsButton() {
         SceneChanger.changeScene("../Views/Settings.fxml", "Sell");
     }
 
     @FXML
-    private void handleAdminButton(ActionEvent event) {
+    private void handleAdminButton() {
         SceneChanger.changeScene("../Views/Administration.fxml", "Administration Page");
     }
 }

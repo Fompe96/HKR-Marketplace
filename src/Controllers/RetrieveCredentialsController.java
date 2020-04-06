@@ -19,7 +19,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class RetrieveCredentialsController implements Initializable {
-    private DBHandler dbHandler = new DBHandler();
+    private DBHandler dbHandler;
     @FXML
     private TextField userEmail;
     private String userPassword;
@@ -28,6 +28,9 @@ public class RetrieveCredentialsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (dbHandler == null) {
+            dbHandler = new DBHandler();
+        }
     }
 
     @FXML
@@ -63,7 +66,7 @@ public class RetrieveCredentialsController implements Initializable {
     }
 
 
-    public void findUser(String userEmail) {
+    private void findUser(String userEmail) {
         String query = "SELECT * FROM ACCOUNT WHERE Email = " + "'" + userEmail + "';";
         try (PreparedStatement statement = dbHandler.getConnection().prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -80,11 +83,11 @@ public class RetrieveCredentialsController implements Initializable {
         SceneChanger.changeScene("../Views/Login.fxml", "Login Page");
     }
 
-    public String getUserPassword() {
+    private String getUserPassword() {
         return userPassword;
     }
 
-    public void setUserPassword(String userPassword) {
+    private void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
     }
 }

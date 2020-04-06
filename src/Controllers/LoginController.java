@@ -26,10 +26,13 @@ public class LoginController implements Initializable {
     private TextField userEmail;
 
     private double x, y;
+    private DBHandler dbHandler;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        if (dbHandler == null) {
+            dbHandler = new DBHandler();
+        }
     }
 
     @FXML
@@ -57,8 +60,6 @@ public class LoginController implements Initializable {
 
     @FXML
     private void logInButtonAction() {
-
-        DBHandler dbHandler = new DBHandler();
         dbHandler.getConnection();
         boolean checkIfExists = dbHandler.findUser(userEmail.getText(), userPassword.getText());
         if (checkIfExists) {

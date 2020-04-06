@@ -24,33 +24,24 @@ import java.util.ResourceBundle;
 public class SellController implements Initializable {
 
     @FXML
-    private TextField nameOfProductTextField;
-
-    @FXML
-    private TextField priceOfProductTextField;
+    private TextField nameOfProductTextField, priceOfProductTextField;
 
     @FXML
     private TextArea descriptionTextArea;
 
     @FXML
-    private CheckBox excellentBox;
-
-    @FXML
-    private CheckBox veryGoodBox;
-
-    @FXML
-    private CheckBox goodBox;
-
-    @FXML
-    private CheckBox poorBox;
+    private CheckBox excellentBox, veryGoodBox, goodBox, poorBox;
 
     private int idProduct;
 
-    private DBHandler dbHandler = new DBHandler();
-    private Connection dbConnection;
+    private DBHandler dbHandler;
+    private double x, y;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if (dbHandler == null) {
+            dbHandler = new DBHandler();
+        }
     }
 
     @FXML
@@ -96,11 +87,8 @@ public class SellController implements Initializable {
         }
     }
 
-
-    double x, y;
-
     @FXML
-    private void handleClosingButton(ActionEvent event) {
+    private void handleClosingButton() {
         Platform.exit();
     }
 
@@ -123,12 +111,12 @@ public class SellController implements Initializable {
     }
 
     @FXML
-    private void handleBackButton(ActionEvent event) {
+    private void handleBackButton() {
         SceneChanger.changeScene("../Views/Marketplace.fxml", "Marketplace");
     }
 
     @FXML
-    private void handleSettingsButton(ActionEvent event) {
+    private void handleSettingsButton() {
         SceneChanger.changeScene("../Views/Settings.fxml", "Sell");
     }
 
@@ -140,7 +128,7 @@ public class SellController implements Initializable {
             alert.setContentText("Please Enter your information in all fields");
             alert.showAndWait();
         } else {
-            dbConnection = dbHandler.getConnection();
+            Connection dbConnection = dbHandler.getConnection();
             try {
                 PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`product` (`idProduct`, `name`, `price`, `description`, `condition`) VALUES (?, ?, ?, ?, ?);\n");
                 PreparedStatement count = dbConnection.prepareStatement("SELECT count(idProduct) FROM product;");
@@ -176,16 +164,16 @@ public class SellController implements Initializable {
                 descriptionTextArea.setText("");
 
             } catch (Exception e) {
-                System.out.println(e);
+                e.printStackTrace();
             }
         }
     }
 
-    public int getIdProduct() {
+    private int getIdProduct() {
         return idProduct;
     }
 
-    public void setIdProduct(int idProduct) {
+    private void setIdProduct(int idProduct) {
         this.idProduct = idProduct;
     }
 }

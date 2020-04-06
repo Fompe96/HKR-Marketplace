@@ -14,7 +14,7 @@ public class Singleton {
         return instance;
     }
 
-    private User loggedInUser;  // Variable
+    private User loggedInUser;  // Variable used to keep track of the currently logged in user.
 
     public User getLoggedInUser() {
         return loggedInUser;
