@@ -60,18 +60,25 @@ public class LoginController implements Initializable {
 
     @FXML
     private void logInButtonAction() {
-        dbHandler.getConnection();
-        boolean checkIfExists = dbHandler.findUser(userEmail.getText(), userPassword.getText());
-        if (checkIfExists) {
-            Singleton.getInstance().setLoggedInUser(dbHandler.getUserInformation(userEmail.getText()));
-            SceneChanger.changeScene("../Views/Marketplace.fxml", "HKR Marketplace");
-        } else {
+        if (userEmail.getText().equals("") || userPassword.getText().equals("")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setContentText("Login credentials not found");
+            alert.setContentText("Please enter all fields");
             alert.showAndWait();
+        } else {
+            dbHandler.getConnection();
+            boolean checkIfExists = dbHandler.findUser(userEmail.getText(), userPassword.getText());
+            if (checkIfExists) {
+                Singleton.getInstance().setLoggedInUser(dbHandler.getUserInformation(userEmail.getText()));
+                SceneChanger.changeScene("../Views/Marketplace.fxml", "HKR Marketplace");
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Login credentials not found");
+                alert.showAndWait();
+            }
+            dbHandler.closeConnection();
         }
-        dbHandler.closeConnection();
     }
 
     @FXML

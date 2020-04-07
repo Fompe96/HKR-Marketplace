@@ -30,6 +30,7 @@
             <TextField fx:id="userName" layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="250.0" promptText="Enter full name" styleClass="regulartextfield" />
             <TextField fx:id="userEmail" layoutX="14.0" layoutY="57.0" prefHeight="35.0" prefWidth="250.0" promptText="Enter Email" styleClass="regulartextfield" />
             <PasswordField fx:id="userPassword" layoutX="14.0" layoutY="104.0" prefHeight="35.0" prefWidth="250.0" promptText="Enter Password" styleClass="regularpasswordfield" />
+            <PasswordField fx:id="confirmPassword" layoutX="14.0" layoutY="151.0" prefHeight="35.0" prefWidth="250.0" promptText="Confirm Password" styleClass="regularpasswordfield" />
             <Button fx:id="backButton" layoutX="14.0" layoutY="193.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="35.0" prefWidth="90.0" styleClass="regularbutton" text="Back">
                <font>
                   <Font name="System Bold" size="15.0" />
@@ -40,7 +41,6 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <PasswordField fx:id="confirmPassword" layoutX="14.0" layoutY="151.0" prefHeight="35.0" prefWidth="250.0" promptText="Confirm Password" styleClass="regularpasswordfield" />
          </children>
       </Pane>
       <Pane layoutX="7.0" layoutY="10.0" prefHeight="100.0" prefWidth="92.0">
@@ -69,5 +69,6 @@
       <Circle fill="#fc2b2b" layoutX="678.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
       <Button layoutX="642.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
       <Button layoutX="670.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
+      <ImageView fx:id="madeAccount" fitHeight="150.0" fitWidth="200.0" layoutX="252.0" layoutY="399.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

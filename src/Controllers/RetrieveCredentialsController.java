@@ -67,6 +67,7 @@ public class RetrieveCredentialsController implements Initializable {
 
 
     private void findUser(String userEmail) {
+        new Thread(() -> {
         String query = "SELECT * FROM ACCOUNT WHERE Email = " + "'" + userEmail + "';";
         try (PreparedStatement statement = dbHandler.getConnection().prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -76,6 +77,7 @@ public class RetrieveCredentialsController implements Initializable {
         } catch (SQLException se) {
             se.printStackTrace();
         }
+        }).start();
     }
 
     @FXML
