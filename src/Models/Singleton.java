@@ -20,6 +20,10 @@ public class Singleton {
         return loggedInUser;
     }
 
+    public String getLoggedInEmail() {
+        return loggedInUser.getEmail();
+    }
+
     public String getLoggedInName() {
         return loggedInUser.getUserName();
     }

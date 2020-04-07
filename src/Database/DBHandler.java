@@ -1,7 +1,12 @@
 package Database;
 
 import Models.User;
+import javafx.scene.image.Image;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.sql.*;
 
 public class DBHandler extends DBConfig {
@@ -57,6 +62,14 @@ public class DBHandler extends DBConfig {
             se.printStackTrace();
             return null;    // Returns null if something went wrong
         }
+    }
+
+    public void uploadImage(String userEmail, String imagePath) throws SQLException, FileNotFoundException {
+        PreparedStatement ps = getConnection().prepareStatement("UPDATE `hkrmarketplace`.`account` SET `Picture` = ? WHERE (`Email` = '" + userEmail + "');");
+        InputStream is = new FileInputStream(new File(imagePath));
+        ps.setBlob(1,is);
+        ps.executeUpdate();
+        System.out.println("Done");
     }
 
     public void closeConnection() {
