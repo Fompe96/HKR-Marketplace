@@ -2,15 +2,14 @@ package Controllers;
 
 import Database.DBHandler;
 import Models.SceneChanger;
+import Models.Singleton;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -32,6 +31,12 @@ public class SellController implements Initializable {
     @FXML
     private CheckBox excellentBox, veryGoodBox, goodBox, poorBox;
 
+    @FXML
+    private Button adminButton;
+
+    @FXML
+    private ImageView adminview;
+
     private int idProduct;
 
     private DBHandler dbHandler;
@@ -41,6 +46,10 @@ public class SellController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (dbHandler == null) {
             dbHandler = new DBHandler();
+        }
+        if (Singleton.getInstance().getLoggedInUser().isAdmin()) {
+            adminview.setVisible(true);
+            adminButton.setDisable(false);
         }
     }
 
@@ -118,6 +127,11 @@ public class SellController implements Initializable {
     @FXML
     private void handleSettingsButton() {
         SceneChanger.changeScene("../Views/Settings.fxml", "Sell");
+    }
+
+    @FXML
+    private void handleAdminButton() {
+        SceneChanger.changeScene("../Views/Administration.fxml", "Administration Page");
     }
 
     @FXML

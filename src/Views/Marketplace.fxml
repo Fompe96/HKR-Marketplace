@@ -79,7 +79,7 @@
       </Pane>
       <Pane prefHeight="673.0" prefWidth="60.0" style="-fx-background-color: #242424;">
          <children>
-            <Pane layoutX="-1.0" prefHeight="56.0" prefWidth="60.0" style="-fx-background-color: #6ea5ff;">
+            <Pane prefHeight="56.0" prefWidth="60.0" style="-fx-background-color: #6ea5ff;">
                <children>
                   <Text fill="WHITE" layoutX="11.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="m" wrappingWidth="37.556640625">
                      <font>
