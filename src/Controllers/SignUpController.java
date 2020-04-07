@@ -11,6 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -24,6 +26,8 @@ public class SignUpController implements Initializable {
     private TextField userEmail, userName, userPassword, confirmPassword;
     private int idAccount;
     private double x, y;
+    @FXML
+    private ImageView madeAccount;
 
     private DBHandler dbHandler;
 
@@ -107,6 +111,9 @@ public class SignUpController implements Initializable {
                             stmt.executeUpdate();
                             dbHandler.closeConnection();
 
+                            Image image = new Image("Resources/Success.gif");
+                            madeAccount.setOpacity(100);
+                            madeAccount.setImage(image);
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                             alert.setTitle("Success");
                             alert.setContentText("Your account has now been registered! \nYou will receive an email with login credentials");
