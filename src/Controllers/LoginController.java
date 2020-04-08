@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -25,6 +26,9 @@ public class LoginController implements Initializable {
     @FXML
     private TextField userEmail;
 
+    @FXML
+    private AnchorPane root;
+
     private double x, y;
     private DBHandler dbHandler;
 
@@ -33,12 +37,14 @@ public class LoginController implements Initializable {
         if (dbHandler == null) {
             dbHandler = new DBHandler();
         }
+        Platform.runLater( () -> root.requestFocus() );
     }
 
     @FXML
     private void handleClosingButton() {
         Platform.exit();
     }
+
 
     @FXML
     private void handleMinimizeButton(ActionEvent event) {
@@ -69,7 +75,7 @@ public class LoginController implements Initializable {
             dbHandler.getConnection();
             boolean checkIfExists = dbHandler.findUser(userEmail.getText(), userPassword.getText());
             if (checkIfExists) {
-                Singleton.getInstance().setLoggedInUser(dbHandler.getUserInformation(userEmail.getText()));
+                Singleton.getInstance().setLoggedInAccount(dbHandler.getUserInformation(userEmail.getText()));
                 SceneChanger.changeScene("../Views/Marketplace.fxml", "HKR Marketplace");
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);

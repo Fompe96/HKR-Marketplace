@@ -33,6 +33,7 @@
 .regularbutton:hover {
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 5,0,0,1 );
     -fx-effect: innershadow( gaussian , rgba(0,0,0,0.5) , 10,0,0,0 );
+    -fx-opacity: 1.1;
 }
 
 .regularbutton:pressed:hover {
@@ -40,6 +41,11 @@
     -fx-scale-y: 0.95;
 }
 
+.regularbutton:focused {
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.5) , 5,0,0,1 );
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.5) , 10,0,0,0 );
+    -fx-opacity: 1.1;
+}
 .regularlabel {
     -fx-text-fill: #e8e8e8;
     -fx-opacity: 0.75;

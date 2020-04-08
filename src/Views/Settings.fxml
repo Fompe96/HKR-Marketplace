@@ -55,8 +55,8 @@
       </Pane>
       <Circle fill="#0073ff" layoutX="1193.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
       <Circle fill="#fc2b2b" layoutX="1217.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
-      <Button layoutX="1209.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
-      <Button layoutX="1185.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
+      <Button focusTraversable="false" layoutX="1209.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
+      <Button focusTraversable="false" layoutX="1185.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
       <Pane layoutX="323.0" layoutY="50.0" prefHeight="600.0" prefWidth="589.0" style="-fx-background-color: #242424;">
          <children>
             <Circle fill="GREY" layoutX="295.0" layoutY="183.0" radius="100.0" stroke="#6ea5ff" strokeType="INSIDE" strokeWidth="3.0" />

@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #3c3c3c;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #3c3c3c;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
    <children>
       <Pane layoutX="62.0" layoutY="184.0" prefHeight="113.0" prefWidth="173.0">
          <children>
@@ -39,7 +39,11 @@
       <Line endX="-17.0" endY="-98.0" layoutX="263.0" layoutY="257.0" opacity="0.6" startX="-17.0" startY="85.0" stroke="#e8e8e8" strokeWidth="2.0" />
       <Pane layoutX="262.0" layoutY="156.0" prefHeight="188.0" prefWidth="315.0">
          <children>
+<<<<<<< HEAD
             <TextField fx:id="userEmail" layoutX="54.0" layoutY="14.0" prefHeight="35.0" prefWidth="250.0" promptText="Email" styleClass="regulartextfield">
+=======
+            <TextField fx:id="userEmail" layoutX="54.0" layoutY="14.0" prefHeight="35.0" prefWidth="250.0" promptText="Email Address" styleClass="regulartextfield">
+>>>>>>> ff4e4a44a7a11b207177990a243f6f0416fc7d55
                <padding>
                   <Insets left="15.0" />
                </padding>
@@ -60,20 +64,20 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Label layoutX="54.0" layoutY="159.0" onMouseClicked="#retrieveCredentialsButtonAction" prefHeight="20.0" prefWidth="156.0" styleClass="regularlabel" text="Forgot your Credentials?" textFill="#e8e8e8" underline="true">
+            <Label focusTraversable="false" layoutX="54.0" layoutY="159.0" onMouseClicked="#retrieveCredentialsButtonAction" prefHeight="20.0" prefWidth="156.0" styleClass="regularlabel" text="Forgot your Credentials?" textFill="#e8e8e8" underline="true">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
             <Line endX="-5.0" endY="56.0" layoutX="240.0" layoutY="114.0" opacity="0.6" startX="-17.0" startY="56.0" stroke="#e8e8e8" strokeWidth="2.0" />
-            <Label layoutX="250.0" layoutY="160.0" onMouseClicked="#registerButtonAction" styleClass="regularlabel" text="Register" textFill="#e8e8e8" underline="true">
+            <Label focusTraversable="false" layoutX="250.0" layoutY="160.0" onMouseClicked="#registerButtonAction" styleClass="regularlabel" text="Register" textFill="#e8e8e8" underline="true">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="15.0" layoutY="17.0" opacity="0.65" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="15.0" layoutY="20.0" opacity="0.65" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Resources/Contacts_52px_e8e8e8.png" />
+                  <Image url="@../Resources/email_e8e8e8.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="47.0" fitWidth="36.0" layoutX="12.0" layoutY="65.0" opacity="0.65" pickOnBounds="true" preserveRatio="true">
@@ -88,7 +92,7 @@
       <HBox onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="30.0" prefWidth="700.0" styleClass="regularWindowBar" />
       <Circle fill="#0073ff" layoutX="650.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
       <Circle fill="#fc2b2b" layoutX="678.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
-      <Button layoutX="670.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
-      <Button layoutX="642.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
+      <Button focusTraversable="false" layoutX="670.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
+      <Button focusTraversable="false" layoutX="642.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
    </children>
 </AnchorPane>

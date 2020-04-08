@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -22,6 +23,9 @@ public class RetrieveCredentialsController implements Initializable {
     private DBHandler dbHandler;
     @FXML
     private TextField userEmail;
+    @FXML
+    private AnchorPane root;
+
     private String userPassword;
 
     private double x, y;
@@ -31,6 +35,7 @@ public class RetrieveCredentialsController implements Initializable {
         if (dbHandler == null) {
             dbHandler = new DBHandler();
         }
+        Platform.runLater( () -> root.requestFocus() );
     }
 
     @FXML

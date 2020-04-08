@@ -14,22 +14,22 @@ public class Singleton {
         return instance;
     }
 
-    private User loggedInUser;  // Variable used to keep track of the currently logged in user.
+    private Account loggedInAccount;  // Variable used to keep track of the currently logged in account.
 
-    public User getLoggedInUser() {
-        return loggedInUser;
+    public Account getLoggedInAccount() {
+        return loggedInAccount;
     }
 
     public String getLoggedInEmail() {
-        return loggedInUser.getEmail();
+        return loggedInAccount.getEmail();
     }
 
     public String getLoggedInName() {
-        return loggedInUser.getUserName();
+        return loggedInAccount.getUserName();
     }
 
-    public void setLoggedInUser(User loggedInUser) {
-        this.loggedInUser = loggedInUser;
+    public void setLoggedInAccount(Account loggedInAccount) {
+        this.loggedInAccount = loggedInAccount;
     }
 
 }
