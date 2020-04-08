@@ -12,9 +12,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -46,6 +48,14 @@ public class AdministrationController implements Initializable {
     @FXML private TableColumn <Sale, String> condition;
     @FXML private TableColumn <Sale, String> category;
     @FXML private TableColumn <Sale, Blob> picture;
+
+    public void changeUsernameEvent(TableColumn.CellEditEvent editedCell) {
+        /*
+        Account selectedAccount = accountsTableView.getSelectionModel().getSelectedItem();
+        selectedAccount.setUserName(editedCell.getNewValue().toString());
+
+         */
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -102,11 +112,13 @@ public class AdministrationController implements Initializable {
     private void setupColumns() {
         // Account Columns
         username.setCellValueFactory(new PropertyValueFactory<Account, String>("userName"));
+        username.setCellFactory(TextFieldTableCell.forTableColumn());   // Makes cells in column editable
         password.setCellValueFactory(new PropertyValueFactory<Account, String>("Password"));
         email.setCellValueFactory(new PropertyValueFactory<Account, String>("Email"));
         admin.setCellValueFactory(new PropertyValueFactory<Account, Boolean>("Admin"));
         accpicture.setCellValueFactory(new PropertyValueFactory<Account, Blob>("Picture"));
         accountsTableView.setItems(accounts);
+        accountsTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE); // Allows for multiple rows to be selected
         // Sales Columns
         id.setCellValueFactory(new PropertyValueFactory<Sale, Integer>("id"));
         salesname.setCellValueFactory(new PropertyValueFactory<Sale, String >("Name"));
@@ -116,7 +128,25 @@ public class AdministrationController implements Initializable {
         category.setCellValueFactory(new PropertyValueFactory<Sale, String>("Category"));
         picture.setCellValueFactory(new PropertyValueFactory<Sale, Blob>("Picture"));
         salesTableView.setItems(sales);
+        salesTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
+
+    @FXML
+    private void handleRemoveButton() {
+
+    }
+
+    @FXML
+    private void handleInsertButton() {
+
+    }
+
+    @FXML
+    private void handleUpdateButton() {
+
+    }
+
+
 
     @FXML
     private void handleSellButton() {
