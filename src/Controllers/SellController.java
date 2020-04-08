@@ -205,7 +205,7 @@ public class SellController implements Initializable {
 
     @FXML
     private void handleAddSaleButton() {
-        if (nameOfProductTextField.getText().equals("") || priceOfProductTextField.getText().equals("") || descriptionTextArea.getText().equals("")) {
+        if (nameOfProductTextField.getText().equals("") || priceOfProductTextField.getText().equals("") || descriptionTextArea.getText().equals("") || filePathTextField.getText().equals("")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setContentText("Please Enter your information in all fields");
