@@ -29,7 +29,7 @@ public class SellController implements Initializable {
     private TextArea descriptionTextArea;
 
     @FXML
-    private CheckBox excellentBox, veryGoodBox, goodBox, poorBox;
+    private CheckBox excellentBox, veryGoodBox, goodBox, poorBox, vehiclesBox, petsBox, homeBox, electronicsBox, otherBox;
 
     @FXML
     private Button adminButton;
@@ -58,6 +58,56 @@ public class SellController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open");
         fileChooser.showOpenDialog(null);
+    }
+
+    @FXML
+    private void handleVehiclesBox(){
+        if(vehiclesBox.isSelected()){
+            petsBox.setSelected(false);
+            homeBox.setSelected(false);
+            electronicsBox.setSelected(false);
+            otherBox.setSelected(false);
+        }
+    }
+
+    @FXML
+    private void handlePetsBox(){
+        if(petsBox.isSelected()){
+            vehiclesBox.setSelected(false);
+            homeBox.setSelected(false);
+            electronicsBox.setSelected(false);
+            otherBox.setSelected(false);
+        }
+    }
+
+    @FXML
+    private void handleHomeBox(){
+        if(homeBox.isSelected()){
+            petsBox.setSelected(false);
+            vehiclesBox.setSelected(false);
+            electronicsBox.setSelected(false);
+            otherBox.setSelected(false);
+        }
+    }
+
+    @FXML
+    private void handleElectronicsBox(){
+        if(electronicsBox.isSelected()){
+            petsBox.setSelected(false);
+            homeBox.setSelected(false);
+            vehiclesBox.setSelected(false);
+            otherBox.setSelected(false);
+        }
+    }
+
+    @FXML
+    private void handleOtherBox(){
+        if(otherBox.isSelected()){
+            petsBox.setSelected(false);
+            homeBox.setSelected(false);
+            electronicsBox.setSelected(false);
+            vehiclesBox.setSelected(false);
+        }
     }
 
     @FXML
@@ -144,7 +194,7 @@ public class SellController implements Initializable {
         } else {
             Connection dbConnection = dbHandler.getConnection();
             try {
-                PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`product` (`idProduct`, `name`, `price`, `description`, `condition`) VALUES (?, ?, ?, ?, ?);\n");
+                PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`product` (`idProduct`, `name`, `price`, `description`, `condition`, `category`) VALUES (?, ?, ?, ?, ?, ?);\n");
                 PreparedStatement count = dbConnection.prepareStatement("SELECT count(idProduct) FROM product;");
                 ResultSet rs = count.executeQuery();
                 while (rs.next()) {
@@ -163,6 +213,18 @@ public class SellController implements Initializable {
                     statement.setString(5, goodBox.getText());
                 } else if (poorBox.isSelected()){
                     statement.setString(5, poorBox.getText());
+                }
+
+                if (vehiclesBox.isSelected()){
+                    statement.setString(6, vehiclesBox.getText());
+                } else if (petsBox.isSelected()){
+                    statement.setString(6, petsBox.getText());
+                } else if (homeBox.isSelected()){
+                    statement.setString(6, homeBox.getText());
+                } else if (electronicsBox.isSelected()){
+                    statement.setString(6, electronicsBox.getText());
+                } else if (otherBox.isSelected()){
+                    statement.setString(6, otherBox.getText());
                 }
 
                 statement.executeUpdate();
