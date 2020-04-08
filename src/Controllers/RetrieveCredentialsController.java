@@ -35,7 +35,7 @@ public class RetrieveCredentialsController implements Initializable {
         if (dbHandler == null) {
             dbHandler = new DBHandler();
         }
-        Platform.runLater( () -> root.requestFocus() );
+        Platform.runLater(() -> root.requestFocus());
     }
 
     @FXML
@@ -72,17 +72,15 @@ public class RetrieveCredentialsController implements Initializable {
 
 
     private void findUser(String userEmail) {
-        new Thread(() -> {
         String query = "SELECT * FROM ACCOUNT WHERE Email = " + "'" + userEmail + "';";
         try (PreparedStatement statement = dbHandler.getConnection().prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 resultSet.next();
-                setUserPassword(resultSet.getString(3));
+                setUserPassword(resultSet.getString(2));
             }
         } catch (SQLException se) {
             se.printStackTrace();
         }
-        }).start();
     }
 
     @FXML
