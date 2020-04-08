@@ -14,6 +14,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,12 +35,19 @@ public class SellController implements Initializable {
     private CheckBox excellentBox, veryGoodBox, goodBox, poorBox, vehiclesBox, petsBox, homeBox, electronicsBox, otherBox;
 
     @FXML
-    private Button adminButton;
+    private Button adminButton, uploadImageButton;
+
+    @FXML
+    private TextField filePathTextField;
 
     @FXML
     private ImageView adminview;
 
     private int idProduct;
+
+    private File file;
+
+    private FileInputStream fis;
 
     private DBHandler dbHandler;
     private double x, y;
@@ -57,7 +67,16 @@ public class SellController implements Initializable {
     private void handleUploadImage(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open");
-        fileChooser.showOpenDialog(null);
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("IMAGE FILES", "*.jpg", "*.png", "*.gif"));
+        file = fileChooser.showOpenDialog(null);
+        if(file != null){
+            filePathTextField.setText(file.getPath());
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setContentText("File does not Exist!");
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -194,7 +213,7 @@ public class SellController implements Initializable {
         } else {
             Connection dbConnection = dbHandler.getConnection();
             try {
-                PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`product` (`idProduct`, `name`, `price`, `description`, `condition`, `category`) VALUES (?, ?, ?, ?, ?, ?);\n");
+                PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`product` (`idProduct`, `name`, `price`, `description`, `condition`, `category`, `picture`) VALUES (?, ?, ?, ?, ?, ?, ?);\n");
                 PreparedStatement count = dbConnection.prepareStatement("SELECT count(idProduct) FROM product;");
                 ResultSet rs = count.executeQuery();
                 while (rs.next()) {
@@ -226,6 +245,9 @@ public class SellController implements Initializable {
                 } else if (otherBox.isSelected()){
                     statement.setString(6, otherBox.getText());
                 }
+
+                fis = new FileInputStream(file);
+                statement.setBinaryStream(7, fis, (int)file.length());
 
                 statement.executeUpdate();
                 dbHandler.closeConnection();
