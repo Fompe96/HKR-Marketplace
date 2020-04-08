@@ -96,18 +96,12 @@ public class SignUpController implements Initializable {
                             alert.setContentText("Email already registered");
                             alert.showAndWait();
                         } else {
-                            PreparedStatement stmt = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`account` (`idAccount`, `Username`, `Password`, `Email`, `Admin`) VALUES (?, ?, ?, ?, ?);\n");
-                            PreparedStatement count = dbConnection.prepareStatement("select count(idAccount) from account;");
-                            ResultSet rs = count.executeQuery();
-                            while (rs.next()) { //Finds the amount of idAccount since its PK
-                                int idAccount = rs.getInt(1);
-                                setIdAccount(idAccount);
-                            }
-                            stmt.setInt(1, getIdAccount() + 1); //Gets the amount of idAccount and adds one
-                            stmt.setString(2, userName.getText());
-                            stmt.setString(3, userPassword.getText());
-                            stmt.setString(4, userEmail.getText());
-                            stmt.setBoolean(5, false);
+                            PreparedStatement stmt = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`account` (`Username`, `Password`, `Email`, `Admin`) VALUES (?, ?, ?, ?);\n");
+
+                            stmt.setString(1, userName.getText());
+                            stmt.setString(2, userPassword.getText());
+                            stmt.setString(3, userEmail.getText());
+                            stmt.setBoolean(4, false);
                             stmt.executeUpdate();
                             dbHandler.closeConnection();
 

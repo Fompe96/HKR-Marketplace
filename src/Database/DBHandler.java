@@ -55,7 +55,7 @@ public class DBHandler extends DBConfig {
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 resultSet.first();
-                return new User(resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getBoolean(5));
+                return new User(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getBoolean(4));
             }
         } catch (SQLException se) {
             se.printStackTrace();
