@@ -16,83 +16,80 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #3c3c3c;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
-   <children>
-      <Pane layoutX="62.0" layoutY="184.0" prefHeight="113.0" prefWidth="173.0">
-         <children>
-            <Label layoutX="71.0" layoutY="13.0" prefHeight="58.0" prefWidth="86.0" text="HKR" textFill="#46ab57">
-               <font>
-                  <Font name="System Bold" size="40.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="69.0" fitWidth="70.0" layoutX="-2.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Resources/cartness.png" />
-               </image>
-            </ImageView>
-            <Label layoutY="63.0" prefHeight="40.0" prefWidth="173.0" text="Marketplace" textFill="#e8e8e8">
-               <font>
-                  <Font name="System Bold" size="28.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-      <Line endX="-17.0" endY="-98.0" layoutX="263.0" layoutY="257.0" opacity="0.6" startX="-17.0" startY="85.0" stroke="#e8e8e8" strokeWidth="2.0" />
-      <Pane layoutX="262.0" layoutY="156.0" prefHeight="188.0" prefWidth="315.0">
-         <children>
-<<<<<<< HEAD
-            <TextField fx:id="userEmail" layoutX="54.0" layoutY="14.0" prefHeight="35.0" prefWidth="250.0" promptText="Email" styleClass="regulartextfield">
-=======
-            <TextField fx:id="userEmail" layoutX="54.0" layoutY="14.0" prefHeight="35.0" prefWidth="250.0" promptText="Email Address" styleClass="regulartextfield">
->>>>>>> ff4e4a44a7a11b207177990a243f6f0416fc7d55
-               <padding>
-                  <Insets left="15.0" />
-               </padding>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextField>
-            <PasswordField fx:id="userPassword" layoutX="54.0" layoutY="65.0" prefHeight="35.0" prefWidth="250.0" promptText="Password" styleClass="regularpasswordfield">
-               <padding>
-                  <Insets left="15.0" />
-               </padding>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </PasswordField>
-            <Button layoutX="54.0" layoutY="116.0" mnemonicParsing="false" onAction="#logInButtonAction" opacity="0.9" prefHeight="35.0" prefWidth="250.0" styleClass="regularbutton" text="Login">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
-            <Label focusTraversable="false" layoutX="54.0" layoutY="159.0" onMouseClicked="#retrieveCredentialsButtonAction" prefHeight="20.0" prefWidth="156.0" styleClass="regularlabel" text="Forgot your Credentials?" textFill="#e8e8e8" underline="true">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Line endX="-5.0" endY="56.0" layoutX="240.0" layoutY="114.0" opacity="0.6" startX="-17.0" startY="56.0" stroke="#e8e8e8" strokeWidth="2.0" />
-            <Label focusTraversable="false" layoutX="250.0" layoutY="160.0" onMouseClicked="#registerButtonAction" styleClass="regularlabel" text="Register" textFill="#e8e8e8" underline="true">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="15.0" layoutY="20.0" opacity="0.65" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Resources/email_e8e8e8.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="47.0" fitWidth="36.0" layoutX="12.0" layoutY="65.0" opacity="0.65" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Resources/Lock%202_64px_e8e8e8.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e8e8e8" height="319.0" layoutX="619.0" layoutY="292.0" rotate="48.4" stroke="TRANSPARENT" strokeType="INSIDE" width="14.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#46ab57" height="315.0" layoutX="629.0" layoutY="301.0" rotate="48.4" stroke="TRANSPARENT" strokeType="INSIDE" width="26.0" />
-      <HBox onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="30.0" prefWidth="700.0" styleClass="regularWindowBar" />
-      <Circle fill="#0073ff" layoutX="650.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
-      <Circle fill="#fc2b2b" layoutX="678.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
-      <Button focusTraversable="false" layoutX="670.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
-      <Button focusTraversable="false" layoutX="642.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
-   </children>
+    <children>
+        <Pane layoutX="62.0" layoutY="184.0" prefHeight="113.0" prefWidth="173.0">
+            <children>
+                <Label layoutX="71.0" layoutY="13.0" prefHeight="58.0" prefWidth="86.0" text="HKR" textFill="#46ab57">
+                    <font>
+                        <Font name="System Bold" size="40.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="69.0" fitWidth="70.0" layoutX="-2.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Resources/cartness.png" />
+                    </image>
+                </ImageView>
+                <Label layoutY="63.0" prefHeight="40.0" prefWidth="173.0" text="Marketplace" textFill="#e8e8e8">
+                    <font>
+                        <Font name="System Bold" size="28.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+        <Line endX="-17.0" endY="-98.0" layoutX="263.0" layoutY="257.0" opacity="0.6" startX="-17.0" startY="85.0" stroke="#e8e8e8" strokeWidth="2.0" />
+        <Pane layoutX="262.0" layoutY="156.0" prefHeight="188.0" prefWidth="315.0">
+            <children>
+                <TextField fx:id="userEmail" layoutX="54.0" layoutY="14.0" prefHeight="35.0" prefWidth="250.0" promptText="Email" styleClass="regulartextfield">
+
+                    <padding>
+                        <Insets left="15.0" />
+                    </padding>
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </TextField>
+                <PasswordField fx:id="userPassword" layoutX="54.0" layoutY="65.0" prefHeight="35.0" prefWidth="250.0" promptText="Password" styleClass="regularpasswordfield">
+                    <padding>
+                        <Insets left="15.0" />
+                    </padding>
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </PasswordField>
+                <Button layoutX="54.0" layoutY="116.0" mnemonicParsing="false" onAction="#logInButtonAction" opacity="0.9" prefHeight="35.0" prefWidth="250.0" styleClass="regularbutton" text="Login">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Button>
+                <Label focusTraversable="false" layoutX="54.0" layoutY="159.0" onMouseClicked="#retrieveCredentialsButtonAction" prefHeight="20.0" prefWidth="156.0" styleClass="regularlabel" text="Forgot your Credentials?" textFill="#e8e8e8" underline="true">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Line endX="-5.0" endY="56.0" layoutX="240.0" layoutY="114.0" opacity="0.6" startX="-17.0" startY="56.0" stroke="#e8e8e8" strokeWidth="2.0" />
+                <Label focusTraversable="false" layoutX="250.0" layoutY="160.0" onMouseClicked="#registerButtonAction" styleClass="regularlabel" text="Register" textFill="#e8e8e8" underline="true">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="15.0" layoutY="20.0" opacity="0.65" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Resources/email_e8e8e8.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="47.0" fitWidth="36.0" layoutX="12.0" layoutY="65.0" opacity="0.65" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Resources/LockGray.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </Pane>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e8e8e8" height="319.0" layoutX="619.0" layoutY="292.0" rotate="48.4" stroke="TRANSPARENT" strokeType="INSIDE" width="14.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#46ab57" height="315.0" layoutX="629.0" layoutY="301.0" rotate="48.4" stroke="TRANSPARENT" strokeType="INSIDE" width="26.0" />
+        <HBox onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="30.0" prefWidth="700.0" styleClass="regularWindowBar" />
+        <Circle fill="#0073ff" layoutX="650.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+        <Circle fill="#fc2b2b" layoutX="678.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+        <Button focusTraversable="false" layoutX="670.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
+        <Button focusTraversable="false" layoutX="642.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
+    </children>
 </AnchorPane>

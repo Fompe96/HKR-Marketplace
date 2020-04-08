@@ -82,12 +82,12 @@
       </ImageView>
       <ImageView fitHeight="47.0" fitWidth="36.0" layoutX="176.0" layoutY="232.0" opacity="0.65" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Resources/Lock%202_64px_e8e8e8.png" />
+            <Image url="@../Resources/LockGray.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="47.0" fitWidth="36.0" layoutX="175.0" layoutY="279.0" opacity="0.65" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Resources/Keyhole%20Shield_64px_e8e8e8.png" />
+            <Image url="@../Resources/KeyHoleGray.png" />
          </image>
       </ImageView>
    </children>
