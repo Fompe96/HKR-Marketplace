@@ -39,7 +39,7 @@
       <Line endX="-17.0" endY="-98.0" layoutX="263.0" layoutY="257.0" opacity="0.6" startX="-17.0" startY="85.0" stroke="#e8e8e8" strokeWidth="2.0" />
       <Pane layoutX="262.0" layoutY="156.0" prefHeight="188.0" prefWidth="315.0">
          <children>
-            <TextField fx:id="userEmail" layoutX="54.0" layoutY="14.0" prefHeight="35.0" prefWidth="250.0" promptText="Username" styleClass="regulartextfield">
+            <TextField fx:id="userEmail" layoutX="54.0" layoutY="14.0" prefHeight="35.0" prefWidth="250.0" promptText="Email" styleClass="regulartextfield">
                <padding>
                   <Insets left="15.0" />
                </padding>

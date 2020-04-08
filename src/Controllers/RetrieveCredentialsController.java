@@ -92,4 +92,9 @@ public class RetrieveCredentialsController implements Initializable {
     private void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
     }
+
+    @FXML
+    private void changeToContactSupport() {
+        SceneChanger.changeScene("/Views/WriteToSupport.fxml", "Support");
+    }
 }

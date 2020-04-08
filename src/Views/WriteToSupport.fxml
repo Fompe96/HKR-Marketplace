@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,39 +13,20 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RetrieveCredentialsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.WriteToSupportController">
    <children>
-      <Label layoutX="225.0" layoutY="83.0" text="Credential" textFill="#e8e8e8">
+      <Label layoutX="239.0" layoutY="83.0" text="Contact" textFill="#e8e8e8">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Label layoutX="364.0" layoutY="83.0" text="Retrieval" textFill="#46ab57">
+      <Label layoutX="350.0" layoutY="83.0" text="Support" textFill="#46ab57">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e8e8e8" height="319.0" layoutX="619.0" layoutY="292.0" rotate="48.4" stroke="TRANSPARENT" strokeType="INSIDE" width="14.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#46ab57" height="315.0" layoutX="629.0" layoutY="301.0" rotate="48.4" stroke="TRANSPARENT" strokeType="INSIDE" width="26.0" />
-      <Pane layoutX="212.0" layoutY="204.0" prefHeight="113.0" prefWidth="276.0">
-         <children>
-            <TextField fx:id="userEmail" layoutX="14.0" layoutY="26.0" prefHeight="35.0" prefWidth="250.0" promptText="Enter email" styleClass="regulartextfield">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextField>
-            <Button fx:id="backButton" layoutX="14.0" layoutY="68.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="35.0" prefWidth="90.0" styleClass="regularbutton" text="Back">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="backButton1" layoutX="114.0" layoutY="68.0" mnemonicParsing="false" onAction="#retrieveCredentialsButtonAction" prefHeight="35.0" prefWidth="150.0" styleClass="regularbutton" text="Retrieve credentials">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
       <Pane layoutX="7.0" layoutY="10.0" prefHeight="100.0" prefWidth="92.0">
          <children>
             <Label layoutX="47.0" layoutY="38.0" prefHeight="32.0" prefWidth="42.0" text="HKR" textFill="#46ab57">
@@ -74,10 +56,14 @@
       <Circle fill="#fc2b2b" layoutX="678.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
       <Button layoutX="642.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
       <Button layoutX="670.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
-      <Label layoutX="272.0" layoutY="344.0" onMouseClicked="#changeToContactSupport" prefHeight="20.0" prefWidth="156.0" styleClass="regularlabel" text="Contact Support" textFill="#e8e8e8" underline="true">
+      <TextField fx:id="subject" layoutX="268.0" layoutY="184.0" promptText="Subject" styleClass="regulartextfield" />
+      <TextArea fx:id="userMessage" layoutX="224.0" layoutY="216.0" prefHeight="270.0" prefWidth="253.0" promptText="Please explain the issues you are encountering..." style="-fx-wrap-text: true; -fx-border-color: #e8e8e8;" />
+      <Button layoutX="561.0" layoutY="313.0" mnemonicParsing="false" onAction="#supportMessage" styleClass="regularbutton" text="Send email" />
+      <TextField fx:id="userEmail" layoutX="268.0" layoutY="148.0" promptText="Your Email" styleClass="regulartextfield" />
+      <Button fx:id="backButton" layoutX="105.0" layoutY="308.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="35.0" prefWidth="90.0" styleClass="regularbutton" text="Back">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
-      </Label>
+      </Button>
    </children>
 </AnchorPane>
