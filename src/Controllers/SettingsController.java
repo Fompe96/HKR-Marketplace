@@ -89,8 +89,7 @@ public class SettingsController implements Initializable {
         dbHandler.getConnection();
         try {
             getProfilePicture();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (NullPointerException | SQLException ignored) {
         }
     }
 
