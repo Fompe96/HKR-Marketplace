@@ -86,13 +86,13 @@ public class Sale {
     @Override
     public String toString() {
         return "Sale{" +
-                "id='" + id.toString() + '\'' +
-                "name='" + name.toString() + '\'' +
-                ", price=" + price.toString() +
-                ", description='" + description.toString() + '\'' +
-                ", condition='" + condition.toString() + '\'' +
-                ", category='" + category.toString() + '\'' +
-                ", picture='" + picture + '\'' +
+                "id='" + getId() + '\'' +
+                "name='" + getName() + '\'' +
+                ", price=" + getPrice() +
+                ", description='" + getDescription() + '\'' +
+                ", condition='" + getCondition() + '\'' +
+                ", category='" + getCategory() + '\'' +
+                ", picture='" + getPicture() + '\'' +
                 '}';
     }
 }

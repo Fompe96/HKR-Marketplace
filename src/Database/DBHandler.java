@@ -10,7 +10,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.sql.*;
-import java.util.ArrayList;
 
 public class DBHandler extends DBConfig {
     private Connection dbConnection;
@@ -67,7 +66,7 @@ public class DBHandler extends DBConfig {
         }
     }
 
-    public ObservableList<Account> retrieveAllAccounts() { // Returns a resultset with all accounts from the account table
+    public ObservableList<Account> retrieveAllAccounts() { // Returns a observableList with all accounts from the account table
         String query = "SELECT * FROM account;";
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -83,7 +82,7 @@ public class DBHandler extends DBConfig {
         }
     }
 
-    public ObservableList<Sale> retrieveAllSales() {    // Returns a resultset with all sales from the product table
+    public ObservableList<Sale> retrieveAllSales() {    // Returns a observableList with all sales from the product table
         String query = "SELECT * FROM product;";
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {

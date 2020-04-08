@@ -65,11 +65,11 @@ public class Account {
     @Override
     public String toString() {
         return "Account{" +
-                " userName='" + userName.toString() + '\'' +
-                ", password='" + password.toString() + '\'' +
-                ", email='" + email.toString() + '\'' +
-                ", admin='" + admin.toString() + '\'' +
-                ", picture='" + picture + '\'' +
+                " userName='" + getUserName() + '\'' +
+                ", password='" + getPassword() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", admin='" + isAdmin() + '\'' +
+                ", picture='" + getPicture() + '\'' +
                 '}';
     }
 }
