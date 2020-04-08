@@ -17,6 +17,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #3c3c3c;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
    <children>
+      <TextField layoutX="-97.0" layoutY="524.0" opacity="0.0" />
       <Pane layoutX="62.0" layoutY="184.0" prefHeight="113.0" prefWidth="173.0">
          <children>
             <Label layoutX="71.0" layoutY="13.0" prefHeight="58.0" prefWidth="86.0" text="HKR" textFill="#46ab57">
