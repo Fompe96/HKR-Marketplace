@@ -1,7 +1,6 @@
 package Database;
 
 import Models.User;
-import javafx.scene.image.Image;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -69,7 +68,6 @@ public class DBHandler extends DBConfig {
         InputStream is = new FileInputStream(new File(imagePath));
         ps.setBlob(1,is);
         ps.executeUpdate();
-        System.out.println("Done");
     }
 
     public void closeConnection() {

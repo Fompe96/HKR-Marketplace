@@ -60,14 +60,7 @@
       <Pane layoutX="323.0" layoutY="50.0" prefHeight="600.0" prefWidth="589.0" style="-fx-background-color: #242424;">
          <children>
             <Circle fill="GREY" layoutX="295.0" layoutY="183.0" radius="100.0" stroke="#6ea5ff" strokeType="INSIDE" strokeWidth="3.0" />
-            <Label fx:id="loggedInAs" layoutX="198.0" layoutY="30.0" text="Logged in as" textFill="WHITE">
-               <font>
-                  <Font name="Arial" size="34.0" />
-               </font>
-            </Label>
-            <Button layoutX="228.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleUploadImage" style="-fx-background-color: gray; -fx-border-color: #46ab57;" text="Change Profile Picture" />
             <Button layoutX="498.0" layoutY="561.0" mnemonicParsing="false" style="-fx-background-color: gray; -fx-border-color: #46ab57;" text="Light mode" />
-            <Line endX="297.7197265625" endY="-29.0" layoutX="95.0" layoutY="98.0" startX="100.0" startY="-27.98046875" stroke="#6ea5ff" strokeWidth="2.0" />
             <Line endX="59.5" layoutX="101.0" layoutY="183.0" startX="-100.0" stroke="WHITE" />
             <Line endX="59.5" layoutX="529.0" layoutY="184.0" startX="-100.0" stroke="WHITE" />
             <ImageView fitHeight="134.0" fitWidth="135.0" layoutX="229.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
@@ -75,7 +68,15 @@
                   <Image url="@../Resources/LoggedInAsTemplate.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="imageToUpload" fitHeight="206.0" fitWidth="222.0" layoutX="183.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageToUpload" fitHeight="200.0" fitWidth="200.0" layoutX="195.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" />
+            <Circle fill="#1f93ff00" layoutX="295.0" layoutY="183.0" radius="132.0" stroke="#242424" strokeType="INSIDE" strokeWidth="20.0" />
+            <Button layoutX="228.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleUploadImage" style="-fx-background-color: gray; -fx-border-color: #46ab57;" text="Change Profile Picture" />
+            <Line endX="297.7197265625" endY="-29.0" layoutX="95.0" layoutY="98.0" startX="100.0" startY="-27.98046875" stroke="#6ea5ff" strokeWidth="2.0" />
+            <Label fx:id="loggedInAs" layoutX="198.0" layoutY="30.0" text="Logged in as" textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="34.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>
