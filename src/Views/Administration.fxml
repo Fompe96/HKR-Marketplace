@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -9,11 +11,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="1235.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdministrationController">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#46ab57" height="536.0" layoutX="268.0" layoutY="125.0" stroke="TRANSPARENT" strokeType="INSIDE" width="700.0" />
       <Pane prefHeight="673.0" prefWidth="60.0" style="-fx-background-color: #242424;">
          <children>
             <Pane layoutX="-1.0" prefHeight="56.0" prefWidth="60.0" style="-fx-background-color: #6ea5ff;">
@@ -62,8 +66,8 @@
             <HBox layoutX="60.0" onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="30.0" prefWidth="1177.0" styleClass="regularWindowBar" />
             <Circle fill="#0073ff" layoutX="1193.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
             <Circle fill="#fc2b2b" layoutX="1217.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
-            <Button layoutX="1209.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
-            <Button layoutX="1185.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
+            <Button focusTraversable="false" layoutX="1209.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
+            <Button focusTraversable="false" layoutX="1185.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
          </children>
       </Pane>
       <Text fill="WHITE" layoutX="82.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Administration">
@@ -71,5 +75,50 @@
             <Font name="Arial" size="34.0" />
          </font>
       </Text>
+      <TableView fx:id="accountsTableView" layoutX="293.0" layoutY="137.0" prefHeight="500.0" prefWidth="650.0" visible="false">
+        <columns>
+          <TableColumn fx:id="username" prefWidth="118.0" text="Username" />
+          <TableColumn fx:id="password" prefWidth="148.0" text="Password" />
+            <TableColumn fx:id="email" prefWidth="187.0" text="Email" />
+            <TableColumn fx:id="admin" prefWidth="85.0" text="Admin" />
+            <TableColumn fx:id="accpicture" prefWidth="111.0" text="Picture" />
+        </columns>
+      </TableView>
+      <Button layoutX="1010.0" layoutY="225.0" minHeight="50.0" mnemonicParsing="false" prefWidth="150.0" styleClass="regularbutton" text="Remove">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="1010.0" layoutY="287.0" minHeight="50.0" mnemonicParsing="false" prefWidth="150.0" styleClass="regularbutton" text="Update">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="1010.0" layoutY="349.0" minHeight="50.0" mnemonicParsing="false" prefWidth="150.0" styleClass="regularbutton" text="Insert">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="editSales" layoutX="618.0" layoutY="90.0" minHeight="35.0" mnemonicParsing="false" onAction="#handleEditSalesButton" prefWidth="350.0" style="-fx-background-color: #46ab57;" text="Edit Sales" textFill="#e8e8e8">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="editAccounts" layoutX="268.0" layoutY="90.0" minHeight="35.0" mnemonicParsing="false" onAction="#handleEditAccountsButton" prefWidth="350.0" style="-fx-background-color: #46ab57;" text="Edit Accounts" textFill="#e8e8e8">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <TableView fx:id="salesTableView" layoutX="293.0" layoutY="137.0" prefHeight="500.0" prefWidth="650.0" visible="false">
+         <columns>
+            <TableColumn fx:id="id" prefWidth="31.0" text="ID" />
+            <TableColumn fx:id="salesname" prefWidth="107.0" text="Name" />
+            <TableColumn fx:id="price" prefWidth="73.0" text="Price" />
+            <TableColumn fx:id="description" prefWidth="112.0" text="Description" />
+            <TableColumn fx:id="condition" prefWidth="104.0" text="Condition" />
+            <TableColumn fx:id="category" prefWidth="111.0" text="Category" />
+            <TableColumn fx:id="picture" minWidth="9.0" prefWidth="111.0" text="Picture" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

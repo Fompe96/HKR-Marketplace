@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -28,6 +29,8 @@ public class SignUpController implements Initializable {
     private double x, y;
     @FXML
     private ImageView madeAccount;
+    @FXML
+    private AnchorPane root;
 
     private DBHandler dbHandler;
 
@@ -36,6 +39,7 @@ public class SignUpController implements Initializable {
         if (dbHandler == null) {
             dbHandler = new DBHandler();
         }
+        Platform.runLater( () -> root.requestFocus() );
     }
 
     @FXML

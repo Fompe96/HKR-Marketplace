@@ -9,8 +9,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -25,6 +29,9 @@ public class LoginController implements Initializable {
     @FXML
     private TextField userEmail;
 
+    @FXML
+    private AnchorPane root;
+
     private double x, y;
     private DBHandler dbHandler;
 
@@ -33,12 +40,14 @@ public class LoginController implements Initializable {
         if (dbHandler == null) {
             dbHandler = new DBHandler();
         }
+        Platform.runLater( () -> root.requestFocus() );
     }
 
     @FXML
     private void handleClosingButton() {
         Platform.exit();
     }
+
 
     @FXML
     private void handleMinimizeButton(ActionEvent event) {
