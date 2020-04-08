@@ -54,31 +54,18 @@ public class AdministrationController implements Initializable {
         }
         retrieveAccounts();
         retrieveSales();
+        setupColumns();
         handleEditAccountsButton(); // Default selected choice
     }
 
     @FXML
     private void handleEditAccountsButton() {
         selectEditAccounts();
-        username.setCellValueFactory(new PropertyValueFactory<Account, String>("userName"));
-        password.setCellValueFactory(new PropertyValueFactory<Account, String>("Password"));
-        email.setCellValueFactory(new PropertyValueFactory<Account, String>("Email"));
-        admin.setCellValueFactory(new PropertyValueFactory<Account, Boolean>("Admin"));
-        accpicture.setCellValueFactory(new PropertyValueFactory<Account, Blob>("Picture"));
-        accountsTableView.setItems(accounts);
     }
 
     @FXML
     private void handleEditSalesButton() {
         selectEditSales();
-        id.setCellValueFactory(new PropertyValueFactory<Sale, Integer>("id"));
-        salesname.setCellValueFactory(new PropertyValueFactory<Sale, String >("Name"));
-        price.setCellValueFactory(new PropertyValueFactory<Sale, Double>("Price"));
-        description.setCellValueFactory(new PropertyValueFactory<Sale, String>("Description"));
-        condition.setCellValueFactory(new PropertyValueFactory<Sale, String>("Condition"));
-        category.setCellValueFactory(new PropertyValueFactory<Sale, String>("Category"));
-        picture.setCellValueFactory(new PropertyValueFactory<Sale, Blob>("Picture"));
-        salesTableView.setItems(sales);
     }
 
     private void selectEditAccounts() { // Handles all visual changes when editAccounts is pressed.
@@ -110,6 +97,25 @@ public class AdministrationController implements Initializable {
         for (Sale sale : sales) {
             System.out.println(sale);
         }
+    }
+
+    private void setupColumns() {
+        // Account Columns
+        username.setCellValueFactory(new PropertyValueFactory<Account, String>("userName"));
+        password.setCellValueFactory(new PropertyValueFactory<Account, String>("Password"));
+        email.setCellValueFactory(new PropertyValueFactory<Account, String>("Email"));
+        admin.setCellValueFactory(new PropertyValueFactory<Account, Boolean>("Admin"));
+        accpicture.setCellValueFactory(new PropertyValueFactory<Account, Blob>("Picture"));
+        accountsTableView.setItems(accounts);
+        // Sales Columns
+        id.setCellValueFactory(new PropertyValueFactory<Sale, Integer>("id"));
+        salesname.setCellValueFactory(new PropertyValueFactory<Sale, String >("Name"));
+        price.setCellValueFactory(new PropertyValueFactory<Sale, Double>("Price"));
+        description.setCellValueFactory(new PropertyValueFactory<Sale, String>("Description"));
+        condition.setCellValueFactory(new PropertyValueFactory<Sale, String>("Condition"));
+        category.setCellValueFactory(new PropertyValueFactory<Sale, String>("Category"));
+        picture.setCellValueFactory(new PropertyValueFactory<Sale, Blob>("Picture"));
+        salesTableView.setItems(sales);
     }
 
     @FXML
