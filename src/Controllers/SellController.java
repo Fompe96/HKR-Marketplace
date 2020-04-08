@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStream;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -57,7 +56,7 @@ public class SellController implements Initializable {
         if (dbHandler == null) {
             dbHandler = new DBHandler();
         }
-        if (Singleton.getInstance().getLoggedInUser().isAdmin()) {
+        if (Singleton.getInstance().getLoggedInAccount().isAdmin()) {
             adminview.setVisible(true);
             adminButton.setDisable(false);
         }

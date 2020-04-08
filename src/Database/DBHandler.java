@@ -1,12 +1,16 @@
 package Database;
 
-import Models.User;
+import Models.Account;
+import Models.Sale;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DBHandler extends DBConfig {
     private Connection dbConnection;
@@ -50,12 +54,44 @@ public class DBHandler extends DBConfig {
         }
     }
 
-    public User getUserInformation(String userEmail) {  // Returns an object containing all information about a user. Takes the email as parameter
+    public Account getUserInformation(String userEmail) {  // Returns an object containing all information about a user. Takes the email as parameter
         String query = "SELECT * FROM account WHERE Email = '" + userEmail + "';";
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 resultSet.first();
-                return new User(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getBoolean(4));
+                return new Account(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getBoolean(4), resultSet.getBlob(5));
+            }
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return null;    // Returns null if something went wrong
+        }
+    }
+
+    public ObservableList<Account> retrieveAllAccounts() { // Returns a resultset with all accounts from the account table
+        String query = "SELECT * FROM account;";
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                ObservableList<Account> accounts = FXCollections.observableArrayList();
+                while (resultSet.next()) {
+                    accounts.add(new Account(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getBoolean(4), resultSet.getBlob(5)));
+                }
+                return accounts;
+            }
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return null;    // Returns null if something went wrong
+        }
+    }
+
+    public ObservableList<Sale> retrieveAllSales() {    // Returns a resultset with all sales from the product table
+        String query = "SELECT * FROM product;";
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                ObservableList<Sale> sales = FXCollections.observableArrayList();
+                while (resultSet.next()) {
+                    sales.add(new Sale(resultSet.getInt(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getBlob(7)));
+                }
+                return sales;
             }
         } catch (SQLException se) {
             se.printStackTrace();
@@ -66,7 +102,7 @@ public class DBHandler extends DBConfig {
     public void uploadImage(String userEmail, String imagePath) throws SQLException, FileNotFoundException {
         PreparedStatement ps = getConnection().prepareStatement("UPDATE `hkrmarketplace`.`account` SET `Picture` = ? WHERE (`Email` = '" + userEmail + "');");
         InputStream is = new FileInputStream(new File(imagePath));
-        ps.setBlob(1,is);
+        ps.setBlob(1, is);
         ps.executeUpdate();
     }
 

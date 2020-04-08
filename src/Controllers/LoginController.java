@@ -9,10 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -78,7 +75,7 @@ public class LoginController implements Initializable {
             dbHandler.getConnection();
             boolean checkIfExists = dbHandler.findUser(userEmail.getText(), userPassword.getText());
             if (checkIfExists) {
-                Singleton.getInstance().setLoggedInUser(dbHandler.getUserInformation(userEmail.getText()));
+                Singleton.getInstance().setLoggedInAccount(dbHandler.getUserInformation(userEmail.getText()));
                 SceneChanger.changeScene("../Views/Marketplace.fxml", "HKR Marketplace");
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);

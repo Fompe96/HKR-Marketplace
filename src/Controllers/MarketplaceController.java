@@ -35,9 +35,9 @@ public class MarketplaceController implements Initializable {
         }
         imageView.setImage(new Image("https://usercontent1.hubstatic.com/11310434_f520.jpg"));
         imageView1.setImage(new Image("https://www.kattkompaniet.nu/images/5.63.1606161417/kattleksaker-fatcat.jpeg"));
-        System.out.println("The user who just logged in is: " + Singleton.getInstance().getLoggedInUser()); // This is here for testing purposes!
+        System.out.println("The user who just logged in is: " + Singleton.getInstance().getLoggedInAccount()); // This is here for testing purposes!
 
-        if (Singleton.getInstance().getLoggedInUser().isAdmin()) {
+        if (Singleton.getInstance().getLoggedInAccount().isAdmin()) {
             adminview.setVisible(true);
             adminButton.setDisable(false);
         }

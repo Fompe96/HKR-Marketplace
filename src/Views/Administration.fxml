@@ -81,7 +81,7 @@
           <TableColumn fx:id="password" prefWidth="148.0" text="Password" />
             <TableColumn fx:id="email" prefWidth="187.0" text="Email" />
             <TableColumn fx:id="admin" prefWidth="85.0" text="Admin" />
-            <TableColumn fx:id="accpicture" prefWidth="111.0" text="Picture" />
+            <TableColumn fx:id="accpicture" prefWidth="110.0" text="Picture" />
         </columns>
       </TableView>
       <Button layoutX="1010.0" layoutY="225.0" minHeight="50.0" mnemonicParsing="false" prefWidth="150.0" styleClass="regularbutton" text="Remove">
@@ -117,7 +117,7 @@
             <TableColumn fx:id="description" prefWidth="112.0" text="Description" />
             <TableColumn fx:id="condition" prefWidth="104.0" text="Condition" />
             <TableColumn fx:id="category" prefWidth="111.0" text="Category" />
-            <TableColumn fx:id="picture" minWidth="9.0" prefWidth="111.0" text="Picture" />
+            <TableColumn fx:id="picture" minWidth="9.0" prefWidth="109.0" text="Picture" />
          </columns>
       </TableView>
    </children>
