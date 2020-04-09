@@ -27,7 +27,8 @@ public class PreviewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Singleton.getInstance();
+        Singleton.getInstance().getPreviewSale();
+
 
     }
 

@@ -1,7 +1,5 @@
 package Models;
 
-import Controllers.SellController;
-import javafx.scene.control.TextField;
 
 public class Singleton {
 
@@ -17,7 +15,6 @@ public class Singleton {
         return instance;
     }
 
-    private SellController previewSale;
 
     private Account loggedInAccount;  // Variable used to keep track of the currently logged in account.
 
