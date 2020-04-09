@@ -271,6 +271,11 @@ public class SellController implements Initializable {
         }
     }
 
+    @FXML
+    private void handlePreviewButton(){
+        SceneChanger.changeScene("../Views/Preview.fxml", "Preview");
+    }
+
     private int getIdProduct() {
         return idProduct;
     }

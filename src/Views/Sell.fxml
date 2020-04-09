@@ -19,22 +19,22 @@
 
 <AnchorPane prefHeight="673.0" prefWidth="1235.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SellController">
    <children>
-      <TextField fx:id="nameOfProductTextField" layoutX="155.0" layoutY="75.0" prefHeight="30.0" prefWidth="175.0" styleClass="regulartextfield" />
-      <TextField fx:id="priceOfProductTextField" layoutX="155.0" layoutY="147.0" prefHeight="30.0" prefWidth="175.0" styleClass="regulartextfield" />
-      <TextArea fx:id="descriptionTextArea" layoutX="712.0" layoutY="75.0" prefHeight="235.0" prefWidth="250.0" style="-fx-wrap-text: true; -fx-border-color: #e8e8e8;" />
-      <Label layoutX="155.0" layoutY="56.0" text="Name of product:" textFill="#e8e8e8">
+      <TextField fx:id="nameOfProductTextField" layoutX="156.0" layoutY="139.0" prefHeight="30.0" prefWidth="175.0" styleClass="regulartextfield" />
+      <TextField fx:id="priceOfProductTextField" layoutX="156.0" layoutY="211.0" prefHeight="30.0" prefWidth="175.0" styleClass="regulartextfield" />
+      <TextArea fx:id="descriptionTextArea" layoutX="713.0" layoutY="139.0" prefHeight="235.0" prefWidth="250.0" style="-fx-wrap-text: true; -fx-border-color: #e8e8e8;" />
+      <Label layoutX="156.0" layoutY="120.0" text="Name of product:" textFill="#e8e8e8">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="155.0" layoutY="128.0" text="Price:" textFill="#e8e8e8">
+      <Label layoutX="156.0" layoutY="192.0" text="Price:" textFill="#e8e8e8">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="769.0" layoutY="50.0" text="Describe your item:" textFill="#e8e8e8">
+      <Label layoutX="770.0" layoutY="114.0" text="Describe your item:" textFill="#e8e8e8">
          <font>
             <Font size="16.0" />
          </font></Label>
-      <Button layoutX="984.0" layoutY="566.0" mnemonicParsing="false" onAction="#handleAddSaleButton" prefHeight="65.0" prefWidth="154.0" styleClass="regularbutton" text="Add to sale">
+      <Button layoutX="985.0" layoutY="559.0" mnemonicParsing="false" onAction="#handleAddSaleButton" prefHeight="65.0" prefWidth="154.0" styleClass="regularbutton" text="Add to sale">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
@@ -80,7 +80,7 @@
       <Circle fill="#fc2b2b" layoutX="1217.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
       <Button focusTraversable="false" layoutX="1209.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
       <Button focusTraversable="false" layoutX="1185.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
-      <Button fx:id="uploadImageButton" layoutX="712.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleUploadImage" prefHeight="50.0" prefWidth="115.0" styleClass="regularbutton" text="Choose Image">
+      <Button fx:id="uploadImageButton" layoutX="713.0" layoutY="398.0" mnemonicParsing="false" onAction="#handleUploadImage" prefHeight="50.0" prefWidth="115.0" styleClass="regularbutton" text="Choose Image">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
@@ -90,7 +90,7 @@
          </image>
       </ImageView>
       <Button fx:id="adminButton" disable="true" layoutX="10.0" layoutY="551.0" mnemonicParsing="false" onAction="#handleAdminButton" opacity="0.0" prefHeight="40.0" prefWidth="40.0" />
-      <Pane layoutX="155.0" layoutY="203.0" prefHeight="200.0" prefWidth="175.0">
+      <Pane layoutX="156.0" layoutY="267.0" prefHeight="200.0" prefWidth="175.0">
          <children>
             <CheckBox fx:id="excellentBox" layoutY="43.0" mnemonicParsing="false" onAction="#handleExcellentBox" styleClass="regularcheckbox" text="Excellent" textFill="#e8e8e8">
                <padding>
@@ -114,7 +114,7 @@
             </CheckBox>
          </children>
       </Pane>
-      <Label layoutX="165.0" layoutY="191.0" text="Condition:" textFill="#e8e8e8">
+      <Label layoutX="166.0" layoutY="255.0" text="Condition:" textFill="#e8e8e8">
          <font>
             <Font size="14.0" />
          </font>
@@ -122,27 +122,33 @@
             <Insets left="10.0" />
          </padding>
       </Label>
-      <Line endX="-100.0" endY="166.0" layoutX="255.0" layoutY="237.0" startX="-100.0" startY="-34.2431640625" stroke="#e8e8e8" />
-      <Line endX="-100.0" endY="166.0" layoutX="430.0" layoutY="237.0" smooth="false" startX="-100.0" startY="-34.2431640625" stroke="#e8e8e8" />
-      <Line endX="-101.5" endY="131.5" layoutX="257.0" layoutY="272.0" startX="72.5" startY="131.5" stroke="#e8e8e8" />
-      <Line endX="97.5" endY="0.2568359375" layoutX="232.0" layoutY="202.0" startX="10.5" startY="1.0" stroke="#e8e8e8" />
-      <Line endX="-86.5" endY="1.2568359375" layoutX="258.0" layoutY="201.0" startX="-102.5" startY="1.2568359375" stroke="#e8e8e8" />
-      <CheckBox fx:id="vehiclesBox" layoutX="446.0" layoutY="115.0" mnemonicParsing="false" onAction="#handleVehiclesBox" styleClass="regularcheckbox" text="Vehicles" textFill="#e8e8e8" />
-      <CheckBox fx:id="petsBox" layoutX="446.0" layoutY="151.0" mnemonicParsing="false" onAction="#handlePetsBox" styleClass="regularcheckbox" text="Pets" textFill="#e8e8e8" />
-      <CheckBox fx:id="electronicsBox" layoutX="447.0" layoutY="232.0" mnemonicParsing="false" onAction="#handleElectronicsBox" styleClass="regularcheckbox" text="Electronics" textFill="#e8e8e8" />
-      <CheckBox fx:id="otherBox" layoutX="448.0" layoutY="277.0" mnemonicParsing="false" onAction="#handleOtherBox" styleClass="regularcheckbox" text="Other" textFill="#e8e8e8" />
-      <CheckBox fx:id="homeBox" layoutX="447.0" layoutY="193.0" mnemonicParsing="false" onAction="#handleHomeBox" styleClass="regularcheckbox" text="Home" textFill="#e8e8e8" />
-      <Label layoutX="459.0" layoutY="66.0" text="Category:" textFill="#e8e8e8" />
-      <Line endX="-100.0" endY="221.7568359375" layoutX="686.0" layoutY="112.0" smooth="false" startX="-100.0" startY="-34.2431640625" stroke="#e8e8e8" />
-      <Line endX="-100.0" endY="166.0" layoutX="621.0" layoutY="-89.0" smooth="false" startX="-34.5" startY="166.2568359375" stroke="#e8e8e8" />
-      <Line endX="-7.5" endY="111.2568359375" layoutX="440.0" layoutY="223.0" smooth="false" startX="145.5" startY="111.2568359375" stroke="#e8e8e8" />
-      <Line endX="-8.0" endY="111.7568359375" layoutX="440.0" layoutY="223.0" smooth="false" startX="-8.0" startY="-149.2431640625" stroke="#e8e8e8" />
-      <Line endX="-7.5" endY="-142.2431640625" layoutX="442.0" layoutY="217.0" smooth="false" startX="11.5" startY="-142.2431640625" stroke="#e8e8e8" />
-      <TextField fx:id="filePathTextField" layoutX="712.0" layoutY="416.0" prefHeight="30.0" prefWidth="250.0" styleClass="regulartextfield" />
-      <Label layoutX="712.0" layoutY="395.0" text="Filepath:" textFill="#e8e8e8">
+      <Line endX="-100.0" endY="166.0" layoutX="256.0" layoutY="301.0" startX="-100.0" startY="-34.2431640625" stroke="#e8e8e8" />
+      <Line endX="-100.0" endY="166.0" layoutX="431.0" layoutY="301.0" smooth="false" startX="-100.0" startY="-34.2431640625" stroke="#e8e8e8" />
+      <Line endX="-101.5" endY="131.5" layoutX="258.0" layoutY="336.0" startX="72.5" startY="131.5" stroke="#e8e8e8" />
+      <Line endX="97.5" endY="0.2568359375" layoutX="233.0" layoutY="266.0" startX="10.5" startY="1.0" stroke="#e8e8e8" />
+      <Line endX="-86.5" endY="1.2568359375" layoutX="259.0" layoutY="265.0" startX="-102.5" startY="1.2568359375" stroke="#e8e8e8" />
+      <CheckBox fx:id="vehiclesBox" layoutX="447.0" layoutY="179.0" mnemonicParsing="false" onAction="#handleVehiclesBox" styleClass="regularcheckbox" text="Vehicles" textFill="#e8e8e8" />
+      <CheckBox fx:id="petsBox" layoutX="447.0" layoutY="215.0" mnemonicParsing="false" onAction="#handlePetsBox" styleClass="regularcheckbox" text="Pets" textFill="#e8e8e8" />
+      <CheckBox fx:id="electronicsBox" layoutX="448.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleElectronicsBox" styleClass="regularcheckbox" text="Electronics" textFill="#e8e8e8" />
+      <CheckBox fx:id="otherBox" layoutX="449.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleOtherBox" styleClass="regularcheckbox" text="Other" textFill="#e8e8e8" />
+      <CheckBox fx:id="homeBox" layoutX="448.0" layoutY="257.0" mnemonicParsing="false" onAction="#handleHomeBox" styleClass="regularcheckbox" text="Home" textFill="#e8e8e8" />
+      <Label layoutX="460.0" layoutY="130.0" text="Category:" textFill="#e8e8e8" />
+      <Line endX="-100.0" endY="221.7568359375" layoutX="687.0" layoutY="176.0" smooth="false" startX="-100.0" startY="-34.2431640625" stroke="#e8e8e8" />
+      <Line endX="-100.0" endY="166.0" layoutX="622.0" layoutY="-25.0" smooth="false" startX="-34.5" startY="166.2568359375" stroke="#e8e8e8" />
+      <Line endX="-7.5" endY="111.2568359375" layoutX="441.0" layoutY="287.0" smooth="false" startX="145.5" startY="111.2568359375" stroke="#e8e8e8" />
+      <Line endX="-8.0" endY="111.7568359375" layoutX="441.0" layoutY="287.0" smooth="false" startX="-8.0" startY="-149.2431640625" stroke="#e8e8e8" />
+      <Line endX="-7.5" endY="-142.2431640625" layoutX="443.0" layoutY="281.0" smooth="false" startX="11.5" startY="-142.2431640625" stroke="#e8e8e8" />
+      <TextField fx:id="filePathTextField" layoutX="713.0" layoutY="480.0" prefHeight="30.0" prefWidth="250.0" styleClass="regulartextfield" />
+      <Label layoutX="713.0" layoutY="459.0" text="Filepath:" textFill="#e8e8e8">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Button layoutX="1080.0" layoutY="38.0" mnemonicParsing="false" onAction="#handleLogOutButton" styleClass="regularbutton" text="Logout" />
+      <Button layoutX="1081.0" layoutY="44.0" mnemonicParsing="false" onAction="#handleLogOutButton" styleClass="regularbutton" text="Logout" />
+      <Button layoutX="713.0" layoutY="559.0" mnemonicParsing="false" onAction="#handlePreviewButton" prefHeight="65.0" prefWidth="154.0" styleClass="regularbutton" text="Preview" />
+      <Label layoutX="159.0" layoutY="60.0" prefHeight="45.0" prefWidth="154.0" text="SELL ITEM:" textFill="#e8e8e8">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
