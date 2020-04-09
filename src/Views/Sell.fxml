@@ -143,6 +143,6 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Button layoutX="1080.0" layoutY="38.0" mnemonicParsing="false" onAction="#handleLogOutButton" text="Logout" />
+      <Button layoutX="1080.0" layoutY="38.0" mnemonicParsing="false" onAction="#handleLogOutButton" styleClass="regularbutton" text="Logout" />
    </children>
 </AnchorPane>
