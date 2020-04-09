@@ -42,6 +42,10 @@ public class MarketplaceController implements Initializable {
             adminButton.setDisable(false);
         }
     }
+    @FXML
+    private void handleLogOutButton(){
+        SceneChanger.changeScene("../Views/Login.fxml", "Login");
+    }
 
     @FXML
     public void sellButton() {

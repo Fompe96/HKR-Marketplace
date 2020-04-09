@@ -63,6 +63,11 @@ public class SellController implements Initializable {
     }
 
     @FXML
+    private void handleLogOutButton(){
+        SceneChanger.changeScene("../Views/Login.fxml", "Login");
+    }
+
+    @FXML
     private void handleUploadImage(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open");
