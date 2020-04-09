@@ -1,11 +1,14 @@
 package Controllers;
 
 import Models.SceneChanger;
+import Models.Singleton;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -16,8 +19,15 @@ public class PreviewController implements Initializable {
 
     private double x, y;
 
+    @FXML
+    private Label label1, label2, label3;
+
+    @FXML
+    private TextField textField1;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Singleton.getInstance();
 
     }
 
@@ -45,7 +55,7 @@ public class PreviewController implements Initializable {
     }
 
     @FXML
-    private void handleBackButton(){
+    private void handleBackButton() {
         SceneChanger.changeScene("../Views/Sell.fxml", "Sell");
     }
 }

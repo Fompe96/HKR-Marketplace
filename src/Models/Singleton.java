@@ -1,6 +1,7 @@
 package Models;
 
 import Controllers.SellController;
+import javafx.scene.control.TextField;
 
 public class Singleton {
 

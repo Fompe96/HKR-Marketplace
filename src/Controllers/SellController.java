@@ -273,6 +273,7 @@ public class SellController implements Initializable {
 
     @FXML
     private void handlePreviewButton(){
+
         SceneChanger.changeScene("../Views/Preview.fxml", "Preview");
     }
 
@@ -282,6 +283,18 @@ public class SellController implements Initializable {
 
     private void setIdProduct(int idProduct) {
         this.idProduct = idProduct;
+    }
+
+    public TextField getNameOfProductTextField() {
+        return nameOfProductTextField;
+    }
+
+    public TextField getPriceOfProductTextField() {
+        return priceOfProductTextField;
+    }
+
+    public TextArea getDescriptionTextArea() {
+        return descriptionTextArea;
     }
 }
 
