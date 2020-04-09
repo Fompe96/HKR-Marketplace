@@ -34,7 +34,7 @@
          <font>
             <Font size="16.0" />
          </font></Label>
-      <Button layoutX="985.0" layoutY="559.0" mnemonicParsing="false" onAction="#handleAddSaleButton" prefHeight="65.0" prefWidth="154.0" styleClass="regularbutton" text="Add to sale">
+      <Button layoutX="912.0" layoutY="559.0" mnemonicParsing="false" onAction="#handleAddSaleButton" prefHeight="65.0" prefWidth="154.0" styleClass="regularbutton" text="Add to sale">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
@@ -138,7 +138,7 @@
       <Line endX="-7.5" endY="111.2568359375" layoutX="441.0" layoutY="287.0" smooth="false" startX="145.5" startY="111.2568359375" stroke="#e8e8e8" />
       <Line endX="-8.0" endY="111.7568359375" layoutX="441.0" layoutY="287.0" smooth="false" startX="-8.0" startY="-149.2431640625" stroke="#e8e8e8" />
       <Line endX="-7.5" endY="-142.2431640625" layoutX="443.0" layoutY="281.0" smooth="false" startX="11.5" startY="-142.2431640625" stroke="#e8e8e8" />
-      <TextField fx:id="filePathTextField" layoutX="713.0" layoutY="480.0" prefHeight="30.0" prefWidth="250.0" styleClass="regulartextfield" />
+      <TextField fx:id="filePathTextField" layoutX="713.0" layoutY="480.0" prefHeight="30.0" prefWidth="353.0" styleClass="regulartextfield" />
       <Label layoutX="713.0" layoutY="459.0" text="Filepath:" textFill="#e8e8e8">
          <font>
             <Font size="14.0" />
