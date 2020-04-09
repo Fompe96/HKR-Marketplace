@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DBHandler extends DBConfig {
     private Connection dbConnection;
@@ -104,6 +105,25 @@ public class DBHandler extends DBConfig {
         ps.setBlob(1, is);
         ps.executeUpdate();
     }
+
+    public void removeAccounts(ArrayList<String> emailsToRemove) {
+        StringBuilder query = new StringBuilder("DELETE FROM account WHERE Email IN (");
+        for (int i = 0; i < emailsToRemove.size(); i++) {
+            if (i == emailsToRemove.size()-1) {
+                query.append("'").append(emailsToRemove.get(i)).append("'");
+            } else {
+                query.append("'").append(emailsToRemove.get(i)).append("'").append(", ");
+            }
+        }
+        query.append(");");
+        System.out.println(query.toString());
+        try (PreparedStatement statement = getConnection().prepareStatement(query.toString())) {
+            statement.executeUpdate();
+        } catch (SQLException se) {
+            se.printStackTrace();
+        }
+    }
+
 
     public void closeConnection() {
         try {
