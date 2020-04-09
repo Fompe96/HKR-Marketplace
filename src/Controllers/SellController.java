@@ -24,6 +24,7 @@ import java.util.ResourceBundle;
 
 public class SellController implements Initializable {
 
+
     @FXML
     private TextField nameOfProductTextField, priceOfProductTextField;
 
@@ -273,7 +274,6 @@ public class SellController implements Initializable {
 
     @FXML
     private void handlePreviewButton(){
-
         SceneChanger.changeScene("../Views/Preview.fxml", "Preview");
     }
 
