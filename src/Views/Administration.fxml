@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -32,7 +33,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <TableView fx:id="salesTableView" editable="true" layoutX="25.0" layoutY="57.0" prefHeight="500.0" prefWidth="650.0" visible="false">
+            <TableView fx:id="salesTableView" editable="true" layoutX="25.0" layoutY="57.0" prefHeight="490.0" prefWidth="650.0" visible="false">
                <columns>
                   <TableColumn fx:id="id" prefWidth="31.0" text="ID" />
                   <TableColumn fx:id="salesname" prefWidth="107.0" text="Name" />
@@ -43,7 +44,7 @@
                   <TableColumn fx:id="picture" minWidth="9.0" prefWidth="109.0" text="Picture" />
                </columns>
             </TableView>
-            <TableView fx:id="accountsTableView" editable="true" layoutX="25.0" layoutY="57.0" prefHeight="500.0" prefWidth="650.0" visible="false">
+            <TableView fx:id="accountsTableView" editable="true" layoutX="25.0" layoutY="57.0" prefHeight="490.0" prefWidth="650.0" visible="false">
               <columns>
                 <TableColumn fx:id="username" prefWidth="118.0" text="Username" />
                 <TableColumn fx:id="password" prefWidth="148.0" text="Password" />
@@ -52,6 +53,15 @@
                   <TableColumn fx:id="accpicture" prefWidth="110.0" text="Picture" />
               </columns>
             </TableView>
+            <HBox fx:id="accountInputs" layoutX="25.0" layoutY="547.0" prefHeight="25.0" prefWidth="650.0" style="-fx-background-color: black;" visible="false">
+               <children>
+                  <TextField fx:id="usernamefield" alignment="CENTER" prefHeight="45.0" prefWidth="118.0" promptText="Username" styleClass="regulartextfield" />
+                  <TextField fx:id="passwordfield" alignment="CENTER" prefHeight="148.0" promptText="Password" styleClass="regulartextfield" />
+                  <TextField fx:id="emailfield" alignment="CENTER" prefWidth="187.0" promptText="Email" styleClass="regulartextfield" />
+                  <TextField fx:id="adminfield" alignment="CENTER" prefWidth="85.0" promptText="Admin" styleClass="regulartextfield" />
+                  <TextField fx:id="picturefield" alignment="CENTER" prefHeight="25.0" prefWidth="111.0" promptText="Picture" styleClass="regulartextfield" />
+               </children>
+            </HBox>
          </children>
       </Pane>
       <Pane prefHeight="673.0" prefWidth="60.0" style="-fx-background-color: #242424;">

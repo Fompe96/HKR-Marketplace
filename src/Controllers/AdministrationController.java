@@ -16,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -28,6 +29,10 @@ public class AdministrationController implements Initializable {
 
     @FXML
     private Button editAccounts, editSales;
+    @FXML
+    private HBox accountInputs;
+    @FXML
+    private TextField usernamefield, passwordfield, emailfield, adminfield, picturefield;
     private DBHandler dbHandler;
     private double x, y;
     private ObservableList<Account> accounts;
@@ -109,6 +114,7 @@ public class AdministrationController implements Initializable {
         editAccounts.setStyle("-fx-background-color:  #46ab57;");
         accountsTableView.setVisible(true);
         salesTableView.setVisible(false);
+        accountInputs.setVisible(true);
     }
 
     private void selectEditSales() { // Handles all visual changes when editSales is pressed.
@@ -116,6 +122,7 @@ public class AdministrationController implements Initializable {
         editSales.setStyle("-fx-background-color:  #46ab57;");
         salesTableView.setVisible(true);
         accountsTableView.setVisible(false);
+        accountInputs.setVisible(false);
     }
 
     private void retrieveAccounts() {    // Retrievees all accounts from DB and places them as objects in observable list accounts.
@@ -164,10 +171,9 @@ public class AdministrationController implements Initializable {
     }
 
     @FXML
-    private void handleRemoveButton() {
+    private void handleRemoveButton() { // Removes selected rows in table view from database by fetching email addresses and IDs.
         if (accountsTableActive) {  // Currently displayed tableview is accounts
-            ObservableList<Account> selectedAccounts;
-            selectedAccounts = accountsTableView.getSelectionModel().getSelectedItems();
+            ObservableList<Account> selectedAccounts = accountsTableView.getSelectionModel().getSelectedItems();
             if (!selectedAccounts.isEmpty()) {
                 ArrayList<String> accountEmailsToBeRemoved = new ArrayList<>();
                 StringBuilder confirmationMessage = new StringBuilder("Are you sure you wish to delete the following accounts: ");
@@ -176,7 +182,7 @@ public class AdministrationController implements Initializable {
                     accountEmailsToBeRemoved.add(selectedAccounts.get(i).getEmail());
                 }
                 confirmationMessage.append("\n\n").append("They will be permanently removed!");
-                Optional <ButtonType> action = MessageHandler.getConfirmationAlert("Confirmation", null, confirmationMessage.toString()).showAndWait();
+                Optional<ButtonType> action = MessageHandler.getConfirmationAlert("Confirmation", null, confirmationMessage.toString()).showAndWait();
 
                 if (action.get() == ButtonType.OK) {
                     dbHandler.removeAccounts(accountEmailsToBeRemoved);
@@ -187,15 +193,23 @@ public class AdministrationController implements Initializable {
                 MessageHandler.getErrorAlert("Error", null, "No accounts selected.").showAndWait();
             }
 
-
-
-
-
-
         } else {  // Currently displayed tableview is sales
             ObservableList<Sale> selectedSales = salesTableView.getSelectionModel().getSelectedItems();
             if (!selectedSales.isEmpty()) {
-                //Remove selected Sales.
+                ArrayList<Integer> saleIdsToBeRemoved = new ArrayList<>();
+                StringBuilder confirmationMessage = new StringBuilder("Are you sure you wish to delete the following sales: ");
+                for (int i = 0; i < selectedSales.size(); i++) {
+                    confirmationMessage.append("\n [Sale ").append(i + 1).append("] ID: ").append(selectedSales.get(i).getId()).append(" Name: ").append(selectedSales.get(i).getName());
+                    saleIdsToBeRemoved.add(selectedSales.get(i).getId());
+                }
+                confirmationMessage.append("\n\n").append("They will be permanently removed!");
+                Optional<ButtonType> action = MessageHandler.getConfirmationAlert("Confirmation", null, confirmationMessage.toString()).showAndWait();
+
+                if (action.get() == ButtonType.OK) {
+                    dbHandler.removeSales(saleIdsToBeRemoved);
+                    sales.removeAll(selectedSales);
+                }
+
             } else {
                 MessageHandler.getErrorAlert("Error", null, "No sales selected.").showAndWait();
             }
@@ -203,8 +217,13 @@ public class AdministrationController implements Initializable {
     }
 
     @FXML
-    private void handleInsertButton() {
-        // Logic for inserting a new account / sale into appropriate tableview
+    private void handleInsertAccountButton() {
+        // Logic for inserting a new account into appropriate tableview
+    }
+
+    @FXML
+    private void handleInsertSaleButton() {
+        // Logic for inserting a new sale into appropriate tableview
     }
 
     @FXML

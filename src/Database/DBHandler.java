@@ -106,13 +106,31 @@ public class DBHandler extends DBConfig {
         ps.executeUpdate();
     }
 
-    public void removeAccounts(ArrayList<String> emailsToRemove) {
+    public void removeAccounts(ArrayList<String> emailsToRemove) {  // Currently takes an arraylist of account emails and removes them from DB.
         StringBuilder query = new StringBuilder("DELETE FROM account WHERE Email IN (");
         for (int i = 0; i < emailsToRemove.size(); i++) {
             if (i == emailsToRemove.size()-1) {
                 query.append("'").append(emailsToRemove.get(i)).append("'");
             } else {
                 query.append("'").append(emailsToRemove.get(i)).append("'").append(", ");
+            }
+        }
+        query.append(");");
+        System.out.println(query.toString());
+        try (PreparedStatement statement = getConnection().prepareStatement(query.toString())) {
+            statement.executeUpdate();
+        } catch (SQLException se) {
+            se.printStackTrace();
+        }
+    }
+
+    public void removeSales(ArrayList<Integer> salesIDsToRemove) {  // Currently takes an arraylist of sale IDS and removes them from DB.
+        StringBuilder query = new StringBuilder("DELETE FROM product WHERE idProduct IN (");
+        for (int i = 0; i < salesIDsToRemove.size(); i++) {
+            if (i == salesIDsToRemove.size()-1) {
+                query.append("'").append(salesIDsToRemove.get(i)).append("'");
+            } else {
+                query.append("'").append(salesIDsToRemove.get(i)).append("'").append(", ");
             }
         }
         query.append(");");
