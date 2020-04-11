@@ -1,5 +1,6 @@
 package Models;
 
+
 public class Singleton {
 
     private static Singleton instance = null;
@@ -13,6 +14,7 @@ public class Singleton {
         }
         return instance;
     }
+
 
     private Account loggedInAccount;  // Variable used to keep track of the currently logged in account.
 
