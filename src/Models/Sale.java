@@ -8,6 +8,7 @@ import java.sql.Blob;
 
 public class Sale {
 
+
     private SimpleIntegerProperty id;
     private SimpleStringProperty name;
     private SimpleDoubleProperty price;
