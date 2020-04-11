@@ -18,5 +18,7 @@
     <orderEntry type="library" name="javax.activation-1.2.0 (1)" level="project" />
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="mysql-connector-java-5.1.48" level="project" />
+    <orderEntry type="library" name="pdfbox-2.0.19" level="project" />
+    <orderEntry type="library" name="itextpdf-5.5.13.1" level="project" />
   </component>
 </module>
