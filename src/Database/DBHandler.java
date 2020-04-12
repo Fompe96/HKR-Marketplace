@@ -1,7 +1,7 @@
 package Database;
 
 import Models.Account;
-import Models.Sale;
+import Models.Item;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -83,15 +83,15 @@ public class DBHandler extends DBConfig {
         }
     }
 
-    public ObservableList<Sale> retrieveAllSales() {    // Returns a observableList with all sales from the product table
+    public ObservableList<Item> retrieveAllSales() {    // Returns a observableList with all sales from the product table
         String query = "SELECT * FROM product;";
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
-                ObservableList<Sale> sales = FXCollections.observableArrayList();
+                ObservableList<Item> items = FXCollections.observableArrayList();
                 while (resultSet.next()) {
-                    sales.add(new Sale(resultSet.getInt(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getBlob(7)));
+                    items.add(new Item(resultSet.getInt(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getBlob(7)));
                 }
-                return sales;
+                return items;
             }
         } catch (SQLException se) {
             se.printStackTrace();
