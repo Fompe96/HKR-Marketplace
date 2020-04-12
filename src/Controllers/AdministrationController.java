@@ -3,7 +3,7 @@ package Controllers;
 import Database.DBHandler;
 import Models.Account;
 import Models.MessageHandler;
-import Models.Sale;
+import Models.Item;
 import Models.SceneChanger;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -14,7 +14,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -36,7 +35,7 @@ public class AdministrationController implements Initializable {
     private DBHandler dbHandler;
     private double x, y;
     private ObservableList<Account> accounts;
-    private ObservableList<Sale> sales;
+    private ObservableList<Item> items;
     private boolean accountsTableActive;
 
     @FXML
@@ -53,21 +52,21 @@ public class AdministrationController implements Initializable {
     private TableColumn<Account, Blob> accpicture;
 
     @FXML
-    private TableView<Sale> salesTableView;
+    private TableView<Item> salesTableView;
     @FXML
-    private TableColumn<Sale, Integer> id;
+    private TableColumn<Item, Integer> id;
     @FXML
-    private TableColumn<Sale, String> salesname;
+    private TableColumn<Item, String> salesname;
     @FXML
-    private TableColumn<Sale, Double> price;
+    private TableColumn<Item, Double> price;
     @FXML
-    private TableColumn<Sale, String> description;
+    private TableColumn<Item, String> description;
     @FXML
-    private TableColumn<Sale, String> condition;
+    private TableColumn<Item, String> condition;
     @FXML
-    private TableColumn<Sale, String> category;
+    private TableColumn<Item, String> category;
     @FXML
-    private TableColumn<Sale, Blob> picture;
+    private TableColumn<Item, Blob> picture;
 
     /*
     public void handleEditsInAccountsTableView(TableColumn.CellEditEvent editedCell) {  // Method that takes care of what should happen if a cell is edited in accountsTableView
@@ -138,8 +137,8 @@ public class AdministrationController implements Initializable {
     }
 
     private void retrieveSales() {   // Retrieves all sales from the DB and places them as objects in observable list sales
-        sales = FXCollections.observableArrayList();
-        sales = dbHandler.retrieveAllSales();
+        items = FXCollections.observableArrayList();
+        items = dbHandler.retrieveAllSales();
         /*
         for (Sale sale : sales) {
             System.out.println(sale);
@@ -166,7 +165,7 @@ public class AdministrationController implements Initializable {
         condition.setCellValueFactory(new PropertyValueFactory<>("Condition"));
         category.setCellValueFactory(new PropertyValueFactory<>("Category"));
         picture.setCellValueFactory(new PropertyValueFactory<>("Picture"));
-        salesTableView.setItems(sales);
+        salesTableView.setItems(items);
         salesTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
@@ -194,20 +193,20 @@ public class AdministrationController implements Initializable {
             }
 
         } else {  // Currently displayed tableview is sales
-            ObservableList<Sale> selectedSales = salesTableView.getSelectionModel().getSelectedItems();
-            if (!selectedSales.isEmpty()) {
+            ObservableList<Item> selectedItems = salesTableView.getSelectionModel().getSelectedItems();
+            if (!selectedItems.isEmpty()) {
                 ArrayList<Integer> saleIdsToBeRemoved = new ArrayList<>();
                 StringBuilder confirmationMessage = new StringBuilder("Are you sure you wish to delete the following sales: ");
-                for (int i = 0; i < selectedSales.size(); i++) {
-                    confirmationMessage.append("\n [Sale ").append(i + 1).append("] ID: ").append(selectedSales.get(i).getId()).append(" Name: ").append(selectedSales.get(i).getName());
-                    saleIdsToBeRemoved.add(selectedSales.get(i).getId());
+                for (int i = 0; i < selectedItems.size(); i++) {
+                    confirmationMessage.append("\n [Sale ").append(i + 1).append("] ID: ").append(selectedItems.get(i).getId()).append(" Name: ").append(selectedItems.get(i).getName());
+                    saleIdsToBeRemoved.add(selectedItems.get(i).getId());
                 }
                 confirmationMessage.append("\n\n").append("They will be permanently removed!");
                 Optional<ButtonType> action = MessageHandler.getConfirmationAlert("Confirmation", null, confirmationMessage.toString()).showAndWait();
 
                 if (action.get() == ButtonType.OK) {
                     dbHandler.removeSales(saleIdsToBeRemoved);
-                    sales.removeAll(selectedSales);
+                    items.removeAll(selectedItems);
                 }
 
             } else {
