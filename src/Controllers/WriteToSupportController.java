@@ -73,7 +73,7 @@ public class WriteToSupportController {
 
     @FXML
     private void backButtonAction() {
-        SceneChanger.changeScene("/Views/Login.fxml", "");
+        SceneChanger.changeScene("/Views/Login.fxml");
     }
 
     private static boolean isValid(String userEmail) {

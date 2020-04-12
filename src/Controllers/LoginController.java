@@ -73,7 +73,7 @@ public class LoginController implements Initializable {
             boolean checkIfExists = dbHandler.findUser(userEmail.getText(), userPassword.getText());
             if (checkIfExists) {
                 Singleton.getInstance().setLoggedInAccount(dbHandler.getUserInformation(userEmail.getText()));
-                SceneChanger.changeScene("../Views/Marketplace.fxml", "HKR Marketplace");
+                SceneChanger.changeScene("../Views/Marketplace.fxml");
             } else {
                 MessageHandler.getErrorAlert("Error", "Error", "Login credentials not found");
             }
@@ -83,11 +83,11 @@ public class LoginController implements Initializable {
 
     @FXML
     private void registerButtonAction() {
-        SceneChanger.changeScene("../Views/SignUp.fxml", "Sign Up");
+        SceneChanger.changeScene("../Views/SignUp.fxml");
     }
 
     @FXML
     private void retrieveCredentialsButtonAction() {
-        SceneChanger.changeScene("../Views/RetrieveCredentials.fxml", "Retrieve Credentials");
+        SceneChanger.changeScene("../Views/RetrieveCredentials.fxml");
     }
 }

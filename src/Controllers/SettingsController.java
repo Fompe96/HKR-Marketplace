@@ -74,12 +74,12 @@ public class SettingsController implements Initializable {
 
     @FXML
     private void handleMarketButton() {
-        SceneChanger.changeScene("../Views/Marketplace.fxml", "Marketplace");
+        SceneChanger.changeScene("../Views/Marketplace.fxml");
     }
 
     @FXML
     public void sellButton() {
-        SceneChanger.changeScene("../Views/Sell.fxml", "Sell");
+        SceneChanger.changeScene("../Views/Sell.fxml");
     }
 
     @Override

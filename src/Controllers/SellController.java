@@ -54,6 +54,8 @@ public class SellController implements Initializable {
 
     private FileInputStream fis;
 
+    private Item item = new Item();
+
     private DBHandler dbHandler;
     private double x, y;
 
@@ -78,7 +80,11 @@ public class SellController implements Initializable {
 
     @FXML
     private void handleLogOutButton() {
+<<<<<<< HEAD
+        SceneChanger.changeScene("../Views/Login.fxml");
+=======
         SceneChanger.changeScene("../Views/Login.fxml", "Login");
+>>>>>>> 60a436e76cc27e694d2c03b2c2a6b7c16652179f
     }
 
     @FXML
@@ -208,17 +214,17 @@ public class SellController implements Initializable {
 
     @FXML
     private void handleBackButton() {
-        SceneChanger.changeScene("../Views/Marketplace.fxml", "Marketplace");
+        SceneChanger.changeScene("../Views/Marketplace.fxml");
     }
 
     @FXML
     private void handleSettingsButton() {
-        SceneChanger.changeScene("../Views/Settings.fxml", "Sell");
+        SceneChanger.changeScene("../Views/Settings.fxml");
     }
 
     @FXML
     private void handleAdminButton() {
-        SceneChanger.changeScene("../Views/Administration.fxml", "Administration Page");
+        SceneChanger.changeScene("../Views/Administration.fxml");
     }
 
     @FXML
@@ -284,14 +290,19 @@ public class SellController implements Initializable {
         if (nameOfProductTextField.getText().equals("") || priceOfProductTextField.getText().equals("") || descriptionTextArea.getText().equals("")) {
             MessageHandler.getErrorAlert("ERROR", "Missing input", "Make sure you entered everything correctly").showAndWait();
         } else {
-            Item item = new Item();
-            item.setName(nameOfProductTextField.getText());
-            item.setPrice(Double.parseDouble(priceOfProductTextField.getText()));
-            item.setDescription(descriptionTextArea.getText());
-            itemArrayList.add(item);
-            Singleton.getInstance().setItemArrayList(itemArrayList);
-            SceneChanger.changeScene("../Views/Preview.fxml", "Preview");
+            String name = (nameOfProductTextField.getText());
+            Double price = (Double.parseDouble(priceOfProductTextField.getText()));
+            String description = (descriptionTextArea.getText());
+            setItem(name, price, description);
+            SceneChanger.changeScene("../Views/Preview.fxml");
         }
+    }
+
+    private void setItem(String name, Double price, String description) {
+    }
+
+    public Item getItem() {
+        return item;
     }
 
     private int getIdProduct() {

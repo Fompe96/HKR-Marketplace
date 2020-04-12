@@ -68,7 +68,7 @@ public class SignUpController implements Initializable {
 
     @FXML
     private void backButtonAction() {
-        SceneChanger.changeScene("../Views/Login.fxml", "Login Page");
+        SceneChanger.changeScene("../Views/Login.fxml");
     }
 
     @FXML
