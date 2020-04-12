@@ -11,12 +11,11 @@ public final class SceneChanger {
 
     private static Stage programStage;
 
-    public static void changeScene(String path, String title) {
+    public static void changeScene(String path) {
         try {
             Parent root = FXMLLoader.load(SceneChanger.class.getResource(path));
             Scene scene = new Scene(root);
             scene.getStylesheets().add("Resources/CSS.css");
-            programStage.setTitle(title);
             programStage.setScene(scene);
             programStage.show();
             programStage.setResizable(false);

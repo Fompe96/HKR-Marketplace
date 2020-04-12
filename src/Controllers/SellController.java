@@ -54,6 +54,8 @@ public class SellController implements Initializable {
 
     private FileInputStream fis;
 
+    private Item item = new Item();
+
     private DBHandler dbHandler;
     private double x, y;
 
@@ -77,17 +79,17 @@ public class SellController implements Initializable {
     }
 
     @FXML
-    private void handleLogOutButton(){
-        SceneChanger.changeScene("../Views/Login.fxml", "Login");
+    private void handleLogOutButton() {
+        SceneChanger.changeScene("../Views/Login.fxml");
     }
 
     @FXML
-    private void handleUploadImage(){
+    private void handleUploadImage() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("IMAGE FILES", "*.jpg", "*.png", "*.gif"));
         file = fileChooser.showOpenDialog(null);
-        if(file != null){
+        if (file != null) {
             filePathTextField.setText(file.getPath());
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -98,8 +100,8 @@ public class SellController implements Initializable {
     }
 
     @FXML
-    private void handleVehiclesBox(){
-        if(vehiclesBox.isSelected()){
+    private void handleVehiclesBox() {
+        if (vehiclesBox.isSelected()) {
             petsBox.setSelected(false);
             homeBox.setSelected(false);
             electronicsBox.setSelected(false);
@@ -108,8 +110,8 @@ public class SellController implements Initializable {
     }
 
     @FXML
-    private void handlePetsBox(){
-        if(petsBox.isSelected()){
+    private void handlePetsBox() {
+        if (petsBox.isSelected()) {
             vehiclesBox.setSelected(false);
             homeBox.setSelected(false);
             electronicsBox.setSelected(false);
@@ -118,8 +120,8 @@ public class SellController implements Initializable {
     }
 
     @FXML
-    private void handleHomeBox(){
-        if(homeBox.isSelected()){
+    private void handleHomeBox() {
+        if (homeBox.isSelected()) {
             petsBox.setSelected(false);
             vehiclesBox.setSelected(false);
             electronicsBox.setSelected(false);
@@ -128,8 +130,8 @@ public class SellController implements Initializable {
     }
 
     @FXML
-    private void handleElectronicsBox(){
-        if(electronicsBox.isSelected()){
+    private void handleElectronicsBox() {
+        if (electronicsBox.isSelected()) {
             petsBox.setSelected(false);
             homeBox.setSelected(false);
             vehiclesBox.setSelected(false);
@@ -138,8 +140,8 @@ public class SellController implements Initializable {
     }
 
     @FXML
-    private void handleOtherBox(){
-        if(otherBox.isSelected()){
+    private void handleOtherBox() {
+        if (otherBox.isSelected()) {
             petsBox.setSelected(false);
             homeBox.setSelected(false);
             electronicsBox.setSelected(false);
@@ -148,8 +150,8 @@ public class SellController implements Initializable {
     }
 
     @FXML
-    private void handleExcellentBox(){
-        if(excellentBox.isSelected()){
+    private void handleExcellentBox() {
+        if (excellentBox.isSelected()) {
             veryGoodBox.setSelected(false);
             goodBox.setSelected(false);
             poorBox.setSelected(false);
@@ -157,8 +159,8 @@ public class SellController implements Initializable {
     }
 
     @FXML
-    private void handleVeryGoodBox(){
-        if(veryGoodBox.isSelected()){
+    private void handleVeryGoodBox() {
+        if (veryGoodBox.isSelected()) {
             excellentBox.setSelected(false);
             goodBox.setSelected(false);
             poorBox.setSelected(false);
@@ -166,8 +168,8 @@ public class SellController implements Initializable {
     }
 
     @FXML
-    private void handleGoodBox(){
-        if(goodBox.isSelected()){
+    private void handleGoodBox() {
+        if (goodBox.isSelected()) {
             veryGoodBox.setSelected(false);
             excellentBox.setSelected(false);
             poorBox.setSelected(false);
@@ -175,8 +177,8 @@ public class SellController implements Initializable {
     }
 
     @FXML
-    private void handlePoorBox(){
-        if(poorBox.isSelected()){
+    private void handlePoorBox() {
+        if (poorBox.isSelected()) {
             veryGoodBox.setSelected(false);
             goodBox.setSelected(false);
             excellentBox.setSelected(false);
@@ -208,26 +210,23 @@ public class SellController implements Initializable {
 
     @FXML
     private void handleBackButton() {
-        SceneChanger.changeScene("../Views/Marketplace.fxml", "Marketplace");
+        SceneChanger.changeScene("../Views/Marketplace.fxml");
     }
 
     @FXML
     private void handleSettingsButton() {
-        SceneChanger.changeScene("../Views/Settings.fxml", "Sell");
+        SceneChanger.changeScene("../Views/Settings.fxml");
     }
 
     @FXML
     private void handleAdminButton() {
-        SceneChanger.changeScene("../Views/Administration.fxml", "Administration Page");
+        SceneChanger.changeScene("../Views/Administration.fxml");
     }
 
     @FXML
     private void handleAddSaleButton() {
         if (nameOfProductTextField.getText().equals("") || priceOfProductTextField.getText().equals("") || descriptionTextArea.getText().equals("") || filePathTextField.getText().equals("")) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR");
-            alert.setContentText("Please Enter your information in all fields");
-            alert.showAndWait();
+            MessageHandler.getErrorAlert("Error", "Error", "Please Enter your information in all fields").showAndWait();
         } else {
             Connection dbConnection = dbHandler.getConnection();
             try {
@@ -243,37 +242,34 @@ public class SellController implements Initializable {
                 statement.setDouble(3, Double.parseDouble(priceOfProductTextField.getText()));
                 statement.setString(4, descriptionTextArea.getText());
                 if (excellentBox.isSelected()) {
-                    statement.setString(5,excellentBox.getText());
+                    statement.setString(5, excellentBox.getText());
                 } else if (veryGoodBox.isSelected()) {
                     statement.setString(5, veryGoodBox.getText());
-                } else if (goodBox.isSelected()){
+                } else if (goodBox.isSelected()) {
                     statement.setString(5, goodBox.getText());
-                } else if (poorBox.isSelected()){
+                } else if (poorBox.isSelected()) {
                     statement.setString(5, poorBox.getText());
                 }
 
-                if (vehiclesBox.isSelected()){
+                if (vehiclesBox.isSelected()) {
                     statement.setString(6, vehiclesBox.getText());
-                } else if (petsBox.isSelected()){
+                } else if (petsBox.isSelected()) {
                     statement.setString(6, petsBox.getText());
-                } else if (homeBox.isSelected()){
+                } else if (homeBox.isSelected()) {
                     statement.setString(6, homeBox.getText());
-                } else if (electronicsBox.isSelected()){
+                } else if (electronicsBox.isSelected()) {
                     statement.setString(6, electronicsBox.getText());
-                } else if (otherBox.isSelected()){
+                } else if (otherBox.isSelected()) {
                     statement.setString(6, otherBox.getText());
                 }
 
                 fis = new FileInputStream(file);
-                statement.setBinaryStream(7, fis, (int)file.length());
+                statement.setBinaryStream(7, fis, (int) file.length());
 
                 statement.executeUpdate();
                 dbHandler.closeConnection();
 
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success");
-                alert.setContentText("Congratulations! your product is now up for sale!");
-                alert.showAndWait();
+                MessageHandler.getInformationAlert("Success", "Information", "Congratulations! your product is now up for sale!").showAndWait();
 
                 nameOfProductTextField.setText("");
                 priceOfProductTextField.setText("");
@@ -286,18 +282,23 @@ public class SellController implements Initializable {
     }
 
     @FXML
-    private void handlePreviewButton(){
-        if (nameOfProductTextField.getText().equals("") || priceOfProductTextField.getText().equals("") || descriptionTextArea.getText().equals("")){
-            MessageHandler.getErrorAlert("ERROR","Missing input", "Make sure you entered everything correctly").showAndWait();
+    private void handlePreviewButton() {
+        if (nameOfProductTextField.getText().equals("") || priceOfProductTextField.getText().equals("") || descriptionTextArea.getText().equals("")) {
+            MessageHandler.getErrorAlert("ERROR", "Missing input", "Make sure you entered everything correctly").showAndWait();
         } else {
-            Item item = new Item();
-            item.setName(nameOfProductTextField.getText());
-            item.setPrice(Double.parseDouble(priceOfProductTextField.getText()));
-            item.setDescription(descriptionTextArea.getText());
-            itemArrayList.add(item);
-            Singleton.getInstance().setItemArrayList(itemArrayList);
-            SceneChanger.changeScene("../Views/Preview.fxml", "Preview");
+            String name = (nameOfProductTextField.getText());
+            Double price = (Double.parseDouble(priceOfProductTextField.getText()));
+            String description = (descriptionTextArea.getText());
+            setItem(name, price, description);
+            SceneChanger.changeScene("../Views/Preview.fxml");
         }
+    }
+
+    private void setItem(String name, Double price, String description) {
+    }
+
+    public Item getItem() {
+        return item;
     }
 
     private int getIdProduct() {

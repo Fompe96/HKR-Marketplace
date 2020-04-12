@@ -44,12 +44,12 @@ public class MarketplaceController implements Initializable {
     }
     @FXML
     private void handleLogOutButton(){
-        SceneChanger.changeScene("../Views/Login.fxml", "Login");
+        SceneChanger.changeScene("../Views/Login.fxml");
     }
 
     @FXML
     public void sellButton() {
-        SceneChanger.changeScene("../Views/Sell.fxml", "Sell");
+        SceneChanger.changeScene("../Views/Sell.fxml");
     }
 
 
@@ -78,11 +78,11 @@ public class MarketplaceController implements Initializable {
 
     @FXML
     private void handleSettingsButton() {
-        SceneChanger.changeScene("../Views/Settings.fxml", "Sell");
+        SceneChanger.changeScene("../Views/Settings.fxml");
     }
 
     @FXML
     private void handleAdminButton() {
-        SceneChanger.changeScene("../Views/Administration.fxml", "Administration Page");
+        SceneChanger.changeScene("../Views/Administration.fxml");
     }
 }

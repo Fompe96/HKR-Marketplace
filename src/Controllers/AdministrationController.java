@@ -233,17 +233,17 @@ public class AdministrationController implements Initializable {
 
     @FXML
     private void handleSellButton() {
-        SceneChanger.changeScene("../Views/Sell.fxml", "Sell");
+        SceneChanger.changeScene("../Views/Sell.fxml");
     }
 
     @FXML
     private void handleMarketPlaceButton() {
-        SceneChanger.changeScene("../Views/Marketplace.fxml", "HKR Marketplace");
+        SceneChanger.changeScene("../Views/Marketplace.fxml");
     }
 
     @FXML
     private void handleSettingsButton() {
-        SceneChanger.changeScene("../Views/Settings.fxml", "Sell");
+        SceneChanger.changeScene("../Views/Settings.fxml");
     }
 
     @FXML

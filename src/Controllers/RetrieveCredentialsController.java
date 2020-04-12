@@ -85,7 +85,7 @@ public class RetrieveCredentialsController implements Initializable {
 
     @FXML
     private void backButtonAction() {
-        SceneChanger.changeScene("../Views/Login.fxml", "Login Page");
+        SceneChanger.changeScene("../Views/Login.fxml");
     }
 
     private String getUserPassword() {
@@ -98,6 +98,6 @@ public class RetrieveCredentialsController implements Initializable {
 
     @FXML
     private void changeToContactSupport() {
-        SceneChanger.changeScene("/Views/WriteToSupport.fxml", "Support");
+        SceneChanger.changeScene("/Views/WriteToSupport.fxml");
     }
 }

@@ -31,14 +31,8 @@ public class PreviewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        itemArrayList = Singleton.getInstance().getItemArrayList();
-
-        for (int i = 0; i < itemArrayList.size(); i++) {
-            label1.setText(itemArrayList.get(i).getName());
-            label2.setText(String.valueOf(itemArrayList.get(i).getPrice()));
-            label3.setText(itemArrayList.get(i).getDescription());
-        }
+        SellController sellController = new SellController();
+        System.out.println(sellController.getItem());
     }
 
     @FXML
@@ -72,6 +66,6 @@ public class PreviewController implements Initializable {
         item.setDescription(label3.getText());
         itemArrayList.add(item);
         Singleton.getInstance().setItemArrayList(itemArrayList);
-        SceneChanger.changeScene("../Views/Sell.fxml", "Sell");
+        SceneChanger.changeScene("../Views/Sell.fxml");
     }
 }
