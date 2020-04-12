@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 public class AdministrationController implements Initializable {
 
     @FXML
-    private Button editAccounts, editSales;
+    private Button editAccounts, editItems;
     @FXML
     private HBox accountInputs;
     @FXML
@@ -52,11 +52,11 @@ public class AdministrationController implements Initializable {
     private TableColumn<Account, Blob> accpicture;
 
     @FXML
-    private TableView<Item> salesTableView;
+    private TableView<Item> itemTableView;
     @FXML
     private TableColumn<Item, Integer> id;
     @FXML
-    private TableColumn<Item, String> salesname;
+    private TableColumn<Item, String> itemName;
     @FXML
     private TableColumn<Item, Double> price;
     @FXML
@@ -91,7 +91,7 @@ public class AdministrationController implements Initializable {
             dbHandler = new DBHandler();
         }
         retrieveAccounts();
-        retrieveSales();
+        retrieveItems();
         setupColumns();
         handleEditAccountsButton(); // Default selected choice
     }
@@ -103,23 +103,23 @@ public class AdministrationController implements Initializable {
     }
 
     @FXML
-    private void handleEditSalesButton() {
-        selectEditSales();
+    private void handleEditItemsButton() {
+        selectEditItems();
         accountsTableActive = false;    // Currently working tableview = sales
     }
 
     private void selectEditAccounts() { // Handles all visual changes when editAccounts is pressed.
-        editSales.setStyle("-fx-background-color:  #4f4d4d;");
+        editItems.setStyle("-fx-background-color:  #4f4d4d;");
         editAccounts.setStyle("-fx-background-color:  #46ab57;");
         accountsTableView.setVisible(true);
-        salesTableView.setVisible(false);
+        itemTableView.setVisible(false);
         accountInputs.setVisible(true);
     }
 
-    private void selectEditSales() { // Handles all visual changes when editSales is pressed.
+    private void selectEditItems() { // Handles all visual changes when editSales is pressed.
         editAccounts.setStyle("-fx-background-color:  #4f4d4d;");
-        editSales.setStyle("-fx-background-color:  #46ab57;");
-        salesTableView.setVisible(true);
+        editItems.setStyle("-fx-background-color:  #46ab57;");
+        itemTableView.setVisible(true);
         accountsTableView.setVisible(false);
         accountInputs.setVisible(false);
     }
@@ -136,7 +136,7 @@ public class AdministrationController implements Initializable {
 
     }
 
-    private void retrieveSales() {   // Retrieves all sales from the DB and places them as objects in observable list sales
+    private void retrieveItems() {   // Retrieves all sales from the DB and places them as objects in observable list sales
         items = FXCollections.observableArrayList();
         items = dbHandler.retrieveAllSales();
         /*
@@ -159,14 +159,14 @@ public class AdministrationController implements Initializable {
         accountsTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE); // Allows for multiple rows to be selected
         // Sales Columns
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        salesname.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        itemName.setCellValueFactory(new PropertyValueFactory<>("Name"));
         price.setCellValueFactory(new PropertyValueFactory<>("Price"));
         description.setCellValueFactory(new PropertyValueFactory<>("Description"));
         condition.setCellValueFactory(new PropertyValueFactory<>("Condition"));
         category.setCellValueFactory(new PropertyValueFactory<>("Category"));
         picture.setCellValueFactory(new PropertyValueFactory<>("Picture"));
-        salesTableView.setItems(items);
-        salesTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        itemTableView.setItems(items);
+        itemTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     @FXML
@@ -193,7 +193,7 @@ public class AdministrationController implements Initializable {
             }
 
         } else {  // Currently displayed tableview is sales
-            ObservableList<Item> selectedItems = salesTableView.getSelectionModel().getSelectedItems();
+            ObservableList<Item> selectedItems = itemTableView.getSelectionModel().getSelectedItems();
             if (!selectedItems.isEmpty()) {
                 ArrayList<Integer> saleIdsToBeRemoved = new ArrayList<>();
                 StringBuilder confirmationMessage = new StringBuilder("Are you sure you wish to delete the following sales: ");
@@ -221,7 +221,7 @@ public class AdministrationController implements Initializable {
     }
 
     @FXML
-    private void handleInsertSaleButton() {
+    private void handleInsertItemButton() {
         // Logic for inserting a new sale into appropriate tableview
     }
 
