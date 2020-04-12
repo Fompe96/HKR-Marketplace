@@ -29,9 +29,9 @@ public class AdministrationController implements Initializable {
     @FXML
     private Button editAccounts, editItems;
     @FXML
-    private HBox accountInputs;
+    private HBox accountInputs, itemInputs;
     @FXML
-    private TextField usernamefield, passwordfield, emailfield, adminfield, picturefield;
+    private TextField usernamefield, passwordfield, emailfield, adminfield, picturefield, idfield, namefield, pricefield, descriptionfield, conditionfield, categoryfield, itempicturefield;
     private DBHandler dbHandler;
     private double x, y;
     private ObservableList<Account> accounts;
@@ -114,6 +114,7 @@ public class AdministrationController implements Initializable {
         accountsTableView.setVisible(true);
         itemTableView.setVisible(false);
         accountInputs.setVisible(true);
+        itemInputs.setVisible(false);
     }
 
     private void selectEditItems() { // Handles all visual changes when editSales is pressed.
@@ -122,6 +123,7 @@ public class AdministrationController implements Initializable {
         itemTableView.setVisible(true);
         accountsTableView.setVisible(false);
         accountInputs.setVisible(false);
+        itemInputs.setVisible(true);
     }
 
     private void retrieveAccounts() {    // Retrievees all accounts from DB and places them as objects in observable list accounts.

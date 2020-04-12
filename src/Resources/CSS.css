@@ -27,7 +27,7 @@
 .regularbutton {
     -fx-background-color:  #46ab57;
     -fx-text-fill: #e8e8e8;
-    -fx-border-radius: 5;
+     -fx-border-radius: 5;
 }
 
 .regularbutton:hover {
@@ -71,4 +71,15 @@
 .regularcheckbox .box {
     -fx-background-color: #242424;
     -fx-border-color: #e8e8e8;
+}
+
+.tableViewTextfields {
+    -fx-background-color:   #4f4d4d;
+    -fx-text-fill: #e8e8e8;
+    -fx-border-color:  #e8e8e8;
+    -fx-background-radius: 0;
+}
+
+.tableViewTextfields:focused {
+    -fx-border-color: #46ab57;
 }
