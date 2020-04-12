@@ -80,7 +80,11 @@ public class SellController implements Initializable {
 
     @FXML
     private void handleLogOutButton() {
+<<<<<<< HEAD
         SceneChanger.changeScene("../Views/Login.fxml");
+=======
+        SceneChanger.changeScene("../Views/Login.fxml", "Login");
+>>>>>>> 60a436e76cc27e694d2c03b2c2a6b7c16652179f
     }
 
     @FXML
