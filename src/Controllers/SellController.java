@@ -1,6 +1,8 @@
 package Controllers;
 
 import Database.DBHandler;
+import Models.Item;
+import Models.MessageHandler;
 import Models.SceneChanger;
 import Models.Singleton;
 import javafx.application.Platform;
@@ -20,6 +22,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class SellController implements Initializable {
@@ -43,6 +46,8 @@ public class SellController implements Initializable {
     @FXML
     private ImageView adminview;
 
+    ArrayList<Item> itemArrayList = new ArrayList<>();
+
     private int idProduct;
 
     private File file;
@@ -60,6 +65,14 @@ public class SellController implements Initializable {
         if (Singleton.getInstance().getLoggedInAccount().isAdmin()) {
             adminview.setVisible(true);
             adminButton.setDisable(false);
+        }
+
+        itemArrayList = Singleton.getInstance().getItemArrayList();
+
+        for (int i = 0; i < itemArrayList.size(); i++) {
+            nameOfProductTextField.setText(itemArrayList.get(i).getName());
+            priceOfProductTextField.setText(String.valueOf(itemArrayList.get(i).getPrice()));
+            descriptionTextArea.setText(itemArrayList.get(i).getDescription());
         }
     }
 
@@ -274,7 +287,17 @@ public class SellController implements Initializable {
 
     @FXML
     private void handlePreviewButton(){
-        SceneChanger.changeScene("../Views/Preview.fxml", "Preview");
+        if (nameOfProductTextField.getText().equals("") || priceOfProductTextField.getText().equals("") || descriptionTextArea.getText().equals("")){
+            MessageHandler.getErrorAlert("ERROR","Missing input", "Make sure you entered everything correctly").showAndWait();
+        } else {
+            Item item = new Item();
+            item.setName(nameOfProductTextField.getText());
+            item.setPrice(Double.parseDouble(priceOfProductTextField.getText()));
+            item.setDescription(descriptionTextArea.getText());
+            itemArrayList.add(item);
+            Singleton.getInstance().setItemArrayList(itemArrayList);
+            SceneChanger.changeScene("../Views/Preview.fxml", "Preview");
+        }
     }
 
     private int getIdProduct() {

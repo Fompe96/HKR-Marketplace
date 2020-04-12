@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.Item;
 import Models.SceneChanger;
 import Models.Singleton;
 import javafx.application.Platform;
@@ -13,11 +14,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class PreviewController implements Initializable {
 
     private double x, y;
+
+    ArrayList<Item> itemArrayList = new ArrayList<>();
 
     @FXML
     private Label label1, label2, label3;
@@ -27,6 +31,14 @@ public class PreviewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        itemArrayList = Singleton.getInstance().getItemArrayList();
+
+        for (int i = 0; i < itemArrayList.size(); i++) {
+            label1.setText(itemArrayList.get(i).getName());
+            label2.setText(String.valueOf(itemArrayList.get(i).getPrice()));
+            label3.setText(itemArrayList.get(i).getDescription());
+        }
     }
 
     @FXML
@@ -54,6 +66,12 @@ public class PreviewController implements Initializable {
 
     @FXML
     private void handleBackButton() {
+        Item item = new Item();
+        item.setName(label1.getText());
+        item.setPrice(Double.parseDouble(label2.getText()));
+        item.setDescription(label3.getText());
+        itemArrayList.add(item);
+        Singleton.getInstance().setItemArrayList(itemArrayList);
         SceneChanger.changeScene("../Views/Sell.fxml", "Sell");
     }
 }

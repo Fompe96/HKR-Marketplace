@@ -1,5 +1,6 @@
 package Models;
 
+import java.util.ArrayList;
 
 public class Singleton {
 
@@ -15,6 +16,15 @@ public class Singleton {
         return instance;
     }
 
+    private ArrayList<Item> itemArrayList = new ArrayList<>();
+
+    public ArrayList<Item> getItemArrayList() {
+        return itemArrayList;
+    }
+
+    public void setItemArrayList(ArrayList<Item> itemArrayList) {
+        this.itemArrayList = itemArrayList;
+    }
 
     private Account loggedInAccount;  // Variable used to keep track of the currently logged in account.
 
