@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.EmailSender;
+import Models.MessageHandler;
 import Models.SceneChanger;
 import Models.Singleton;
 import javafx.application.Platform;
@@ -45,22 +46,13 @@ public class WriteToSupportController {
     @FXML
     private void supportMessage() {
         if (userEmail.getText().equals("") || subject.getText().equals("") || userMessage.getText().equals("")) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setContentText("Please enter all fields!");
-            alert.showAndWait();
+            MessageHandler.getErrorAlert("Error", "Error","Please enter all fields!" ).showAndWait();
         } else {
             if (!isValid(userEmail.getText())) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setContentText("Please enter a valid email");
-                alert.showAndWait();
+                MessageHandler.getErrorAlert("Error", "Error", "Please enter a valid email").showAndWait();
             } else {
                 emailSender.sendSupportMessage(userEmail.getText(), subject.getText(), userMessage.getText());
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Email sent");
-                alert.setContentText("The email was sent to our support team. \n We will be in contact shortly.");
-                alert.showAndWait();
+                MessageHandler.getInformationAlert("Email sent", "Information", "The email was sent to our support team. \n We will be in contact shortly.").showAndWait();
                 backButtonAction();
             }
         }

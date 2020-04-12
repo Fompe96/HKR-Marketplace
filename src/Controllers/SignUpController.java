@@ -3,6 +3,7 @@ package Controllers;
 
 import Database.DBHandler;
 import Models.EmailSender;
+import Models.MessageHandler;
 import Models.SceneChanger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -73,32 +74,20 @@ public class SignUpController implements Initializable {
     @FXML
     private void registerButton() {
         if (userName.getText().equals("") || userEmail.getText().equals("") || userPassword.getText().equals("")) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setContentText("Please enter all fields to register!");
-            alert.showAndWait();
+            MessageHandler.getErrorAlert("Error", "Error", "Please enter all fields to register!").showAndWait();
         } else {
             if (!userPassword.getText().equals(confirmPassword.getText())) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setContentText("Passwords do not match, please re-enter");
-                alert.showAndWait();
+                MessageHandler.getErrorAlert("Error", "Error", "Passwords do not match, please re-enter").showAndWait();
                 userPassword.clear();
                 confirmPassword.clear();
             } else {
                 if (!isValid(userEmail.getText())) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.setContentText("Please enter a valid email");
-                    alert.showAndWait();
+                    MessageHandler.getErrorAlert("Error", "Error", "Please enter a valid email").showAndWait();
                 } else {
                     Connection dbConnection = dbHandler.getConnection();
                     try {
                         if (dbHandler.seeIfEmailAlreadyRegistered(userEmail.getText())) {
-                            Alert alert = new Alert(Alert.AlertType.ERROR);
-                            alert.setTitle("Error");
-                            alert.setContentText("Email already registered");
-                            alert.showAndWait();
+                            MessageHandler.getErrorAlert("Error", "Error", "Email already registered").showAndWait();
                         } else {
                             PreparedStatement stmt = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`account` (`Username`, `Password`, `Email`, `Admin`) VALUES (?, ?, ?, ?);\n");
 
@@ -112,10 +101,7 @@ public class SignUpController implements Initializable {
                             Image image = new Image("Resources/Success.gif");
                             madeAccount.setOpacity(100);
                             madeAccount.setImage(image);
-                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                            alert.setTitle("Success");
-                            alert.setContentText("Your account has now been registered! \nYou will receive an email with login credentials");
-                            alert.showAndWait();
+                            MessageHandler.getInformationAlert("Success", "Information", "Your account has now been registered! \nYou will receive an email with login credentials").showAndWait();
 
                             EmailSender emailSender = new EmailSender();
                             emailSender.sendEmail(userEmail.getText(), "Your new account", "Welcome to HKR Marketplace! Here are your account details. \n \n" +

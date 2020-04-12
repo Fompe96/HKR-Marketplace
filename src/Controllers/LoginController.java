@@ -1,6 +1,7 @@
 package Controllers;
 
 import Database.DBHandler;
+import Models.MessageHandler;
 import Models.SceneChanger;
 import Models.Singleton;
 import javafx.application.Platform;
@@ -8,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -67,10 +67,7 @@ public class LoginController implements Initializable {
     @FXML
     private void logInButtonAction() {
         if (userEmail.getText().equals("") || userPassword.getText().equals("")) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setContentText("Please enter all fields");
-            alert.showAndWait();
+            MessageHandler.getErrorAlert("Error", "Error", "Please enter all fields").showAndWait();
         } else {
             dbHandler.getConnection();
             boolean checkIfExists = dbHandler.findUser(userEmail.getText(), userPassword.getText());
@@ -78,10 +75,7 @@ public class LoginController implements Initializable {
                 Singleton.getInstance().setLoggedInAccount(dbHandler.getUserInformation(userEmail.getText()));
                 SceneChanger.changeScene("../Views/Marketplace.fxml", "HKR Marketplace");
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setContentText("Login credentials not found");
-                alert.showAndWait();
+                MessageHandler.getErrorAlert("Error", "Error", "Login credentials not found");
             }
             dbHandler.closeConnection();
         }
