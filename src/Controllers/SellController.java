@@ -38,7 +38,7 @@ public class SellController implements Initializable {
     private CheckBox excellentBox, veryGoodBox, goodBox, poorBox, vehiclesBox, petsBox, homeBox, electronicsBox, otherBox;
 
     @FXML
-    private Button adminButton, uploadImageButton;
+    private Button adminButton;
 
     @FXML
     private TextField filePathTextField;
@@ -53,8 +53,6 @@ public class SellController implements Initializable {
     private File file;
 
     private FileInputStream fis;
-
-    private Item item = new Item();
 
     private DBHandler dbHandler;
     private double x, y;
@@ -282,8 +280,11 @@ public class SellController implements Initializable {
 
     @FXML
     private void handlePreviewButton() {
-        if (nameOfProductTextField.getText().equals("") || priceOfProductTextField.getText().equals("") || descriptionTextArea.getText().equals("")) {
+        if (nameOfProductTextField.getText().equals("") || priceOfProductTextField.getText().equals("") || descriptionTextArea.getText().equals("") || filePathTextField.getText().equals("")) {
             MessageHandler.getErrorAlert("ERROR", "Missing input", "Make sure you entered everything correctly").showAndWait();
+        }
+        if (!priceOfProductTextField.getText().matches("[0-9]+")) {
+            MessageHandler.getErrorAlert("Error", "Attention!", "Price is not valid").showAndWait();
         } else {
             String name = (nameOfProductTextField.getText());
             Double price = (Double.parseDouble(priceOfProductTextField.getText()));
@@ -296,12 +297,6 @@ public class SellController implements Initializable {
         }
     }
 
-    private void setItem(String name, Double price, String description) {
-    }
-
-    public Item getItem() {
-        return item;
-    }
 
     private int getIdProduct() {
         return idProduct;
@@ -309,18 +304,6 @@ public class SellController implements Initializable {
 
     private void setIdProduct(int idProduct) {
         this.idProduct = idProduct;
-    }
-
-    public TextField getNameOfProductTextField() {
-        return nameOfProductTextField;
-    }
-
-    public TextField getPriceOfProductTextField() {
-        return priceOfProductTextField;
-    }
-
-    public TextArea getDescriptionTextArea() {
-        return descriptionTextArea;
     }
 }
 

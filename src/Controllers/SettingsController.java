@@ -3,7 +3,6 @@ package Controllers;
 import Database.DBHandler;
 import Models.SceneChanger;
 import Models.Singleton;
-import com.sun.source.tree.UsesTree;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

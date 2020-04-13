@@ -3,13 +3,10 @@ package Controllers;
 import Models.EmailSender;
 import Models.MessageHandler;
 import Models.SceneChanger;
-import Models.Singleton;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -28,8 +25,6 @@ public class WriteToSupportController {
     @FXML
     private TextField userEmail;
 
-    @FXML
-    private Button backButton;
 
     EmailSender emailSender = new EmailSender();
 
