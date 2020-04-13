@@ -10,9 +10,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -29,10 +35,17 @@ public class PreviewController implements Initializable {
     @FXML
     private TextField textField1;
 
+    @FXML
+    private ImageView image;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        SellController sellController = new SellController();
-        System.out.println(sellController.getItem());
+        File file = new File(Singleton.getInstance().getImage());
+        Image imageView = new Image(file.toURI().toString());
+        image.setImage(imageView);
+        label1.setText(Singleton.getInstance().getItemName());
+        label2.setText(Singleton.getInstance().getPriceOfProduct().toString());
+        label3.setText(Singleton.getInstance().getDescription());
     }
 
     @FXML
@@ -65,7 +78,7 @@ public class PreviewController implements Initializable {
         item.setPrice(Double.parseDouble(label2.getText()));
         item.setDescription(label3.getText());
         itemArrayList.add(item);
-        Singleton.getInstance().setItemArrayList(itemArrayList);
+       // Singleton.getInstance().setItemArrayList(itemArrayList);
         SceneChanger.changeScene("../Views/Sell.fxml");
     }
 }

@@ -1,6 +1,8 @@
 package Models;
 
-import java.util.ArrayList;
+import javafx.scene.image.Image;
+
+import java.io.File;
 
 public class Singleton {
 
@@ -16,17 +18,11 @@ public class Singleton {
         return instance;
     }
 
-    private ArrayList<Item> itemArrayList = new ArrayList<>();
-
-    public ArrayList<Item> getItemArrayList() {
-        return itemArrayList;
-    }
-
-    public void setItemArrayList(ArrayList<Item> itemArrayList) {
-        this.itemArrayList = itemArrayList;
-    }
-
     private Account loggedInAccount;  // Variable used to keep track of the currently logged in account.
+    private String itemName;
+    private Double priceOfProduct;
+    private String description;
+    private String image;
 
     public Account getLoggedInAccount() {
         return loggedInAccount;
@@ -44,4 +40,35 @@ public class Singleton {
         this.loggedInAccount = loggedInAccount;
     }
 
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public Double getPriceOfProduct() {
+        return priceOfProduct;
+    }
+
+    public void setPriceOfProduct(Double priceOfProduct) {
+        this.priceOfProduct = priceOfProduct;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }

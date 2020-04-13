@@ -69,7 +69,6 @@ public class SellController implements Initializable {
             adminButton.setDisable(false);
         }
 
-        itemArrayList = Singleton.getInstance().getItemArrayList();
 
         for (int i = 0; i < itemArrayList.size(); i++) {
             nameOfProductTextField.setText(itemArrayList.get(i).getName());
@@ -80,11 +79,7 @@ public class SellController implements Initializable {
 
     @FXML
     private void handleLogOutButton() {
-<<<<<<< HEAD
         SceneChanger.changeScene("../Views/Login.fxml");
-=======
-        SceneChanger.changeScene("../Views/Login.fxml", "Login");
->>>>>>> 60a436e76cc27e694d2c03b2c2a6b7c16652179f
     }
 
     @FXML
@@ -293,7 +288,10 @@ public class SellController implements Initializable {
             String name = (nameOfProductTextField.getText());
             Double price = (Double.parseDouble(priceOfProductTextField.getText()));
             String description = (descriptionTextArea.getText());
-            setItem(name, price, description);
+            Singleton.getInstance().setItemName(name);
+            Singleton.getInstance().setPriceOfProduct(price);
+            Singleton.getInstance().setDescription(description);
+            Singleton.getInstance().setImage(file.getPath());
             SceneChanger.changeScene("../Views/Preview.fxml");
         }
     }
