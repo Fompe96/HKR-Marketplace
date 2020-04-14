@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
@@ -67,12 +68,11 @@ public class SellController implements Initializable {
             adminButton.setDisable(false);
         }
 
+        nameOfProductTextField.setText(Singleton.getInstance().getItemName());
+        priceOfProductTextField.setText(String.valueOf(Singleton.getInstance().getPriceOfProduct()));
+        descriptionTextArea.setText(Singleton.getInstance().getDescription());
+        filePathTextField.setText(Singleton.getInstance().getImage());
 
-        for (int i = 0; i < itemArrayList.size(); i++) {
-            nameOfProductTextField.setText(itemArrayList.get(i).getName());
-            priceOfProductTextField.setText(String.valueOf(itemArrayList.get(i).getPrice()));
-            descriptionTextArea.setText(itemArrayList.get(i).getDescription());
-        }
     }
 
     @FXML
