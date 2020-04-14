@@ -97,11 +97,21 @@ public class Singleton {
         for (int i = 0; i < passChar.length ; i++) {
             char encryptLetter = passChar[i];
             encryptLetter = (char) (encryptLetter + key);
-            if (encryptLetter < 'a'){
-                encryptLetter = (char) (encryptLetter + 26);
+            if (encryptLetter>='a'&&encryptLetter<='z') {
+                if (encryptLetter < 'a') {
+                    encryptLetter = (char) (encryptLetter + 26);
+                }
+                if (encryptLetter > 'z') {
+                    encryptLetter = (char) (encryptLetter - 26);
+                }
             }
-            else if (encryptLetter > 'z'){
-                encryptLetter = (char) (encryptLetter - 26);
+            else if(encryptLetter>='A'&&encryptLetter<='Z') {
+                if (encryptLetter < 'A') {
+                    encryptLetter = (char) (encryptLetter + 26);
+                }
+                if (encryptLetter > 'Z') {
+                    encryptLetter = (char) (encryptLetter - 26);
+                }
             }
             passChar[i] = encryptLetter;
         }
@@ -115,14 +125,27 @@ public class Singleton {
         for (int i = 0; i < passChar.length ; i++) {
             char encryptLetter = passChar[i];
             encryptLetter = (char) (encryptLetter + key);
-            if (encryptLetter < 'a'){
-                encryptLetter = (char) (encryptLetter + 26);
+            if (encryptLetter>='a'&&encryptLetter<='z') {
+                if (encryptLetter < 'a') {
+                    encryptLetter = (char) (encryptLetter + 26);
+                }
+                if (encryptLetter > 'z') {
+                    encryptLetter = (char) (encryptLetter - 26);
+                }
             }
-            else if (encryptLetter > 'z'){
-                encryptLetter = (char) (encryptLetter - 26);
+            else if(encryptLetter>='A'&&encryptLetter<='Z') {
+                if (encryptLetter < 'A') {
+                    encryptLetter = (char) (encryptLetter + 26);
+                }
+                if (encryptLetter > 'Z') {
+                    encryptLetter = (char) (encryptLetter - 26);
+                }
             }
+
             passChar[i] = encryptLetter;
         }
+
+
         return new String(passChar);
     }
 

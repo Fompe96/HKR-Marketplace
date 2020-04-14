@@ -22,6 +22,7 @@ public class Main extends Application {
         primaryStage.show();
         EmailSender emailSender = new EmailSender();
         emailSender.SaveToPdf("Thanks");
+
     }
 
 
