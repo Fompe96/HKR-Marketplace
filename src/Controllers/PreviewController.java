@@ -17,7 +17,7 @@ public class PreviewController implements Initializable {
 
 
     @FXML
-    private Label label1, label2, label3;
+    private Label label1, label2, label3, label4, label5;
 
 
     @FXML
@@ -31,6 +31,7 @@ public class PreviewController implements Initializable {
         label1.setText(Singleton.getInstance().getItemName());
         label2.setText(Singleton.getInstance().getPriceOfProduct().toString());
         label3.setText(Singleton.getInstance().getDescription());
+
     }
 
 

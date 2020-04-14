@@ -283,7 +283,7 @@ public class SellController implements Initializable {
         if (nameOfProductTextField.getText().equals("") || priceOfProductTextField.getText().equals("") || descriptionTextArea.getText().equals("") || filePathTextField.getText().equals("")) {
             MessageHandler.getErrorAlert("ERROR", "Missing input", "Make sure you entered everything correctly").showAndWait();
         }
-        if (!priceOfProductTextField.getText().matches("[0-9]+")) {
+        if (!priceOfProductTextField.getText().matches("[0-9.,]+")) {
             MessageHandler.getErrorAlert("Error", "Attention!", "Price is not valid").showAndWait();
         } else {
             String name = (nameOfProductTextField.getText());

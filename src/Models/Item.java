@@ -18,7 +18,6 @@ public class Item {
     private Blob picture;
 
     public Item(){
-
     }
 
     public Item(Integer id, String name, double price, String description, String condition, String category, Blob picture) {

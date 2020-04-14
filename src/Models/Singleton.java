@@ -22,6 +22,8 @@ public class Singleton {
     private String itemName;
     private Double priceOfProduct;
     private String description;
+    private String category;
+    private String condition;
     private String image;
 
     public Account getLoggedInAccount() {
@@ -70,5 +72,21 @@ public class Singleton {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
     }
 }
