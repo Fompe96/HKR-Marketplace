@@ -89,4 +89,41 @@ public class Singleton {
     public void setCondition(String condition) {
         this.condition = condition;
     }
+
+    public String encryptPass(String password){
+        int key = 1;
+        char[] passChar =password.toCharArray();
+
+        for (int i = 0; i < passChar.length ; i++) {
+            char encryptLetter = passChar[i];
+            encryptLetter = (char) (encryptLetter + key);
+            if (encryptLetter < 'a'){
+                encryptLetter = (char) (encryptLetter + 26);
+            }
+            else if (encryptLetter > 'z'){
+                encryptLetter = (char) (encryptLetter - 26);
+            }
+            passChar[i] = encryptLetter;
+        }
+        return new String(passChar);
+    }
+
+    public String decryptPass(String password){
+        int key = -1;
+        char[] passChar =password.toCharArray();
+
+        for (int i = 0; i < passChar.length ; i++) {
+            char encryptLetter = passChar[i];
+            encryptLetter = (char) (encryptLetter + key);
+            if (encryptLetter < 'a'){
+                encryptLetter = (char) (encryptLetter + 26);
+            }
+            else if (encryptLetter > 'z'){
+                encryptLetter = (char) (encryptLetter - 26);
+            }
+            passChar[i] = encryptLetter;
+        }
+        return new String(passChar);
+    }
+
 }
