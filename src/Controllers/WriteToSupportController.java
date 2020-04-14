@@ -47,6 +47,9 @@ public class WriteToSupportController {
                 MessageHandler.getErrorAlert("Error", "Error", "Please enter a valid email").showAndWait();
             } else {
                 emailSender.sendSupportMessage(userEmail.getText(), subject.getText(), userMessage.getText());
+                emailSender.sendEmail(userEmail.getText(), "Support has recieved your email", "Thanks for reaching out " +
+                        "to our support team. A ticket has been created for your case and is being resolved as soon as possible. \n\n\n " +
+                        "Please do not respond to this email as its an automatic email being sent out.");
                 MessageHandler.getInformationAlert("Email sent", "Information", "The email was sent to our support team. \n We will be in contact shortly.").showAndWait();
                 backButtonAction();
             }

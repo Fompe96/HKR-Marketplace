@@ -77,7 +77,8 @@ public class EmailSender {
             message.setFrom(new InternetAddress(from));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress("HKRMarketplace@gmail.com"));
             message.setSubject(subject);
-            message.setText(userMessage);
+            message.setText("Customer email: " + userEmail + "\n\n" + "----------------  User Message  ----------------" +
+             "\n" + userMessage);
             Transport.send(message);
         } catch (MessagingException mex) {
             mex.printStackTrace();
