@@ -28,7 +28,6 @@ import java.util.ResourceBundle;
 
 public class SellController implements Initializable {
 
-
     @FXML
     private TextField nameOfProductTextField, priceOfProductTextField;
 
@@ -72,7 +71,7 @@ public class SellController implements Initializable {
         priceOfProductTextField.setText(String.valueOf(Singleton.getInstance().getPriceOfProduct()));
         descriptionTextArea.setText(Singleton.getInstance().getDescription());
         filePathTextField.setText(Singleton.getInstance().getImage());
-
+        //vehiclesBox.setSelected(Singleton.getInstance().getCategory().matches(vehiclesBox.getText()));
     }
 
     @FXML
@@ -287,8 +286,30 @@ public class SellController implements Initializable {
             MessageHandler.getErrorAlert("Error", "Attention!", "Price is not valid").showAndWait();
         } else {
             String name = (nameOfProductTextField.getText());
-            Double price = (Double.parseDouble(priceOfProductTextField.getText()));
+            double price = (Double.parseDouble(priceOfProductTextField.getText()));
             String description = (descriptionTextArea.getText());
+            if (excellentBox.isSelected()) {
+                Singleton.getInstance().setCondition(excellentBox.getText());
+            } else if (veryGoodBox.isSelected()) {
+                Singleton.getInstance().setCondition(veryGoodBox.getText());
+            } else if (goodBox.isSelected()) {
+                Singleton.getInstance().setCondition(goodBox.getText());
+            } else if (poorBox.isSelected()) {
+                Singleton.getInstance().setCondition(poorBox.getText());
+            }
+
+            if (vehiclesBox.isSelected()) {
+                Singleton.getInstance().setCategory(vehiclesBox.getText());
+            } else if (petsBox.isSelected()) {
+                Singleton.getInstance().setCategory(petsBox.getText());
+            } else if (homeBox.isSelected()) {
+                Singleton.getInstance().setCategory(homeBox.getText());
+            } else if (electronicsBox.isSelected()) {
+                Singleton.getInstance().setCategory(electronicsBox.getText());
+            } else if (otherBox.isSelected()) {
+                Singleton.getInstance().setCategory(otherBox.getText());
+            }
+
             Singleton.getInstance().setItemName(name);
             Singleton.getInstance().setPriceOfProduct(price);
             Singleton.getInstance().setDescription(description);
@@ -296,7 +317,6 @@ public class SellController implements Initializable {
             SceneChanger.changeScene("../Views/Preview.fxml");
         }
     }
-
 
     private int getIdProduct() {
         return idProduct;

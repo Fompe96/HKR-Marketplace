@@ -31,6 +31,8 @@ public class PreviewController implements Initializable {
         label1.setText(Singleton.getInstance().getItemName());
         label2.setText(Singleton.getInstance().getPriceOfProduct().toString());
         label3.setText(Singleton.getInstance().getDescription());
+        label4.setText(Singleton.getInstance().getCategory());
+        label5.setText(Singleton.getInstance().getCondition());
 
     }
 

@@ -33,7 +33,7 @@
       </Text>
       <Text fill="#e8e8e8" layoutX="271.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:" />
       <Text fill="#e8e8e8" layoutX="271.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Condition:" />
-      <Label fx:id="label4" layoutX="271.0" layoutY="229.0" prefHeight="25.0" prefWidth="139.0" />
-      <Label fx:id="label5" layoutX="271.0" layoutY="313.0" prefHeight="25.0" prefWidth="139.0" />
+      <Label fx:id="label4" layoutX="271.0" layoutY="229.0" prefHeight="25.0" prefWidth="139.0" textFill="#e8e8e8" />
+      <Label fx:id="label5" layoutX="271.0" layoutY="313.0" prefHeight="25.0" prefWidth="139.0" textFill="#e8e8e8" />
    </children>
 </AnchorPane>
