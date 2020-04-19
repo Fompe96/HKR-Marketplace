@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.sql.Blob;
+import java.util.ArrayList;
 
 public class Account {
     private SimpleStringProperty userName;
@@ -11,6 +12,7 @@ public class Account {
     private SimpleStringProperty email;
     private SimpleBooleanProperty admin;
     private Blob picture;
+    private ArrayList<Item> favourites;
 
     public Account(String userName, String password, String email, boolean admin, Blob picture) {
         this.userName = new SimpleStringProperty(userName);
@@ -18,6 +20,7 @@ public class Account {
         this.email = new SimpleStringProperty(email);
         this.admin = new SimpleBooleanProperty(admin);
         this.picture = picture;
+        this.favourites =new ArrayList<>();
     }
 
 

@@ -85,4 +85,8 @@ public class MarketplaceController implements Initializable {
     private void handleAdminButton() {
         SceneChanger.changeScene("../Views/Administration.fxml");
     }
+
+    private void addToFavourite(){
+
+    }
 }
