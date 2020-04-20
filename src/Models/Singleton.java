@@ -90,22 +90,21 @@ public class Singleton {
         this.condition = condition;
     }
 
-    public String encryptPass(String password){
+    public String encryptPass(String password) {
         int key = 1;
-        char[] passChar =password.toCharArray();
+        char[] passChar = password.toCharArray();
 
-        for (int i = 0; i < passChar.length ; i++) {
+        for (int i = 0; i < passChar.length; i++) {
             char encryptLetter = passChar[i];
             encryptLetter = (char) (encryptLetter + key);
-            if (encryptLetter>='a'&&encryptLetter<='z') {
+            if (encryptLetter >= 'a' && encryptLetter <= 'z') {
                 if (encryptLetter < 'a') {
                     encryptLetter = (char) (encryptLetter + 26);
                 }
                 if (encryptLetter > 'z') {
                     encryptLetter = (char) (encryptLetter - 26);
                 }
-            }
-            else if(encryptLetter>='A'&&encryptLetter<='Z') {
+            } else if (encryptLetter >= 'A' && encryptLetter <= 'Z') {
                 if (encryptLetter < 'A') {
                     encryptLetter = (char) (encryptLetter + 26);
                 }
@@ -118,22 +117,21 @@ public class Singleton {
         return new String(passChar);
     }
 
-    public String decryptPass(String password){
+    public String decryptPass(String password) {
         int key = -1;
-        char[] passChar =password.toCharArray();
+        char[] passChar = password.toCharArray();
 
-        for (int i = 0; i < passChar.length ; i++) {
+        for (int i = 0; i < passChar.length; i++) {
             char encryptLetter = passChar[i];
             encryptLetter = (char) (encryptLetter + key);
-            if (encryptLetter>='a'&&encryptLetter<='z') {
+            if (encryptLetter >= 'a' && encryptLetter <= 'z') {
                 if (encryptLetter < 'a') {
                     encryptLetter = (char) (encryptLetter + 26);
                 }
                 if (encryptLetter > 'z') {
                     encryptLetter = (char) (encryptLetter - 26);
                 }
-            }
-            else if(encryptLetter>='A'&&encryptLetter<='Z') {
+            } else if (encryptLetter >= 'A' && encryptLetter <= 'Z') {
                 if (encryptLetter < 'A') {
                     encryptLetter = (char) (encryptLetter + 26);
                 }
