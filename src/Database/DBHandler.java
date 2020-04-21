@@ -2,6 +2,7 @@ package Database;
 
 import Models.Account;
 import Models.Item;
+import Models.MessageHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -109,7 +110,7 @@ public class DBHandler extends DBConfig {
     public void removeAccounts(ArrayList<String> emailsToRemove) {  // Currently takes an arraylist of account emails and removes them from DB.
         StringBuilder query = new StringBuilder("DELETE FROM account WHERE Email IN (");
         for (int i = 0; i < emailsToRemove.size(); i++) {
-            if (i == emailsToRemove.size()-1) {
+            if (i == emailsToRemove.size() - 1) {
                 query.append("'").append(emailsToRemove.get(i)).append("'");
             } else {
                 query.append("'").append(emailsToRemove.get(i)).append("'").append(", ");
@@ -127,7 +128,7 @@ public class DBHandler extends DBConfig {
     public void removeSales(ArrayList<Integer> salesIDsToRemove) {  // Currently takes an arraylist of sale IDS and removes them from DB.
         StringBuilder query = new StringBuilder("DELETE FROM product WHERE idProduct IN (");
         for (int i = 0; i < salesIDsToRemove.size(); i++) {
-            if (i == salesIDsToRemove.size()-1) {
+            if (i == salesIDsToRemove.size() - 1) {
                 query.append("'").append(salesIDsToRemove.get(i)).append("'");
             } else {
                 query.append("'").append(salesIDsToRemove.get(i)).append("'").append(", ");
@@ -140,6 +141,19 @@ public class DBHandler extends DBConfig {
         } catch (SQLException se) {
             se.printStackTrace();
         }
+    }
+
+    public String findUserPassword(String userEmail) {
+        String query = "SELECT * FROM ACCOUNT WHERE Email = " + "'" + userEmail + "';";
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                resultSet.next();
+                return resultSet.getString(2);
+            }
+        } catch (SQLException se) {
+            MessageHandler.getErrorAlert("Error", "Error", "No account with that email is registered!").showAndWait();
+        }
+        return null;
     }
 
 

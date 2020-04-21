@@ -68,22 +68,6 @@ public class AdministrationController implements Initializable {
     @FXML
     private TableColumn<Item, Blob> picture;
 
-    /*
-    public void handleEditsInAccountsTableView(TableColumn.CellEditEvent editedCell) {  // Method that takes care of what should happen if a cell is edited in accountsTableView
-        if (editedCell.getSource() == username) {
-            Account selectedAccount = accountsTableView.getSelectionModel().getSelectedItem();
-            System.out.println("Old Value: " + selectedAccount.getUserName());
-            selectedAccount.setUserName(editedCell.getNewValue().toString());
-            System.out.println("New Value: " + selectedAccount.getUserName());
-        } else if (editedCell.getSource() == password) {
-            Account selectedAccount = accountsTableView.getSelectionModel().getSelectedItem();
-            System.out.println("Old Value: " + selectedAccount.getPassword());
-            selectedAccount.setPassword(editedCell.getNewValue().toString());
-            System.out.println("New Value: " + selectedAccount.getPassword());
-        }
-
-    }
-    */
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -98,55 +82,34 @@ public class AdministrationController implements Initializable {
 
     @FXML
     private void handleEditAccountsButton() {
-        selectEditAccounts();
-        accountsTableActive = true; // Currently working tableview = accounts
-    }
-
-    @FXML
-    private void handleEditItemsButton() {
-        selectEditItems();
-        accountsTableActive = false;    // Currently working tableview = sales
-    }
-
-    private void selectEditAccounts() { // Handles all visual changes when editAccounts is pressed.
         editItems.setStyle("-fx-background-color:  #4f4d4d;");
         editAccounts.setStyle("-fx-background-color:  #46ab57;");
         accountsTableView.setVisible(true);
         itemTableView.setVisible(false);
         accountInputs.setVisible(true);
         itemInputs.setVisible(false);
+        accountsTableActive = true; // Currently working tableview = accounts
     }
 
-    private void selectEditItems() { // Handles all visual changes when editSales is pressed.
+    @FXML
+    private void handleEditItemsButton() {
         editAccounts.setStyle("-fx-background-color:  #4f4d4d;");
         editItems.setStyle("-fx-background-color:  #46ab57;");
         itemTableView.setVisible(true);
         accountsTableView.setVisible(false);
         accountInputs.setVisible(false);
         itemInputs.setVisible(true);
+        accountsTableActive = false;    // Currently working tableview = sales
     }
 
     private void retrieveAccounts() {    // Retrievees all accounts from DB and places them as objects in observable list accounts.
         accounts = FXCollections.observableArrayList();
         accounts = dbHandler.retrieveAllAccounts();
-        /*
-        for (Account account : accounts) {
-            System.out.println(account);
-        }
-
-         */
-
     }
 
-    private void retrieveItems() {   // Retrieves all sales from the DB and places them as objects in observable list sales
+    private void retrieveItems() {   // Retrieves all sales from the DB and places them as objects in observable list items
         items = FXCollections.observableArrayList();
         items = dbHandler.retrieveAllSales();
-        /*
-        for (Sale sale : sales) {
-            System.out.println(sale);
-        }
-
-         */
     }
 
     private void setupColumns() {
@@ -174,57 +137,64 @@ public class AdministrationController implements Initializable {
     @FXML
     private void handleRemoveButton() { // Removes selected rows in table view from database by fetching email addresses and IDs.
         if (accountsTableActive) {  // Currently displayed tableview is accounts
-            ObservableList<Account> selectedAccounts = accountsTableView.getSelectionModel().getSelectedItems();
-            if (!selectedAccounts.isEmpty()) {
-                ArrayList<String> accountEmailsToBeRemoved = new ArrayList<>();
-                StringBuilder confirmationMessage = new StringBuilder("Are you sure you wish to delete the following accounts: ");
-                for (int i = 0; i < selectedAccounts.size(); i++) {
-                    confirmationMessage.append("\n [Account ").append(i + 1).append("] ").append(selectedAccounts.get(i).getEmail());
-                    accountEmailsToBeRemoved.add(selectedAccounts.get(i).getEmail());
-                }
-                confirmationMessage.append("\n\n").append("They will be permanently removed!");
-                Optional<ButtonType> action = MessageHandler.getConfirmationAlert("Confirmation", null, confirmationMessage.toString()).showAndWait();
+           removeAccount();
+        } else {  // Currently displayed tableview is items
+            removeItem();
+        }
+    }
 
-                if (action.get() == ButtonType.OK) {
-                    dbHandler.removeAccounts(accountEmailsToBeRemoved);
-                    accounts.removeAll(selectedAccounts);
-                }
+    private void removeAccount() {
+        ObservableList<Account> selectedAccounts = accountsTableView.getSelectionModel().getSelectedItems();
+        if (!selectedAccounts.isEmpty()) {
+            ArrayList<String> accountEmailsToBeRemoved = new ArrayList<>();
+            StringBuilder confirmationMessage = new StringBuilder("Are you sure you wish to delete the following accounts: ");
+            for (int i = 0; i < selectedAccounts.size(); i++) {
+                confirmationMessage.append("\n [Account ").append(i + 1).append("] ").append(selectedAccounts.get(i).getEmail());
+                accountEmailsToBeRemoved.add(selectedAccounts.get(i).getEmail());
+            }
+            confirmationMessage.append("\n\n").append("They will be permanently removed!");
+            Optional<ButtonType> action = MessageHandler.getConfirmationAlert("Confirmation", null, confirmationMessage.toString()).showAndWait();
 
-            } else {
-                MessageHandler.getErrorAlert("Error", null, "No accounts selected.").showAndWait();
+            if (action.get() == ButtonType.OK) {
+                dbHandler.removeAccounts(accountEmailsToBeRemoved);
+                accounts.removeAll(selectedAccounts);
             }
 
-        } else {  // Currently displayed tableview is sales
-            ObservableList<Item> selectedItems = itemTableView.getSelectionModel().getSelectedItems();
-            if (!selectedItems.isEmpty()) {
-                ArrayList<Integer> saleIdsToBeRemoved = new ArrayList<>();
-                StringBuilder confirmationMessage = new StringBuilder("Are you sure you wish to delete the following sales: ");
-                for (int i = 0; i < selectedItems.size(); i++) {
-                    confirmationMessage.append("\n [Sale ").append(i + 1).append("] ID: ").append(selectedItems.get(i).getId()).append(" Name: ").append(selectedItems.get(i).getName());
-                    saleIdsToBeRemoved.add(selectedItems.get(i).getId());
-                }
-                confirmationMessage.append("\n\n").append("They will be permanently removed!");
-                Optional<ButtonType> action = MessageHandler.getConfirmationAlert("Confirmation", null, confirmationMessage.toString()).showAndWait();
+        } else {
+            MessageHandler.getErrorAlert("Error", null, "No accounts selected.").showAndWait();
+        }
+    }
 
-                if (action.get() == ButtonType.OK) {
-                    dbHandler.removeSales(saleIdsToBeRemoved);
-                    items.removeAll(selectedItems);
-                }
-
-            } else {
-                MessageHandler.getErrorAlert("Error", null, "No sales selected.").showAndWait();
+    private void removeItem() {
+        ObservableList<Item> selectedItems = itemTableView.getSelectionModel().getSelectedItems();
+        if (!selectedItems.isEmpty()) {
+            ArrayList<Integer> saleIdsToBeRemoved = new ArrayList<>();
+            StringBuilder confirmationMessage = new StringBuilder("Are you sure you wish to delete the following sales: ");
+            for (int i = 0; i < selectedItems.size(); i++) {
+                confirmationMessage.append("\n [Sale ").append(i + 1).append("] ID: ").append(selectedItems.get(i).getId()).append(" Name: ").append(selectedItems.get(i).getName());
+                saleIdsToBeRemoved.add(selectedItems.get(i).getId());
             }
+            confirmationMessage.append("\n\n").append("They will be permanently removed!");
+            Optional<ButtonType> action = MessageHandler.getConfirmationAlert("Confirmation", null, confirmationMessage.toString()).showAndWait();
+
+            if (action.get() == ButtonType.OK) {
+                dbHandler.removeSales(saleIdsToBeRemoved);
+                items.removeAll(selectedItems);
+            }
+
+        } else {
+            MessageHandler.getErrorAlert("Error", null, "No sales selected.").showAndWait();
         }
     }
 
     @FXML
     private void handleInsertAccountButton() {
-        // Logic for inserting a new account into appropriate tableview
+        // Logic for inserting a new account into database and tableview
     }
 
     @FXML
     private void handleInsertItemButton() {
-        // Logic for inserting a new sale into appropriate tableview
+        // Logic for inserting a new item into database and tableview
     }
 
     @FXML

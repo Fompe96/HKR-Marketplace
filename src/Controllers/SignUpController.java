@@ -71,7 +71,7 @@ public class SignUpController implements Initializable {
     }
 
     @FXML
-    private void registerButton() {
+    private void signUpButtonAction() {
         if (userName.getText().equals("") || userEmail.getText().equals("") || userPassword.getText().equals("")) {
             MessageHandler.getErrorAlert("Error", "Error", "Please enter all fields to register!").showAndWait();
         } else {

@@ -2,6 +2,7 @@ package Controllers;
 
 import Database.DBHandler;
 import Models.EmailSender;
+import Models.MessageHandler;
 import Models.SceneChanger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -14,9 +15,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class RetrieveCredentialsController implements Initializable {
@@ -26,7 +24,6 @@ public class RetrieveCredentialsController implements Initializable {
     @FXML
     private AnchorPane root;
 
-    private String userPassword;
 
     private double x, y;
 
@@ -63,37 +60,20 @@ public class RetrieveCredentialsController implements Initializable {
 
     @FXML
     public void retrieveCredentialsButtonAction() {
-        findUser(userEmail.getText());
-        EmailSender emailSender = new EmailSender();
-        emailSender.sendEmail(userEmail.getText(), "Retrieved login details", "Here are your account details" +
-                "\nEmail: " + userEmail.getText() + "\nPassword: " + getUserPassword());
-        backButtonAction();
-    }
-
-
-    private void findUser(String userEmail) {
-        String query = "SELECT * FROM ACCOUNT WHERE Email = " + "'" + userEmail + "';";
-        try (PreparedStatement statement = dbHandler.getConnection().prepareStatement(query)) {
-            try (ResultSet resultSet = statement.executeQuery()) {
-                resultSet.next();
-                setUserPassword(resultSet.getString(2));
-            }
-        } catch (SQLException se) {
-            se.printStackTrace();
+        String userPassword = dbHandler.findUserPassword(userEmail.getText());
+        if (userPassword != null) {
+            EmailSender emailSender = new EmailSender();
+            emailSender.sendEmail(userEmail.getText(), "Retrieved login details", "Here are your account details" +
+                    "\nEmail: " + userEmail.getText() + "\nPassword: " + userPassword);
+            backButtonAction();
+        } else {
+            userEmail.setText("");
         }
     }
-
+    
     @FXML
     private void backButtonAction() {
         SceneChanger.changeScene("../Views/Login.fxml");
-    }
-
-    private String getUserPassword() {
-        return userPassword;
-    }
-
-    private void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
     }
 
     @FXML
