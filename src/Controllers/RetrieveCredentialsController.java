@@ -2,7 +2,6 @@ package Controllers;
 
 import Database.DBHandler;
 import Models.EmailSender;
-import Models.MessageHandler;
 import Models.SceneChanger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -23,8 +22,6 @@ public class RetrieveCredentialsController implements Initializable {
     private TextField userEmail;
     @FXML
     private AnchorPane root;
-
-
     private double x, y;
 
     @Override
@@ -70,7 +67,7 @@ public class RetrieveCredentialsController implements Initializable {
             userEmail.setText("");
         }
     }
-    
+
     @FXML
     private void backButtonAction() {
         SceneChanger.changeScene("../Views/Login.fxml");

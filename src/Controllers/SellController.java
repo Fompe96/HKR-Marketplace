@@ -11,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
@@ -23,7 +22,6 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class SellController implements Initializable {
@@ -45,8 +43,6 @@ public class SellController implements Initializable {
 
     @FXML
     private ImageView adminview;
-
-    ArrayList<Item> itemArrayList = new ArrayList<>();
 
     private int idProduct;
 

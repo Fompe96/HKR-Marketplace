@@ -25,7 +25,6 @@ public class SignUpController implements Initializable {
 
     @FXML
     private TextField userEmail, userName, userPassword, confirmPassword;
-    private int idAccount;
     private double x, y;
     @FXML
     private ImageView madeAccount;
@@ -39,7 +38,7 @@ public class SignUpController implements Initializable {
         if (dbHandler == null) {
             dbHandler = new DBHandler();
         }
-        Platform.runLater( () -> root.requestFocus() );
+        Platform.runLater(() -> root.requestFocus());
     }
 
     @FXML
@@ -118,14 +117,5 @@ public class SignUpController implements Initializable {
     private static boolean isValid(String userEmail) {
         String regex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
         return userEmail.matches(regex);
-    }
-
-
-    private int getIdAccount() {
-        return idAccount;
-    }
-
-    private void setIdAccount(int idAccount) {
-        this.idAccount = idAccount;
     }
 }

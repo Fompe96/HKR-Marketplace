@@ -26,7 +26,7 @@ public class WriteToSupportController {
     private TextField userEmail;
 
 
-    EmailSender emailSender = new EmailSender();
+    private EmailSender emailSender = new EmailSender();
 
     @FXML
     private void handleClosingButton() {

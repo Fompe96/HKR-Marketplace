@@ -1,9 +1,5 @@
 package Models;
 
-import javafx.scene.image.Image;
-
-import java.io.File;
-
 public class Singleton {
 
     private static Singleton instance = null;
