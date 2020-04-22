@@ -96,6 +96,8 @@ public class SignUpController implements Initializable {
             } else {
                 if (!isValid(userEmail.getText())) {
                     MessageHandler.getErrorAlert("Error", "Error", "Please enter a valid email").showAndWait();
+                } else if (dbHandler.seeIfEmailAlreadyRegistered(userEmail.getText())) {
+                    MessageHandler.getErrorAlert("Error", "Error", "Email already registered").showAndWait();
                 } else {
                     validateNumber(userEmail.getText());
                     validateEmailField.setOpacity(100);
@@ -106,39 +108,31 @@ public class SignUpController implements Initializable {
     }
 
     @FXML
-    private void insertUserIntoDatabase() {
+    private void insertUserIntoDatabase() throws SQLException {
         String uniqueNumber = String.valueOf(uniqueRegistrationNumber);
         if (!validateEmailField.getText().equals(uniqueNumber)) {
             MessageHandler.getErrorAlert("Error", "Error", "The pin provided was not correct!").showAndWait();
         } else {
             Connection dbConnection = dbHandler.getConnection();
-            try {
-                if (dbHandler.seeIfEmailAlreadyRegistered(userEmail.getText())) {
-                    MessageHandler.getErrorAlert("Error", "Error", "Email already registered").showAndWait();
-                } else {
-                    PreparedStatement stmt = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`account` (`Username`, `Password`, `Email`, `Admin`) VALUES (?, ?, ?, ?);\n");
+            PreparedStatement stmt = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`account` (`Username`, `Password`, `Email`, `Admin`) VALUES (?, ?, ?, ?);\n");
 
-                    stmt.setString(1, userName.getText());
-                    stmt.setString(2, userPassword.getText());
-                    stmt.setString(3, userEmail.getText());
-                    stmt.setBoolean(4, false);
-                    stmt.executeUpdate();
-                    dbHandler.closeConnection();
+            stmt.setString(1, userName.getText());
+            stmt.setString(2, userPassword.getText());
+            stmt.setString(3, userEmail.getText());
+            stmt.setBoolean(4, false);
+            stmt.executeUpdate();
+            dbHandler.closeConnection();
 
-                    Image image = new Image("Resources/Success.gif");
-                    madeAccount.setOpacity(100);
-                    madeAccount.setImage(image);
-                    MessageHandler.getInformationAlert("Success", "Information", "Your account has now been registered! \nYou will receive an email with login credentials").showAndWait();
+            Image image = new Image("Resources/Success.gif");
+            madeAccount.setOpacity(100);
+            madeAccount.setImage(image);
+            MessageHandler.getInformationAlert("Success", "Information", "Your account has now been registered! \nYou will receive an email with login credentials").showAndWait();
 
-                    EmailSender emailSender = new EmailSender();
-                    emailSender.sendEmail(userEmail.getText(), "Your new account", "Welcome to HKR Marketplace! Here are your account details. \n \n" +
-                            "Username: " + userName.getText() + "\n" + "Password: " + userPassword.getText() + "\n" + "Account-Email: " + userEmail.getText());
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            backButtonAction();
+            EmailSender emailSender = new EmailSender();
+            emailSender.sendEmail(userEmail.getText(), "Your new account", "Welcome to HKR Marketplace! Here are your account details. \n \n" +
+                    "Username: " + userName.getText() + "\n" + "Password: " + userPassword.getText() + "\n" + "Account-Email: " + userEmail.getText());
         }
+        backButtonAction();
     }
 
 
