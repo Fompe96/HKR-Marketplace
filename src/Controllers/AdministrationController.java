@@ -32,6 +32,8 @@ public class AdministrationController implements Initializable {
     private HBox accountInputs, itemInputs;
     @FXML
     private TextField usernamefield, passwordfield, emailfield, adminfield, picturefield, idfield, namefield, pricefield, descriptionfield, conditionfield, categoryfield, itempicturefield;
+    @FXML
+    private ComboBox conditionbox, categorybox;
     private double x, y;
     private ObservableList<Account> accounts;
     private ObservableList<Item> items;
@@ -73,6 +75,8 @@ public class AdministrationController implements Initializable {
         retrieveAccounts();
         retrieveItems();
         setupColumns();
+        setupConditionbox();
+        setupCategorybox();
         handleEditAccountsButton(); // Default selected choice
     }
 
@@ -128,6 +132,14 @@ public class AdministrationController implements Initializable {
         picture.setCellValueFactory(new PropertyValueFactory<>("Picture"));
         itemTableView.setItems(items);
         itemTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    }
+
+    private void setupConditionbox() {
+        conditionbox.getItems().addAll("Excellent", "Very Good", "Good", "Poor");
+    }
+
+    private void setupCategorybox() {
+        categorybox.getItems().addAll("Vehicles", "Pets", "Home", "Electronics", "Other");
     }
 
     @FXML
