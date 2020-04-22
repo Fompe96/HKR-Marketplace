@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 
 public class PreviewController implements Initializable {
 
+    Item item = new Item();
 
     @FXML
     private Label label1, label2, label3, label4, label5;

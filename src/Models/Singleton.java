@@ -15,12 +15,21 @@ public class Singleton {
     }
 
     private Account loggedInAccount;  // Variable used to keep track of the currently logged in account.
+    private Item item;
     private String itemName;
     private Double priceOfProduct;
     private String description;
     private String category;
     private String condition;
     private String image;
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public Item getItem() {
+        return item;
+    }
 
     public Account getLoggedInAccount() {
         return loggedInAccount;

@@ -25,6 +25,7 @@ import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
 public class SellController implements Initializable {
+    Item item = new Item();
 
     @FXML
     private TextField nameOfProductTextField, priceOfProductTextField;
