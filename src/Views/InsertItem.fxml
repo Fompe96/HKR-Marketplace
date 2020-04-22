@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #3c3c3c;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InsertItemController">
+   <children>
+      <Pane layoutX="273.0" layoutY="43.0" prefHeight="45.0" prefWidth="154.0">
+         <children>
+            <Label text="Insert" textFill="#e8e8e8">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="84.0" text="Item" textFill="#46ab57">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <HBox fx:id="itemInputs" layoutX="25.0" layoutY="221.0" prefHeight="25.0" prefWidth="650.0" style="-fx-background-color: black;">
+         <children>
+            <TextField fx:id="idfield" alignment="CENTER" disable="true" editable="false" focusTraversable="false" prefHeight="45.0" prefWidth="31.0" style="-fx-background-radius: 0;" styleClass="tableViewTextfields" />
+            <TextField fx:id="namefield" alignment="CENTER" prefHeight="148.0" prefWidth="107.0" promptText="Name" style="-fx-background-radius: 0;" styleClass="tableViewTextfields" />
+            <TextField fx:id="pricefield" alignment="CENTER" prefWidth="73.0" promptText="Price" style="-fx-background-radius: 0;" styleClass="tableViewTextfields" />
+            <TextField fx:id="descriptionfield" alignment="CENTER" prefWidth="111.0" promptText="Description" style="-fx-background-radius: 0;" styleClass="tableViewTextfields" />
+            <ComboBox fx:id="conditionbox" maxHeight="20.0" prefHeight="20.0" prefWidth="105.0" promptText="Condition" styleClass="regularcombobox" />
+            <ComboBox fx:id="categorybox" maxHeight="25.0" prefWidth="111.0" promptText="Category" styleClass="regularcombobox" />
+            <TextField fx:id="itempicturefield" alignment="CENTER" prefHeight="25.0" prefWidth="112.0" promptText="Picture" style="-fx-background-radius: 0;" styleClass="tableViewTextfields" />
+         </children>
+      </HBox>
+      <Pane layoutY="-1.0" prefHeight="30.0" prefWidth="700.0">
+         <children>
+            <HBox layoutY="1.0" onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="30.0" prefWidth="700.0" styleClass="regularWindowBar" />
+            <Circle fill="#0073ff" layoutX="656.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+            <Circle fill="#fc2b2b" layoutX="680.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+            <Button fx:id="closebutton" focusTraversable="false" layoutX="672.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
+            <Button focusTraversable="false" layoutX="648.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

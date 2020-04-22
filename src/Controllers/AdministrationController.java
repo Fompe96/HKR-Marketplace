@@ -10,14 +10,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Blob;
 import java.util.ArrayList;
@@ -28,12 +31,6 @@ public class AdministrationController implements Initializable {
 
     @FXML
     private Button editAccounts, editItems;
-    @FXML
-    private HBox accountInputs, itemInputs;
-    @FXML
-    private TextField usernamefield, passwordfield, emailfield, adminfield, picturefield, idfield, namefield, pricefield, descriptionfield, conditionfield, categoryfield, itempicturefield;
-    @FXML
-    private ComboBox conditionbox, categorybox;
     private double x, y;
     private ObservableList<Account> accounts;
     private ObservableList<Item> items;
@@ -75,8 +72,6 @@ public class AdministrationController implements Initializable {
         retrieveAccounts();
         retrieveItems();
         setupColumns();
-        setupConditionbox();
-        setupCategorybox();
         handleEditAccountsButton(); // Default selected choice
     }
 
@@ -86,8 +81,6 @@ public class AdministrationController implements Initializable {
         editAccounts.setStyle("-fx-background-color:  #46ab57;");
         accountsTableView.setVisible(true);
         itemTableView.setVisible(false);
-        accountInputs.setVisible(true);
-        itemInputs.setVisible(false);
         accountsTableActive = true; // Currently working tableview = accounts
     }
 
@@ -97,8 +90,6 @@ public class AdministrationController implements Initializable {
         editItems.setStyle("-fx-background-color:  #46ab57;");
         itemTableView.setVisible(true);
         accountsTableView.setVisible(false);
-        accountInputs.setVisible(false);
-        itemInputs.setVisible(true);
         accountsTableActive = false;    // Currently working tableview = sales
     }
 
@@ -132,14 +123,6 @@ public class AdministrationController implements Initializable {
         picture.setCellValueFactory(new PropertyValueFactory<>("Picture"));
         itemTableView.setItems(items);
         itemTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-    }
-
-    private void setupConditionbox() {
-        conditionbox.getItems().addAll("Excellent", "Very Good", "Good", "Poor");
-    }
-
-    private void setupCategorybox() {
-        categorybox.getItems().addAll("Vehicles", "Pets", "Home", "Electronics", "Other");
     }
 
     @FXML
@@ -196,13 +179,37 @@ public class AdministrationController implements Initializable {
     }
 
     @FXML
-    private void handleInsertAccountButton() {
-        // Logic for inserting a new account into database and tableview
+    private void handleInsertButton() {
+        if (accountsTableActive) {
+            loadInsertAccountView();
+        } else {
+            loadInsertItemView();
+        }
+    }
+    private void loadInsertAccountView() {
+        Stage popupStage = SceneChanger.getPopupStage();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("../Views/insertAccount.fxml"));
+            Scene insertAccountScene = new Scene(root);
+            insertAccountScene.getStylesheets().add("Resources/CSS.css");
+            popupStage.setScene(insertAccountScene);
+            popupStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    @FXML
-    private void handleInsertItemButton() {
-        // Logic for inserting a new item into database and tableview
+    private void loadInsertItemView() {
+        Stage popupStage = SceneChanger.getPopupStage();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("../Views/insertItem.fxml"));
+            Scene insertItemScene = new Scene(root);
+            insertItemScene.getStylesheets().add("Resources/CSS.css");
+            popupStage.setScene(insertItemScene);
+            popupStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
