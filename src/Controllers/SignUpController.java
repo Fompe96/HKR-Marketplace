@@ -42,6 +42,7 @@ public class SignUpController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println("test");
         if (dbHandler == null) {
             dbHandler = new DBHandler();
         }
