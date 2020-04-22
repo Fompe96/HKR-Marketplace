@@ -24,8 +24,6 @@ import java.util.ResourceBundle;
 
 public class SettingsController implements Initializable {
 
-    DBHandler dbHandler = new DBHandler();
-
     @FXML
     private Label loggedInAs;
     private double x, y;
@@ -66,7 +64,7 @@ public class SettingsController implements Initializable {
         file = fileChooser.showOpenDialog(null);
         if (file != null) {
             String user = Singleton.getInstance().getLoggedInEmail();
-            dbHandler.uploadImage(user, file.getPath());
+            DBHandler.uploadImage(user, file.getPath());
         }
     }
 
@@ -84,7 +82,7 @@ public class SettingsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loggedInAs.setText(Singleton.getInstance().getLoggedInName());
-        dbHandler.getConnection();
+        DBHandler.getConnection();
         try {
             getProfilePicture();
         } catch (NullPointerException | SQLException ignored) {
@@ -94,7 +92,7 @@ public class SettingsController implements Initializable {
     private void getProfilePicture() throws SQLException {
         String email = Singleton.getInstance().getLoggedInEmail();
         String SQL = "select Picture from account where Email = ?;";
-        PreparedStatement pstmt = dbHandler.getConnection().prepareStatement(SQL);
+        PreparedStatement pstmt = DBHandler.getConnection().prepareStatement(SQL);
         pstmt.setString(1, email);
         ResultSet rs = pstmt.executeQuery();
         while (rs.next()) {
@@ -102,5 +100,6 @@ public class SettingsController implements Initializable {
             Image image = new Image(imageFile);
             imageToUpload.setImage(image);
         }
+        DBHandler.closeConnection();
     }
 }

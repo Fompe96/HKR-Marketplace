@@ -11,8 +11,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class EmailSender {
-    public void sendEmail(String userEmail, String emailSubject, String emailMessage) {
+public abstract class EmailSender {
+    public static void sendEmail(String userEmail, String emailSubject, String emailMessage) {
         String from = "HKRMarketplace@gmail.com";
 
         String host = "smtp.gmail.com";
@@ -48,7 +48,7 @@ public class EmailSender {
         }
     }
 
-    public void sendSupportMessage(String userEmail, String subject, String userMessage) {
+    public static void sendSupportMessage(String userEmail, String subject, String userMessage) {
         String from = userEmail;
 
         String host = "smtp.gmail.com";
@@ -85,7 +85,7 @@ public class EmailSender {
         }
     }
 
-    public void sendValidationEmail(String userEmail, int uniqueNumber) {
+    public static void sendValidationEmail(String userEmail, int uniqueNumber) {
         String from = "HKRMarketplace@gmail.com";
 
         String host = "smtp.gmail.com";
@@ -121,7 +121,7 @@ public class EmailSender {
         }
     }
 
-    public void SaveToPdf(String Text) throws FileNotFoundException, DocumentException {
+    public static void SaveToPdf(String Text) throws FileNotFoundException, DocumentException {
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
         PdfWriter.getInstance(document, new FileOutputStream("Receipt.pdf"));
         document.open();

@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public final class SceneChanger {
+public abstract class SceneChanger {
 
     private static Stage programStage;
 

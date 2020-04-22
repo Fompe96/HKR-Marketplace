@@ -32,7 +32,6 @@ public class AdministrationController implements Initializable {
     private HBox accountInputs, itemInputs;
     @FXML
     private TextField usernamefield, passwordfield, emailfield, adminfield, picturefield, idfield, namefield, pricefield, descriptionfield, conditionfield, categoryfield, itempicturefield;
-    private DBHandler dbHandler;
     private double x, y;
     private ObservableList<Account> accounts;
     private ObservableList<Item> items;
@@ -71,9 +70,6 @@ public class AdministrationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (dbHandler == null) {
-            dbHandler = new DBHandler();
-        }
         retrieveAccounts();
         retrieveItems();
         setupColumns();
@@ -104,12 +100,12 @@ public class AdministrationController implements Initializable {
 
     private void retrieveAccounts() {    // Retrievees all accounts from DB and places them as objects in observable list accounts.
         accounts = FXCollections.observableArrayList();
-        accounts = dbHandler.retrieveAllAccounts();
+        accounts = DBHandler.retrieveAllAccounts();
     }
 
     private void retrieveItems() {   // Retrieves all sales from the DB and places them as objects in observable list items
         items = FXCollections.observableArrayList();
-        items = dbHandler.retrieveAllSales();
+        items = DBHandler.retrieveAllSales();
     }
 
     private void setupColumns() {
@@ -156,7 +152,7 @@ public class AdministrationController implements Initializable {
             Optional<ButtonType> action = MessageHandler.getConfirmationAlert("Confirmation", null, confirmationMessage.toString()).showAndWait();
 
             if (action.get() == ButtonType.OK) {
-                dbHandler.removeAccounts(accountEmailsToBeRemoved);
+                DBHandler.removeAccounts(accountEmailsToBeRemoved);
                 accounts.removeAll(selectedAccounts);
             }
 
@@ -178,7 +174,7 @@ public class AdministrationController implements Initializable {
             Optional<ButtonType> action = MessageHandler.getConfirmationAlert("Confirmation", null, confirmationMessage.toString()).showAndWait();
 
             if (action.get() == ButtonType.OK) {
-                dbHandler.removeSales(saleIdsToBeRemoved);
+                DBHandler.removeSales(saleIdsToBeRemoved);
                 items.removeAll(selectedItems);
             }
 

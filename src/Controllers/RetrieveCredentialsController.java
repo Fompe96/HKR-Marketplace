@@ -17,7 +17,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class RetrieveCredentialsController implements Initializable {
-    private DBHandler dbHandler;
     @FXML
     private TextField userEmail;
     @FXML
@@ -26,9 +25,6 @@ public class RetrieveCredentialsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (dbHandler == null) {
-            dbHandler = new DBHandler();
-        }
         Platform.runLater(() -> root.requestFocus());
     }
 
@@ -57,10 +53,9 @@ public class RetrieveCredentialsController implements Initializable {
 
     @FXML
     public void retrieveCredentialsButtonAction() {
-        String userPassword = dbHandler.findUserPassword(userEmail.getText());
+        String userPassword = DBHandler.findUserPassword(userEmail.getText());
         if (userPassword != null) {
-            EmailSender emailSender = new EmailSender();
-            emailSender.sendEmail(userEmail.getText(), "Retrieved login details", "Here are your account details" +
+            EmailSender.sendEmail(userEmail.getText(), "Retrieved login details", "Here are your account details" +
                     "\nEmail: " + userEmail.getText() + "\nPassword: " + userPassword);
             backButtonAction();
         } else {

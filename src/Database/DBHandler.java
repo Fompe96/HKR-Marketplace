@@ -13,10 +13,10 @@ import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class DBHandler extends DBConfig {
-    private Connection dbConnection;
+public abstract class DBHandler extends DBConfig {
+    private static Connection dbConnection;
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
         String connectionString = "jdbc:mysql://" + host + "/" + dbName;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -31,7 +31,7 @@ public class DBHandler extends DBConfig {
         return dbConnection;
     }
 
-    public boolean findUser(String userEmail, String userPassword) {
+    public static boolean findUser(String userEmail, String userPassword) {
         String query = "SELECT * FROM ACCOUNT WHERE Email = " + "'" + userEmail + "'" + " AND Password = " + "'" + userPassword + "';";
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -43,7 +43,7 @@ public class DBHandler extends DBConfig {
         }
     }
 
-    public boolean seeIfEmailAlreadyRegistered(String userEmail) {
+    public static boolean seeIfEmailAlreadyRegistered(String userEmail) {
         String query = "SELECT * FROM ACCOUNT WHERE Email = " + "'" + userEmail + "';";
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -55,7 +55,7 @@ public class DBHandler extends DBConfig {
         }
     }
 
-    public Account getUserInformation(String userEmail) {  // Returns an object containing all information about a user. Takes the email as parameter
+    public static Account getUserInformation(String userEmail) {  // Returns an object containing all information about a user. Takes the email as parameter
         String query = "SELECT * FROM account WHERE Email = '" + userEmail + "';";
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -68,7 +68,7 @@ public class DBHandler extends DBConfig {
         }
     }
 
-    public ObservableList<Account> retrieveAllAccounts() { // Returns a observableList with all accounts from the account table
+    public static ObservableList<Account> retrieveAllAccounts() { // Returns a observableList with all accounts from the account table
         String query = "SELECT * FROM account;";
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -84,7 +84,7 @@ public class DBHandler extends DBConfig {
         }
     }
 
-    public ObservableList<Item> retrieveAllSales() {    // Returns a observableList with all sales from the product table
+    public static ObservableList<Item> retrieveAllSales() {    // Returns a observableList with all sales from the product table
         String query = "SELECT * FROM product;";
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -100,14 +100,14 @@ public class DBHandler extends DBConfig {
         }
     }
 
-    public void uploadImage(String userEmail, String imagePath) throws SQLException, FileNotFoundException {
+    public static void uploadImage(String userEmail, String imagePath) throws SQLException, FileNotFoundException {
         PreparedStatement ps = getConnection().prepareStatement("UPDATE `hkrmarketplace`.`account` SET `Picture` = ? WHERE (`Email` = '" + userEmail + "');");
         InputStream is = new FileInputStream(new File(imagePath));
         ps.setBlob(1, is);
         ps.executeUpdate();
     }
 
-    public void removeAccounts(ArrayList<String> emailsToRemove) {  // Currently takes an arraylist of account emails and removes them from DB.
+    public static void removeAccounts(ArrayList<String> emailsToRemove) {  // Currently takes an arraylist of account emails and removes them from DB.
         StringBuilder query = new StringBuilder("DELETE FROM account WHERE Email IN (");
         for (int i = 0; i < emailsToRemove.size(); i++) {
             if (i == emailsToRemove.size() - 1) {
@@ -125,7 +125,7 @@ public class DBHandler extends DBConfig {
         }
     }
 
-    public void removeSales(ArrayList<Integer> salesIDsToRemove) {  // Currently takes an arraylist of sale IDS and removes them from DB.
+    public static void removeSales(ArrayList<Integer> salesIDsToRemove) {  // Currently takes an arraylist of sale IDS and removes them from DB.
         StringBuilder query = new StringBuilder("DELETE FROM product WHERE idProduct IN (");
         for (int i = 0; i < salesIDsToRemove.size(); i++) {
             if (i == salesIDsToRemove.size() - 1) {
@@ -143,7 +143,7 @@ public class DBHandler extends DBConfig {
         }
     }
 
-    public String findUserPassword(String userEmail) {
+    public static String findUserPassword(String userEmail) {
         String query = "SELECT * FROM ACCOUNT WHERE Email = " + "'" + userEmail + "';";
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -157,7 +157,7 @@ public class DBHandler extends DBConfig {
     }
 
 
-    public void closeConnection() {
+    public static void closeConnection() {
         try {
             dbConnection.close();
         } catch (SQLException e) {

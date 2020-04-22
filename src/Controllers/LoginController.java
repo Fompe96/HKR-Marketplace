@@ -30,13 +30,9 @@ public class LoginController implements Initializable {
     private AnchorPane root;
 
     private double x, y;
-    private DBHandler dbHandler;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (dbHandler == null) {
-            dbHandler = new DBHandler();
-        }
         Platform.runLater( () -> root.requestFocus() );
     }
 
@@ -69,15 +65,15 @@ public class LoginController implements Initializable {
         if (userEmail.getText().equals("") || userPassword.getText().equals("")) {
             MessageHandler.getErrorAlert("Error", "Error", "Please enter all fields").showAndWait();
         } else {
-            dbHandler.getConnection();
-            boolean checkIfExists = dbHandler.findUser(userEmail.getText(), userPassword.getText());
+            DBHandler.getConnection();
+            boolean checkIfExists = DBHandler.findUser(userEmail.getText(), userPassword.getText());
             if (checkIfExists) {
-                Singleton.getInstance().setLoggedInAccount(dbHandler.getUserInformation(userEmail.getText()));
+                Singleton.getInstance().setLoggedInAccount(DBHandler.getUserInformation(userEmail.getText()));
                 SceneChanger.changeScene("../Views/Marketplace.fxml");
             } else {
                 MessageHandler.getErrorAlert("Error", "Error", "Login credentials not found");
             }
-            dbHandler.closeConnection();
+            DBHandler.closeConnection();
         }
     }
 

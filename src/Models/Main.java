@@ -22,8 +22,7 @@ public class Main extends Application {
         scene.getStylesheets().add("Resources/CSS.css");
         primaryStage.setScene(scene);
         primaryStage.show();
-        EmailSender emailSender = new EmailSender();
-        emailSender.SaveToPdf("Thanks");
+        EmailSender.SaveToPdf("Thanks");
 
     }
 

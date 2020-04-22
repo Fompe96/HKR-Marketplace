@@ -51,14 +51,10 @@ public class SellController implements Initializable {
 
     private FileInputStream fis;
 
-    private DBHandler dbHandler;
     private double x, y;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (dbHandler == null) {
-            dbHandler = new DBHandler();
-        }
         if (Singleton.getInstance().getLoggedInAccount().isAdmin()) {
             adminview.setVisible(true);
             adminButton.setDisable(false);
@@ -221,7 +217,7 @@ public class SellController implements Initializable {
         if (nameOfProductTextField.getText().equals("") || priceOfProductTextField.getText().equals("") || descriptionTextArea.getText().equals("") || filePathTextField.getText().equals("")) {
             MessageHandler.getErrorAlert("Error", "Error", "Please Enter your information in all fields").showAndWait();
         } else {
-            Connection dbConnection = dbHandler.getConnection();
+            Connection dbConnection = DBHandler.getConnection();
             try {
                 PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`product` (`idProduct`, `name`, `price`, `description`, `condition`, `category`, `picture`) VALUES (?, ?, ?, ?, ?, ?, ?);\n");
                 PreparedStatement count = dbConnection.prepareStatement("SELECT count(idProduct) FROM product;");
@@ -260,7 +256,7 @@ public class SellController implements Initializable {
                 statement.setBinaryStream(7, fis, (int) file.length());
 
                 statement.executeUpdate();
-                dbHandler.closeConnection();
+                DBHandler.closeConnection();
 
                 MessageHandler.getInformationAlert("Success", "Information", "Congratulations! your product is now up for sale!").showAndWait();
 

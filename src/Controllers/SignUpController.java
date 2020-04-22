@@ -38,14 +38,9 @@ public class SignUpController implements Initializable {
     private Button confirmEmailButton;
     private int uniqueRegistrationNumber;
 
-    private DBHandler dbHandler;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("test");
-        if (dbHandler == null) {
-            dbHandler = new DBHandler();
-        }
         Platform.runLater(() -> root.requestFocus());
     }
 
@@ -80,8 +75,7 @@ public class SignUpController implements Initializable {
     @FXML
     private void generateUniqueNumber(String userEmail) {
         uniqueRegistrationNumber = ThreadLocalRandom.current().nextInt(100000, 1000000);
-        EmailSender emailSender = new EmailSender();
-        emailSender.sendValidationEmail(userEmail, uniqueRegistrationNumber);
+        EmailSender.sendValidationEmail(userEmail, uniqueRegistrationNumber);
     }
 
     @FXML
@@ -97,7 +91,7 @@ public class SignUpController implements Initializable {
                 if (!isValid(userEmail.getText())) {
                     MessageHandler.getErrorAlert("Error", "Error", "Please enter a valid email").showAndWait();
                 } else {
-                    if (dbHandler.seeIfEmailAlreadyRegistered(userEmail.getText())) {
+                    if (DBHandler.seeIfEmailAlreadyRegistered(userEmail.getText())) {
                         MessageHandler.getErrorAlert("Error", "Error", "Email already registered").showAndWait();
                     } else {
                         generateUniqueNumber(userEmail.getText());
@@ -116,7 +110,7 @@ public class SignUpController implements Initializable {
     @FXML
     private void insertUserIntoDatabase() throws SQLException {
         if (validateUniqueNumberGiven(Integer.parseInt(validateEmailField.getText()))) {
-            Connection dbConnection = dbHandler.getConnection();
+            Connection dbConnection = DBHandler.getConnection();
             PreparedStatement stmt = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`account` (`Username`, `Password`, `Email`, `Admin`) VALUES (?, ?, ?, ?);\n");
 
             stmt.setString(1, userName.getText());
@@ -124,15 +118,14 @@ public class SignUpController implements Initializable {
             stmt.setString(3, userEmail.getText());
             stmt.setBoolean(4, false);
             stmt.executeUpdate();
-            dbHandler.closeConnection();
+            DBHandler.closeConnection();
 
             Image image = new Image("Resources/Success.gif");
             madeAccount.setOpacity(100);
             madeAccount.setImage(image);
             MessageHandler.getInformationAlert("Success", "Information", "Your account has now been registered! \nYou will receive an email with login credentials").showAndWait();
 
-            EmailSender emailSender = new EmailSender();
-            emailSender.sendEmail(userEmail.getText(), "Your new account", "Welcome to HKR Marketplace! Here are your account details. \n \n" +
+            EmailSender.sendEmail(userEmail.getText(), "Your new account", "Welcome to HKR Marketplace! Here are your account details. \n \n" +
                     "Username: " + userName.getText() + "\n" + "Password: " + userPassword.getText() + "\n" + "Account-Email: " + userEmail.getText());
             backButtonAction();
         } else {

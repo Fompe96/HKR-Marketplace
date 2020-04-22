@@ -20,7 +20,6 @@ import java.util.ResourceBundle;
 public class MarketplaceController implements Initializable {
 
     private double x, y;
-    private DBHandler dbHandler;
     @FXML
     private ImageView imageView, imageView1, adminview;
 
@@ -30,9 +29,6 @@ public class MarketplaceController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (dbHandler == null) {
-            dbHandler = new DBHandler();
-        }
         imageView.setImage(new Image("https://usercontent1.hubstatic.com/11310434_f520.jpg"));
         imageView1.setImage(new Image("https://www.kattkompaniet.nu/images/5.63.1606161417/kattleksaker-fatcat.jpeg"));
         System.out.println("The user who just logged in is: " + Singleton.getInstance().getLoggedInAccount()); // This is here for testing purposes!
