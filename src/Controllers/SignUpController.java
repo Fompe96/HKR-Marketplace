@@ -77,11 +77,10 @@ public class SignUpController implements Initializable {
     }
 
     @FXML
-    private int validateNumber(String userEmail) {
+    private void generateUniqueNumber(String userEmail) {
         uniqueRegistrationNumber = ThreadLocalRandom.current().nextInt(100000, 1000000);
         EmailSender emailSender = new EmailSender();
         emailSender.sendValidationEmail(userEmail, uniqueRegistrationNumber);
-        return uniqueRegistrationNumber;
     }
 
     @FXML
@@ -96,23 +95,26 @@ public class SignUpController implements Initializable {
             } else {
                 if (!isValid(userEmail.getText())) {
                     MessageHandler.getErrorAlert("Error", "Error", "Please enter a valid email").showAndWait();
-                } else if (dbHandler.seeIfEmailAlreadyRegistered(userEmail.getText())) {
-                    MessageHandler.getErrorAlert("Error", "Error", "Email already registered").showAndWait();
                 } else {
-                    validateNumber(userEmail.getText());
-                    validateEmailField.setOpacity(100);
-                    confirmEmailButton.setOpacity(100);
+                    if (dbHandler.seeIfEmailAlreadyRegistered(userEmail.getText())) {
+                        MessageHandler.getErrorAlert("Error", "Error", "Email already registered").showAndWait();
+                    } else {
+                        generateUniqueNumber(userEmail.getText());
+                        validateEmailField.setOpacity(100);
+                        confirmEmailButton.setOpacity(100);
+                    }
                 }
             }
         }
     }
 
+    private boolean validateUniqueNumberGiven(int uniqueNumber) {
+        return uniqueNumber == uniqueRegistrationNumber;
+    }
+
     @FXML
     private void insertUserIntoDatabase() throws SQLException {
-        String uniqueNumber = String.valueOf(uniqueRegistrationNumber);
-        if (!validateEmailField.getText().equals(uniqueNumber)) {
-            MessageHandler.getErrorAlert("Error", "Error", "The pin provided was not correct!").showAndWait();
-        } else {
+        if (validateUniqueNumberGiven(Integer.parseInt(validateEmailField.getText()))) {
             Connection dbConnection = dbHandler.getConnection();
             PreparedStatement stmt = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`account` (`Username`, `Password`, `Email`, `Admin`) VALUES (?, ?, ?, ?);\n");
 
@@ -131,8 +133,10 @@ public class SignUpController implements Initializable {
             EmailSender emailSender = new EmailSender();
             emailSender.sendEmail(userEmail.getText(), "Your new account", "Welcome to HKR Marketplace! Here are your account details. \n \n" +
                     "Username: " + userName.getText() + "\n" + "Password: " + userPassword.getText() + "\n" + "Account-Email: " + userEmail.getText());
+            backButtonAction();
+        } else {
+            MessageHandler.getErrorAlert("Error", "Error", "The pin provided was not correct!").showAndWait();
         }
-        backButtonAction();
     }
 
 
