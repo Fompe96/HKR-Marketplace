@@ -25,7 +25,7 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Pane layoutX="208.0" layoutY="129.0" prefHeight="242.0" prefWidth="284.0">
+      <Pane layoutX="208.0" layoutY="129.0" prefHeight="242.0" prefWidth="325.0">
          <children>
             <TextField fx:id="userName" layoutX="14.0" layoutY="12.0" prefHeight="35.0" prefWidth="250.0" promptText="Enter full name" styleClass="regulartextfield" />
             <TextField fx:id="userEmail" layoutX="14.0" layoutY="58.0" prefHeight="35.0" prefWidth="250.0" promptText="Enter Email" styleClass="regulartextfield" />
@@ -69,7 +69,7 @@
       <Circle fill="#fc2b2b" layoutX="678.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
       <Button layoutX="642.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
       <Button layoutX="670.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
-      <ImageView fx:id="madeAccount" fitHeight="150.0" fitWidth="200.0" layoutX="252.0" layoutY="399.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="madeAccount" fitHeight="150.0" fitWidth="200.0" layoutX="478.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="178.0" layoutY="145.0" opacity="0.65" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Resources/Contacts_52px_e8e8e8.png" />
@@ -90,5 +90,7 @@
             <Image url="@../Resources/KeyHoleGray.png" />
          </image>
       </ImageView>
+      <TextField fx:id="validateEmailField" layoutX="252.0" layoutY="387.0" opacity="0.0" promptText="Enter pin from email" />
+      <Button fx:id="confirmEmailButton" layoutX="281.0" layoutY="439.0" mnemonicParsing="false" onAction="#insertUserIntoDatabase" opacity="0.0" styleClass="regularbutton" text="Confirm Email" />
    </children>
 </AnchorPane>
