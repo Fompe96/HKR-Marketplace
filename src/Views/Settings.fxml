@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -57,7 +58,7 @@
       <Circle fill="#fc2b2b" layoutX="1217.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
       <Button focusTraversable="false" layoutX="1209.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
       <Button focusTraversable="false" layoutX="1185.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
-      <Pane layoutX="323.0" layoutY="50.0" prefHeight="600.0" prefWidth="589.0" style="-fx-background-color: #242424;">
+      <Pane fx:id="profilePicturePane" layoutX="97.0" layoutY="50.0" prefHeight="600.0" prefWidth="589.0" style="-fx-background-color: #242424;">
          <children>
             <Circle fill="GREY" layoutX="295.0" layoutY="183.0" radius="100.0" stroke="#6ea5ff" strokeType="INSIDE" strokeWidth="3.0" />
             <Button layoutX="498.0" layoutY="561.0" mnemonicParsing="false" style="-fx-background-color: gray; -fx-border-color: #46ab57;" text="Light mode" />
@@ -77,6 +78,20 @@
                   <Font name="Arial" size="34.0" />
                </font>
             </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="changePasswordPane" layoutX="724.0" layoutY="50.0" prefHeight="287.0" prefWidth="469.0" style="-fx-background-color: #242424;">
+         <children>
+            <Label fx:id="loggedInAs1" layoutX="96.0" layoutY="30.0" text="Change Password" textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="34.0" />
+               </font>
+            </Label>
+            <Line endX="331.8271484375" endY="-30.0" layoutX="42.0" layoutY="99.0" startX="57.5" startY="-29.0" stroke="#6ea5ff" strokeWidth="2.0" />
+            <TextField fx:id="currentPasswordTextField" layoutX="160.0" layoutY="93.0" promptText="Current Password" />
+            <TextField fx:id="newPasswordTextField" layoutX="160.0" layoutY="144.0" promptText="New Password" />
+            <TextField fx:id="reTypePasswordTextField" layoutX="160.0" layoutY="178.0" promptText="Re-enter Password" />
+            <Button layoutX="172.0" layoutY="233.0" mnemonicParsing="false" onAction="#changePassword" style="-fx-border-color: #46ab57; -fx-background-color: gray;" text="Apply new password" />
          </children>
       </Pane>
    </children>
