@@ -156,6 +156,21 @@ public abstract class DBHandler extends DBConfig {
         return null;
     }
 
+    public static void insertAccountIntoDB(Account account) {
+        String query = "INSERT INTO `hkrmarketplace`.`account` (`Username`, `Password`, `Email`, `Admin`, `Picture`) VALUES (?, ?, ?, ?, ?);";
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            statement.setString(1, account.getUserName());
+            statement.setString(2, account.getPassword());
+            statement.setString(3, account.getEmail());
+            statement.setBoolean(4, account.isAdmin());
+            FileInputStream fis = new FileInputStream(account.getImage());
+            statement.setBinaryStream(5, fis, (int) account.getImage().length());
+            statement.executeUpdate();
+        } catch (SQLException | FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public static void closeConnection() {
         try {

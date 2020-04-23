@@ -3,6 +3,7 @@ package Models;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.io.File;
 import java.sql.Blob;
 import java.util.ArrayList;
 
@@ -12,6 +13,7 @@ public class Account {
     private SimpleStringProperty email;
     private SimpleBooleanProperty admin;
     private Blob picture;
+    private File image;
     private ArrayList<Item> favourites;
 
     public Account(String userName, String password, String email, boolean admin, Blob picture) {
@@ -23,6 +25,14 @@ public class Account {
         this.favourites =new ArrayList<>();
     }
 
+    public Account(String userName, String password, String email, boolean admin, File pictureAsFile) {
+        this.userName = new SimpleStringProperty(userName);
+        this.password = new SimpleStringProperty(password);
+        this.email = new SimpleStringProperty(email);
+        this.admin = new SimpleBooleanProperty(admin);
+        this.image = pictureAsFile;
+        this.favourites =new ArrayList<>();
+    }
 
     public String getUserName() {
         return userName.get();
@@ -65,6 +75,14 @@ public class Account {
         this.picture = picture;
     }
 
+    public File getImage() {
+        return image;
+    }
+
+    public void setImage(File image) {
+        this.image = image;
+    }
+
     @Override
     public String toString() {
         return "Account{" +
@@ -72,7 +90,8 @@ public class Account {
                 ", password='" + getPassword() + '\'' +
                 ", email='" + getEmail() + '\'' +
                 ", admin='" + isAdmin() + '\'' +
-                ", picture='" + getPicture() + '\'' +
+                ", pictureBlob='" + getPicture() + '\'' +
+                ", pictureImage='" + getImage() + '\'' +
                 '}';
     }
 }

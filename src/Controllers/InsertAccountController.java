@@ -1,6 +1,9 @@
 package Controllers;
 
+import Database.DBHandler;
+import Models.Account;
 import Models.MessageHandler;
+import Models.SceneChanger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,9 +28,10 @@ public class InsertAccountController implements Initializable {
     private TextField usernamefield, passwordfield, emailfield, uploadfield;
     private double x, y;
     private File imageFile;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        uploadfield.setEditable(false);
     }
 
     @FXML
@@ -41,7 +45,22 @@ public class InsertAccountController implements Initializable {
 
     @FXML
     private void handleInsertButton() {
+        if (!usernamefield.getText().equals("") && !passwordfield.getText().equals("") && !emailfield.getText().equals("")) {
+            if (isValid(emailfield.getText()) && !DBHandler.seeIfEmailAlreadyRegistered(emailfield.getText())) {
+                Account account = new Account(usernamefield.getText(), passwordfield.getText(), emailfield.getText(), getSelectedCheckbox(), imageFile);
+                DBHandler.insertAccountIntoDB(account);
+                MessageHandler.getInformationAlert("Success", "Success", "The account was successfully added to the database!").showAndWait();
+                handleClosingButton();
+            } else {
+                MessageHandler.getErrorAlert("Error", "Error", "Email is either already in use or doesn't meet requirements.").showAndWait();
+            }
+        } else {
+            MessageHandler.getErrorAlert("Error", "Error", "You have to enter name, password and email!").showAndWait();
+        }
+    }
 
+    private boolean getSelectedCheckbox() {
+        return !falsecheckbox.isSelected();
     }
 
     @FXML
@@ -55,6 +74,17 @@ public class InsertAccountController implements Initializable {
         } else {
             MessageHandler.getErrorAlert("Error", "Error", "File does not exist!").showAndWait();
         }
+    }
+
+    private static boolean isValid(String userEmail) {
+        String regex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
+        return userEmail.matches(regex);
+    }
+
+    @FXML
+    private void handleResetButton() {
+        imageFile = null;
+        uploadfield.setText("");
     }
 
     @FXML
