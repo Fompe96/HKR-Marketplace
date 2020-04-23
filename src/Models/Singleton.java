@@ -41,6 +41,7 @@ public class Singleton {
         this.loggedInAccount = loggedInAccount;
     }
 
+
     public String encryptPass(String password) {
         int key = 1;
         char[] passChar = password.toCharArray();

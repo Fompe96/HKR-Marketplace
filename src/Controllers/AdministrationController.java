@@ -186,6 +186,7 @@ public class AdministrationController implements Initializable {
             loadInsertItemView();
         }
     }
+
     private void loadInsertAccountView() {
         Stage popupStage = SceneChanger.getPopupStage();
         try {

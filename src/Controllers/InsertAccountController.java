@@ -3,7 +3,6 @@ package Controllers;
 import Database.DBHandler;
 import Models.Account;
 import Models.MessageHandler;
-import Models.SceneChanger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -50,6 +49,7 @@ public class InsertAccountController implements Initializable {
                 Account account = new Account(usernamefield.getText(), passwordfield.getText(), emailfield.getText(), getSelectedCheckbox(), imageFile);
                 DBHandler.insertAccountIntoDB(account);
                 MessageHandler.getInformationAlert("Success", "Success", "The account was successfully added to the database!").showAndWait();
+                // Transfer account to tableview somehow
                 handleClosingButton();
             } else {
                 MessageHandler.getErrorAlert("Error", "Error", "Email is either already in use or doesn't meet requirements.").showAndWait();
