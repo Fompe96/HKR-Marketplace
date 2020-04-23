@@ -65,10 +65,27 @@ public class SellController implements Initializable {
             priceOfProductTextField.setText(String.valueOf(Singleton.getInstance().getItem().getPrice()));
             descriptionTextArea.setText(Singleton.getInstance().getItem().getDescription());
             filePathTextField.setText(Singleton.getInstance().getItem().getPicturePath());
+            if(Singleton.getInstance().getItem().getCategory().equals(vehiclesBox.getText())){
+                vehiclesBox.setSelected(true);
+            } else if (Singleton.getInstance().getItem().getCategory().equals(petsBox.getText())){
+                petsBox.setSelected(true);
+            } else if (Singleton.getInstance().getItem().getCategory().equals(homeBox.getText())){
+                homeBox.setSelected(true);
+            } else if (Singleton.getInstance().getItem().getCategory().equals(electronicsBox.getText())){
+                electronicsBox.setSelected(true);
+            } else if (Singleton.getInstance().getItem().getCategory().equals(otherBox.getText())){
+                otherBox.setSelected(true);
+            }
+            if(Singleton.getInstance().getItem().getCondition().equals(excellentBox.getText())){
+                excellentBox.setSelected(true);
+            } else if (Singleton.getInstance().getItem().getCondition().equals(veryGoodBox.getText())){
+                veryGoodBox.setSelected(true);
+            } else if (Singleton.getInstance().getItem().getCondition().equals(goodBox.getText())){
+                goodBox.setSelected(true);
+            } else if (Singleton.getInstance().getItem().getCondition().equals(poorBox.getText())){
+                poorBox.setSelected(true);
+            }
         }
-
-
-        //vehiclesBox.setSelected(Singleton.getInstance().getCategory().matches(vehiclesBox.getText()));
     }
 
     @FXML
@@ -266,14 +283,28 @@ public class SellController implements Initializable {
 
                 MessageHandler.getInformationAlert("Success", "Information", "Congratulations! your product is now up for sale!").showAndWait();
 
-                nameOfProductTextField.setText("");
-                priceOfProductTextField.setText("");
-                descriptionTextArea.setText("");
+                handleResetFields();
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void handleResetFields() {
+        nameOfProductTextField.setText("");
+        priceOfProductTextField.setText("");
+        descriptionTextArea.setText("");
+        petsBox.setSelected(false);
+        vehiclesBox.setSelected(false);
+        electronicsBox.setSelected(false);
+        otherBox.setSelected(false);
+        homeBox.setSelected(false);
+        veryGoodBox.setSelected(false);
+        goodBox.setSelected(false);
+        poorBox.setSelected(false);
+        excellentBox.setSelected(false);
+        filePathTextField.setText("");
     }
 
     @FXML
@@ -310,8 +341,8 @@ public class SellController implements Initializable {
             }
 
             item.setPicturePath(file.getPath());
+
             Singleton.getInstance().setItem(item);
-            //Singleton.getInstance().setImage(file.getPath());
             SceneChanger.changeScene("../Views/Preview.fxml");
         }
     }

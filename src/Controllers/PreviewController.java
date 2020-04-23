@@ -1,6 +1,5 @@
 package Controllers;
 
-import Models.Item;
 import Models.SceneChanger;
 import Models.Singleton;
 import javafx.fxml.FXML;
