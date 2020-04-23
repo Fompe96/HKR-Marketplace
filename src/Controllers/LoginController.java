@@ -71,7 +71,7 @@ public class LoginController implements Initializable {
                 Singleton.getInstance().setLoggedInAccount(DBHandler.getUserInformation(userEmail.getText()));
                 SceneChanger.changeScene("../Views/Marketplace.fxml");
             } else {
-                MessageHandler.getErrorAlert("Error", "Error", "Login credentials not found");
+                MessageHandler.getErrorAlert("Error", "Error", "Login credentials not found").showAndWait();
             }
             DBHandler.closeConnection();
         }
