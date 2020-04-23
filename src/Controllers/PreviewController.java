@@ -23,7 +23,7 @@ public class PreviewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        File file = new File(Singleton.getInstance().getItem().getPicturePath());
+        File file = Singleton.getInstance().getItem().getImageFile();
         Image imageView = new Image(file.toURI().toString());
         image.setImage(imageView);
         label1.setText(Singleton.getInstance().getItem().getName());

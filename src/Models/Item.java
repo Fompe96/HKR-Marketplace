@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.io.File;
 import java.sql.Blob;
 
 public class Item {
@@ -15,7 +16,7 @@ public class Item {
     private SimpleStringProperty description;
     private SimpleStringProperty condition;
     private SimpleStringProperty category;
-    private String picturePath;
+    private File imageFile;
     private Blob picture;
 
     public Item(){
@@ -31,6 +32,14 @@ public class Item {
         this.picture = picture;
     }
 
+    public Item(SimpleStringProperty name, SimpleDoubleProperty price, SimpleStringProperty description, SimpleStringProperty condition, SimpleStringProperty category, File imageFile) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.condition = condition;
+        this.category = category;
+        this.imageFile = imageFile;
+    }
 
     public int getId() {
         return id.get();
@@ -40,12 +49,12 @@ public class Item {
         return name.get();
     }
 
-    public String getPicturePath() {
-        return picturePath;
+    public File getImageFile() {
+        return imageFile;
     }
 
-    public void setPicturePath(String picturePath) {
-        this.picturePath = picturePath;
+    public void setImageFile(File imageFile) {
+        this.imageFile = imageFile;
     }
 
     public double getPrice() {

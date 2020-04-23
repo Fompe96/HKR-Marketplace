@@ -21,11 +21,10 @@ import java.io.FileInputStream;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
 public class SellController implements Initializable {
-    Item item = new Item();
+    private Item item = new Item();
 
     @FXML
     private TextField nameOfProductTextField, priceOfProductTextField;
@@ -45,8 +44,6 @@ public class SellController implements Initializable {
     @FXML
     private ImageView adminview;
 
-    private int idProduct;
-
     private File file;
 
     private FileInputStream fis;
@@ -64,7 +61,8 @@ public class SellController implements Initializable {
             nameOfProductTextField.setText(Singleton.getInstance().getItem().getName());
             priceOfProductTextField.setText(String.valueOf(Singleton.getInstance().getItem().getPrice()));
             descriptionTextArea.setText(Singleton.getInstance().getItem().getDescription());
-            filePathTextField.setText(Singleton.getInstance().getItem().getPicturePath());
+            filePathTextField.setText(Singleton.getInstance().getItem().getImageFile().getPath());
+            file = Singleton.getInstance().getItem().getImageFile();
             if(Singleton.getInstance().getItem().getCategory().equals(vehiclesBox.getText())){
                 vehiclesBox.setSelected(true);
             } else if (Singleton.getInstance().getItem().getCategory().equals(petsBox.getText())){
@@ -102,10 +100,7 @@ public class SellController implements Initializable {
         if (file != null) {
             filePathTextField.setText(file.getPath());
         } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
-            alert.setContentText("File does not Exist!");
-            alert.showAndWait();
+            MessageHandler.getInformationAlert("Error", "Error", "File does not Exist!").showAndWait();
         }
     }
 
@@ -240,43 +235,37 @@ public class SellController implements Initializable {
         } else {
             Connection dbConnection = DBHandler.getConnection();
             try {
-                PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`product` (`idProduct`, `name`, `price`, `description`, `condition`, `category`, `picture`, `email`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);\n");
-                PreparedStatement count = dbConnection.prepareStatement("SELECT count(idProduct) FROM product;");
-                ResultSet rs = count.executeQuery();
-                while (rs.next()) {
-                    idProduct = rs.getInt(1);
-                    setIdProduct(idProduct);
-                }
-                statement.setInt(1, getIdProduct() + 1);
-                statement.setString(2, nameOfProductTextField.getText());
-                statement.setDouble(3, Double.parseDouble(priceOfProductTextField.getText()));
-                statement.setString(4, descriptionTextArea.getText());
+                PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`product` (`name`, `price`, `description`, `condition`, `category`, `picture`, `email`) VALUES (?, ?, ?, ?, ?, ?, ?);\n");
+
+                statement.setString(1, nameOfProductTextField.getText());
+                statement.setDouble(2, Double.parseDouble(priceOfProductTextField.getText()));
+                statement.setString(3, descriptionTextArea.getText());
                 if (excellentBox.isSelected()) {
-                    statement.setString(5, excellentBox.getText());
+                    statement.setString(4, excellentBox.getText());
                 } else if (veryGoodBox.isSelected()) {
-                    statement.setString(5, veryGoodBox.getText());
+                    statement.setString(4, veryGoodBox.getText());
                 } else if (goodBox.isSelected()) {
-                    statement.setString(5, goodBox.getText());
+                    statement.setString(4, goodBox.getText());
                 } else if (poorBox.isSelected()) {
-                    statement.setString(5, poorBox.getText());
+                    statement.setString(4, poorBox.getText());
                 }
 
                 if (vehiclesBox.isSelected()) {
-                    statement.setString(6, vehiclesBox.getText());
+                    statement.setString(5, vehiclesBox.getText());
                 } else if (petsBox.isSelected()) {
-                    statement.setString(6, petsBox.getText());
+                    statement.setString(5, petsBox.getText());
                 } else if (homeBox.isSelected()) {
-                    statement.setString(6, homeBox.getText());
+                    statement.setString(5, homeBox.getText());
                 } else if (electronicsBox.isSelected()) {
-                    statement.setString(6, electronicsBox.getText());
+                    statement.setString(5, electronicsBox.getText());
                 } else if (otherBox.isSelected()) {
-                    statement.setString(6, otherBox.getText());
+                    statement.setString(5, otherBox.getText());
                 }
 
                 fis = new FileInputStream(file);
-                statement.setBinaryStream(7, fis, (int) file.length());
+                statement.setBinaryStream(6, fis, (int) file.length());
 
-                statement.setString(8, Singleton.getInstance().getLoggedInEmail());
+                statement.setString(7, Singleton.getInstance().getLoggedInEmail());
 
                 statement.executeUpdate();
                 DBHandler.closeConnection();
@@ -284,7 +273,7 @@ public class SellController implements Initializable {
                 MessageHandler.getInformationAlert("Success", "Information", "Congratulations! your product is now up for sale!").showAndWait();
 
                 handleResetFields();
-
+                Singleton.getInstance().setItem(null);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -340,19 +329,11 @@ public class SellController implements Initializable {
                 item.setCategory(otherBox.getText());
             }
 
-            item.setPicturePath(file.getPath());
+            item.setImageFile(file);
 
             Singleton.getInstance().setItem(item);
             SceneChanger.changeScene("../Views/Preview.fxml");
         }
-    }
-
-    private int getIdProduct() {
-        return idProduct;
-    }
-
-    private void setIdProduct(int idProduct) {
-        this.idProduct = idProduct;
     }
 }
 

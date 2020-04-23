@@ -16,7 +16,6 @@ public class Singleton {
 
     private Account loggedInAccount;  // Variable used to keep track of the currently logged in account.
     private Item item;
-    private String image;
 
     public void setItem(Item item) {
         this.item = item;
@@ -40,14 +39,6 @@ public class Singleton {
 
     public void setLoggedInAccount(Account loggedInAccount) {
         this.loggedInAccount = loggedInAccount;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public String encryptPass(String password) {
