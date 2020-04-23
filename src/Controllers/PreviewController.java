@@ -15,8 +15,6 @@ import java.util.ResourceBundle;
 
 public class PreviewController implements Initializable {
 
-    Item item = new Item();
-
     @FXML
     private Label label1, label2, label3, label4, label5;
 
@@ -29,11 +27,11 @@ public class PreviewController implements Initializable {
         File file = new File(Singleton.getInstance().getImage());
         Image imageView = new Image(file.toURI().toString());
         image.setImage(imageView);
-        label1.setText(Singleton.getInstance().getItemName());
-        label2.setText(Singleton.getInstance().getPriceOfProduct().toString());
-        label3.setText(Singleton.getInstance().getDescription());
-        label4.setText(Singleton.getInstance().getCategory());
-        label5.setText(Singleton.getInstance().getCondition());
+        label1.setText(Singleton.getInstance().getItem().getName());
+        label2.setText(String.valueOf(Singleton.getInstance().getItem().getPrice()));
+        label3.setText(Singleton.getInstance().getItem().getDescription());
+        label4.setText(Singleton.getInstance().getItem().getCategory());
+        label5.setText(Singleton.getInstance().getItem().getCondition());
 
     }
 
