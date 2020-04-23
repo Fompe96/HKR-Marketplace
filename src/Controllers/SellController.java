@@ -223,7 +223,7 @@ public class SellController implements Initializable {
         } else {
             Connection dbConnection = DBHandler.getConnection();
             try {
-                PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`product` (`idProduct`, `name`, `price`, `description`, `condition`, `category`, `picture`) VALUES (?, ?, ?, ?, ?, ?, ?);\n");
+                PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`product` (`idProduct`, `name`, `price`, `description`, `condition`, `category`, `picture`, `email`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);\n");
                 PreparedStatement count = dbConnection.prepareStatement("SELECT count(idProduct) FROM product;");
                 ResultSet rs = count.executeQuery();
                 while (rs.next()) {
@@ -258,6 +258,8 @@ public class SellController implements Initializable {
 
                 fis = new FileInputStream(file);
                 statement.setBinaryStream(7, fis, (int) file.length());
+
+                statement.setString(8, Singleton.getInstance().getLoggedInEmail());
 
                 statement.executeUpdate();
                 DBHandler.closeConnection();
