@@ -4,6 +4,7 @@ import Database.DBHandler;
 import Models.MessageHandler;
 import Models.SceneChanger;
 import Models.Singleton;
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +13,9 @@ import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,12 +31,24 @@ public class LoginController implements Initializable {
 
     @FXML
     private AnchorPane root;
+    @FXML
+    private Pane logoPane;
+    @FXML
+    private Pane loginInformationPane;
 
     private double x, y;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Platform.runLater( () -> root.requestFocus() );
+        FadeTransition ft = new FadeTransition(Duration.millis(2000), logoPane);
+        ft.setFromValue(0);
+        ft.setToValue(1);
+        ft.play();
+        FadeTransition ftSecond = new FadeTransition(Duration.millis(2000), loginInformationPane);
+        ftSecond.setFromValue(0);
+        ftSecond.setToValue(1);
+        ftSecond.play();
+        Platform.runLater(() -> root.requestFocus());
     }
 
     @FXML
