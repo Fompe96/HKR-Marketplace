@@ -1,6 +1,8 @@
 package Controllers;
 
 import Database.DBHandler;
+import Models.EmailSender;
+import Models.MessageHandler;
 import Models.SceneChanger;
 import Models.Singleton;
 import javafx.application.Platform;
@@ -9,9 +11,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -26,6 +31,16 @@ public class SettingsController implements Initializable {
 
     @FXML
     private Label loggedInAs;
+    @FXML
+    private TextField currentPasswordTextField;
+    @FXML
+    private TextField newPasswordTextField;
+    @FXML
+    private TextField reTypePasswordTextField;
+    @FXML
+    private Pane profilePicturePane;
+    @FXML
+    private Pane changePasswordPane;
     private double x, y;
 
     private File file;
@@ -81,6 +96,7 @@ public class SettingsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Singleton.getInstance().setLoggedInAccount(DBHandler.getUserInformation(Singleton.getInstance().getLoggedInEmail()));
         loggedInAs.setText(Singleton.getInstance().getLoggedInName());
         DBHandler.getConnection();
         try {
@@ -101,5 +117,29 @@ public class SettingsController implements Initializable {
             imageToUpload.setImage(image);
         }
         DBHandler.closeConnection();
+    }
+
+    @FXML
+    private void changePassword() throws SQLException {
+        String currentPassword = Singleton.getInstance().getLoggedInAccount().getPassword();
+        if (!currentPassword.equals(currentPasswordTextField.getText())) {
+            MessageHandler.getErrorAlert("Error", "Error", "[Current Password] is not correct").showAndWait();
+        } else {
+            if (!newPasswordTextField.getText().equals(reTypePasswordTextField.getText())) {
+                MessageHandler.getErrorAlert("Error", "Error", "New password does not match Re-enter password").showAndWait();
+            } else {
+                DBHandler.changeUserPassword(Singleton.getInstance().getLoggedInEmail(), newPasswordTextField.getText());
+                changePasswordPane.setEffect(new GaussianBlur());
+                profilePicturePane.setEffect(new GaussianBlur());
+                MessageHandler.getConfirmationAlert("Success", "Success", "Your password has now been changed!").showAndWait();
+                EmailSender.sendUpdatedUserCredentialsEmail(Singleton.getInstance().getLoggedInEmail(), newPasswordTextField.getText());
+                backButtonAction();
+            }
+        }
+    }
+
+    @FXML
+    private void backButtonAction() {
+        SceneChanger.changeScene("../Views/Marketplace.fxml");
     }
 }

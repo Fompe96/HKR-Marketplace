@@ -155,7 +155,7 @@ public abstract class DBHandler extends DBConfig {
         }
         return null;
     }
-
+    
     public static void insertAccountIntoDB(Account account) {
         String query = "INSERT INTO `hkrmarketplace`.`account` (`Username`, `Password`, `Email`, `Admin`, `Picture`) VALUES (?, ?, ?, ?, ?);";
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
@@ -169,6 +169,11 @@ public abstract class DBHandler extends DBConfig {
         } catch (SQLException | FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void changeUserPassword(String userEmail, String newPassword) throws SQLException {
+        PreparedStatement stmt = dbConnection.prepareStatement("UPDATE `hkrmarketplace`.`account` SET `Password` = '" + newPassword + "' WHERE (`Email` = '" + userEmail + "');\n");
+        stmt.executeUpdate();
     }
 
 

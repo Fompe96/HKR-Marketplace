@@ -17,7 +17,7 @@
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #3c3c3c;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
     <children>
-        <Pane layoutX="62.0" layoutY="184.0" prefHeight="113.0" prefWidth="173.0">
+        <Pane fx:id="logoPane" layoutX="62.0" layoutY="184.0" prefHeight="113.0" prefWidth="173.0">
             <children>
                 <Label layoutX="71.0" layoutY="13.0" prefHeight="58.0" prefWidth="86.0" text="HKR" textFill="#46ab57">
                     <font>
@@ -37,7 +37,7 @@
             </children>
         </Pane>
         <Line endX="-17.0" endY="-98.0" layoutX="263.0" layoutY="257.0" opacity="0.6" startX="-17.0" startY="85.0" stroke="#e8e8e8" strokeWidth="2.0" />
-        <Pane layoutX="262.0" layoutY="156.0" prefHeight="188.0" prefWidth="315.0">
+        <Pane fx:id="loginInformationPane" layoutX="262.0" layoutY="156.0" prefHeight="188.0" prefWidth="315.0">
             <children>
                 <TextField fx:id="userEmail" layoutX="54.0" layoutY="14.0" prefHeight="35.0" prefWidth="250.0" promptText="Email" styleClass="regulartextfield">
 
