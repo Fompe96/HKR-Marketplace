@@ -14,7 +14,7 @@
    <children>
       <Pane layoutX="248.0" layoutY="33.0" prefHeight="45.0" prefWidth="205.0">
          <children>
-            <Label text="Insert" textFill="#e8e8e8">
+            <Label text="Insert">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
@@ -29,36 +29,39 @@
       <TextField fx:id="usernamefield" alignment="CENTER" layoutX="24.0" layoutY="143.0" prefHeight="25.0" prefWidth="118.0" styleClass="regulartextfield" />
       <TextField fx:id="passwordfield" alignment="CENTER" layoutX="153.0" layoutY="143.0" prefHeight="25.0" styleClass="regulartextfield" />
       <TextField fx:id="emailfield" alignment="CENTER" layoutX="311.0" layoutY="143.0" prefWidth="187.0" styleClass="regulartextfield" />
-      <TextField fx:id="picturefield" alignment="CENTER" layoutX="575.0" layoutY="161.0" prefHeight="25.0" prefWidth="111.0" styleClass="regulartextfield" />
-      <Label layoutX="55.0" layoutY="103.0" text="Name" textFill="#e8e8e8">
+      <TextField fx:id="uploadfield" layoutX="575.0" layoutY="161.0" prefHeight="25.0" prefWidth="111.0" styleClass="regulartextfield" />
+      <Label layoutX="55.0" layoutY="103.0" text="Name">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="182.0" layoutY="103.0" text="Password" textFill="#e8e8e8">
+      <Label layoutX="182.0" layoutY="103.0" text="Password">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="378.0" layoutY="103.0" text="Email" textFill="#e8e8e8">
+      <Label layoutX="378.0" layoutY="103.0" text="Email">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="498.0" layoutY="103.0" text="Admin" textFill="#e8e8e8">
+      <Label layoutX="498.0" layoutY="103.0" text="Admin">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <CheckBox layoutX="507.0" layoutY="137.0" mnemonicParsing="false" selected="true" styleClass="regularcheckbox" text="True" />
-      <CheckBox layoutX="507.0" layoutY="156.0" mnemonicParsing="false" styleClass="regularcheckbox" text="False" />
-      <Button fx:id="uploadbutton" layoutX="575.0" layoutY="133.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="111.0" styleClass="regularbutton" text="Upload" />
-      <Label layoutX="597.0" layoutY="103.0" text="Picture" textFill="#e8e8e8">
+      <CheckBox fx:id="truecheckbox" layoutX="507.0" layoutY="137.0" mnemonicParsing="false" onAction="#handleCheckboxes" selected="true" styleClass="regularcheckbox" text="True" />
+      <CheckBox fx:id="falsecheckbox" layoutX="507.0" layoutY="156.0" mnemonicParsing="false" onAction="#handleCheckboxes" styleClass="regularcheckbox" text="False" />
+      <Button fx:id="uploadbutton" layoutX="575.0" layoutY="133.0" mnemonicParsing="false" onAction="#handleUploadButton" prefHeight="25.0" prefWidth="111.0" styleClass="regularbutton" text="Upload">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Label layoutX="597.0" layoutY="103.0" text="Picture">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Pane layoutX="1.0" layoutY="-1.0" prefHeight="30.0" prefWidth="700.0">
+      <Pane layoutY="-1.0" prefHeight="30.0" prefWidth="701.0">
          <children>
             <HBox layoutY="1.0" onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="30.0" prefWidth="700.0" styleClass="regularWindowBar" />
             <Circle fill="#0073ff" layoutX="656.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
