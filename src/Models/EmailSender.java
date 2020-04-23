@@ -121,6 +121,44 @@ public abstract class EmailSender {
         }
     }
 
+    public static void sendUpdatedUserCredentialsEmail(String userEmail, String newPassword) {
+        String from = "HKRMarketplace@gmail.com";
+
+        String host = "smtp.gmail.com";
+
+        Properties properties = System.getProperties();
+
+        properties.put("mail.smtp.host", host);
+        properties.put("mail.smtp.port", "465");
+        properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        properties.put("mail.smtp.ssl.enable", "true");
+        properties.put("mail.smtp.auth", "true");
+
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+
+            protected PasswordAuthentication getPasswordAuthentication() {
+
+                return new PasswordAuthentication("HKRMarketplace@gmail.com", "hkrmarketplace2020!");
+
+            }
+
+        });
+        session.setDebug(true);
+
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(from));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(userEmail));
+            message.setSubject("Your password has been updated!");
+            message.setText("Dear customer, your password has now been updated. Find your new credentials below. \n\n\n" +
+                    "New password: " + newPassword + "\n\n\n\n" +
+                    "If this was not you and you think someone is using your account, then please contact our support at HKRMarketplace@gmail.com");
+            Transport.send(message);
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
+    }
+
     public static void SaveToPdf(String Text) throws FileNotFoundException, DocumentException {
         Document document = new Document(PageSize.A4, 50, 50, 50, 50);
         PdfWriter.getInstance(document, new FileOutputStream("Receipt.pdf"));

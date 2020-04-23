@@ -1,6 +1,7 @@
 package Controllers;
 
 import Database.DBHandler;
+import Models.EmailSender;
 import Models.MessageHandler;
 import Models.SceneChanger;
 import Models.Singleton;
@@ -131,6 +132,7 @@ public class SettingsController implements Initializable {
                 changePasswordPane.setEffect(new GaussianBlur());
                 profilePicturePane.setEffect(new GaussianBlur());
                 MessageHandler.getConfirmationAlert("Success", "Success", "Your password has now been changed!").showAndWait();
+                EmailSender.sendUpdatedUserCredentialsEmail(Singleton.getInstance().getLoggedInEmail(), newPasswordTextField.getText());
                 backButtonAction();
             }
         }
