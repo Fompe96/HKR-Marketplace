@@ -64,9 +64,10 @@ public class SellController implements Initializable {
             nameOfProductTextField.setText(Singleton.getInstance().getItem().getName());
             priceOfProductTextField.setText(String.valueOf(Singleton.getInstance().getItem().getPrice()));
             descriptionTextArea.setText(Singleton.getInstance().getItem().getDescription());
+            filePathTextField.setText(Singleton.getInstance().getItem().getPicturePath());
         }
 
-        filePathTextField.setText(Singleton.getInstance().getImage());
+
         //vehiclesBox.setSelected(Singleton.getInstance().getCategory().matches(vehiclesBox.getText()));
     }
 
@@ -306,8 +307,9 @@ public class SellController implements Initializable {
                 item.setCategory(otherBox.getText());
             }
 
+            item.setPicturePath(file.getPath());
             Singleton.getInstance().setItem(item);
-            Singleton.getInstance().setImage(file.getPath());
+            //Singleton.getInstance().setImage(file.getPath());
             SceneChanger.changeScene("../Views/Preview.fxml");
         }
     }

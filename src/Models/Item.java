@@ -15,6 +15,7 @@ public class Item {
     private SimpleStringProperty description;
     private SimpleStringProperty condition;
     private SimpleStringProperty category;
+    private String picturePath;
     private Blob picture;
 
     public Item(){
@@ -37,6 +38,14 @@ public class Item {
 
     public String getName() {
         return name.get();
+    }
+
+    public String getPicturePath() {
+        return picturePath;
+    }
+
+    public void setPicturePath(String picturePath) {
+        this.picturePath = picturePath;
     }
 
     public double getPrice() {
