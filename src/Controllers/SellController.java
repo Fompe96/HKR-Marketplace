@@ -60,10 +60,14 @@ public class SellController implements Initializable {
             adminButton.setDisable(false);
         }
 
-        nameOfProductTextField.setText(Singleton.getInstance().getItemName());
-        priceOfProductTextField.setText(String.valueOf(Singleton.getInstance().getPriceOfProduct()));
-        descriptionTextArea.setText(Singleton.getInstance().getDescription());
-        filePathTextField.setText(Singleton.getInstance().getImage());
+        if(Singleton.getInstance().getItem() != null){
+            nameOfProductTextField.setText(Singleton.getInstance().getItem().getName());
+            priceOfProductTextField.setText(String.valueOf(Singleton.getInstance().getItem().getPrice()));
+            descriptionTextArea.setText(Singleton.getInstance().getItem().getDescription());
+            filePathTextField.setText(Singleton.getInstance().getItem().getPicturePath());
+        }
+
+
         //vehiclesBox.setSelected(Singleton.getInstance().getCategory().matches(vehiclesBox.getText()));
     }
 
@@ -219,7 +223,7 @@ public class SellController implements Initializable {
         } else {
             Connection dbConnection = DBHandler.getConnection();
             try {
-                PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`product` (`idProduct`, `name`, `price`, `description`, `condition`, `category`, `picture`) VALUES (?, ?, ?, ?, ?, ?, ?);\n");
+                PreparedStatement statement = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`product` (`idProduct`, `name`, `price`, `description`, `condition`, `category`, `picture`, `email`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);\n");
                 PreparedStatement count = dbConnection.prepareStatement("SELECT count(idProduct) FROM product;");
                 ResultSet rs = count.executeQuery();
                 while (rs.next()) {
@@ -255,6 +259,8 @@ public class SellController implements Initializable {
                 fis = new FileInputStream(file);
                 statement.setBinaryStream(7, fis, (int) file.length());
 
+                statement.setString(8, Singleton.getInstance().getLoggedInEmail());
+
                 statement.executeUpdate();
                 DBHandler.closeConnection();
 
@@ -278,35 +284,34 @@ public class SellController implements Initializable {
         if (!priceOfProductTextField.getText().matches("[0-9.,]+")) {
             MessageHandler.getErrorAlert("Error", "Attention!", "Price is not valid").showAndWait();
         } else {
-            String name = (nameOfProductTextField.getText());
-            double price = (Double.parseDouble(priceOfProductTextField.getText()));
-            String description = (descriptionTextArea.getText());
+            item.setName(nameOfProductTextField.getText());
+            item.setPrice(Double.parseDouble(priceOfProductTextField.getText()));
+            item.setDescription(descriptionTextArea.getText());
             if (excellentBox.isSelected()) {
-                Singleton.getInstance().setCondition(excellentBox.getText());
+                item.setCondition(excellentBox.getText());
             } else if (veryGoodBox.isSelected()) {
-                Singleton.getInstance().setCondition(veryGoodBox.getText());
+                item.setCondition(veryGoodBox.getText());
             } else if (goodBox.isSelected()) {
-                Singleton.getInstance().setCondition(goodBox.getText());
+                item.setCondition(goodBox.getText());
             } else if (poorBox.isSelected()) {
-                Singleton.getInstance().setCondition(poorBox.getText());
+                item.setCondition(poorBox.getText());
             }
 
             if (vehiclesBox.isSelected()) {
-                Singleton.getInstance().setCategory(vehiclesBox.getText());
+                item.setCategory(vehiclesBox.getText());
             } else if (petsBox.isSelected()) {
-                Singleton.getInstance().setCategory(petsBox.getText());
+                item.setCategory(petsBox.getText());
             } else if (homeBox.isSelected()) {
-                Singleton.getInstance().setCategory(homeBox.getText());
+                item.setCategory(homeBox.getText());
             } else if (electronicsBox.isSelected()) {
-                Singleton.getInstance().setCategory(electronicsBox.getText());
+                item.setCategory(electronicsBox.getText());
             } else if (otherBox.isSelected()) {
-                Singleton.getInstance().setCategory(otherBox.getText());
+                item.setCategory(otherBox.getText());
             }
 
-            Singleton.getInstance().setItemName(name);
-            Singleton.getInstance().setPriceOfProduct(price);
-            Singleton.getInstance().setDescription(description);
-            Singleton.getInstance().setImage(file.getPath());
+            item.setPicturePath(file.getPath());
+            Singleton.getInstance().setItem(item);
+            //Singleton.getInstance().setImage(file.getPath());
             SceneChanger.changeScene("../Views/Preview.fxml");
         }
     }
