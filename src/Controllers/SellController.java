@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -34,7 +35,7 @@ public class SellController implements Initializable {
     private CheckBox excellentBox, veryGoodBox, goodBox, poorBox, vehiclesBox, petsBox, homeBox, electronicsBox, otherBox;
 
     @FXML
-    private Button adminButton, addSaleButton, previewButton, marketPlaceButton, settingsButton, closingButton, minimizeButton;
+    private Button adminButton, addSaleButton, previewButton, marketPlaceButton, settingsButton, closingButton, minimizeButton, uploadImageButton, logOutButton;
 
     @FXML
     private TextField filePathTextField;
@@ -53,6 +54,17 @@ public class SellController implements Initializable {
         handleAdminView();
         handleItemInformation();
         handleTooltip();
+        handleCursorButtons();
+    }
+
+    private void handleCursorButtons() {
+        adminButton.setCursor(Cursor.HAND);
+        settingsButton.setCursor(Cursor.HAND);
+        marketPlaceButton.setCursor(Cursor.HAND);
+        previewButton.setCursor(Cursor.HAND);
+        addSaleButton.setCursor(Cursor.HAND);
+        uploadImageButton.setCursor(Cursor.HAND);
+        logOutButton.setCursor(Cursor.HAND);
     }
 
     private void handleAdminView() {

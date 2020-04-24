@@ -143,7 +143,7 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Button layoutX="1081.0" layoutY="44.0" mnemonicParsing="false" onAction="#handleLogOutButton" styleClass="regularbutton" text="Logout" />
+      <Button fx:id="logOutButton" layoutX="1081.0" layoutY="44.0" mnemonicParsing="false" onAction="#handleLogOutButton" styleClass="regularbutton" text="Logout" />
       <Button fx:id="previewButton" layoutX="713.0" layoutY="559.0" mnemonicParsing="false" onAction="#handlePreviewButton" prefHeight="65.0" prefWidth="154.0" styleClass="regularbutton" text="Preview" />
       <Label layoutX="159.0" layoutY="60.0" prefHeight="45.0" prefWidth="154.0" text="SELL ITEM:" textFill="#e8e8e8">
          <font>

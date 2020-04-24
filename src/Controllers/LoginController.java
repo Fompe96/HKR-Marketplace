@@ -10,6 +10,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -38,7 +39,7 @@ public class LoginController implements Initializable {
     private Pane loginInformationPane;
 
     @FXML
-    private Button minimizeButton, closingButton;
+    private Button minimizeButton, closingButton, loginButton;
 
     private double x, y;
 
@@ -54,6 +55,7 @@ public class LoginController implements Initializable {
         ftSecond.play();
         Platform.runLater(() -> root.requestFocus());
         handleToolTip();
+        loginButton.setCursor(Cursor.HAND);
     }
 
     private void handleToolTip() {

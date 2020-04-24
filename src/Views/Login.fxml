@@ -56,18 +56,18 @@
                         <Font size="14.0" />
                     </font>
                 </PasswordField>
-                <Button layoutX="54.0" layoutY="116.0" mnemonicParsing="false" onAction="#logInButtonAction" opacity="0.9" prefHeight="35.0" prefWidth="250.0" styleClass="regularbutton" text="Login">
+                <Button fx:id="loginButton" layoutX="54.0" layoutY="116.0" mnemonicParsing="false" onAction="#logInButtonAction" opacity="0.9" prefHeight="35.0" prefWidth="250.0" styleClass="regularbutton" text="Login">
                     <font>
                         <Font name="System Bold" size="15.0" />
                     </font>
                 </Button>
-                <Label focusTraversable="false" layoutX="54.0" layoutY="159.0" onMouseClicked="#retrieveCredentialsButtonAction" prefHeight="20.0" prefWidth="156.0" styleClass="regularlabel" text="Forgot your Credentials?" textFill="#e8e8e8" underline="true">
+                <Label fx:id="credentialsButton" focusTraversable="false" layoutX="54.0" layoutY="159.0" onDragDetected="#retrieveCredentialsButtonAction" onMouseClicked="#retrieveCredentialsButtonAction" prefHeight="20.0" prefWidth="156.0" styleClass="regularlabel" text="Forgot your Credentials?" textFill="#e8e8e8" underline="true">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Label>
                 <Line endX="-5.0" endY="56.0" layoutX="240.0" layoutY="114.0" opacity="0.6" startX="-17.0" startY="56.0" stroke="#e8e8e8" strokeWidth="2.0" />
-                <Label focusTraversable="false" layoutX="250.0" layoutY="160.0" onMouseClicked="#registerButtonAction" styleClass="regularlabel" text="Register" textFill="#e8e8e8" underline="true">
+                <Label fx:id="registerButton" focusTraversable="false" layoutX="250.0" layoutY="160.0" onDragDetected="#registerButtonAction" onMouseClicked="#registerButtonAction" styleClass="regularlabel" text="Register" textFill="#e8e8e8" underline="true">
                     <font>
                         <Font size="14.0" />
                     </font>

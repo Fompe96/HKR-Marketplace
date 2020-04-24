@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -70,6 +71,9 @@ public class AdministrationController implements Initializable {
         setupColumns();
         handleEditAccountsButton(); // Default selected choice
         handleToolTip();
+        sellButton.setCursor(Cursor.HAND);
+        settingsButton.setCursor(Cursor.HAND);
+        marketPlaceButton.setCursor(Cursor.HAND);
     }
 
     private void handleToolTip() {

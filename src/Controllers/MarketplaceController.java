@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
@@ -40,6 +41,9 @@ public class MarketplaceController implements Initializable {
             adminButton.setDisable(false);
         }
 
+        adminButton.setCursor(Cursor.HAND);
+        settingsButton.setCursor(Cursor.HAND);
+        sellButton.setCursor(Cursor.HAND);
         handleToolTip();
     }
 
