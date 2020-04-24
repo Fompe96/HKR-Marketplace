@@ -84,14 +84,14 @@
                   <Image url="@../Resources/sell.png" />
                </image>
             </ImageView>
-            <Button layoutX="13.0" layoutY="138.0" mnemonicParsing="false" onAction="#handleSellButton" opacity="0.0" prefHeight="35.0" prefWidth="35.0" />
-            <Button layoutX="14.0" layoutY="618.0" mnemonicParsing="false" onAction="#handleSettingsButton" opacity="0.0" prefHeight="35.0" prefWidth="35.0" />
+            <Button fx:id="sellButton" layoutX="13.0" layoutY="138.0" mnemonicParsing="false" onAction="#handleSellButton" opacity="0.0" prefHeight="35.0" prefWidth="35.0" />
+            <Button fx:id="settingsButton" layoutX="14.0" layoutY="618.0" mnemonicParsing="false" onAction="#handleSettingsButton" opacity="0.0" prefHeight="35.0" prefWidth="35.0" />
             <ImageView fx:id="adminview" fitHeight="40.0" fitWidth="40.0" layoutX="11.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Resources/admin.png" />
                </image>
             </ImageView>
-            <Button layoutX="11.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleMarketPlaceButton" opacity="0.0" prefHeight="40.0" prefWidth="40.0" />
+            <Button fx:id="marketPlaceButton" layoutX="11.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleMarketPlaceButton" opacity="0.0" prefHeight="40.0" prefWidth="40.0" />
             <Line endX="100.0" layoutX="-101.0" layoutY="585.0" startX="100.0" startY="-29.2431640625" stroke="#6ea5ff" strokeWidth="5.0" />
          </children>
       </Pane>
@@ -100,8 +100,8 @@
             <HBox layoutX="60.0" onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="30.0" prefWidth="1177.0" styleClass="regularWindowBar" />
             <Circle fill="#0073ff" layoutX="1193.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
             <Circle fill="#fc2b2b" layoutX="1217.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
-            <Button focusTraversable="false" layoutX="1209.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
-            <Button focusTraversable="false" layoutX="1185.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
+            <Button fx:id="closingButton" focusTraversable="false" layoutX="1209.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
+            <Button fx:id="minimizeButton" focusTraversable="false" layoutX="1185.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
          </children>
       </Pane>
       <Text fill="WHITE" layoutX="82.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Administration">

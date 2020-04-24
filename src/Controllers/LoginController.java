@@ -4,12 +4,14 @@ import Database.DBHandler;
 import Models.MessageHandler;
 import Models.SceneChanger;
 import Models.Singleton;
+import Models.ToolTipHandler;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -21,7 +23,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
-
 
     @FXML
     private TextField userPassword;
@@ -36,6 +37,9 @@ public class LoginController implements Initializable {
     @FXML
     private Pane loginInformationPane;
 
+    @FXML
+    private Button minimizeButton, closingButton;
+
     private double x, y;
 
     @Override
@@ -49,13 +53,18 @@ public class LoginController implements Initializable {
         ftSecond.setToValue(1);
         ftSecond.play();
         Platform.runLater(() -> root.requestFocus());
+        handleToolTip();
+    }
+
+    private void handleToolTip() {
+        ToolTipHandler.getToolTipCloseButton(closingButton);
+        ToolTipHandler.getToolTipMinimizeButton(minimizeButton);
     }
 
     @FXML
     private void handleClosingButton() {
         Platform.exit();
     }
-
 
     @FXML
     private void handleMinimizeButton(ActionEvent event) {

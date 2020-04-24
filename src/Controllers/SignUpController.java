@@ -5,6 +5,7 @@ import Database.DBHandler;
 import Models.EmailSender;
 import Models.MessageHandler;
 import Models.SceneChanger;
+import Models.ToolTipHandler;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,13 +36,19 @@ public class SignUpController implements Initializable {
     @FXML
     private TextField validateEmailField;
     @FXML
-    private Button confirmEmailButton;
+    private Button confirmEmailButton, closingButton, minimizeButton;
     private int uniqueRegistrationNumber;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> root.requestFocus());
+        handleToolTip();
+    }
+
+    private void handleToolTip() {
+        ToolTipHandler.getToolTipCloseButton(closingButton);
+        ToolTipHandler.getToolTipMinimizeButton(minimizeButton);
     }
 
     @FXML

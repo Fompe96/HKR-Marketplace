@@ -3,12 +3,14 @@ package Controllers;
 import Database.DBHandler;
 import Models.SceneChanger;
 import Models.Singleton;
+import Models.ToolTipHandler;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -24,7 +26,7 @@ public class MarketplaceController implements Initializable {
     private ImageView imageView, imageView1, adminview;
 
     @FXML
-    private Button adminButton;
+    private Button adminButton, settingsButton, closingButton, minimizeButton, sellButton;
 
 
     @Override
@@ -37,7 +39,18 @@ public class MarketplaceController implements Initializable {
             adminview.setVisible(true);
             adminButton.setDisable(false);
         }
+
+        handleToolTip();
     }
+
+    private void handleToolTip() {
+        ToolTipHandler.getToolTipSettings(settingsButton);
+        ToolTipHandler.getToolTipAdmin(adminButton);
+        ToolTipHandler.getToolTipCloseButton(closingButton);
+        ToolTipHandler.getToolTipMinimizeButton(minimizeButton);
+        ToolTipHandler.getToolTipSellScene(sellButton);
+    }
+
     @FXML
     private void handleLogOutButton(){
         SceneChanger.changeScene("../Views/Login.fxml");

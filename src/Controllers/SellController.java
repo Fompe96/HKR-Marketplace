@@ -1,10 +1,7 @@
 package Controllers;
 
 import Database.DBHandler;
-import Models.Item;
-import Models.MessageHandler;
-import Models.SceneChanger;
-import Models.Singleton;
+import Models.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import javax.tools.Tool;
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URL;
@@ -24,7 +22,7 @@ import java.sql.PreparedStatement;
 import java.util.ResourceBundle;
 
 public class SellController implements Initializable {
-    private Item item = new Item();
+    private final Item item = new Item();
 
     @FXML
     private TextField nameOfProductTextField, priceOfProductTextField;
@@ -36,7 +34,7 @@ public class SellController implements Initializable {
     private CheckBox excellentBox, veryGoodBox, goodBox, poorBox, vehiclesBox, petsBox, homeBox, electronicsBox, otherBox;
 
     @FXML
-    private Button adminButton;
+    private Button adminButton, addSaleButton, previewButton, marketPlaceButton, settingsButton, closingButton, minimizeButton;
 
     @FXML
     private TextField filePathTextField;
@@ -52,38 +50,56 @@ public class SellController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        handleAdminView();
+        handleItemInformation();
+        handleTooltip();
+    }
+
+    private void handleAdminView() {
         if (Singleton.getInstance().getLoggedInAccount().isAdmin()) {
             adminview.setVisible(true);
             adminButton.setDisable(false);
         }
+    }
 
-        if(Singleton.getInstance().getItem() != null){
+    private void handleItemInformation() {
+        if (Singleton.getInstance().getItem() != null) {
             nameOfProductTextField.setText(Singleton.getInstance().getItem().getName());
             priceOfProductTextField.setText(String.valueOf(Singleton.getInstance().getItem().getPrice()));
             descriptionTextArea.setText(Singleton.getInstance().getItem().getDescription());
             filePathTextField.setText(Singleton.getInstance().getItem().getImageFile().getPath());
             file = Singleton.getInstance().getItem().getImageFile();
-            if(Singleton.getInstance().getItem().getCategory().equals(vehiclesBox.getText())){
+            if (Singleton.getInstance().getItem().getCategory().equals(vehiclesBox.getText())) {
                 vehiclesBox.setSelected(true);
-            } else if (Singleton.getInstance().getItem().getCategory().equals(petsBox.getText())){
+            } else if (Singleton.getInstance().getItem().getCategory().equals(petsBox.getText())) {
                 petsBox.setSelected(true);
-            } else if (Singleton.getInstance().getItem().getCategory().equals(homeBox.getText())){
+            } else if (Singleton.getInstance().getItem().getCategory().equals(homeBox.getText())) {
                 homeBox.setSelected(true);
-            } else if (Singleton.getInstance().getItem().getCategory().equals(electronicsBox.getText())){
+            } else if (Singleton.getInstance().getItem().getCategory().equals(electronicsBox.getText())) {
                 electronicsBox.setSelected(true);
-            } else if (Singleton.getInstance().getItem().getCategory().equals(otherBox.getText())){
+            } else if (Singleton.getInstance().getItem().getCategory().equals(otherBox.getText())) {
                 otherBox.setSelected(true);
             }
-            if(Singleton.getInstance().getItem().getCondition().equals(excellentBox.getText())){
+            if (Singleton.getInstance().getItem().getCondition().equals(excellentBox.getText())) {
                 excellentBox.setSelected(true);
-            } else if (Singleton.getInstance().getItem().getCondition().equals(veryGoodBox.getText())){
+            } else if (Singleton.getInstance().getItem().getCondition().equals(veryGoodBox.getText())) {
                 veryGoodBox.setSelected(true);
-            } else if (Singleton.getInstance().getItem().getCondition().equals(goodBox.getText())){
+            } else if (Singleton.getInstance().getItem().getCondition().equals(goodBox.getText())) {
                 goodBox.setSelected(true);
-            } else if (Singleton.getInstance().getItem().getCondition().equals(poorBox.getText())){
+            } else if (Singleton.getInstance().getItem().getCondition().equals(poorBox.getText())) {
                 poorBox.setSelected(true);
             }
         }
+    }
+
+    private void handleTooltip() {
+        ToolTipHandler.getToolTipSale(addSaleButton);
+        ToolTipHandler.getToolTipPreview(previewButton);
+        ToolTipHandler.getTooltipMarketPlace(marketPlaceButton);
+        ToolTipHandler.getToolTipSettings(settingsButton);
+        ToolTipHandler.getToolTipAdmin(adminButton);
+        ToolTipHandler.getToolTipCloseButton(closingButton);
+        ToolTipHandler.getToolTipMinimizeButton(minimizeButton);
     }
 
     @FXML

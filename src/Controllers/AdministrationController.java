@@ -1,10 +1,7 @@
 package Controllers;
 
 import Database.DBHandler;
-import Models.Account;
-import Models.MessageHandler;
-import Models.Item;
-import Models.SceneChanger;
+import Models.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,7 +27,7 @@ import java.util.ResourceBundle;
 public class AdministrationController implements Initializable {
 
     @FXML
-    private Button editAccounts, editItems;
+    private Button editAccounts, editItems, minimizeButton, closingButton, sellButton, marketPlaceButton, settingsButton;
     private double x, y;
     private ObservableList<Account> accounts;
     private ObservableList<Item> items;
@@ -66,13 +63,21 @@ public class AdministrationController implements Initializable {
     @FXML
     private TableColumn<Item, Blob> picture;
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         retrieveAccounts();
         retrieveItems();
         setupColumns();
         handleEditAccountsButton(); // Default selected choice
+        handleToolTip();
+    }
+
+    private void handleToolTip() {
+        ToolTipHandler.getToolTipCloseButton(closingButton);
+        ToolTipHandler.getToolTipMinimizeButton(minimizeButton);
+        ToolTipHandler.getTooltipMarketPlace(marketPlaceButton);
+        ToolTipHandler.getToolTipSettings(settingsButton);
+        ToolTipHandler.getToolTipSellScene(sellButton);
     }
 
     @FXML
@@ -128,7 +133,7 @@ public class AdministrationController implements Initializable {
     @FXML
     private void handleRemoveButton() { // Removes selected rows in table view from database by fetching email addresses and IDs.
         if (accountsTableActive) {  // Currently displayed tableview is accounts
-           removeAccount();
+            removeAccount();
         } else {  // Currently displayed tableview is items
             removeItem();
         }
@@ -217,7 +222,6 @@ public class AdministrationController implements Initializable {
     private void handleUpdateButton() {
         // Here for the memes?
     }
-
 
     @FXML
     private void handleSellButton() {
