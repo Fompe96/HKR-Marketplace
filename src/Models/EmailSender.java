@@ -152,7 +152,7 @@ public abstract class EmailSender {
             message.setSubject("Your password has been updated!");
             message.setText("Dear customer, your password has now been updated. Find your new credentials below. \n\n\n" +
                     "New password: " + newPassword + "\n\n\n\n" +
-                    "If this was not you and you think someone is using your account, then please contact our support at HKRMarketplace@gmail.com");
+                    "If this was no you and you think someone is using your account, then please contact our support at HKRMarketplace@gmail.com");
             Transport.send(message);
         } catch (MessagingException mex) {
             mex.printStackTrace();

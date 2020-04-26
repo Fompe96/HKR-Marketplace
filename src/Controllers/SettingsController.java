@@ -21,6 +21,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URL;
@@ -80,6 +81,9 @@ public class SettingsController implements Initializable {
         if (file != null) {
             String user = Singleton.getInstance().getLoggedInEmail();
             DBHandler.uploadImage(user, file.getPath());
+            MessageHandler.getConfirmationAlert("Success", "Success", "Profile picture has been uploaded!").showAndWait();
+            Image fxImage = new Image(new File(file.getPath()).toURI().toString());
+            imageToUpload.setImage(fxImage);
         }
     }
 
