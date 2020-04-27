@@ -1,17 +1,23 @@
 package Controllers;
 
 import Database.DBHandler;
+import Models.Item;
 import Models.SceneChanger;
 import Models.Singleton;
 import Models.ToolTipHandler;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -30,11 +36,32 @@ public class MarketplaceController implements Initializable {
     private Button adminButton, settingsButton, closingButton, minimizeButton, sellButton;
 
 
+    @FXML
+    TableView<Item> tableView;
+
+    @FXML
+    TableColumn<Item, ImageView> pic;
+
+    @FXML
+    TableColumn<Item, String> title;
+
+    @FXML
+    TableColumn<Item, String> price;
+
+
+
+    public ObservableList<Item> itemObservableList = FXCollections.observableArrayList();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        imageView.setImage(new Image("https://usercontent1.hubstatic.com/11310434_f520.jpg"));
-        imageView1.setImage(new Image("https://www.kattkompaniet.nu/images/5.63.1606161417/kattleksaker-fatcat.jpeg"));
-        System.out.println("The user who just logged in is: " + Singleton.getInstance().getLoggedInAccount()); // This is here for testing purposes!
+       // imageView.setImage(new Image("https://usercontent1.hubstatic.com/11310434_f520.jpg"));
+       // imageView1.setImage(new Image("https://www.kattkompaniet.nu/images/5.63.1606161417/kattleksaker-fatcat.jpeg"));
+       // System.out.println("The user who just logged in is: " + Singleton.getInstance().getLoggedInAccount()); // This is here for testing purposes!
+
+        pic.setCellValueFactory(new PropertyValueFactory<>("pic"));
+        title.setCellValueFactory(new PropertyValueFactory<>("title"));
+        price.setCellValueFactory(new PropertyValueFactory<>("price"));
+
 
         if (Singleton.getInstance().getLoggedInAccount().isAdmin()) {
             adminview.setVisible(true);
@@ -99,7 +126,8 @@ public class MarketplaceController implements Initializable {
         SceneChanger.changeScene("../Views/Administration.fxml");
     }
 
-    private void addToFavourite(){
+    private void handleClickOnItem(){
 
     }
+
 }
