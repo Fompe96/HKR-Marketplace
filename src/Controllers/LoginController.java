@@ -62,24 +62,31 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         File file = new File("userCredentials.txt");
-        if (!(file.length() <= 0)) {
-            try {
-                readUserCredentialsFromFile();
-            } catch (IOException e) {
-                e.printStackTrace();
+        try {
+            if (validateIfRememberLoginChecked()) {
+                if (!(file.length() <= 0)) {
+                    try {
+                        readUserCredentialsFromFile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } else {
+                FadeTransition ft = new FadeTransition(Duration.millis(2000), logoPane);
+                ft.setFromValue(0);
+                ft.setToValue(1);
+                ft.play();
+                FadeTransition ftSecond = new FadeTransition(Duration.millis(2000), loginInformationPane);
+                ftSecond.setFromValue(0);
+                ftSecond.setToValue(1);
+                ftSecond.play();
+                Platform.runLater(() -> root.requestFocus());
+                handleToolTip();
+                loginButton.setCursor(Cursor.HAND);
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        FadeTransition ft = new FadeTransition(Duration.millis(2000), logoPane);
-        ft.setFromValue(0);
-        ft.setToValue(1);
-        ft.play();
-        FadeTransition ftSecond = new FadeTransition(Duration.millis(2000), loginInformationPane);
-        ftSecond.setFromValue(0);
-        ftSecond.setToValue(1);
-        ftSecond.play();
-        Platform.runLater(() -> root.requestFocus());
-        handleToolTip();
-        loginButton.setCursor(Cursor.HAND);
     }
 
     private void handleToolTip() {
@@ -143,8 +150,14 @@ public class LoginController implements Initializable {
 
     private void writeUserCredentialsToFile() {
         try {
+            boolean rememberLoginButtonBoolean = false;
+            if (rememberLoginButton.isSelected()) {
+                rememberLoginButtonBoolean = true;
+            }
+            String email = encryptPass(userEmail.getText());
+            String password = encryptPass(userPassword.getText());
             FileWriter myWriter = new FileWriter("userCredentials.txt");
-            myWriter.write(userEmail.getText() + "\n" + userPassword.getText());
+            myWriter.write(email + "\n" + password + "\n" + rememberLoginButtonBoolean);
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
             readUserCredentialsFromFile();
@@ -165,8 +178,50 @@ public class LoginController implements Initializable {
             line = bufReader.readLine();
         }
         bufReader.close();
-        userEmail.setText(loginCredentialsList.get(0));
-        userPassword.setText(loginCredentialsList.get(1));
+        userEmail.setText(decryptPass(loginCredentialsList.get(0)));
+        userPassword.setText(decryptPass(loginCredentialsList.get(1)));
+        if (loginCredentialsList.get(2).equals("true")) {
+            rememberLoginButton.setSelected(true);
+        } else {
+            rememberLoginButton.setSelected(false);
+        }
+    }
+
+    @FXML
+    private void uncheckRememberLogin() throws IOException {
+        if (!rememberLoginButton.isSelected()) {
+            int i = 0;
+            BufferedReader bufReader = new BufferedReader(new FileReader("userCredentials.txt"));
+            ArrayList<String> loginCredentialsList = new ArrayList<>();
+            String line = bufReader.readLine();
+            while (line != null) {
+                loginCredentialsList.add(i, line);
+                i++;
+                line = bufReader.readLine();
+            }
+            String email = encryptPass(userEmail.getText());
+            String password = encryptPass(userPassword.getText());
+            FileWriter myWriter = new FileWriter("userCredentials.txt");
+            myWriter.write(email + "\n" + password + "\n" + false);
+            myWriter.close();
+        }
+    }
+
+    private boolean validateIfRememberLoginChecked() throws IOException {
+        int i = 0;
+        BufferedReader bufReader = new BufferedReader(new FileReader("userCredentials.txt"));
+        ArrayList<String> loginCredentialsList = new ArrayList<>();
+        String line = bufReader.readLine();
+        while (line != null) {
+            loginCredentialsList.add(i, line);
+            i++;
+            line = bufReader.readLine();
+        }
+        if (loginCredentialsList.get(2).equals("true")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @FXML
@@ -177,5 +232,59 @@ public class LoginController implements Initializable {
     @FXML
     private void retrieveCredentialsButtonAction() {
         SceneChanger.changeScene("../Views/RetrieveCredentials.fxml");
+    }
+
+    public String encryptPass(String password) {
+        int key = 1;
+        char[] passChar = password.toCharArray();
+
+        for (int i = 0; i < passChar.length; i++) {
+            char encryptLetter = passChar[i];
+            encryptLetter = (char) (encryptLetter + key);
+            if (encryptLetter >= 'a' && encryptLetter <= 'z') {
+                if (encryptLetter < 'a') {
+                    encryptLetter = (char) (encryptLetter + 26);
+                }
+                if (encryptLetter > 'z') {
+                    encryptLetter = (char) (encryptLetter - 26);
+                }
+            } else if (encryptLetter >= 'A' && encryptLetter <= 'Z') {
+                if (encryptLetter < 'A') {
+                    encryptLetter = (char) (encryptLetter + 26);
+                }
+                if (encryptLetter > 'Z') {
+                    encryptLetter = (char) (encryptLetter - 26);
+                }
+            }
+            passChar[i] = encryptLetter;
+        }
+        return new String(passChar);
+    }
+
+    public String decryptPass(String password) {
+        int key = -1;
+        char[] passChar = password.toCharArray();
+
+        for (int i = 0; i < passChar.length; i++) {
+            char encryptLetter = passChar[i];
+            encryptLetter = (char) (encryptLetter + key);
+            if (encryptLetter >= 'a' && encryptLetter <= 'z') {
+                if (encryptLetter < 'a') {
+                    encryptLetter = (char) (encryptLetter + 26);
+                }
+                if (encryptLetter > 'z') {
+                    encryptLetter = (char) (encryptLetter - 26);
+                }
+            } else if (encryptLetter >= 'A' && encryptLetter <= 'Z') {
+                if (encryptLetter < 'A') {
+                    encryptLetter = (char) (encryptLetter + 26);
+                }
+                if (encryptLetter > 'Z') {
+                    encryptLetter = (char) (encryptLetter - 26);
+                }
+            }
+            passChar[i] = encryptLetter;
+        }
+        return new String(passChar);
     }
 }
