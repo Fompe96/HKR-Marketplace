@@ -1,5 +1,8 @@
 package Models;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class Singleton {
 
     private static Singleton instance = null;
@@ -16,6 +19,15 @@ public class Singleton {
 
     private Account loggedInAccount;  // Variable used to keep track of the currently logged in account.
     private Item item;
+    ObservableList<Item> itemObservableList;
+
+    public void setItemObservableList(){
+         itemObservableList = FXCollections.observableArrayList();
+    }
+
+    public ObservableList getItemObservableList(){
+        return itemObservableList;
+    }
 
     public void setItem(Item item) {
         this.item = item;
@@ -40,6 +52,8 @@ public class Singleton {
     public void setLoggedInAccount(Account loggedInAccount) {
         this.loggedInAccount = loggedInAccount;
     }
+
+
 
 
     public String encryptPass(String password) {

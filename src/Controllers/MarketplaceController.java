@@ -49,19 +49,18 @@ public class MarketplaceController implements Initializable {
     TableColumn<Item, String> price;
 
 
+    public static ObservableList<Item> itemObservableList =  FXCollections.observableArrayList();
 
-    public ObservableList<Item> itemObservableList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
        // imageView.setImage(new Image("https://usercontent1.hubstatic.com/11310434_f520.jpg"));
        // imageView1.setImage(new Image("https://www.kattkompaniet.nu/images/5.63.1606161417/kattleksaker-fatcat.jpeg"));
        // System.out.println("The user who just logged in is: " + Singleton.getInstance().getLoggedInAccount()); // This is here for testing purposes!
-
-        pic.setCellValueFactory(new PropertyValueFactory<>("pic"));
-        title.setCellValueFactory(new PropertyValueFactory<>("title"));
+        pic.setCellValueFactory(new PropertyValueFactory<>("photo"));
+        title.setCellValueFactory(new PropertyValueFactory<>("name"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
-
+        tableView.setItems(itemObservableList);
 
         if (Singleton.getInstance().getLoggedInAccount().isAdmin()) {
             adminview.setVisible(true);
@@ -127,7 +126,13 @@ public class MarketplaceController implements Initializable {
     }
 
     private void handleClickOnItem(){
-
+        tableView.setOnMouseClicked((MouseEvent event) -> {
+            if (event.getClickCount() > 1) {
+                if (tableView.getSelectionModel().getSelectedItem() != null){
+                    System.out.println(tableView.getSelectionModel().getSelectedItem().getName());
+                }
+            }
+        });
     }
 
 }

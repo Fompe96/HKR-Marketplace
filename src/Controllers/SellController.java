@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
@@ -21,6 +22,8 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ResourceBundle;
+
+import static Controllers.MarketplaceController.itemObservableList;
 
 public class SellController implements Initializable {
     private final Item item = new Item();
@@ -298,6 +301,8 @@ public class SellController implements Initializable {
                 statement.executeUpdate();
                 DBHandler.closeConnection();
 
+                createNewCell(item);
+
                 MessageHandler.getInformationAlert("Success", "Information", "Congratulations! your product is now up for sale!").showAndWait();
 
                 handleResetFields();
@@ -362,6 +367,14 @@ public class SellController implements Initializable {
             Singleton.getInstance().setItem(item);
             SceneChanger.changeScene("../Views/Preview.fxml");
         }
+    }
+
+    public void createNewCell(Item item){
+        ImageView photo = new ImageView(new Image(this.getClass().getResourceAsStream(item.getImageFile().getPath())));
+        photo.setFitHeight(70);
+        photo.setFitWidth(70);
+
+        itemObservableList.add(item);
     }
 }
 
