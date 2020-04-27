@@ -2,6 +2,7 @@ package Controllers;
 
 import Database.DBHandler;
 import Models.EmailSender;
+import Models.MessageHandler;
 import Models.SceneChanger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -55,8 +56,11 @@ public class RetrieveCredentialsController implements Initializable {
     public void retrieveCredentialsButtonAction() {
         String userPassword = DBHandler.findUserPassword(userEmail.getText());
         if (userPassword != null) {
-            EmailSender.sendEmail(userEmail.getText(), "Retrieved login details", "Here are your account details" +
-                    "\nEmail: " + userEmail.getText() + "\nPassword: " + userPassword);
+            new Thread(() -> {
+                EmailSender.sendEmail(userEmail.getText(), "Retrieved login details", "Here are your account details" +
+                        "\nEmail: " + userEmail.getText() + "\nPassword: " + userPassword);
+            }).start();
+            MessageHandler.getConfirmationAlert("Success", "Success", "An email will be sent with your login credentials!").showAndWait();
             backButtonAction();
         } else {
             userEmail.setText("");

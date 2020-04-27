@@ -132,12 +132,18 @@ public class SettingsController implements Initializable {
             if (!newPasswordTextField.getText().equals(reTypePasswordTextField.getText())) {
                 MessageHandler.getErrorAlert("Error", "Error", "New password does not match Re-enter password").showAndWait();
             } else {
-                DBHandler.changeUserPassword(Singleton.getInstance().getLoggedInEmail(), newPasswordTextField.getText());
-                changePasswordPane.setEffect(new GaussianBlur());
-                profilePicturePane.setEffect(new GaussianBlur());
-                MessageHandler.getConfirmationAlert("Success", "Success", "Your password has now been changed!").showAndWait();
-                EmailSender.sendUpdatedUserCredentialsEmail(Singleton.getInstance().getLoggedInEmail(), newPasswordTextField.getText());
-                backButtonAction();
+                if (currentPassword.equals(newPasswordTextField.getText())) {
+                    MessageHandler.getErrorAlert("Error", "Error", "New password cant be the same as your current password").showAndWait();
+                } else {
+                    DBHandler.changeUserPassword(Singleton.getInstance().getLoggedInEmail(), newPasswordTextField.getText());
+                    changePasswordPane.setEffect(new GaussianBlur());
+                    profilePicturePane.setEffect(new GaussianBlur());
+                    MessageHandler.getConfirmationAlert("Success", "Success", "Your password has now been changed!").showAndWait();
+                    new Thread(() -> {
+                        EmailSender.sendUpdatedUserCredentialsEmail(Singleton.getInstance().getLoggedInEmail(), newPasswordTextField.getText());
+                    }).start();
+                    backButtonAction();
+                }
             }
         }
     }

@@ -82,7 +82,9 @@ public class SignUpController implements Initializable {
     @FXML
     private void generateUniqueNumber(String userEmail) {
         uniqueRegistrationNumber = ThreadLocalRandom.current().nextInt(100000, 1000000);
-        EmailSender.sendValidationEmail(userEmail, uniqueRegistrationNumber);
+        new Thread(() -> {
+            EmailSender.sendValidationEmail(userEmail, uniqueRegistrationNumber);
+        }).start();
     }
 
     @FXML
@@ -132,8 +134,10 @@ public class SignUpController implements Initializable {
             madeAccount.setImage(image);
             MessageHandler.getInformationAlert("Success", "Information", "Your account has now been registered! \nYou will receive an email with login credentials").showAndWait();
 
-            EmailSender.sendEmail(userEmail.getText(), "Your new account", "Welcome to HKR Marketplace! Here are your account details. \n \n" +
-                    "Username: " + userName.getText() + "\n" + "Password: " + userPassword.getText() + "\n" + "Account-Email: " + userEmail.getText());
+            new Thread(() -> {
+                EmailSender.sendEmail(userEmail.getText(), "Your new account", "Welcome to HKR Marketplace! Here are your account details. \n \n" +
+                        "Username: " + userName.getText() + "\n" + "Password: " + userPassword.getText() + "\n" + "Account-Email: " + userEmail.getText());
+            }).start();
             backButtonAction();
         } else {
             MessageHandler.getErrorAlert("Error", "Error", "The pin provided was not correct!").showAndWait();
