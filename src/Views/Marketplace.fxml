@@ -127,7 +127,7 @@
       <Button fx:id="closingButton" focusTraversable="false" layoutX="1209.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
       <Button fx:id="minimizeButton" focusTraversable="false" layoutX="1185.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
       <Button layoutX="1069.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleLogOutButton" styleClass="regularbutton" text="Logout" />
-      <TableView fx:id="tableView" layoutX="350.0" layoutY="121.0" prefHeight="240.0" prefWidth="229.0" stylesheets="@../Resources/CSS.css">
+      <TableView fx:id="table" layoutX="350.0" layoutY="121.0" prefHeight="240.0" prefWidth="229.0" styleClass="table-view" stylesheets="@../Resources/CSS.css">
         <columns>
           <TableColumn fx:id="pic" prefWidth="75.0" />
           <TableColumn fx:id="title" prefWidth="75.0" />

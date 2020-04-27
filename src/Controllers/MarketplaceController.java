@@ -37,7 +37,7 @@ public class MarketplaceController implements Initializable {
 
 
     @FXML
-    TableView<Item> tableView;
+    TableView<Item> table;
 
     @FXML
     TableColumn<Item, ImageView> pic;
@@ -46,7 +46,7 @@ public class MarketplaceController implements Initializable {
     TableColumn<Item, String> title;
 
     @FXML
-    TableColumn<Item, String> price;
+    TableColumn<Item, Double> price;
 
 
     public static ObservableList<Item> itemObservableList =  FXCollections.observableArrayList();
@@ -60,7 +60,7 @@ public class MarketplaceController implements Initializable {
         pic.setCellValueFactory(new PropertyValueFactory<>("photo"));
         title.setCellValueFactory(new PropertyValueFactory<>("name"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
-        tableView.setItems(itemObservableList);
+        table.setItems(itemObservableList);
 
         if (Singleton.getInstance().getLoggedInAccount().isAdmin()) {
             adminview.setVisible(true);
@@ -126,10 +126,10 @@ public class MarketplaceController implements Initializable {
     }
 
     private void handleClickOnItem(){
-        tableView.setOnMouseClicked((MouseEvent event) -> {
+        table.setOnMouseClicked((MouseEvent event) -> {
             if (event.getClickCount() > 1) {
-                if (tableView.getSelectionModel().getSelectedItem() != null){
-                    System.out.println(tableView.getSelectionModel().getSelectedItem().getName());
+                if (table.getSelectionModel().getSelectedItem() != null){
+                    System.out.println(table.getSelectionModel().getSelectedItem().getName());
                 }
             }
         });
