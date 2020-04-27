@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -24,13 +25,18 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
 
     @FXML
     private TextField userPassword;
+
+    @FXML
+    private CheckBox rememberLoginButton;
 
     @FXML
     private Label loggingInLabel;
@@ -55,6 +61,14 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        File file = new File("userCredentials.txt");
+        if (!(file.length() <= 0)) {
+            try {
+                readUserCredentialsFromFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         FadeTransition ft = new FadeTransition(Duration.millis(2000), logoPane);
         ft.setFromValue(0);
         ft.setToValue(1);
@@ -98,6 +112,9 @@ public class LoginController implements Initializable {
 
     @FXML
     private void logInButtonAction() {
+        if (rememberLoginButton.isSelected()) {
+            writeUserCredentialsToFile();
+        }
         new Thread(() -> {
             Platform.runLater(() -> loggingInLabel.setTextFill(Color.WHITE));
             if (userEmail.getText().equals("") || userPassword.getText().equals("")) {
@@ -122,6 +139,34 @@ public class LoginController implements Initializable {
                 DBHandler.closeConnection();
             }
         }).start();
+    }
+
+    private void writeUserCredentialsToFile() {
+        try {
+            FileWriter myWriter = new FileWriter("userCredentials.txt");
+            myWriter.write(userEmail.getText() + "\n" + userPassword.getText());
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+            readUserCredentialsFromFile();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    private void readUserCredentialsFromFile() throws IOException {
+        int i = 0;
+        BufferedReader bufReader = new BufferedReader(new FileReader("userCredentials.txt"));
+        ArrayList<String> loginCredentialsList = new ArrayList<>();
+        String line = bufReader.readLine();
+        while (line != null) {
+            loginCredentialsList.add(i, line);
+            i++;
+            line = bufReader.readLine();
+        }
+        bufReader.close();
+        userEmail.setText(loginCredentialsList.get(0));
+        userPassword.setText(loginCredentialsList.get(1));
     }
 
     @FXML
