@@ -91,5 +91,7 @@
         <Circle fill="#fc2b2b" layoutX="678.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
         <Button fx:id="closingButton" focusTraversable="false" layoutX="670.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
         <Button fx:id="minimizeButton" focusTraversable="false" layoutX="642.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
+      <ImageView fx:id="loadingImage" fitHeight="87.0" fitWidth="95.0" layoutX="307.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="loggingInLabel" layoutX="318.0" layoutY="436.0" opacity="0.0" textFill="WHITE" />
     </children>
 </AnchorPane>

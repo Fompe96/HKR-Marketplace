@@ -1,10 +1,12 @@
 package Database;
 
 import Models.Account;
+import Models.EmailSender;
 import Models.Item;
 import Models.MessageHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -187,6 +189,20 @@ public abstract class DBHandler extends DBConfig {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void insertUserIntoDatabase(String userName, String userPassword, String userEmail) throws SQLException {
+        Connection dbConnection = DBHandler.getConnection();
+        PreparedStatement stmt = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`account` (`Username`, `Password`, `Email`, `Admin`) VALUES (?, ?, ?, ?);\n");
+
+        stmt.setString(1, userName);
+        stmt.setString(2, userPassword);
+        stmt.setString(3, userEmail);
+        stmt.setBoolean(4, false);
+        stmt.executeUpdate();
+        DBHandler.closeConnection();
+        EmailSender.sendEmail(userEmail, "Your new account", "Welcome to HKR Marketplace! Here are your account details. \n \n" +
+                "Username: " + userName + "\n" + "Password: " + userPassword + "\n" + "Account-Email: " + userEmail);
     }
 }
 

@@ -91,7 +91,7 @@
          </image>
       </ImageView>
       <TextField fx:id="validateEmailField" layoutX="276.0" layoutY="388.0" opacity="0.0" promptText="Enter pin from email" styleClass="regulartextfield" />
-      <Button fx:id="confirmEmailButton" layoutX="302.0" layoutY="427.0" mnemonicParsing="false" onAction="#insertUserIntoDatabase" opacity="0.0" styleClass="regularbutton" text="Confirm Email">
+      <Button fx:id="confirmEmailButton" layoutX="302.0" layoutY="427.0" mnemonicParsing="false" onAction="#registerUser" opacity="0.0" styleClass="regularbutton" text="Confirm Email">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>

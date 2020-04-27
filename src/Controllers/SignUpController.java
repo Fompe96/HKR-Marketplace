@@ -89,27 +89,29 @@ public class SignUpController implements Initializable {
 
     @FXML
     private void signUpButtonAction() {
-        if (userName.getText().equals("") || userEmail.getText().equals("") || userPassword.getText().equals("")) {
-            MessageHandler.getErrorAlert("Error", "Error", "Please enter all fields to register!").showAndWait();
-        } else {
-            if (!userPassword.getText().equals(confirmPassword.getText())) {
-                MessageHandler.getErrorAlert("Error", "Error", "Passwords do not match, please re-enter").showAndWait();
-                userPassword.clear();
-                confirmPassword.clear();
+        new Thread(() -> {
+            if (userName.getText().equals("") || userEmail.getText().equals("") || userPassword.getText().equals("")) {
+                Platform.runLater(() -> MessageHandler.getErrorAlert("Error", "Error", "Please enter all fields to register!").showAndWait());
             } else {
-                if (!isValid(userEmail.getText())) {
-                    MessageHandler.getErrorAlert("Error", "Error", "Please enter a valid email").showAndWait();
+                if (!userPassword.getText().equals(confirmPassword.getText())) {
+                    Platform.runLater(() -> MessageHandler.getErrorAlert("Error", "Error", "Passwords do not match, please re-enter").showAndWait());
+                    userPassword.clear();
+                    confirmPassword.clear();
                 } else {
-                    if (DBHandler.seeIfEmailAlreadyRegistered(userEmail.getText())) {
-                        MessageHandler.getErrorAlert("Error", "Error", "Email already registered").showAndWait();
+                    if (!isValid(userEmail.getText())) {
+                        Platform.runLater(() -> MessageHandler.getErrorAlert("Error", "Error", "Please enter a valid email").showAndWait());
                     } else {
-                        generateUniqueNumber(userEmail.getText());
-                        validateEmailField.setOpacity(100);
-                        confirmEmailButton.setOpacity(100);
+                        if (DBHandler.seeIfEmailAlreadyRegistered(userEmail.getText())) {
+                            Platform.runLater(() -> MessageHandler.getErrorAlert("Error", "Error", "Email already registered").showAndWait());
+                        } else {
+                            generateUniqueNumber(userEmail.getText());
+                            validateEmailField.setOpacity(100);
+                            confirmEmailButton.setOpacity(100);
+                        }
                     }
                 }
             }
-        }
+        }).start();
     }
 
     private boolean validateUniqueNumberGiven(int uniqueNumber) {
@@ -117,31 +119,17 @@ public class SignUpController implements Initializable {
     }
 
     @FXML
-    private void insertUserIntoDatabase() throws SQLException {
-        if (validateUniqueNumberGiven(Integer.parseInt(validateEmailField.getText()))) {
-            Connection dbConnection = DBHandler.getConnection();
-            PreparedStatement stmt = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`account` (`Username`, `Password`, `Email`, `Admin`) VALUES (?, ?, ?, ?);\n");
-
-            stmt.setString(1, userName.getText());
-            stmt.setString(2, userPassword.getText());
-            stmt.setString(3, userEmail.getText());
-            stmt.setBoolean(4, false);
-            stmt.executeUpdate();
-            DBHandler.closeConnection();
-
-            Image image = new Image("Resources/Success.gif");
-            madeAccount.setOpacity(100);
-            madeAccount.setImage(image);
-            MessageHandler.getInformationAlert("Success", "Information", "Your account has now been registered! \nYou will receive an email with login credentials").showAndWait();
-
-            new Thread(() -> {
-                EmailSender.sendEmail(userEmail.getText(), "Your new account", "Welcome to HKR Marketplace! Here are your account details. \n \n" +
-                        "Username: " + userName.getText() + "\n" + "Password: " + userPassword.getText() + "\n" + "Account-Email: " + userEmail.getText());
-            }).start();
-            backButtonAction();
-        } else {
-            MessageHandler.getErrorAlert("Error", "Error", "The pin provided was not correct!").showAndWait();
-        }
+    private void registerUser() {
+        new Thread(() -> {
+            if (validateUniqueNumberGiven(Integer.parseInt(validateEmailField.getText()))) {
+                try {
+                    DBHandler.insertUserIntoDatabase(userName.getText(), userPassword.getText(), userEmail.getText());
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                Platform.runLater(this::backButtonAction);
+            }
+        }).start();
     }
 
 

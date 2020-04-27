@@ -13,10 +13,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -27,6 +31,12 @@ public class LoginController implements Initializable {
 
     @FXML
     private TextField userPassword;
+
+    @FXML
+    private Label loggingInLabel;
+
+    @FXML
+    private ImageView loadingImage;
 
     @FXML
     private TextField userEmail;
@@ -88,19 +98,30 @@ public class LoginController implements Initializable {
 
     @FXML
     private void logInButtonAction() {
-        if (userEmail.getText().equals("") || userPassword.getText().equals("")) {
-            MessageHandler.getErrorAlert("Error", "Error", "Please enter all fields").showAndWait();
-        } else {
-            DBHandler.getConnection();
-            boolean checkIfExists = DBHandler.findUser(userEmail.getText(), userPassword.getText());
-            if (checkIfExists) {
-                Singleton.getInstance().setLoggedInAccount(DBHandler.getUserInformation(userEmail.getText()));
-                SceneChanger.changeScene("../Views/Marketplace.fxml");
+        new Thread(() -> {
+            Platform.runLater(() -> loggingInLabel.setTextFill(Color.WHITE));
+            if (userEmail.getText().equals("") || userPassword.getText().equals("")) {
+                Platform.runLater(() -> MessageHandler.getErrorAlert("Error", "Error", "Please enter all fields").showAndWait());
             } else {
-                MessageHandler.getErrorAlert("Error", "Error", "Login credentials not found").showAndWait();
+                Image image = new Image("Resources/loadingImage.gif");
+                loadingImage.setImage(image);
+                loadingImage.setOpacity(100);
+                Platform.runLater(() -> loggingInLabel.setText("Logging in..."));
+                loggingInLabel.setOpacity(100);
+                DBHandler.getConnection();
+                boolean checkIfExists = DBHandler.findUser(userEmail.getText(), userPassword.getText());
+                if (checkIfExists) {
+                    Singleton.getInstance().setLoggedInAccount(DBHandler.getUserInformation(userEmail.getText()));
+                    Platform.runLater(() -> SceneChanger.changeScene("../Views/Marketplace.fxml"));
+                } else {
+                    loadingImage.setOpacity(0);
+                    Platform.runLater(() -> loggingInLabel.setText("Failed to login"));
+                    Platform.runLater(() -> loggingInLabel.setTextFill(Color.RED));
+                    Platform.runLater(() -> MessageHandler.getErrorAlert("Error", "Error", "Login credentials not found").showAndWait());
+                }
+                DBHandler.closeConnection();
             }
-            DBHandler.closeConnection();
-        }
+        }).start();
     }
 
     @FXML
