@@ -63,8 +63,8 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         File file = new File("userCredentials.txt");
         try {
-            if (validateIfRememberLoginChecked()) {
-                if (!(file.length() <= 0)) {
+            if (!(file.length() <= 0)) {
+                if (validateIfRememberLoginChecked()) {
                     try {
                         readUserCredentialsFromFile();
                     } catch (IOException e) {
