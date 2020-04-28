@@ -234,7 +234,7 @@ public class LoginController implements Initializable {
         SceneChanger.changeScene("../Views/RetrieveCredentials.fxml");
     }
 
-    public String encryptPass(String password) {
+    private String encryptPass(String password) {
         int key = 1;
         char[] passChar = password.toCharArray();
 
@@ -261,7 +261,7 @@ public class LoginController implements Initializable {
         return new String(passChar);
     }
 
-    public String decryptPass(String password) {
+    private String decryptPass(String password) {
         int key = -1;
         char[] passChar = password.toCharArray();
 

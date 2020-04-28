@@ -28,7 +28,7 @@ import java.util.ResourceBundle;
 
 public class MarketplaceController implements Initializable {
 
-    private ObservableList<Item> items;
+    private ObservableList<Item> items; // List contains all sales used throughout the scene.
     private double x, y;
     @FXML
     private ImageView imageView, imageView1, adminview;
@@ -37,16 +37,16 @@ public class MarketplaceController implements Initializable {
     private Button adminButton, settingsButton, closingButton, minimizeButton, sellButton;
 
     @FXML
-    TableView<Item> table;
+    private TableView<Item> table;
 
     @FXML
-    TableColumn<Item, ImageView> pic;
+    private TableColumn<Item, ImageView> pic;
 
     @FXML
-    TableColumn<Item, String> title;
+    private TableColumn<Item, String> title;
 
     @FXML
-    TableColumn<Item, Double> price;
+    private TableColumn<Item, Double> price;
 
 
     @Override
@@ -131,8 +131,8 @@ public class MarketplaceController implements Initializable {
         });
     }
 
-    private void initializeTable(){
-        items = DBHandler.retrieveAllSales();
+    private void initializeTable() {
+        fetchItemsFromDB();
         pic.setCellValueFactory(new PropertyValueFactory<>("photo"));
         title.setCellValueFactory(new PropertyValueFactory<>("name"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -145,6 +145,10 @@ public class MarketplaceController implements Initializable {
             }
         }
         table.setItems(items);
+    }
+
+    private void fetchItemsFromDB() {
+        items = DBHandler.retrieveAllSales();
     }
 
 }
