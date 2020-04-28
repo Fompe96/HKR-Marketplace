@@ -6,7 +6,6 @@ import Models.Item;
 import Models.MessageHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.image.Image;
 
 import java.io.File;
 import java.io.FileInputStream;

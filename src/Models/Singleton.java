@@ -19,7 +19,7 @@ public class Singleton {
 
     private Account loggedInAccount;  // Variable used to keep track of the currently logged in account.
     private Item item;
-    ObservableList<Item> itemObservableList;
+    private ObservableList<Item> itemObservableList;
 
     public void setItemObservableList(){
          itemObservableList = FXCollections.observableArrayList();
@@ -51,66 +51,6 @@ public class Singleton {
 
     public void setLoggedInAccount(Account loggedInAccount) {
         this.loggedInAccount = loggedInAccount;
-    }
-
-
-
-
-    public String encryptPass(String password) {
-        int key = 1;
-        char[] passChar = password.toCharArray();
-
-        for (int i = 0; i < passChar.length; i++) {
-            char encryptLetter = passChar[i];
-            encryptLetter = (char) (encryptLetter + key);
-            if (encryptLetter >= 'a' && encryptLetter <= 'z') {
-                if (encryptLetter < 'a') {
-                    encryptLetter = (char) (encryptLetter + 26);
-                }
-                if (encryptLetter > 'z') {
-                    encryptLetter = (char) (encryptLetter - 26);
-                }
-            } else if (encryptLetter >= 'A' && encryptLetter <= 'Z') {
-                if (encryptLetter < 'A') {
-                    encryptLetter = (char) (encryptLetter + 26);
-                }
-                if (encryptLetter > 'Z') {
-                    encryptLetter = (char) (encryptLetter - 26);
-                }
-            }
-            passChar[i] = encryptLetter;
-        }
-        return new String(passChar);
-    }
-
-    public String decryptPass(String password) {
-        int key = -1;
-        char[] passChar = password.toCharArray();
-
-        for (int i = 0; i < passChar.length; i++) {
-            char encryptLetter = passChar[i];
-            encryptLetter = (char) (encryptLetter + key);
-            if (encryptLetter >= 'a' && encryptLetter <= 'z') {
-                if (encryptLetter < 'a') {
-                    encryptLetter = (char) (encryptLetter + 26);
-                }
-                if (encryptLetter > 'z') {
-                    encryptLetter = (char) (encryptLetter - 26);
-                }
-            } else if (encryptLetter >= 'A' && encryptLetter <= 'Z') {
-                if (encryptLetter < 'A') {
-                    encryptLetter = (char) (encryptLetter + 26);
-                }
-                if (encryptLetter > 'Z') {
-                    encryptLetter = (char) (encryptLetter - 26);
-                }
-            }
-
-            passChar[i] = encryptLetter;
-        }
-
-
-        return new String(passChar);
     }
 
 }

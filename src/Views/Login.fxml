@@ -94,6 +94,9 @@
         <Button fx:id="minimizeButton" focusTraversable="false" layoutX="642.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
       <ImageView fx:id="loadingImage" fitHeight="87.0" fitWidth="95.0" layoutX="307.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="loggingInLabel" layoutX="318.0" layoutY="436.0" opacity="0.0" textFill="WHITE" />
-      <CheckBox fx:id="rememberLoginButton" layoutX="461.0" layoutY="349.0" mnemonicParsing="false" onAction="#uncheckRememberLogin" text="Remember login" textFill="#46ab57" />
+      <CheckBox fx:id="rememberLoginButton" layoutX="374.0" layoutY="347.0" mnemonicParsing="false" onAction="#uncheckRememberLogin" styleClass="regularcheckbox" text="Remember login" textFill="#46ab57">
+         <font>
+            <Font size="14.0" />
+         </font></CheckBox>
     </children>
 </AnchorPane>

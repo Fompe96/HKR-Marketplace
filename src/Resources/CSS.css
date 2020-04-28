@@ -72,80 +72,62 @@
     -fx-background-color: #242424;
     -fx-border-color: #e8e8e8;
 }
-/*
-.tableViewTextfields {
-    -fx-text-fill: black;
-    -fx-border-color: #e8e8e8;
-    -fx-background-radius: 0;
-}
+  .marketplaceTableView {
+       -fx-background-color:   #4f4d4d;
+       -fx-text-fill: #ffffff;
+       -fx-border-color:White;
+       -fx-font-size: 15;
+       -fx-text-fill: #e8e8e8;
+  }
 
-.tableViewTextfields:focused {
-    -fx-border-color: #46ab57;
-}
-*/
+  .marketplaceTableView .column-header {
+       -fx-background-color:#ffffff;
+       -fx-text-fill:#ffffff;
+       -fx-background-radius: 0;
+  }
 
+  .marketplaceTableView:row-selection{
+       -fx-background-color:#e2e2e2
+  }
 
-.table-view{
+  .marketplaceTableView .cell{
+       -fx-alignment: center-left;
+       -fx-background-color: #29292D;
+       -fx-border-color: #ffffff;
+       -fx-text-fill: #e8e8e8;
+       -fx-alignment: CENTER_LEFT;
+       -fx-font-size: 37;
+       -fx-border-weight: 0.2px;
+  }
+
+  .marketplaceTableView .scroll-bar:horizontal .track,
+  .marketplaceTableView .scroll-bar:vertical .track{
+       -fx-background-color: transparent;
+       -fx-border-color:derive( #6622CC,80%);
+
+       -fx-background-radius: 2em;
+       -fx-border-radius:2em;
+  }
+
+  .marketplaceTableView .scroll-bar:horizontal .thumb,
+  .marketplaceTableView .scroll-bar:vertical .thumb {
+       -fx-background-color:derive( #6622CC,90%);
+       -fx-background-insets: 2, 0, 0;
+       -fx-background-radius: 2em;
+  }
+
+   .marketplaceTableColumn {
     -fx-background-color:   #4f4d4d;
-    -fx-text-fill: #ffffff;
-    -fx-border-color:White;
-    /* -fx-background-radius: 30;*/
-    -fx-font-size: 15;
-    -fx-text-fill: #e8e8e8;
-
-}
-
-.table-view .column-header {
-    -fx-background-color:#ffffff;
-        -fx-text-fill:#ffffff;
-        -fx-background-radius: 0;
-       /* -fx-background-radius: 30;*/
-}
-.table-view:row-selection{
- -fx-background-color:#e2e2e2
-}
-
-
-.table-column{
- -fx-background-color:   #4f4d4d;
- -fx-border-color:  #ffffff;
- -fx-border-weight: 0.2px;
- -fx-font-size: 25;
- -fx-text-fill: #e8e8e8;
-}
-
-.table-row:hover{
-   -fx-background-color: #e8e8e8;
-   -fx-text-background-color:  #6622CC;
-  }
-
-.table-view .cell{
-    /*-fx-cell-size: 35;*/
-    -fx-alignment: center-left;
-    -fx-background-color: #29292D;
-    -fx-border-color: #ffffff;
-    -fx-text-fill: #e8e8e8;
-    -fx-alignment: CENTER_LEFT;
-    -fx-font-size: 37;
+    -fx-border-color:  #ffffff;
     -fx-border-weight: 0.2px;
-  }
+    -fx-font-size: 25;
+    -fx-text-fill: #e8e8e8;
+   }
 
-
-  .table-view .scroll-bar:horizontal .track,
-  .table-view .scroll-bar:vertical .track{
-  	-fx-background-color: transparent;
-  	-fx-border-color:derive( #6622CC,80%);
-
-  	-fx-background-radius: 2em;
-  	-fx-border-radius:2em;
-  }
-
-  .table-view .scroll-bar:horizontal .thumb,
-  .table-view .scroll-bar:vertical .thumb {
-      -fx-background-color:derive( #6622CC,90%);
-  	-fx-background-insets: 2, 0, 0;
-  	-fx-background-radius: 2em;
-  }
+   .table-row:hover{
+      -fx-background-color: #e8e8e8;
+      -fx-text-background-color:  #6622CC;
+   }
 
 .regularcombobox {
     -fx-text-fill: #e8e8e8;
@@ -156,7 +138,6 @@
 .regularcombobox .text-field {
     -fx-prompt-text-fill: #e8e8e8;
 }
-
 
 .regularcombobox:focused {
     -fx-border-color: #46ab57;

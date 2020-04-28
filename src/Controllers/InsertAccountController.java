@@ -3,6 +3,7 @@ package Controllers;
 import Database.DBHandler;
 import Models.Account;
 import Models.MessageHandler;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -25,12 +27,15 @@ public class InsertAccountController implements Initializable {
     private CheckBox truecheckbox, falsecheckbox;
     @FXML
     private TextField usernamefield, passwordfield, emailfield, uploadfield;
+    @FXML
+    private AnchorPane root;
     private double x, y;
     private File imageFile;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         uploadfield.setEditable(false);
+        Platform.runLater(() -> root.requestFocus());
     }
 
     @FXML

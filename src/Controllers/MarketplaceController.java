@@ -28,6 +28,7 @@ import java.util.ResourceBundle;
 
 public class MarketplaceController implements Initializable {
 
+    private ObservableList<Item> items;
     private double x, y;
     @FXML
     private ImageView imageView, imageView1, adminview;
@@ -131,19 +132,19 @@ public class MarketplaceController implements Initializable {
     }
 
     private void initializeTable(){
+        items = DBHandler.retrieveAllSales();
         pic.setCellValueFactory(new PropertyValueFactory<>("photo"));
         title.setCellValueFactory(new PropertyValueFactory<>("name"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
-        for (int i = 0; i < DBHandler.retrieveAllSales().size() ; i++) {
-
-            if (DBHandler.retrieveAllSales().get(i).getImageFile() != null) {
-                ImageView photo = new ImageView(new Image(this.getClass().getResourceAsStream(DBHandler.retrieveAllSales().get(i).getImageFile().getPath())));
+        for (Item item : items) {
+            if (item.getImageFile() != null) {
+                ImageView photo = new ImageView(new Image(this.getClass().getResourceAsStream(item.getImageFile().getPath())));
                 photo.setFitHeight(70);
                 photo.setFitWidth(70);
-                DBHandler.retrieveAllSales().get(i).setPhoto(photo);
+                item.setPhoto(photo);
             }
         }
-        table.setItems(DBHandler.retrieveAllSales());
+        table.setItems(items);
     }
 
 }

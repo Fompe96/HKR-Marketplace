@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -27,13 +28,15 @@ import java.util.ResourceBundle;
 
 public class AdministrationController implements Initializable {
 
-    @FXML
-    private Button editAccounts, editItems, minimizeButton, closingButton, sellButton, marketPlaceButton, settingsButton;
     private double x, y;
     private ObservableList<Account> accounts;
     private ObservableList<Item> items;
     private boolean accountsTableActive;
 
+    @FXML
+    private Button editAccounts, editItems, minimizeButton, closingButton, sellButton, marketPlaceButton, settingsButton;
+    @FXML
+    private AnchorPane root;
     @FXML
     private TableView<Account> accountsTableView;
     @FXML
@@ -74,6 +77,7 @@ public class AdministrationController implements Initializable {
         sellButton.setCursor(Cursor.HAND);
         settingsButton.setCursor(Cursor.HAND);
         marketPlaceButton.setCursor(Cursor.HAND);
+        Platform.runLater(() -> root.requestFocus());
     }
 
     private void handleToolTip() {
@@ -115,7 +119,6 @@ public class AdministrationController implements Initializable {
     private void setupColumns() {
         // Account Columns
         username.setCellValueFactory(new PropertyValueFactory<>("userName"));
-        // username.setCellFactory(TextFieldTableCell.forTableColumn());   // Makes cells in column editable
         password.setCellValueFactory(new PropertyValueFactory<>("Password"));
         email.setCellValueFactory(new PropertyValueFactory<>("Email"));
         admin.setCellValueFactory(new PropertyValueFactory<>("Admin"));

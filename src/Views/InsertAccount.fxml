@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="300.0" prefWidth="700.0" style="-fx-background-color: #3c3c3c;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InsertAccountController">
+<AnchorPane fx:id="root" prefHeight="300.0" prefWidth="700.0" style="-fx-background-color: #3c3c3c;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InsertAccountController">
    <children>
       <Pane layoutX="249.0" layoutY="35.0" prefHeight="45.0" prefWidth="205.0">
          <children>
