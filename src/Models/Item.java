@@ -3,6 +3,7 @@ package Models;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.image.ImageView;
 
 import java.io.File;
 import java.sql.Blob;
@@ -18,6 +19,7 @@ public class Item {
     private SimpleStringProperty category;
     private File imageFile;
     private Blob picture;
+    private ImageView photo;
 
     public Item(){
     }
@@ -73,7 +75,9 @@ public class Item {
         return category.get();
     }
 
-
+    public ImageView getPhoto() {
+        return photo;
+    }
 
     public Blob getPicture() {
         return picture;
@@ -105,6 +109,10 @@ public class Item {
 
     public void setPicture(Blob picture) {
         this.picture = picture;
+    }
+
+    public void setPhoto(ImageView photo) {
+        this.photo = photo;
     }
 
     @Override

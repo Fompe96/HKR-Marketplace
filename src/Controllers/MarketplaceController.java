@@ -35,7 +35,6 @@ public class MarketplaceController implements Initializable {
     @FXML
     private Button adminButton, settingsButton, closingButton, minimizeButton, sellButton;
 
-
     @FXML
     TableView<Item> table;
 
@@ -49,18 +48,14 @@ public class MarketplaceController implements Initializable {
     TableColumn<Item, Double> price;
 
 
-    public static ObservableList<Item> itemObservableList =  FXCollections.observableArrayList();
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
        // imageView.setImage(new Image("https://usercontent1.hubstatic.com/11310434_f520.jpg"));
        // imageView1.setImage(new Image("https://www.kattkompaniet.nu/images/5.63.1606161417/kattleksaker-fatcat.jpeg"));
        // System.out.println("The user who just logged in is: " + Singleton.getInstance().getLoggedInAccount()); // This is here for testing purposes!
-        pic.setCellValueFactory(new PropertyValueFactory<>("photo"));
-        title.setCellValueFactory(new PropertyValueFactory<>("name"));
-        price.setCellValueFactory(new PropertyValueFactory<>("price"));
-        table.setItems(itemObservableList);
+
+        initializeTable();
+
 
         if (Singleton.getInstance().getLoggedInAccount().isAdmin()) {
             adminview.setVisible(true);
@@ -133,6 +128,22 @@ public class MarketplaceController implements Initializable {
                 }
             }
         });
+    }
+
+    private void initializeTable(){
+        pic.setCellValueFactory(new PropertyValueFactory<>("photo"));
+        title.setCellValueFactory(new PropertyValueFactory<>("name"));
+        price.setCellValueFactory(new PropertyValueFactory<>("price"));
+        for (int i = 0; i < DBHandler.retrieveAllSales().size() ; i++) {
+
+            if (DBHandler.retrieveAllSales().get(i).getImageFile() != null) {
+                ImageView photo = new ImageView(new Image(this.getClass().getResourceAsStream(DBHandler.retrieveAllSales().get(i).getImageFile().getPath())));
+                photo.setFitHeight(70);
+                photo.setFitWidth(70);
+                DBHandler.retrieveAllSales().get(i).setPhoto(photo);
+            }
+        }
+        table.setItems(DBHandler.retrieveAllSales());
     }
 
 }

@@ -22,63 +22,6 @@
             <Font name="Arial" size="34.0" />
          </font>
       </Text>
-      <Pane layoutX="105.0" layoutY="470.0" prefHeight="203.0" prefWidth="1100.0" style="-fx-background-color: #242424;">
-         <children>
-            <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="235.0" layoutX="33.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
-            <Text fill="WHITE" layoutX="33.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Race car">
-               <font>
-                  <Font name="Arial" size="18.0" />
-               </font>
-            </Text>
-            <Line endX="199.419921875" endY="-29.2431640625" layoutX="200.0" layoutY="63.0" startX="100.0" startY="-29.2431640625" stroke="#6ea5ff" strokeWidth="2.0" />
-            <Text fill="WHITE" layoutX="299.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" layoutX="299.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The car is really fast so i cant keep it. " />
-            <Text fill="WHITE" layoutX="299.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I would like to sell it for around 3 000kr" />
-            <Button layoutX="1013.0" layoutY="167.0" mnemonicParsing="false" style="-fx-background-color: green;" text="Go To Sale" textFill="WHITE" />
-            <Line endX="173.0263671875" endY="-29.185546875" layoutX="-68.0" layoutY="63.0" startX="101.0" startY="-29.185546875" stroke="#6ea5ff" strokeWidth="2.0" />
-            <Text fill="WHITE" layoutX="606.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seller">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <Line endX="148.18359375" endY="-27.98046875" layoutX="506.0" layoutY="64.0" startX="100.0" startY="-27.98046875" stroke="#6ea5ff" strokeWidth="2.0" />
-            <Text fill="WHITE" layoutX="605.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maria Viklund" />
-            <Text fill="WHITE" layoutX="605.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Member since 2012-08-13" />
-            <Text fill="GREEN" layoutX="685.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(trusted seller)" />
-         </children>
-      </Pane>
-      <Pane layoutX="105.0" layoutY="409.0" prefHeight="203.0" prefWidth="1100.0" style="-fx-background-color: #242424;">
-         <children>
-            <ImageView fx:id="imageView1" fitHeight="150.0" fitWidth="235.0" layoutX="33.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
-            <Text fill="WHITE" layoutX="33.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="House">
-               <font>
-                  <Font name="Arial" size="18.0" />
-               </font>
-            </Text>
-            <Line endX="199.419921875" endY="-29.2431640625" layoutX="200.0" layoutY="63.0" startX="100.0" startY="-29.2431640625" stroke="#6ea5ff" strokeWidth="2.0" />
-            <Text fill="WHITE" layoutX="299.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" layoutX="299.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nice location in North sweden" />
-            <Text fill="WHITE" layoutX="299.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="I was thinking around 1.2 Million (SEK)" />
-            <Button layoutX="1013.0" layoutY="167.0" mnemonicParsing="false" style="-fx-background-color: green;" text="Go To Sale" textFill="WHITE" />
-            <Line endX="153.03125" endY="-29.185546875" layoutX="-68.0" layoutY="63.0" startX="101.0" startY="-29.185546875" stroke="#6ea5ff" strokeWidth="2.0" />
-            <Text fill="WHITE" layoutX="604.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seller">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <Line endX="145.18359375" endY="-26.98046875" layoutX="507.0" layoutY="63.0" startX="97.0" startY="-26.98046875" stroke="#6ea5ff" strokeWidth="2.0" />
-            <Text fill="WHITE" layoutX="603.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tobbe snabb" />
-            <Text fill="WHITE" layoutX="603.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Member since 2020-01-13" />
-         </children>
-      </Pane>
       <Pane prefHeight="673.0" prefWidth="60.0" style="-fx-background-color: #242424;">
          <children>
             <Pane prefHeight="56.0" prefWidth="60.0" style="-fx-background-color: #6ea5ff;">
@@ -127,11 +70,11 @@
       <Button fx:id="closingButton" focusTraversable="false" layoutX="1209.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
       <Button fx:id="minimizeButton" focusTraversable="false" layoutX="1185.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
       <Button layoutX="1069.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleLogOutButton" styleClass="regularbutton" text="Logout" />
-      <TableView fx:id="table" layoutX="350.0" layoutY="121.0" prefHeight="240.0" prefWidth="229.0" styleClass="table-view" stylesheets="@../Resources/CSS.css">
+      <TableView fx:id="table" layoutX="200.0" layoutY="131.0" prefHeight="433.0" prefWidth="590.0" styleClass="table-view" stylesheets="@../Resources/CSS.css">
         <columns>
-          <TableColumn fx:id="pic" prefWidth="75.0" />
-          <TableColumn fx:id="title" prefWidth="75.0" />
-            <TableColumn fx:id="price" prefWidth="75.0" />
+          <TableColumn fx:id="pic" prefWidth="192.800048828125" />
+          <TableColumn fx:id="title" prefWidth="219.19992065429688" />
+            <TableColumn fx:id="price" minWidth="0.0" prefWidth="175.20004882812498" />
         </columns>
       </TableView>
    </children>

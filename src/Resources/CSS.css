@@ -108,7 +108,8 @@
 
 .table-column{
  -fx-background-color:   #4f4d4d;
- -fx-border-color:  #4f4d4d;
+ -fx-border-color:  #ffffff;
+ -fx-border-weight: 0.2px;
  -fx-font-size: 25;
  -fx-text-fill: #e8e8e8;
 }
@@ -122,11 +123,11 @@
     /*-fx-cell-size: 35;*/
     -fx-alignment: center-left;
     -fx-background-color: #29292D;
-    -fx-border-color: #18181C;
+    -fx-border-color: #ffffff;
     -fx-text-fill: #e8e8e8;
     -fx-alignment: CENTER_LEFT;
     -fx-font-size: 37;
-    -fx-border-weight: 0.5px;
+    -fx-border-weight: 0.2px;
   }
 
 
