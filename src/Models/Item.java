@@ -20,11 +20,12 @@ public class Item {
     private File imageFile;
     private Blob picture;
     private ImageView photo;
+    private String owner;
 
     public Item(){
     }
 
-    public Item(Integer id, String name, double price, String description, String condition, String category, Blob picture) {
+    public Item(Integer id, String name, double price, String description, String condition, String category, Blob picture) {   // Constructor used when creating retrieved items.
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
         this.price = new SimpleDoubleProperty(price);
@@ -34,13 +35,14 @@ public class Item {
         this.picture = picture;
     }
 
-    public Item(SimpleStringProperty name, SimpleDoubleProperty price, SimpleStringProperty description, SimpleStringProperty condition, SimpleStringProperty category, File imageFile) {
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.condition = condition;
-        this.category = category;
+    public Item(String name, Double price, String description, String condition, String category, File imageFile, String owner) { // Constructor used when creating new items to be inserted into DB.
+        this.name = new SimpleStringProperty(name);
+        this.price = new SimpleDoubleProperty(price);
+        this.description = new SimpleStringProperty(description);
+        this.condition = new SimpleStringProperty(condition);
+        this.category = new SimpleStringProperty(category);
         this.imageFile = imageFile;
+        this.owner = owner;
     }
 
     public int getId() {
@@ -83,6 +85,10 @@ public class Item {
         return picture;
     }
 
+    public String getOwner() {
+        return owner;
+    }
+
     public void setId(int id) {
         this.id = new SimpleIntegerProperty(id);
     }
@@ -118,13 +124,14 @@ public class Item {
     @Override
     public String toString() {
         return "Sale{" +
-                "id='" + getId() + '\'' +
                 "name='" + getName() + '\'' +
                 ", price=" + getPrice() +
                 ", description='" + getDescription() + '\'' +
                 ", condition='" + getCondition() + '\'' +
                 ", category='" + getCategory() + '\'' +
                 ", picture='" + getPicture() + '\'' +
+                ", imageFile='" + getImageFile() + '\'' +
+                ", owner='" + getOwner() + '\'' +
                 '}';
     }
 }

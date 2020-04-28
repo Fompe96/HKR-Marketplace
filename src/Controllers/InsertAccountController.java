@@ -3,6 +3,7 @@ package Controllers;
 import Database.DBHandler;
 import Models.Account;
 import Models.MessageHandler;
+import Models.SceneChanger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -41,8 +42,10 @@ public class InsertAccountController implements Initializable {
     @FXML
     private void handleCheckboxes(ActionEvent event) {
         if (event.getSource() == truecheckbox) {
+            truecheckbox.setSelected(true);
             falsecheckbox.setSelected(false);
         } else if (event.getSource() == falsecheckbox) {
+            falsecheckbox.setSelected(true);
             truecheckbox.setSelected(false);
         }
     }
@@ -54,7 +57,7 @@ public class InsertAccountController implements Initializable {
                 Account account = new Account(usernamefield.getText(), passwordfield.getText(), emailfield.getText(), getSelectedCheckbox(), imageFile);
                 DBHandler.insertAccountIntoDB(account);
                 MessageHandler.getInformationAlert("Success", "Success", "The account was successfully added to the database!").showAndWait();
-                // Transfer account to tableview somehow
+                SceneChanger.changeScene("../Views/Administration.fxml"); // Might replace by transfering the added account to tableview later
                 handleClosingButton();
             } else {
                 MessageHandler.getErrorAlert("Error", "Error", "Email is either already in use or doesn't meet requirements.").showAndWait();

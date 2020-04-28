@@ -176,6 +176,10 @@ public abstract class DBHandler extends DBConfig {
         }
     }
 
+    public static void insertItemIntoDB(Item item) {
+        String query = "INSERT INTO `hkrmarketplace`.`product` (`name`, `price`, `description`, `condition`, `category`, `picture`, `email`) VALUES (?, ?, ?, ?, ?, ?, ?);";
+    }
+
     public static void changeUserPassword(String userEmail, String newPassword) throws SQLException {
         PreparedStatement stmt = getConnection().prepareStatement("UPDATE `hkrmarketplace`.`account` SET `Password` = '" + newPassword + "' WHERE (`Email` = '" + userEmail + "');\n");
         stmt.executeUpdate();
