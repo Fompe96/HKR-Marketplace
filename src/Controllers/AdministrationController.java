@@ -74,12 +74,25 @@ public class AdministrationController implements Initializable {
         retrieveAccounts();
         retrieveItems();
         setupColumns();
-        handleEditAccountsButton(); // Default selected choice
+        determineTableToLoad();
+        //handleEditAccountsButton(); // Default selected choice
         handleToolTip();
         sellButton.setCursor(Cursor.HAND);
         settingsButton.setCursor(Cursor.HAND);
         marketPlaceButton.setCursor(Cursor.HAND);
         Platform.runLater(() -> root.requestFocus());
+    }
+
+    private void determineTableToLoad() {
+        if (Singleton.getInstance().getLastInsertedObject() != null) {
+            if (Singleton.getInstance().getLastInsertedObject().equals("Account")) {
+                handleEditAccountsButton();
+            } else if (Singleton.getInstance().getLastInsertedObject().equals("Item")) {
+                handleEditItemsButton();
+            }
+        } else {
+            handleEditAccountsButton();
+        }
     }
 
     private void handleToolTip() {

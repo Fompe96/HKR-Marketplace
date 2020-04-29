@@ -94,5 +94,11 @@
             <Button layoutX="172.0" layoutY="233.0" mnemonicParsing="false" onAction="#changePassword" style="-fx-border-color: #46ab57; -fx-background-color: gray;" text="Apply new password" />
          </children>
       </Pane>
+      <ImageView fx:id="adminview" fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../Resources/admin.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="adminButton" disable="true" layoutX="10.0" layoutY="551.0" mnemonicParsing="false" onAction="#handleAdminButton" opacity="0.0" prefHeight="40.0" prefWidth="40.0" />
    </children>
 </AnchorPane>

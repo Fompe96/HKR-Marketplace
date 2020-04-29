@@ -32,15 +32,20 @@ public abstract class DBHandler extends DBConfig {
         return dbConnection;
     }
 
-    public static boolean findUser(String userEmail, String userPassword) {
+    public static Account findUser(String userEmail, String userPassword) {
         String query = "SELECT * FROM ACCOUNT WHERE Email = " + "'" + userEmail + "'" + " AND Password = " + "'" + userPassword + "';";
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
-                return resultSet.next();
+                if (resultSet.next()) {
+                    resultSet.first();
+                    return new Account(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getBoolean(4), resultSet.getBlob(5));
+                } else {
+                    return null;
+                }
             }
         } catch (SQLException se) {
             se.printStackTrace();
-            return false;
+            return null;
         }
     }
 
@@ -56,12 +61,16 @@ public abstract class DBHandler extends DBConfig {
         }
     }
 
-    public static Account getUserInformation(String userEmail) {  // Returns an object containing all information about a user. Takes the email as parameter
+    public static Account findUser(String userEmail) {  // Returns an object containing all information about a user. Takes the email as parameter
         String query = "SELECT * FROM account WHERE Email = '" + userEmail + "';";
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
-                resultSet.first();
-                return new Account(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getBoolean(4), resultSet.getBlob(5));
+                if (resultSet.next()) {
+                    resultSet.first();
+                    return new Account(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getBoolean(4), resultSet.getBlob(5));
+                } else {
+                    return null;
+                }
             }
         } catch (SQLException se) {
             se.printStackTrace();
@@ -178,6 +187,19 @@ public abstract class DBHandler extends DBConfig {
 
     public static void insertItemIntoDB(Item item) {
         String query = "INSERT INTO `hkrmarketplace`.`product` (`name`, `price`, `description`, `condition`, `category`, `picture`, `email`) VALUES (?, ?, ?, ?, ?, ?, ?);";
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            statement.setString(1, item.getName());
+            statement.setDouble(2, item.getPrice());
+            statement.setString(3, item.getDescription());
+            statement.setString(4, item.getCondition());
+            statement.setString(5, item.getCategory());
+            FileInputStream fis = new FileInputStream(item.getImageFile());
+            statement.setBinaryStream(6, fis, item.getImageFile().length());
+            statement.setString(7, item.getOwner());
+            statement.executeUpdate();
+        } catch (SQLException | FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void changeUserPassword(String userEmail, String newPassword) throws SQLException {

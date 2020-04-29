@@ -1,10 +1,7 @@
 package Controllers;
 
 import Database.DBHandler;
-import Models.MessageHandler;
-import Models.SceneChanger;
-import Models.Singleton;
-import Models.ToolTipHandler;
+import Models.*;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -132,10 +129,9 @@ public class LoginController implements Initializable {
                 loadingImage.setOpacity(100);
                 Platform.runLater(() -> loggingInLabel.setText("Logging in..."));
                 loggingInLabel.setOpacity(100);
-                DBHandler.getConnection();
-                boolean checkIfExists = DBHandler.findUser(userEmail.getText(), userPassword.getText());
-                if (checkIfExists) {
-                    Singleton.getInstance().setLoggedInAccount(DBHandler.getUserInformation(userEmail.getText()));
+                Account foundUserAccount = DBHandler.findUser(userEmail.getText(), userPassword.getText());
+                if (foundUserAccount != null) {
+                    Singleton.getInstance().setLoggedInAccount(foundUserAccount);
                     Platform.runLater(() -> SceneChanger.changeScene("../Views/Marketplace.fxml"));
                 } else {
                     loadingImage.setOpacity(0);
@@ -143,7 +139,6 @@ public class LoginController implements Initializable {
                     Platform.runLater(() -> loggingInLabel.setTextFill(Color.RED));
                     Platform.runLater(() -> MessageHandler.getErrorAlert("Error", "Error", "Login credentials not found").showAndWait());
                 }
-                DBHandler.closeConnection();
             }
         }).start();
     }

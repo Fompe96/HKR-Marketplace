@@ -20,6 +20,7 @@ public class Singleton {
     private Account loggedInAccount;  // Variable used to keep track of the currently logged in account.
     private Item item;
     private ObservableList<Item> itemObservableList;
+    private String lastInsertedObject;
 
     public void setItemObservableList(){
          itemObservableList = FXCollections.observableArrayList();
@@ -47,6 +48,14 @@ public class Singleton {
 
     public String getLoggedInName() {
         return loggedInAccount.getUserName();
+    }
+
+    public void setLastInsertedObject(String lastInsertedObject) {
+        this.lastInsertedObject = lastInsertedObject;
+    }
+
+    public String getLastInsertedObject() {
+        return lastInsertedObject;
     }
 
     public void setLoggedInAccount(Account loggedInAccount) {

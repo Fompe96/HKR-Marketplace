@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.GaussianBlur;
@@ -21,7 +22,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URL;
@@ -42,12 +42,14 @@ public class SettingsController implements Initializable {
     private Pane profilePicturePane;
     @FXML
     private Pane changePasswordPane;
+    @FXML
+    private Button adminButton;
     private double x, y;
 
     private File file;
 
     @FXML
-    private ImageView imageToUpload;
+    private ImageView imageToUpload, adminview;
 
     @FXML
     private void handleClosingButton() {
@@ -98,11 +100,18 @@ public class SettingsController implements Initializable {
         SceneChanger.changeScene("../Views/Sell.fxml");
     }
 
+    @FXML
+    private void handleAdminButton() {
+        SceneChanger.changeScene("../Views/Administration.fxml");
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Singleton.getInstance().setLoggedInAccount(DBHandler.getUserInformation(Singleton.getInstance().getLoggedInEmail()));
         loggedInAs.setText(Singleton.getInstance().getLoggedInName());
-        DBHandler.getConnection();
+        if (Singleton.getInstance().getLoggedInAccount().isAdmin()) {
+            adminview.setVisible(true);
+            adminButton.setDisable(false);
+        }
         try {
             getProfilePicture();
         } catch (NullPointerException | SQLException ignored) {
@@ -110,6 +119,11 @@ public class SettingsController implements Initializable {
     }
 
     private void getProfilePicture() throws SQLException {
+        InputStream imageFile = Singleton.getInstance().getLoggedInAccount().getPicture().getBinaryStream();
+        Image image = new Image(imageFile);
+        imageToUpload.setImage(image);
+
+        /*  This code can be replaced with code above since the picture is already stored in the Account object in the Singleton.
         String email = Singleton.getInstance().getLoggedInEmail();
         String SQL = "select Picture from account where Email = ?;";
         PreparedStatement pstmt = DBHandler.getConnection().prepareStatement(SQL);
@@ -121,6 +135,8 @@ public class SettingsController implements Initializable {
             imageToUpload.setImage(image);
         }
         DBHandler.closeConnection();
+
+         */
     }
 
     @FXML
