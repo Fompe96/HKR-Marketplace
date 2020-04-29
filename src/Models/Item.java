@@ -20,12 +20,12 @@ public class Item {
     private File imageFile;
     private Blob picture;
     private ImageView photo;
-    private String owner;
+    private SimpleStringProperty owner;
 
     public Item(){
     }
 
-    public Item(Integer id, String name, double price, String description, String condition, String category, Blob picture) {   // Constructor used when creating retrieved items.
+    public Item(Integer id, String name, double price, String description, String condition, String category, Blob picture, String ownerEmail) {   // Constructor used when creating retrieved items.
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
         this.price = new SimpleDoubleProperty(price);
@@ -33,16 +33,17 @@ public class Item {
         this.condition = new SimpleStringProperty(condition);
         this.category = new SimpleStringProperty(category);
         this.picture = picture;
+        this.owner = new SimpleStringProperty(ownerEmail);
     }
 
-    public Item(String name, Double price, String description, String condition, String category, File imageFile, String owner) { // Constructor used when creating new items to be inserted into DB.
+    public Item(String name, Double price, String description, String condition, String category, File imageFile, String ownerEmail) { // Constructor used when creating new items to be inserted into DB.
         this.name = new SimpleStringProperty(name);
         this.price = new SimpleDoubleProperty(price);
         this.description = new SimpleStringProperty(description);
         this.condition = new SimpleStringProperty(condition);
         this.category = new SimpleStringProperty(category);
         this.imageFile = imageFile;
-        this.owner = owner;
+        this.owner = new SimpleStringProperty(ownerEmail);
     }
 
     public int getId() {
@@ -86,7 +87,7 @@ public class Item {
     }
 
     public String getOwner() {
-        return owner;
+        return owner.get();
     }
 
     public void setId(int id) {

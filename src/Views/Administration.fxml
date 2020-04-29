@@ -18,19 +18,19 @@
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="1235.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdministrationController">
    <children>
-      <Pane layoutX="266.0" layoutY="78.0" prefHeight="579.0" prefWidth="703.0">
+      <Pane layoutX="230.0" layoutY="78.0" prefHeight="579.0" prefWidth="775.0">
          <children>
-            <Button fx:id="editItems" layoutX="350.0" layoutY="4.0" minHeight="35.0" mnemonicParsing="false" onAction="#handleEditItemsButton" prefWidth="325.0" style="-fx-background-color: #46ab57; -fx-background-radius: 0;" text="Edit Sales" textFill="#e8e8e8">
+            <Button fx:id="editItems" layoutX="388.0" layoutY="5.0" minHeight="35.0" mnemonicParsing="false" onAction="#handleEditItemsButton" prefWidth="375.0" style="-fx-background-color: #46ab57; -fx-background-radius: 0;" text="Edit Sales" textFill="#e8e8e8">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="editAccounts" layoutX="25.0" layoutY="4.0" minHeight="35.0" mnemonicParsing="false" onAction="#handleEditAccountsButton" prefWidth="325.0" style="-fx-background-color: #46ab57; -fx-background-radius: 0;" text="Edit Accounts" textFill="#e8e8e8">
+            <Button fx:id="editAccounts" layoutX="13.0" layoutY="5.0" minHeight="35.0" mnemonicParsing="false" onAction="#handleEditAccountsButton" prefWidth="375.0" style="-fx-background-color: #46ab57; -fx-background-radius: 0;" text="Edit Accounts" textFill="#e8e8e8">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <TableView fx:id="itemTableView" editable="true" layoutX="25.0" layoutY="40.0" prefHeight="530.0" prefWidth="650.0" visible="false">
+            <TableView fx:id="itemTableView" editable="true" layoutX="13.0" layoutY="40.0" prefHeight="530.0" prefWidth="750.0">
                <columns>
                   <TableColumn fx:id="id" prefWidth="31.0" text="ID" />
                   <TableColumn fx:id="itemName" prefWidth="107.0" text="Name" />
@@ -39,15 +39,16 @@
                   <TableColumn fx:id="condition" prefWidth="105.0" text="Condition" />
                   <TableColumn fx:id="category" prefWidth="111.0" text="Category" />
                   <TableColumn fx:id="picture" minWidth="9.0" prefWidth="109.0" text="Picture" />
+                  <TableColumn fx:id="owner" prefWidth="102.0" text="Owner" />
                </columns>
             </TableView>
-            <TableView fx:id="accountsTableView" editable="true" layoutX="25.0" layoutY="40.0" prefHeight="530.0" prefWidth="650.0" visible="false">
+            <TableView fx:id="accountsTableView" editable="true" layoutX="14.0" layoutY="40.0" prefHeight="530.0" prefWidth="750.0" visible="false">
               <columns>
-                <TableColumn fx:id="username" prefWidth="118.0" text="Username" />
-                <TableColumn fx:id="password" prefWidth="148.0" text="Password" />
-                  <TableColumn fx:id="email" prefWidth="187.0" text="Email" />
-                  <TableColumn fx:id="admin" prefWidth="85.0" text="Admin" />
-                  <TableColumn fx:id="accpicture" prefWidth="110.0" text="Picture" />
+                <TableColumn fx:id="username" prefWidth="151.0" text="Username" />
+                <TableColumn fx:id="password" prefWidth="149.0" text="Password" />
+                  <TableColumn fx:id="email" prefWidth="173.0" text="Email" />
+                  <TableColumn fx:id="admin" prefWidth="86.0" text="Admin" />
+                  <TableColumn fx:id="accpicture" prefWidth="189.0" text="Picture" />
               </columns>
             </TableView>
          </children>

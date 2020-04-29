@@ -91,7 +91,7 @@ public abstract class DBHandler extends DBConfig {
             try (ResultSet resultSet = statement.executeQuery()) {
                 ObservableList<Item> items = FXCollections.observableArrayList();
                 while (resultSet.next()) {
-                    items.add(new Item(resultSet.getInt(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getBlob(7)));
+                    items.add(new Item(resultSet.getInt(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getBlob(7), resultSet.getString(8)));
                 }
                 return items;
             }
