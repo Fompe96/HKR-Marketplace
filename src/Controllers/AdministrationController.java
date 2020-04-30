@@ -75,7 +75,6 @@ public class AdministrationController implements Initializable {
         retrieveItems();
         setupColumns();
         determineTableToLoad();
-        //handleEditAccountsButton(); // Default selected choice
         handleToolTip();
         sellButton.setCursor(Cursor.HAND);
         settingsButton.setCursor(Cursor.HAND);
