@@ -79,11 +79,12 @@ public class LoginController implements Initializable {
                 ftSecond.play();
                 Platform.runLater(() -> root.requestFocus());
                 handleToolTip();
-                loginButton.setCursor(Cursor.HAND);
+
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        loginButton.setCursor(Cursor.HAND);
     }
 
     private void handleToolTip() {

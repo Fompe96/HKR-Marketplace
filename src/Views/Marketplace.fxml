@@ -69,7 +69,7 @@
       <Circle fill="#fc2b2b" layoutX="1217.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
       <Button fx:id="closingButton" focusTraversable="false" layoutX="1209.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
       <Button fx:id="minimizeButton" focusTraversable="false" layoutX="1185.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
-      <Button layoutX="1069.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleLogOutButton" styleClass="regularbutton" text="Logout" />
+      <Button fx:id="logOutButton" layoutX="1069.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleLogOutButton" styleClass="regularbutton" text="Logout" />
       <TableView fx:id="table" layoutX="200.0" layoutY="131.0" prefHeight="433.0" prefWidth="590.0" styleClass="marketplaceTableView" stylesheets="@../Resources/CSS.css">
         <columns>
           <TableColumn fx:id="pic" prefWidth="192.800048828125" styleClass="marketplaceTableColumn" />
