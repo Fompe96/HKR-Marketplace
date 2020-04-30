@@ -50,8 +50,8 @@
                   <Image url="@../Resources/sell.png" />
                </image>
             </ImageView>
-            <Button layoutX="13.0" layoutY="138.0" mnemonicParsing="false" onAction="#sellButton" opacity="0.0" prefHeight="35.0" prefWidth="35.0" />
-            <Button layoutX="12.0" layoutY="92.0" mnemonicParsing="false" onAction="#handleMarketButton" opacity="0.0" prefHeight="35.0" prefWidth="35.0" />
+            <Button fx:id="sellButton" layoutX="13.0" layoutY="138.0" mnemonicParsing="false" onAction="#sellButton" opacity="0.0" prefHeight="35.0" prefWidth="35.0" />
+            <Button fx:id="marketButton" layoutX="12.0" layoutY="92.0" mnemonicParsing="false" onAction="#handleMarketButton" opacity="0.0" prefHeight="35.0" prefWidth="35.0" />
          </children>
       </Pane>
       <Circle fill="#0073ff" layoutX="1193.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />

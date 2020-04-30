@@ -9,6 +9,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -43,7 +44,7 @@ public class SettingsController implements Initializable {
     @FXML
     private Pane changePasswordPane;
     @FXML
-    private Button adminButton;
+    private Button adminButton, sellButton, marketButton;
     private double x, y;
 
     private File file;
@@ -116,6 +117,13 @@ public class SettingsController implements Initializable {
             getProfilePicture();
         } catch (NullPointerException | SQLException ignored) {
         }
+        handleCursor();
+    }
+
+    private void handleCursor() {
+        adminButton.setCursor(Cursor.HAND);
+        sellButton.setCursor(Cursor.HAND);
+        marketButton.setCursor(Cursor.HAND);
     }
 
     private void getProfilePicture() throws SQLException {

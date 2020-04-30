@@ -242,7 +242,7 @@ public class AdministrationController implements Initializable {
 
     @FXML
     private void handleUpdateButton() {
-        // Here for the memes?
+        // Will be used in the future
     }
 
     @FXML
