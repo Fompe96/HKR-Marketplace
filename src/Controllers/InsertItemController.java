@@ -1,7 +1,9 @@
 package Controllers;
 
+import Database.DBHandler;
 import Models.Item;
 import Models.MessageHandler;
+import Models.SceneChanger;
 import Models.Singleton;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -136,7 +138,11 @@ public class InsertItemController implements Initializable {
             if (pricefield.getText().matches("[0-9]+") && Double.parseDouble(pricefield.getText()) > 29) {
                 if (imageFile != null) {
                     Item createdItem = new Item(namefield.getText(), Double.parseDouble(pricefield.getText()), descriptionarea.getText(), selectedCondition, selectedCategory, imageFile, Singleton.getInstance().getLoggedInEmail());
-                    // Call insert method in DBHandler to actually insert the item.
+                    DBHandler.insertItemIntoDB(createdItem);
+                    MessageHandler.getInformationAlert("Success", "Success", "The account was successfully added to the database!").showAndWait();
+                    Singleton.getInstance().setLastInsertedObject("Item");
+                    SceneChanger.changeScene("../Views/Administration.fxml"); // Might replace by transfering the added account to tableview later
+                    handleClosingButton();
                 } else {
                     MessageHandler.getErrorAlert("Error", "Error", "You have to choose a picture of your item.").showAndWait();
                 }
