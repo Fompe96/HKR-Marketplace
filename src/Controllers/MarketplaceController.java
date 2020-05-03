@@ -140,12 +140,9 @@ public class MarketplaceController implements Initializable {
         fetchItemsFromDB();
         System.out.println(items.get(1).toString());
        for (Item item : items) {
-           if (item.getImageFile() != null) {
-               System.out.println("Hej");
-               item.setImage(item.getImageFile());
 
-           } else
-               System.out.println("fel");
+               item.setImage();
+
            if (item.getImage() != null) {
                System.out.println("hejdå");
                item.setImageView(item.getImage());

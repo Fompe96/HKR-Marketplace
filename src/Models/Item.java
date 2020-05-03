@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.File;
+import java.io.InputStream;
 import java.sql.Blob;
 
 public class Item {
@@ -125,8 +126,13 @@ public class Item {
         this.photo = photo;
     }
 
-    public void setImage(File File) {
-        this.image = new Image(File.getPath());
+    public void setImage() {
+        if(picture != null) {
+          //  this.image = new Image((InputStream) picture);
+        }
+        else{
+            System.out.println("Cannot find picture");
+        }
     }
 
     public void setImageView(Image image){
