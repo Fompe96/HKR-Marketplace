@@ -7,10 +7,7 @@ import Models.MessageHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -231,7 +228,13 @@ public abstract class DBHandler extends DBConfig {
     }
 
     private File convertBlobToFile(Blob blob) {
-
+        try {
+            byte[] bytes = blob.getBytes(1, (int) blob.length());
+            File imageFile = File.createTempFile("ImageTempFile", ".bin");
+            return null;
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }
