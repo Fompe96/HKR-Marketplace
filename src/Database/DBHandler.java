@@ -229,6 +229,11 @@ public abstract class DBHandler extends DBConfig {
         EmailSender.sendEmail(userEmail, "Your new account", "Welcome to HKR Marketplace! Here are your account details. \n \n" +
                 "Username: " + userName + "\n" + "Password: " + userPassword + "\n" + "Account-Email: " + userEmail);
     }
+
+    private File convertBlobToFile(Blob blob) {
+
+        return null;
+    }
 }
 
 //"jdbc:mysql://den1.mysql6.gear.host/hkrmarketplace", "hkrmarketplace", "Ez0ezh-~e3pf");gear.host/hkrmarketplace", "hkrmarketplace", "Ez0ezh-~e3pf");
