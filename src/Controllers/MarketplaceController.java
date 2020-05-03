@@ -5,6 +5,7 @@ import Models.Item;
 import Models.SceneChanger;
 import Models.Singleton;
 import Models.ToolTipHandler;
+import com.mysql.jdbc.Blob;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -38,7 +40,7 @@ public class MarketplaceController implements Initializable {
     private TableView<Item> table;
 
     @FXML
-    private TableColumn<Item, ImageView> pic;
+    private TableColumn<Item, Image> pic;
 
     @FXML
     private TableColumn<Item, String> title;
@@ -136,17 +138,38 @@ public class MarketplaceController implements Initializable {
 
     private void initializeTable() {
         fetchItemsFromDB();
-        pic.setCellValueFactory(new PropertyValueFactory<>("photo"));
-        title.setCellValueFactory(new PropertyValueFactory<>("name"));
-        price.setCellValueFactory(new PropertyValueFactory<>("price"));
-        for (Item item : items) {
+        pic.setCellFactory(param -> {
+            //Set up the ImageView
+            final ImageView imageview = new ImageView();
+            imageview.setFitHeight(50);
+            imageview.setFitWidth(50);
+
+            //Set up the Table
+            TableCell<Item, Image> cell = new TableCell<Item, Image>() {
+                public void updateItem(Image item, boolean empty) {
+                    if (item != null) {
+                        imageview.setImage(item);
+                    }
+                }
+            };
+            // Attach the imageview to the cell
+            cell.setGraphic(imageview);
+            return cell;
+        });
+
+       /* for (Item item : items) {
             if (item.getImageFile() != null) {
                 ImageView photo = new ImageView(new Image(this.getClass().getResourceAsStream(item.getImageFile().getPath())));
                 photo.setFitHeight(70);
                 photo.setFitWidth(70);
                 item.setPhoto(photo);
             }
-        }
+        } */
+
+
+        pic.setCellValueFactory(new PropertyValueFactory<>("pic"));
+        title.setCellValueFactory(new PropertyValueFactory<>("name"));
+        price.setCellValueFactory(new PropertyValueFactory<>("price"));
         table.setItems(items);
     }
 
