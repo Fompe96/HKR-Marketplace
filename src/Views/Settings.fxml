@@ -61,7 +61,6 @@
       <Pane fx:id="profilePicturePane" layoutX="97.0" layoutY="50.0" prefHeight="600.0" prefWidth="589.0" style="-fx-background-color: #242424;">
          <children>
             <Circle fill="GREY" layoutX="295.0" layoutY="183.0" radius="100.0" stroke="#6ea5ff" strokeType="INSIDE" strokeWidth="3.0" />
-            <Button layoutX="498.0" layoutY="561.0" mnemonicParsing="false" style="-fx-background-color: gray; -fx-border-color: #46ab57;" text="Light mode" />
             <Line endX="59.5" layoutX="101.0" layoutY="183.0" startX="-100.0" stroke="WHITE" />
             <Line endX="59.5" layoutX="529.0" layoutY="184.0" startX="-100.0" stroke="WHITE" />
             <ImageView fitHeight="134.0" fitWidth="135.0" layoutX="229.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
@@ -78,6 +77,12 @@
                   <Font name="Arial" size="34.0" />
                </font>
             </Label>
+            <Text fill="#46ab57" layoutX="237.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile Rating">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Text>
+            <Label layoutX="286.0" layoutY="434.0" text="6.9" textFill="WHITE" />
          </children>
       </Pane>
       <Pane fx:id="changePasswordPane" layoutX="724.0" layoutY="50.0" prefHeight="287.0" prefWidth="469.0" style="-fx-background-color: #242424;">
@@ -100,5 +105,6 @@
          </image>
       </ImageView>
       <Button fx:id="adminButton" disable="true" layoutX="10.0" layoutY="551.0" mnemonicParsing="false" onAction="#handleAdminButton" opacity="0.0" prefHeight="40.0" prefWidth="40.0" />
+      <Button layoutX="1138.0" layoutY="623.0" mnemonicParsing="false" style="-fx-background-color: gray; -fx-border-color: #46ab57;" text="Light mode" />
    </children>
 </AnchorPane>
