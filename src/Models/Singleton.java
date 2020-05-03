@@ -21,6 +21,7 @@ public class Singleton {
     private Item item;
     private ObservableList<Item> itemObservableList;
     private String lastInsertedObject;
+    private Object objectToEdit;
 
     public void setItemObservableList(){
          itemObservableList = FXCollections.observableArrayList();
@@ -56,6 +57,14 @@ public class Singleton {
 
     public String getLastInsertedObject() {
         return lastInsertedObject;
+    }
+
+    public void setObjectToEdit(Object objectToEdit) {
+        this.objectToEdit = objectToEdit;
+    }
+
+    public Object getObjectToEdit() {
+        return objectToEdit;
     }
 
     public void setLoggedInAccount(Account loggedInAccount) {
