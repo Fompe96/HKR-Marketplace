@@ -51,9 +51,9 @@ public class MarketplaceController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-       // imageView.setImage(new Image("https://usercontent1.hubstatic.com/11310434_f520.jpg"));
-       // imageView1.setImage(new Image("https://www.kattkompaniet.nu/images/5.63.1606161417/kattleksaker-fatcat.jpeg"));
-       // System.out.println("The user who just logged in is: " + Singleton.getInstance().getLoggedInAccount()); // This is here for testing purposes!
+        // imageView.setImage(new Image("https://usercontent1.hubstatic.com/11310434_f520.jpg"));
+        // imageView1.setImage(new Image("https://www.kattkompaniet.nu/images/5.63.1606161417/kattleksaker-fatcat.jpeg"));
+        // System.out.println("The user who just logged in is: " + Singleton.getInstance().getLoggedInAccount()); // This is here for testing purposes!
 
         initializeTable();
 
@@ -83,7 +83,7 @@ public class MarketplaceController implements Initializable {
     }
 
     @FXML
-    private void handleLogOutButton(){
+    private void handleLogOutButton() {
         SceneChanger.changeScene("../Views/Login.fxml");
     }
 
@@ -126,10 +126,10 @@ public class MarketplaceController implements Initializable {
         SceneChanger.changeScene("../Views/Administration.fxml");
     }
 
-    private void handleClickOnItem(){
+    private void handleClickOnItem() {
         table.setOnMouseClicked((MouseEvent event) -> {
             if (event.getClickCount() > 1) {
-                if (table.getSelectionModel().getSelectedItem() != null){
+                if (table.getSelectionModel().getSelectedItem() != null) {
                     System.out.println(table.getSelectionModel().getSelectedItem().getName());
                 }
             }
@@ -139,21 +139,17 @@ public class MarketplaceController implements Initializable {
     private void initializeTable() {
         fetchItemsFromDB();
         System.out.println(items.get(1).toString());
-       for (Item item : items) {
+        for (Item item : items) {
 
-               item.setImage();
+            if (item.getImage() != null) {
+                System.out.println("hejdå");
+                item.setPic(item.getImage());   // Här sätter jag varje objekts imageview till dens aktuella bild
 
-           if (item.getImage() != null) {
-               System.out.println("hejdå");
-               item.setImageView(item.getImage());
-
-           } else{
-               System.out.println("fel 2");
-       }
+            } else {
+                System.out.println("fel 2");
+            }
 
         }
-
-
         pic.setCellValueFactory(new PropertyValueFactory<>("pic"));
         title.setCellValueFactory(new PropertyValueFactory<>("name"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));

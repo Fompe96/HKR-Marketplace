@@ -7,21 +7,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.File;
 import java.net.URL;
-import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -48,7 +44,7 @@ public class AdministrationController implements Initializable {
     @FXML
     private TableColumn<Account, Boolean> admin;
     @FXML
-    private TableColumn<Account, Blob> accpicture;
+    private TableColumn<Account, File> accpicture;
 
     @FXML
     private TableView<Item> itemTableView;
@@ -65,7 +61,7 @@ public class AdministrationController implements Initializable {
     @FXML
     private TableColumn<Item, String> category;
     @FXML
-    private TableColumn<Item, Blob> picture;
+    private TableColumn<Item, File> picture;
     @FXML
     private TableColumn<Item, String> owner;
 
@@ -136,7 +132,7 @@ public class AdministrationController implements Initializable {
         password.setCellValueFactory(new PropertyValueFactory<>("Password"));
         email.setCellValueFactory(new PropertyValueFactory<>("Email"));
         admin.setCellValueFactory(new PropertyValueFactory<>("Admin"));
-        accpicture.setCellValueFactory(new PropertyValueFactory<>("Picture"));
+        accpicture.setCellValueFactory(new PropertyValueFactory<>("imageFile"));
         accountsTableView.setItems(accounts);
         accountsTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE); // Allows for multiple rows to be selected
         // Sales Columns
@@ -146,7 +142,7 @@ public class AdministrationController implements Initializable {
         description.setCellValueFactory(new PropertyValueFactory<>("Description"));
         condition.setCellValueFactory(new PropertyValueFactory<>("Condition"));
         category.setCellValueFactory(new PropertyValueFactory<>("Category"));
-        picture.setCellValueFactory(new PropertyValueFactory<>("Picture"));
+        picture.setCellValueFactory(new PropertyValueFactory<>("imageFile"));
         owner.setCellValueFactory(new PropertyValueFactory<>("Owner"));
         itemTableView.setItems(items);
         itemTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);

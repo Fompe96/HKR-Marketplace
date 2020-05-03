@@ -7,8 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.File;
-import java.io.InputStream;
-import java.sql.Blob;
 
 public class Item {
 
@@ -20,27 +18,15 @@ public class Item {
     private SimpleStringProperty condition;
     private SimpleStringProperty category;
     private File imageFile;
-    private Image image;
-    private ImageView imageView;
-    private Blob picture;
-    private ImageView photo;
     private SimpleStringProperty owner;
+    private ImageView pic; // Used to show the imageFile in tableview
 
-    public Item(){
+    public Item() {
+
     }
 
-    public Item(Integer id, String name, double price, String description, String condition, String category, Blob picture, String ownerEmail) {   // Constructor used when creating retrieved items.
+    public Item(int id, String name, Double price, String description, String condition, String category, File imageFile, String ownerEmail) {
         this.id = new SimpleIntegerProperty(id);
-        this.name = new SimpleStringProperty(name);
-        this.price = new SimpleDoubleProperty(price);
-        this.description = new SimpleStringProperty(description);
-        this.condition = new SimpleStringProperty(condition);
-        this.category = new SimpleStringProperty(category);
-        this.picture = picture;
-        this.owner = new SimpleStringProperty(ownerEmail);
-    }
-
-    public Item(String name, Double price, String description, String condition, String category, File imageFile, String ownerEmail) { // Constructor used when creating new items to be inserted into DB.
         this.name = new SimpleStringProperty(name);
         this.price = new SimpleDoubleProperty(price);
         this.description = new SimpleStringProperty(description);
@@ -82,12 +68,8 @@ public class Item {
         return category.get();
     }
 
-    public ImageView getPhoto() {
-        return photo;
-    }
-
-    public Blob getPicture() {
-        return picture;
+    public ImageView getPic() {
+        return pic;
     }
 
     public String getOwner() {
@@ -118,38 +100,16 @@ public class Item {
         this.category = new SimpleStringProperty(category);
     }
 
-    public void setPicture(Blob picture) {
-        this.picture = picture;
+
+    public void setPic(Image image) {
+        this.pic = new ImageView(image);
+        this.pic.setFitHeight(130);
+        this.pic.setFitWidth(175);
     }
 
-    public void setPhoto(ImageView photo) {
-        this.photo = photo;
+    public Image getImage() {
+        return new Image(getImageFile().toURI().toString());
     }
-
-    public void setImage() {
-        if(picture != null) {
-          //  this.image = new Image((InputStream) picture);
-        }
-        else{
-            System.out.println("Cannot find picture");
-        }
-    }
-
-    public void setImageView(Image image){
-        this.imageView = new ImageView(image);
-    }
-
-    public Image getImage(){
-        return image;
-    }
-
-    public ImageView getImageView(){
-        return imageView;
-    }
-
-
-
-
 
     @Override
     public String toString() {
@@ -159,7 +119,6 @@ public class Item {
                 ", description='" + getDescription() + '\'' +
                 ", condition='" + getCondition() + '\'' +
                 ", category='" + getCategory() + '\'' +
-                ", picture='" + getPicture() + '\'' +
                 ", imageFile='" + getImageFile() + '\'' +
                 ", owner='" + getOwner() + '\'' +
                 '}';

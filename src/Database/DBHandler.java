@@ -35,7 +35,7 @@ public abstract class DBHandler extends DBConfig {
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     resultSet.first();
-                    return new Account(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getBoolean(4), resultSet.getBlob(5));
+                    return new Account(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getBoolean(4), convertBlobToFile(resultSet.getBlob(5)));
                 } else {
                     return null;
                 }
@@ -64,7 +64,7 @@ public abstract class DBHandler extends DBConfig {
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
                     resultSet.first();
-                    return new Account(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getBoolean(4), resultSet.getBlob(5));
+                    return new Account(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getBoolean(4), convertBlobToFile(resultSet.getBlob(5)));
                 } else {
                     return null;
                 }
@@ -81,7 +81,7 @@ public abstract class DBHandler extends DBConfig {
             try (ResultSet resultSet = statement.executeQuery()) {
                 ObservableList<Account> accounts = FXCollections.observableArrayList();
                 while (resultSet.next()) {
-                    accounts.add(new Account(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getBoolean(4), resultSet.getBlob(5)));
+                    accounts.add(new Account(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getBoolean(4), convertBlobToFile(resultSet.getBlob(5))));
                 }
                 return accounts;
             }
@@ -97,7 +97,8 @@ public abstract class DBHandler extends DBConfig {
             try (ResultSet resultSet = statement.executeQuery()) {
                 ObservableList<Item> items = FXCollections.observableArrayList();
                 while (resultSet.next()) {
-                    items.add(new Item(resultSet.getInt(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getBlob(7), resultSet.getString(8)));
+                    items.add(new Item(resultSet.getInt(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getString(4),
+                            resultSet.getString(5), resultSet.getString(6), convertBlobToFile(resultSet.getBlob(7)), resultSet.getString(8)));
                 }
                 return items;
             }
@@ -173,8 +174,8 @@ public abstract class DBHandler extends DBConfig {
             if (account.getImage() == null) {
                 statement.setBinaryStream(5, null);
             } else {
-                FileInputStream fis = new FileInputStream(account.getImage());
-                statement.setBinaryStream(5, fis, (int) account.getImage().length());
+                FileInputStream fis = new FileInputStream(account.getImageFile());
+                statement.setBinaryStream(5, fis, (int) account.getImageFile().length());
             }
             statement.executeUpdate();
         } catch (SQLException | FileNotFoundException e) {
@@ -226,23 +227,27 @@ public abstract class DBHandler extends DBConfig {
         EmailSender.sendEmail(userEmail, "Your new account", "Welcome to HKR Marketplace! Here are your account details. \n \n" +
                 "Username: " + userName + "\n" + "Password: " + userPassword + "\n" + "Account-Email: " + userEmail);
     }
-
-    private File convertBlobToFile(Blob blob) {
-        File imageFile = null;
-        try {
-            byte[] bytes = blob.getBytes(1, (int) blob.length());
-            imageFile = File.createTempFile("ImageTempFile", ".bin");
-            try (FileOutputStream fos = new FileOutputStream(imageFile)) {
-                fos.write(bytes);
+    // Method used to convert the retrieved blobs into File objects used by the model class constructors.
+    private static File convertBlobToFile(Blob blob) {
+        if (blob != null) {
+            File imageFile = null;
+            try {
+                byte[] bytes = blob.getBytes(1, (int) blob.length());
+                imageFile = File.createTempFile("ImageTempFile", ".bin");
+                try (FileOutputStream fos = new FileOutputStream(imageFile)) {
+                    fos.write(bytes);
+                }
+            } catch (SQLException | IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (imageFile != null) {
+                    imageFile.deleteOnExit();
+                }
             }
-        } catch (SQLException | IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (imageFile != null) {
-                imageFile.deleteOnExit();
-            }
+            return imageFile;
+        } else {
+            return null;
         }
-        return imageFile;
     }
 
 }
