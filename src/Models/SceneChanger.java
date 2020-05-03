@@ -12,7 +12,6 @@ import java.io.IOException;
 public abstract class SceneChanger {
 
     private static Stage programStage;
-    private static Stage popupStage;
 
     public static void changeScene(String path) {
         try {
@@ -31,14 +30,28 @@ public abstract class SceneChanger {
         SceneChanger.programStage = programStage;
     }
 
-    public static Stage getPopupStage() {
-        if (popupStage == null) {
-            popupStage = new Stage();
-            popupStage.initModality(Modality.APPLICATION_MODAL);
-            popupStage.initOwner(SceneChanger.programStage);
-            popupStage.setResizable(false);
-            popupStage.initStyle(StageStyle.TRANSPARENT);
-        }
+
+    private static Stage createPopupStage() {
+        Stage popupStage = new Stage();
+        popupStage.initModality(Modality.APPLICATION_MODAL);
+        popupStage.initOwner(SceneChanger.programStage);
+        popupStage.setResizable(false);
+        popupStage.initStyle(StageStyle.TRANSPARENT);
         return popupStage;
+    }
+
+    // Method used to create popup scenes throughout the program
+    public static void createPopupWindow(String fxmlPath) {
+        try {
+            Stage popupStage = createPopupStage();
+            Parent root = FXMLLoader.load(SceneChanger.class.getResource(fxmlPath));
+            Scene insertAccountScene = new Scene(root);
+            insertAccountScene.getStylesheets().add("Resources/CSS.css");
+            popupStage.setScene(insertAccountScene);
+            popupStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            MessageHandler.getErrorAlert("Error", "Error", "Error creating a new popup stage.").showAndWait();
+        }
     }
 }

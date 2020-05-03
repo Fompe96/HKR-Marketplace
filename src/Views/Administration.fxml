@@ -117,7 +117,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="25.0" layoutY="75.0" minHeight="50.0" mnemonicParsing="false" prefWidth="150.0" styleClass="regularbutton" text="Update">
+            <Button layoutX="25.0" layoutY="75.0" minHeight="50.0" mnemonicParsing="false" onAction="#handleEditButton" prefWidth="150.0" styleClass="regularbutton" text="Edit">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

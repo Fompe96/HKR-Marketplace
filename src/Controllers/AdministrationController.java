@@ -215,34 +215,33 @@ public class AdministrationController implements Initializable {
     }
 
     private void loadInsertAccountView() {
-        Stage popupStage = SceneChanger.getPopupStage();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("../Views/insertAccount.fxml"));
-            Scene insertAccountScene = new Scene(root);
-            insertAccountScene.getStylesheets().add("Resources/CSS.css");
-            popupStage.setScene(insertAccountScene);
-            popupStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        SceneChanger.createPopupWindow("../Views/insertAccount.fxml");
     }
 
     private void loadInsertItemView() {
-        Stage popupStage = SceneChanger.getPopupStage();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("../Views/insertItem.fxml"));
-            Scene insertItemScene = new Scene(root);
-            insertItemScene.getStylesheets().add("Resources/CSS.css");
-            popupStage.setScene(insertItemScene);
-            popupStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        SceneChanger.createPopupWindow("../Views/insertItem.fxml");
     }
 
     @FXML
-    private void handleUpdateButton() {
-        // Will be used in the future
+    private void handleEditButton() {
+        if (accountsTableActive) {
+            if (accountsTableView.getSelectionModel().getSelectedItems().size() == 1) {
+                Account account = accountsTableView.getSelectionModel().getSelectedItem();
+                Singleton.getInstance().setObjectToEdit(account);
+                SceneChanger.createPopupWindow("../Views/AdminEdit.fxml");
+            } else {
+                MessageHandler.getErrorAlert("Error", "Error", "You have to select 1 account in the list in order to edit.").showAndWait();
+            }
+
+        } else {
+            if (itemTableView.getSelectionModel().getSelectedItems().size() == 1) {
+                Item item = itemTableView.getSelectionModel().getSelectedItem();
+                Singleton.getInstance().setObjectToEdit(item);
+                SceneChanger.createPopupWindow("../Views/AdminEdit.fxml");
+            } else {
+                MessageHandler.getErrorAlert("Error", "Error", "You have to select 1 item in the list in order to edit.").showAndWait();
+            }
+        }
     }
 
     @FXML

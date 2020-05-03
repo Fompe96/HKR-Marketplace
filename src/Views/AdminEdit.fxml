@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="300.0" prefWidth="800.0" style="-fx-background-color: #3c3c3c;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminEditController">
+   <children>
+      <Pane layoutY="-1.0" prefHeight="30.0" prefWidth="800.0">
+         <children>
+            <HBox layoutY="1.0" onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="30.0" prefWidth="800.0" styleClass="regularWindowBar" />
+            <Circle fill="#0073ff" layoutX="756.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+            <Circle fill="#fc2b2b" layoutX="780.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+            <Button fx:id="closebutton" focusTraversable="false" layoutX="772.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
+            <Button focusTraversable="false" layoutX="748.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="309.0" layoutY="38.0" prefHeight="45.0" prefWidth="182.0">
+         <children>
+            <Label text="Edit" textFill="#dddddd">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="titletext" layoutX="60.0" text="placeholder" textFill="#46ab57">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="editAccountsPane" layoutX="1.0" layoutY="83.0" prefHeight="217.0" prefWidth="800.0" visible="false">
+         <children>
+            <HBox layoutX="9.0" layoutY="30.0" prefHeight="1.0" prefWidth="772.0">
+               <children>
+                  <TextField fx:id="oldnamefield" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="129.0" styleClass="regulartextfield">
+                     <HBox.margin>
+                        <Insets top="32.5" />
+                     </HBox.margin></TextField>
+                  <TextField fx:id="oldpasswordfield" editable="false" focusTraversable="false" styleClass="regulartextfield">
+                     <HBox.margin>
+                        <Insets top="32.5" />
+                     </HBox.margin></TextField>
+                  <TextField fx:id="oldemailfield" editable="false" focusTraversable="false" styleClass="regulartextfield">
+                     <HBox.margin>
+                        <Insets top="32.5" />
+                     </HBox.margin></TextField>
+                  <TextField fx:id="oldadminfield" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="92.0" styleClass="regulartextfield">
+                     <HBox.margin>
+                        <Insets top="32.5" />
+                     </HBox.margin></TextField>
+                  <ImageView fx:id="oldimageview" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <Label layoutX="49.0" layoutY="15.0" text="Name" textFill="#dddddd">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="168.0" layoutY="15.0" text="Password" textFill="#dddddd">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="338.0" layoutY="15.0" text="Email" textFill="#dddddd">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="450.0" layoutY="15.0" text="Admin" textFill="#dddddd">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="637.0" text="Picture" textFill="#dddddd">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="editItemsPane" layoutX="1.0" layoutY="83.0" prefHeight="217.0" prefWidth="800.0">
+         <children>
+            <HBox layoutX="9.0" layoutY="30.0" prefHeight="90.0" prefWidth="772.0">
+               <children>
+                  <TextField fx:id="olditemname" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="113.0" styleClass="regulartextfield">
+                     <HBox.margin>
+                        <Insets top="32.5" />
+                     </HBox.margin>
+                  </TextField>
+                  <TextField fx:id="olditemprice" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="77.0" styleClass="regulartextfield">
+                     <HBox.margin>
+                        <Insets top="32.5" />
+                     </HBox.margin>
+                  </TextField>
+                  <TextArea fx:id="olditemdescription" editable="false" focusTraversable="false" prefHeight="15.0" prefWidth="133.0">
+                     <HBox.margin>
+                        <Insets top="12.0" />
+                     </HBox.margin>
+                  </TextArea>
+                  <TextField fx:id="olditemcondition" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="104.0" styleClass="regulartextfield">
+                     <HBox.margin>
+                        <Insets top="32.5" />
+                     </HBox.margin>
+                  </TextField>
+                  <TextField fx:id="olditemcategory" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="104.0" styleClass="regulartextfield">
+                     <HBox.margin>
+                        <Insets top="32.5" />
+                     </HBox.margin>
+                  </TextField>
+                  <TextField fx:id="olditemowner" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="123.0" styleClass="regulartextfield">
+                     <HBox.margin>
+                        <Insets top="32.5" />
+                     </HBox.margin>
+                  </TextField>
+                  <ImageView fx:id="olditemimageview" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <Label layoutX="40.0" layoutY="15.0" text="Name" textFill="#dddddd">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="131.0" layoutY="15.0" text="Price" textFill="#dddddd">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="336.0" layoutY="15.0" text="Condition" textFill="#dddddd">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="444.0" layoutY="15.0" text="Category" textFill="#dddddd">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="208.0" layoutY="16.0" text="Description" textFill="#dddddd">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="570.0" layoutY="15.0" text="Owner" textFill="#dddddd">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="674.0" layoutY="2.0" text="Picture" textFill="#dddddd">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

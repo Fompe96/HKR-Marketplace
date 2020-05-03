@@ -5,7 +5,7 @@ import Models.Item;
 import Models.SceneChanger;
 import Models.Singleton;
 import Models.ToolTipHandler;
-import com.mysql.jdbc.Blob;
+//import com.mysql.jdbc.Blob;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
