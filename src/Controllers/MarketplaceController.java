@@ -40,7 +40,7 @@ public class MarketplaceController implements Initializable {
     private TableView<Item> table;
 
     @FXML
-    private TableColumn<Item, Image> pic;
+    private TableColumn<Item, ImageView> pic;
 
     @FXML
     private TableColumn<Item, String> title;
@@ -138,13 +138,22 @@ public class MarketplaceController implements Initializable {
 
     private void initializeTable() {
         fetchItemsFromDB();
+        System.out.println(items.get(1).toString());
        for (Item item : items) {
-            if (item.getImageFile() != null) {
-                Image image1 = new Image(String.valueOf(item.getImageFile()),70,70,true,true);
-                ImageView image = new ImageView(image1);
-                pic.getCellObservableValue(item);
+           if (item.getImageFile() != null) {
+               System.out.println("Hej");
+               item.setImage(item.getImageFile());
 
-            }
+           } else
+               System.out.println("fel");
+           if (item.getImage() != null) {
+               System.out.println("hejdå");
+               item.setImageView(item.getImage());
+
+           } else{
+               System.out.println("fel 2");
+       }
+
         }
 
 
