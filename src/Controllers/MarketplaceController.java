@@ -138,33 +138,14 @@ public class MarketplaceController implements Initializable {
 
     private void initializeTable() {
         fetchItemsFromDB();
-        pic.setCellFactory(param -> {
-            //Set up the ImageView
-            final ImageView imageview = new ImageView();
-            imageview.setFitHeight(50);
-            imageview.setFitWidth(50);
-
-            //Set up the Table
-            TableCell<Item, Image> cell = new TableCell<Item, Image>() {
-                public void updateItem(Image item, boolean empty) {
-                    if (item != null) {
-                        imageview.setImage(item);
-                    }
-                }
-            };
-            // Attach the imageview to the cell
-            cell.setGraphic(imageview);
-            return cell;
-        });
-
-       /* for (Item item : items) {
+       for (Item item : items) {
             if (item.getImageFile() != null) {
-                ImageView photo = new ImageView(new Image(this.getClass().getResourceAsStream(item.getImageFile().getPath())));
-                photo.setFitHeight(70);
-                photo.setFitWidth(70);
-                item.setPhoto(photo);
+                Image image1 = new Image(String.valueOf(item.getImageFile()),70,70,true,true);
+                ImageView image = new ImageView(image1);
+                pic.getCellObservableValue(item);
+
             }
-        } */
+        }
 
 
         pic.setCellValueFactory(new PropertyValueFactory<>("pic"));
