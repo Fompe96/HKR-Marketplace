@@ -228,15 +228,23 @@ public abstract class DBHandler extends DBConfig {
     }
 
     private File convertBlobToFile(Blob blob) {
+        File imageFile = null;
         try {
             byte[] bytes = blob.getBytes(1, (int) blob.length());
-            File imageFile = File.createTempFile("ImageTempFile", ".bin");
-            return null;
+            imageFile = File.createTempFile("ImageTempFile", ".bin");
+            try (FileOutputStream fos = new FileOutputStream(imageFile)) {
+                fos.write(bytes);
+            }
         } catch (SQLException | IOException e) {
             e.printStackTrace();
+        } finally {
+            if (imageFile != null) {
+                imageFile.deleteOnExit();
+            }
         }
-        return null;
+        return imageFile;
     }
+
 }
 
 //"jdbc:mysql://den1.mysql6.gear.host/hkrmarketplace", "hkrmarketplace", "Ez0ezh-~e3pf");gear.host/hkrmarketplace", "hkrmarketplace", "Ez0ezh-~e3pf");
