@@ -23,6 +23,8 @@ public class Singleton {
     private String lastInsertedObject;
     private Object objectToEdit;
 
+
+
     public void setItemObservableList(){
          itemObservableList = FXCollections.observableArrayList();
     }

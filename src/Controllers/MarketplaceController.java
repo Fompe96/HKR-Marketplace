@@ -53,7 +53,7 @@ public class MarketplaceController implements Initializable {
         // System.out.println("The user who just logged in is: " + Singleton.getInstance().getLoggedInAccount()); // This is here for testing purposes!
 
         initializeTable();
-
+        handleClickOnItem();
 
         if (Singleton.getInstance().getLoggedInAccount().isAdmin()) {
             adminview.setVisible(true);
@@ -127,7 +127,9 @@ public class MarketplaceController implements Initializable {
         table.setOnMouseClicked((MouseEvent event) -> {
             if (event.getClickCount() > 1) {
                 if (table.getSelectionModel().getSelectedItem() != null) {
-                    System.out.println(table.getSelectionModel().getSelectedItem().getName());
+                    Singleton.getInstance().setItem(table.getSelectionModel().getSelectedItem());
+                    System.out.println(Singleton.getInstance().getItem().getName());
+                    SceneChanger.changeScene("../Views/ItemView.fxml");
                 }
             }
         });
@@ -142,8 +144,6 @@ public class MarketplaceController implements Initializable {
                 System.out.println("hejdå");
                 item.setPic(item.getImage());   // Här sätter jag varje objekts imageview till dens aktuella bild
 
-            } else {
-                System.out.println("fel 2");
             }
 
         }
