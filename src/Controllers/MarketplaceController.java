@@ -23,7 +23,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.io.InputStream;
 import java.net.URL;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class MarketplaceController implements Initializable {
@@ -138,41 +141,36 @@ public class MarketplaceController implements Initializable {
 
     private void initializeTable() {
         fetchItemsFromDB();
-<<<<<<< HEAD
+        System.out.println(items.get(1).toString());
         for (Item item : items) {
             if (item.getImageFile() != null) {
-                Image image1 = new Image(String.valueOf(item.getImageFile()), 70, 70, true, true);
-                ImageView image = new ImageView(image1);
-                pic.getCellObservableValue(item);
-=======
-        System.out.println(items.get(1).toString());
-       for (Item item : items) {
-           if (item.getImageFile() != null) {
-               System.out.println("Hej");
-               item.setImage(item.getImageFile());
+                System.out.println("Hej");
+                item.setImage(item.getImageFile());
 
-           } else
-               System.out.println("fel");
-           if (item.getImage() != null) {
-               System.out.println("hejdå");
-               item.setImageView(item.getImage());
+            } else
+                System.out.println("fel");
+            if (item.getImage() != null) {
+                System.out.println("hejdå");
+                item.setImageView(item.getImage());
 
-           } else{
-               System.out.println("fel 2");
-       }
->>>>>>> 94eb411238f5116625f75aa5f709b337dd98dfed
-
+            } else {
+                System.out.println("fel 2");
+            }
         }
-
-
-        pic.setCellValueFactory(new PropertyValueFactory<>("pic"));
-        title.setCellValueFactory(new PropertyValueFactory<>("name"));
-        price.setCellValueFactory(new PropertyValueFactory<>("price"));
-        table.setItems(items);
     }
 
     private void fetchItemsFromDB() {
         items = DBHandler.retrieveAllSales();
+    }
+
+    private Image convertBlobToImage(Blob blob) {
+        try {
+            InputStream is = blob.getBinaryStream();
+            return new Image(is);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

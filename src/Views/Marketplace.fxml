@@ -77,5 +77,6 @@
             <TableColumn fx:id="price" minWidth="0.0" prefWidth="175.20004882812498" styleClass="marketplaceTableColumn" />
         </columns>
       </TableView>
+      <ImageView fx:id="testImage" fitHeight="150.0" fitWidth="200.0" layoutX="869.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
