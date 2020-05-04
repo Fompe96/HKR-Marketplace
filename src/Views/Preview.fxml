@@ -10,15 +10,15 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PreviewController">
    <children>
-      <Button layoutX="674.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="30.0" prefWidth="69.0" styleClass="regularbutton" text="Back" />
+      <Button layoutX="541.0" layoutY="431.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="30.0" prefWidth="69.0" styleClass="regularbutton" text="Back" />
       <Label layoutX="344.0" layoutY="22.0" text="PREVIEW" textFill="#e8e8e8">
          <font>
             <Font size="28.0" />
          </font>
       </Label>
-      <Label fx:id="label1" layoutX="44.0" layoutY="113.0" prefHeight="30.0" prefWidth="152.0" text="1" textFill="WHITE" />
-      <Label fx:id="label2" layoutX="271.0" layoutY="142.0" prefHeight="25.0" prefWidth="169.0" textFill="WHITE" />
-      <Label fx:id="label3" layoutX="522.0" layoutY="142.0" prefHeight="25.0" prefWidth="152.0" textFill="WHITE" />
+      <Label fx:id="nameLabel" layoutX="44.0" layoutY="113.0" prefHeight="30.0" prefWidth="152.0" text="1" textFill="WHITE" />
+      <Label fx:id="priceLabel" layoutX="271.0" layoutY="142.0" prefHeight="25.0" prefWidth="169.0" textFill="WHITE" />
+      <Label fx:id="descriptionLabel" layoutX="522.0" layoutY="142.0" prefHeight="25.0" prefWidth="152.0" textFill="WHITE" />
       <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="44.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true" />
       <Line endX="180.0" endY="-27.0" layoutX="276.0" layoutY="89.0" startX="68.0" startY="-27.0" stroke="#6ea5ff" strokeWidth="2.0" />
       <Text fill="#e8e8e8" layoutX="271.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price:" wrappingWidth="36.21875">
@@ -33,7 +33,8 @@
       </Text>
       <Text fill="#e8e8e8" layoutX="271.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:" />
       <Text fill="#e8e8e8" layoutX="271.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Condition:" />
-      <Label fx:id="label4" layoutX="271.0" layoutY="229.0" prefHeight="25.0" prefWidth="139.0" textFill="#e8e8e8" />
-      <Label fx:id="label5" layoutX="271.0" layoutY="313.0" prefHeight="25.0" prefWidth="139.0" textFill="#e8e8e8" />
+      <Label fx:id="categoryLabel" layoutX="271.0" layoutY="229.0" prefHeight="25.0" prefWidth="139.0" textFill="#e8e8e8" />
+      <Label fx:id="conditionLabel" layoutX="271.0" layoutY="313.0" prefHeight="25.0" prefWidth="139.0" textFill="#e8e8e8" />
+      <Button fx:id="addToSale" layoutX="648.0" layoutY="429.0" mnemonicParsing="false" onAction="#addToSale" prefHeight="30.0" prefWidth="79.0" styleClass="regularbutton" text="Add to sale" />
    </children>
 </AnchorPane>
