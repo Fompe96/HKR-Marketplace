@@ -51,6 +51,7 @@ public class ItemViewController implements Initializable {
     @FXML
     public void goBack(){
     SceneChanger.changeScene("../Views/Marketplace.fxml");
+    Singleton.getInstance().setItem(null);
     }
 
 
