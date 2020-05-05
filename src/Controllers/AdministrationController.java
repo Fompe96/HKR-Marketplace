@@ -64,6 +64,8 @@ public class AdministrationController implements Initializable {
     private TableColumn<Item, File> picture;
     @FXML
     private TableColumn<Item, String> owner;
+    @FXML
+    private TableColumn<Item, Boolean> active;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -144,6 +146,7 @@ public class AdministrationController implements Initializable {
         category.setCellValueFactory(new PropertyValueFactory<>("Category"));
         picture.setCellValueFactory(new PropertyValueFactory<>("imageFile"));
         owner.setCellValueFactory(new PropertyValueFactory<>("Owner"));
+        active.setCellValueFactory(new PropertyValueFactory<>("saleActive"));
         itemTableView.setItems(items);
         itemTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }

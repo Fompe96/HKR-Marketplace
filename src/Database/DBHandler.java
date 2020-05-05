@@ -98,7 +98,7 @@ public abstract class DBHandler extends DBConfig {
                 ObservableList<Item> items = FXCollections.observableArrayList();
                 while (resultSet.next()) {
                     items.add(new Item(resultSet.getInt(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getString(4),
-                            resultSet.getString(5), resultSet.getString(6), convertBlobToFile(resultSet.getBlob(7)), resultSet.getString(8)));
+                            resultSet.getString(5), resultSet.getString(6), convertBlobToFile(resultSet.getBlob(7)), resultSet.getString(8), resultSet.getBoolean(9)));
                 }
                 return items;
             }
@@ -115,7 +115,7 @@ public abstract class DBHandler extends DBConfig {
                 ObservableList<Item> items = FXCollections.observableArrayList();
                 while (resultSet.next()) {
                     items.add(new Item(resultSet.getInt(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getString(4),
-                            resultSet.getString(5), resultSet.getString(6), convertBlobToFile(resultSet.getBlob(7)), resultSet.getString(8)));
+                            resultSet.getString(5), resultSet.getString(6), convertBlobToFile(resultSet.getBlob(7)), resultSet.getString(8), resultSet.getBoolean(9)));
                 }
                 return items;
             }

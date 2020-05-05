@@ -35,7 +35,7 @@ public class AdminEditController implements Initializable {
     private Pane editAccountsPane, editItemsPane;
     @FXML
     private TextField oldnamefield, oldpasswordfield, oldemailfield, oldadminfield, olditemname,
-            olditemprice, olditemcondition, olditemcategory, olditemowner;
+            olditemprice, olditemcondition, olditemcategory, olditemowner, olditemactive;
     @FXML
     private ImageView oldimageview, olditemimageview;
 
@@ -103,6 +103,11 @@ public class AdminEditController implements Initializable {
             } catch (NullPointerException e) {
                 MessageHandler.getErrorAlert("Error", "Error", "Something went wrong when trying to display the picture.").showAndWait();
             }
+        }
+        if (item.isSaleActive()) {
+            olditemactive.setText("True");
+        } else {
+            olditemactive.setText("False");
         }
     }
 

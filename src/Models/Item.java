@@ -1,5 +1,6 @@
 package Models;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -20,12 +21,13 @@ public class Item {
     private File imageFile;
     private SimpleStringProperty owner;
     private ImageView pic; // Used to show the imageFile in tableview
+    private SimpleBooleanProperty saleActive;
 
     public Item() {
 
     }
 
-    public Item(int id, String name, Double price, String description, String condition, String category, File imageFile, String ownerEmail) {
+    public Item(int id, String name, Double price, String description, String condition, String category, File imageFile, String ownerEmail, Boolean active) {
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
         this.price = new SimpleDoubleProperty(price);
@@ -34,6 +36,7 @@ public class Item {
         this.category = new SimpleStringProperty(category);
         this.imageFile = imageFile;
         this.owner = new SimpleStringProperty(ownerEmail);
+        this.saleActive = new SimpleBooleanProperty(active);
     }
 
     public int getId() {
@@ -100,6 +103,17 @@ public class Item {
         this.category = new SimpleStringProperty(category);
     }
 
+    public boolean isSaleActive() {
+        return saleActive.get();
+    }
+
+    public void setSaleActive(boolean saleActive) {
+        this.saleActive.set(saleActive);
+    }
+
+    public SimpleBooleanProperty saleActiveProperty() {
+        return saleActive;
+    }
 
     public void setPic(Image image) {
         this.pic = new ImageView(image);
@@ -121,6 +135,7 @@ public class Item {
                 ", category='" + getCategory() + '\'' +
                 ", imageFile='" + getImageFile() + '\'' +
                 ", owner='" + getOwner() + '\'' +
+                ", saleActive='" + isSaleActive() + '\'' +
                 '}';
     }
 }
