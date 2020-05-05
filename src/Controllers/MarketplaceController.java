@@ -125,7 +125,7 @@ public class MarketplaceController implements Initializable {
 
     @FXML
     private void handleSellBuyButton() {
-        SceneChanger.changeScene("../Views/SoldBoughtFavorited.fxml");
+        SceneChanger.changeScene("../Views/MonitoringSales.fxml");
     }
 
     private void handleClickOnItem() {

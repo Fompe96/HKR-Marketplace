@@ -8,7 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class SoldBoughtFavoritedController {
+public class MonitoringSalesController {
 
     private double x, y;
 
@@ -58,7 +58,7 @@ public class SoldBoughtFavoritedController {
 
     @FXML
     private void handleSellBuyButton() {
-        SceneChanger.changeScene("../Views/SoldBoughtFavorited.fxml");
+        SceneChanger.changeScene("../Views/MonitoringSales.fxml");
     }
 
 }

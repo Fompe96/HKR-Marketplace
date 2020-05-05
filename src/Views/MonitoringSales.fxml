@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="673.0" prefWidth="1235.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SoldBoughtFavoritedController">
+<AnchorPane prefHeight="673.0" prefWidth="1235.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MonitoringSalesController">
    <children>
       <HBox onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="30.0" prefWidth="1235.0" styleClass="regularWindowBar" />
       <Pane prefHeight="673.0" prefWidth="60.0" style="-fx-background-color: #242424;">
