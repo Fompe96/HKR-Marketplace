@@ -106,6 +106,11 @@ public class SettingsController implements Initializable {
         SceneChanger.changeScene("../Views/Administration.fxml");
     }
 
+    @FXML
+    private void handleMonitoringButton() {
+        SceneChanger.changeScene("../Views/MonitoringSales.fxml");
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loggedInAs.setText(Singleton.getInstance().getLoggedInName());

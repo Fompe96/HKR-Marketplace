@@ -38,6 +38,9 @@ public class MonitoringSalesController implements Initializable {
     private TableColumn<Item, Double> price;
 
     @FXML
+    private TableColumn<Item, String> description;
+
+    @FXML
     private void handleMinimizeButton(ActionEvent event) {
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).setIconified(true);
     }
@@ -96,6 +99,7 @@ public class MonitoringSalesController implements Initializable {
         pic.setCellValueFactory(new PropertyValueFactory<>("pic"));
         title.setCellValueFactory(new PropertyValueFactory<>("name"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
+        description.setCellValueFactory(new PropertyValueFactory<>("description"));
         table.setItems(favorites);
     }
 

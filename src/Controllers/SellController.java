@@ -35,7 +35,7 @@ public class SellController implements Initializable {
     private CheckBox excellentBox, veryGoodBox, goodBox, poorBox, vehiclesBox, petsBox, homeBox, electronicsBox, otherBox;
 
     @FXML
-    private Button adminButton, addSaleButton, previewButton, marketPlaceButton, settingsButton, closingButton, minimizeButton, uploadImageButton, logOutButton;
+    private Button adminButton, addSaleButton, previewButton, marketPlaceButton, settingsButton, closingButton, minimizeButton, uploadImageButton, logOutButton, openSellBuyButton;
 
     @FXML
     private TextField filePathTextField;
@@ -72,6 +72,11 @@ public class SellController implements Initializable {
             adminview.setVisible(true);
             adminButton.setDisable(false);
         }
+    }
+
+    @FXML
+    private void handleMonitoringButton() {
+        SceneChanger.changeScene("../Views/MonitoringSales.fxml");
     }
 
     private void handleItemInformation() {

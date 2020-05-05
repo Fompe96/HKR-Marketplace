@@ -155,7 +155,6 @@ public class LoginController implements Initializable {
             FileWriter myWriter = new FileWriter("userCredentials.txt");
             myWriter.write(email + "\n" + password + "\n" + rememberLoginButtonBoolean);
             myWriter.close();
-            System.out.println("Successfully wrote to the file.");
             readUserCredentialsFromFile();
         } catch (IOException e) {
             System.out.println("An error occurred.");
