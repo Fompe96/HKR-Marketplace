@@ -2,9 +2,9 @@ package Models;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.image.Image;
 
 import java.io.File;
-import java.sql.Blob;
 import java.util.ArrayList;
 
 public class Account {
@@ -12,25 +12,16 @@ public class Account {
     private SimpleStringProperty password;
     private SimpleStringProperty email;
     private SimpleBooleanProperty admin;
-    private Blob picture;
-    private File image;
+    private File imageFile;
     private ArrayList<Item> favourites;
 
-    public Account(String userName, String password, String email, boolean admin, Blob picture) {
-        this.userName = new SimpleStringProperty(userName);
-        this.password = new SimpleStringProperty(password);
-        this.email = new SimpleStringProperty(email);
-        this.admin = new SimpleBooleanProperty(admin);
-        this.picture = picture;
-        this.favourites =new ArrayList<>();
-    }
 
     public Account(String userName, String password, String email, boolean admin, File pictureAsFile) {
         this.userName = new SimpleStringProperty(userName);
         this.password = new SimpleStringProperty(password);
         this.email = new SimpleStringProperty(email);
         this.admin = new SimpleBooleanProperty(admin);
-        this.image = pictureAsFile;
+        this.imageFile = pictureAsFile;
         this.favourites =new ArrayList<>();
     }
 
@@ -51,9 +42,6 @@ public class Account {
         return admin.get();
     }
 
-    public Blob getPicture() {
-        return picture;
-    }
 
     public void setUserName(String userName) {
         this.userName = new SimpleStringProperty(userName);
@@ -71,16 +59,17 @@ public class Account {
         this.admin = new SimpleBooleanProperty(admin);
     }
 
-    public void setPicture(Blob picture) {
-        this.picture = picture;
+
+    public File getImageFile() {
+        return imageFile;
     }
 
-    public File getImage() {
-        return image;
+    public void setImageFile(File imageFile) {
+        this.imageFile = imageFile;
     }
 
-    public void setImage(File image) {
-        this.image = image;
+    public Image getImage() {
+        return new Image(getImageFile().toURI().toString());
     }
 
     @Override
@@ -90,7 +79,6 @@ public class Account {
                 ", password='" + getPassword() + '\'' +
                 ", email='" + getEmail() + '\'' +
                 ", admin='" + isAdmin() + '\'' +
-                ", pictureBlob='" + getPicture() + '\'' +
                 ", pictureImage='" + getImage() + '\'' +
                 '}';
     }

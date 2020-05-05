@@ -24,7 +24,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -87,6 +86,7 @@ public class SettingsController implements Initializable {
             MessageHandler.getConfirmationAlert("Success", "Success", "Profile picture has been uploaded!").showAndWait();
             Image fxImage = new Image(new File(file.getPath()).toURI().toString());
             imageToUpload.setImage(fxImage);
+            Singleton.getInstance().setLoggedInAccount(DBHandler.findUser(Singleton.getInstance().getLoggedInEmail()));
         }
     }
 
@@ -127,9 +127,7 @@ public class SettingsController implements Initializable {
     }
 
     private void getProfilePicture() throws SQLException {
-        InputStream imageFile = Singleton.getInstance().getLoggedInAccount().getPicture().getBinaryStream();
-        Image image = new Image(imageFile);
-        imageToUpload.setImage(image);
+        imageToUpload.setImage(Singleton.getInstance().getLoggedInAccount().getImage());
 
         /*  This code can be replaced with code above since the picture is already stored in the Account object in the Singleton.
         String email = Singleton.getInstance().getLoggedInEmail();

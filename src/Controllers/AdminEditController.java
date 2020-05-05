@@ -80,9 +80,9 @@ public class AdminEditController implements Initializable {
         } else {
             oldadminfield.setText("False");
         }
-        if (account.getPicture() != null) {
+        if (account.getImage() != null) {
             try {
-                oldimageview.setImage(convertBlobToImage(account.getPicture()));
+                oldimageview.setImage(account.getImage());
             } catch (NullPointerException e) {
                 MessageHandler.getErrorAlert("Error", "Error", "Something went wrong when trying to display the picture.").showAndWait();
             }
@@ -97,9 +97,9 @@ public class AdminEditController implements Initializable {
         olditemcondition.setText(item.getCondition());
         olditemcategory.setText(item.getCategory());
         olditemowner.setText(item.getOwner());
-        if (item.getPicture() != null) {
+        if (item.getImage() != null) {
             try {
-                olditemimageview.setImage(convertBlobToImage(item.getPicture()));
+                olditemimageview.setImage(item.getImage());
             } catch (NullPointerException e) {
                 MessageHandler.getErrorAlert("Error", "Error", "Something went wrong when trying to display the picture.").showAndWait();
             }

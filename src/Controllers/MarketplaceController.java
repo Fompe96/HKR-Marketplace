@@ -5,7 +5,6 @@ import Models.Item;
 import Models.SceneChanger;
 import Models.Singleton;
 import Models.ToolTipHandler;
-//import com.mysql.jdbc.Blob;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,19 +13,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import java.io.InputStream;
 import java.net.URL;
-import java.sql.Blob;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class MarketplaceController implements Initializable {
@@ -59,7 +53,7 @@ public class MarketplaceController implements Initializable {
         // System.out.println("The user who just logged in is: " + Singleton.getInstance().getLoggedInAccount()); // This is here for testing purposes!
 
         initializeTable();
-
+        handleClickOnItem();
 
         if (Singleton.getInstance().getLoggedInAccount().isAdmin()) {
             adminview.setVisible(true);
@@ -133,7 +127,9 @@ public class MarketplaceController implements Initializable {
         table.setOnMouseClicked((MouseEvent event) -> {
             if (event.getClickCount() > 1) {
                 if (table.getSelectionModel().getSelectedItem() != null) {
-                    System.out.println(table.getSelectionModel().getSelectedItem().getName());
+                    Singleton.getInstance().setItem(table.getSelectionModel().getSelectedItem());
+                    System.out.println(Singleton.getInstance().getItem().getName());
+                    SceneChanger.changeScene("../Views/ItemView.fxml");
                 }
             }
         });
@@ -141,36 +137,21 @@ public class MarketplaceController implements Initializable {
 
     private void initializeTable() {
         fetchItemsFromDB();
-        System.out.println(items.get(1).toString());
+
         for (Item item : items) {
-            if (item.getImageFile() != null) {
-                System.out.println("Hej");
-                item.setImage(item.getImageFile());
-
-            } else
-                System.out.println("fel");
             if (item.getImage() != null) {
-                System.out.println("hejdå");
-                item.setImageView(item.getImage());
-
-            } else {
-                System.out.println("fel 2");
+                item.setPic(item.getImage());   // Här sätter jag varje objekts imageview till dens aktuella bild
             }
         }
+
+        pic.setCellValueFactory(new PropertyValueFactory<>("pic"));
+        title.setCellValueFactory(new PropertyValueFactory<>("name"));
+        price.setCellValueFactory(new PropertyValueFactory<>("price"));
+        table.setItems(items);
     }
 
     private void fetchItemsFromDB() {
         items = DBHandler.retrieveAllSales();
-    }
-
-    private Image convertBlobToImage(Blob blob) {
-        try {
-            InputStream is = blob.getBinaryStream();
-            return new Image(is);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
 }

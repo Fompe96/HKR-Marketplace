@@ -137,7 +137,7 @@ public class InsertItemController implements Initializable {
         if (!namefield.getText().equals("") && !descriptionarea.getText().equals("") && !pricefield.getText().equals("")) {
             if (pricefield.getText().matches("[0-9]+") && Double.parseDouble(pricefield.getText()) > 29) {
                 if (imageFile != null) {
-                    Item createdItem = new Item(namefield.getText(), Double.parseDouble(pricefield.getText()), descriptionarea.getText(), selectedCondition, selectedCategory, imageFile, Singleton.getInstance().getLoggedInEmail());
+                    Item createdItem = new Item(0, namefield.getText(), Double.parseDouble(pricefield.getText()), descriptionarea.getText(), selectedCondition, selectedCategory, imageFile, Singleton.getInstance().getLoggedInEmail());
                     DBHandler.insertItemIntoDB(createdItem);
                     MessageHandler.getInformationAlert("Success", "Success", "The account was successfully added to the database!").showAndWait();
                     Singleton.getInstance().setLastInsertedObject("Item");
