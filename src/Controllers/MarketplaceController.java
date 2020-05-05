@@ -31,7 +31,7 @@ public class MarketplaceController implements Initializable {
     private ImageView imageView, imageView1, adminview;
 
     @FXML
-    private Button adminButton, settingsButton, closingButton, minimizeButton, sellButton, logOutButton;
+    private Button adminButton, settingsButton, closingButton, minimizeButton, sellButton, logOutButton, openSellBuyButton;
 
     @FXML
     private TableView<Item> table;
@@ -121,6 +121,11 @@ public class MarketplaceController implements Initializable {
     @FXML
     private void handleAdminButton() {
         SceneChanger.changeScene("../Views/Administration.fxml");
+    }
+
+    @FXML
+    private void handleSellBuyButton() {
+        SceneChanger.changeScene("../Views/SellBuyScene.fxml");
     }
 
     private void handleClickOnItem() {
