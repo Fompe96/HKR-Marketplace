@@ -108,6 +108,23 @@ public abstract class DBHandler extends DBConfig {
         }
     }
 
+    public static ObservableList<Item> retrieveAllFavorites(String userEmail) {    // Returns a observableList with all sales from the product table
+        String query = "select product.* from product inner join favorite ON favorite.product_idProduct = product.idProduct and favorite.account_Email = '" + userEmail + "';";
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                ObservableList<Item> items = FXCollections.observableArrayList();
+                while (resultSet.next()) {
+                    items.add(new Item(resultSet.getInt(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getString(4),
+                            resultSet.getString(5), resultSet.getString(6), convertBlobToFile(resultSet.getBlob(7)), resultSet.getString(8)));
+                }
+                return items;
+            }
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return null;    // Returns null if something went wrong
+        }
+    }
+
     public static void uploadImage(String userEmail, String imagePath) throws SQLException, FileNotFoundException {
         PreparedStatement ps = getConnection().prepareStatement("UPDATE `hkrmarketplace`.`account` SET `Picture` = ? WHERE (`Email` = '" + userEmail + "');");
         InputStream is = new FileInputStream(new File(imagePath));
