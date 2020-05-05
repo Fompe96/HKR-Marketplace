@@ -34,13 +34,16 @@ public class AdminEditController implements Initializable {
     @FXML
     private Pane editAccountsPane, editItemsPane;
     @FXML
-    private TextField oldnamefield, oldpasswordfield, oldemailfield, oldadminfield, olditemname,
-            olditemprice, olditemcondition, olditemcategory, olditemowner, olditemactive;
+    private TextField oldnamefield, oldpasswordfield, oldemailfield, oldadminfield,
+            newnamefield, newpasswordfield, newemailfield, newadminfield, accountuploadfield,
+            olditemname, olditemprice, olditemcondition, olditemcategory, olditemowner, olditemactive;
+
     @FXML
     private ImageView oldimageview, olditemimageview;
 
     @FXML
     private TextArea olditemdescription;
+    Account account;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -62,6 +65,7 @@ public class AdminEditController implements Initializable {
             editAccountsPane.setVisible(true);
             editItemsPane.setVisible(false);
             displayOldAccount();
+            fillNewAccountFields();
         } else {
             titletext.setText("Item");
             editItemsPane.setVisible(true);
@@ -71,7 +75,7 @@ public class AdminEditController implements Initializable {
     }
 
     private void displayOldAccount() {
-        Account account = (Account) Singleton.getInstance().getObjectToEdit();
+        account = (Account) Singleton.getInstance().getObjectToEdit();
         oldnamefield.setText(account.getUserName());
         oldpasswordfield.setText(account.getPassword());
         oldemailfield.setText(account.getEmail());
@@ -87,6 +91,14 @@ public class AdminEditController implements Initializable {
                 MessageHandler.getErrorAlert("Error", "Error", "Something went wrong when trying to display the picture.").showAndWait();
             }
         }
+    }
+
+    private void fillNewAccountFields() {
+        newnamefield.setText(oldnamefield.getText());
+        newpasswordfield.setText(oldpasswordfield.getText());
+        newemailfield.setText(oldemailfield.getText());
+        newadminfield.setText(oldadminfield.getText());
+        accountuploadfield.setText(account.getImageFile().getPath());
     }
 
     private void displayOldItem() {
@@ -111,14 +123,19 @@ public class AdminEditController implements Initializable {
         }
     }
 
-    private Image convertBlobToImage(Blob blob) {
-        try {
-            InputStream is = blob.getBinaryStream();
-            return new Image(is);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
+    @FXML
+    private void handleUploadButton() {
+
+    }
+
+    @FXML
+    private void handleResetButton() {
+
+    }
+
+    @FXML
+    private void handleUpdateButton() {
+
     }
 
     @FXML
