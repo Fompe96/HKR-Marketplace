@@ -137,16 +137,13 @@ public class MarketplaceController implements Initializable {
 
     private void initializeTable() {
         fetchItemsFromDB();
-        System.out.println(items.get(1).toString());
+
         for (Item item : items) {
-
             if (item.getImage() != null) {
-                System.out.println("hejdå");
                 item.setPic(item.getImage());   // Här sätter jag varje objekts imageview till dens aktuella bild
-
             }
-
         }
+
         pic.setCellValueFactory(new PropertyValueFactory<>("pic"));
         title.setCellValueFactory(new PropertyValueFactory<>("name"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
