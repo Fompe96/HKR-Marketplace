@@ -227,6 +227,7 @@ public abstract class DBHandler extends DBConfig {
         EmailSender.sendEmail(userEmail, "Your new account", "Welcome to HKR Marketplace! Here are your account details. \n \n" +
                 "Username: " + userName + "\n" + "Password: " + userPassword + "\n" + "Account-Email: " + userEmail);
     }
+
     // Method used to convert the retrieved blobs into File objects used by the model class constructors.
     private static File convertBlobToFile(Blob blob) {
         if (blob != null) {
