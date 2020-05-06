@@ -254,6 +254,10 @@ public abstract class DBHandler extends DBConfig {
                 "Username: " + userName + "\n" + "Password: " + userPassword + "\n" + "Account-Email: " + userEmail);
     }
 
+    public static void updateAccountInformation(Account oldAccount, Account newAccount) {
+        System.out.println("HELLO FROM DBHANDLER");
+    }
+
     // Method used to convert the retrieved blobs into File objects used by the model class constructors.
     private static File convertBlobToFile(Blob blob) {
         if (blob != null) {

@@ -54,7 +54,7 @@ public class InsertAccountController implements Initializable {
     @FXML
     private void handleInsertButton() {
         if (!usernamefield.getText().equals("") && !passwordfield.getText().equals("") && !emailfield.getText().equals("")) {
-            if (isValid(emailfield.getText()) && !DBHandler.seeIfEmailAlreadyRegistered(emailfield.getText())) {
+            if (Account.validateEmail(emailfield.getText()) && !DBHandler.seeIfEmailAlreadyRegistered(emailfield.getText())) {
                 Account account = new Account(usernamefield.getText(), passwordfield.getText(), emailfield.getText(), getSelectedCheckbox(), imageFile);
                 DBHandler.insertAccountIntoDB(account);
                 MessageHandler.getInformationAlert("Success", "Success", "The account was successfully added to the database!").showAndWait();
@@ -84,11 +84,6 @@ public class InsertAccountController implements Initializable {
         } else {
             MessageHandler.getErrorAlert("Error", "Error", "File does not exist!").showAndWait();
         }
-    }
-
-    private static boolean isValid(String userEmail) {
-        String regex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
-        return userEmail.matches(regex);
     }
 
     @FXML

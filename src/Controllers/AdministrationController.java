@@ -227,7 +227,7 @@ public class AdministrationController implements Initializable {
             if (accountsTableView.getSelectionModel().getSelectedItems().size() == 1) {
                 Account account = accountsTableView.getSelectionModel().getSelectedItem();
                 Singleton.getInstance().setObjectToEdit(account);
-                SceneChanger.createPopupWindow("../Views/AdminEdit.fxml");
+                SceneChanger.createPopupWindow("../Views/EditAccount.fxml");
             } else {
                 MessageHandler.getErrorAlert("Error", "Error", "You have to select 1 account in the list in order to edit.").showAndWait();
             }
@@ -236,7 +236,7 @@ public class AdministrationController implements Initializable {
             if (itemTableView.getSelectionModel().getSelectedItems().size() == 1) {
                 Item item = itemTableView.getSelectionModel().getSelectedItem();
                 Singleton.getInstance().setObjectToEdit(item);
-                SceneChanger.createPopupWindow("../Views/AdminEdit.fxml");
+                SceneChanger.createPopupWindow("../Views/EditItem.fxml");
             } else {
                 MessageHandler.getErrorAlert("Error", "Error", "You have to select 1 item in the list in order to edit.").showAndWait();
             }
