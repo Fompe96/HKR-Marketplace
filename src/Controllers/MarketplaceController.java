@@ -31,7 +31,7 @@ public class MarketplaceController implements Initializable {
     private ImageView imageView, imageView1, adminview;
 
     @FXML
-    private Button adminButton, settingsButton, closingButton, minimizeButton, sellButton, logOutButton, openSellBuyButton;
+    private Button adminButton, settingsButton, closingButton, minimizeButton, sellButton, logOutButton;
 
     @FXML
     private TableView<Item> table;

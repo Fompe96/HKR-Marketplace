@@ -13,13 +13,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ResourceBundle;
-
 
 
 public class SellController implements Initializable {
@@ -35,7 +35,7 @@ public class SellController implements Initializable {
     private CheckBox excellentBox, veryGoodBox, goodBox, poorBox, vehiclesBox, petsBox, homeBox, electronicsBox, otherBox;
 
     @FXML
-    private Button adminButton, addSaleButton, previewButton, marketPlaceButton, settingsButton, closingButton, minimizeButton, uploadImageButton, logOutButton, openSellBuyButton;
+    private Button adminButton, addSaleButton, previewButton, marketPlaceButton, settingsButton, closingButton, minimizeButton, uploadImageButton, logOutButton;
 
     @FXML
     private TextField filePathTextField;
@@ -302,7 +302,6 @@ public class SellController implements Initializable {
 
                 statement.executeUpdate();
                 DBHandler.closeConnection();
-
 
 
                 MessageHandler.getInformationAlert("Success", "Information", "Congratulations! your product is now up for sale!").showAndWait();
