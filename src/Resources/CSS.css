@@ -149,7 +149,7 @@
     -fx-text-fill: #e8e8e8;
    }
 
-   .table-row:hover{
+   .marketplaceTableColumn:hover{
       -fx-background-color: #e8e8e8;
       -fx-text-background-color:  #6622CC;
    }
