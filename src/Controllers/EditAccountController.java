@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 
 public class EditAccountController implements Initializable {
     private double x, y;
-    private boolean editAccount;
+    private boolean changeDone;
     @FXML
     private Label titletext;
     @FXML
@@ -73,7 +73,7 @@ public class EditAccountController implements Initializable {
         newpasswordfield.setText(oldpasswordfield.getText());
         newemailfield.setText(oldemailfield.getText());
         newadminfield.setText(oldadminfield.getText());
-        accountuploadfield.setText(accountToEdit.getImageFile().getPath());
+        accountuploadfield.setText("Null");
     }
 
     @FXML
@@ -92,7 +92,7 @@ public class EditAccountController implements Initializable {
     @FXML
     private void handleResetButton() {
         newImage = null;
-        accountuploadfield.setText("");
+        accountuploadfield.setText("Null");
     }
 
     @FXML
@@ -103,6 +103,7 @@ public class EditAccountController implements Initializable {
     private void updateAccount() {
         newAccount = new Account(accountToEdit.getUserName(), accountToEdit.getPassword(), accountToEdit.getEmail(), accountToEdit.isAdmin(), accountToEdit.getImageFile());
         boolean validationChecker = true;
+        changeDone = false;
         if (!newnamefield.getText().equals(oldnamefield.getText())) {
             validationChecker = validateNewAccountName();
         }
@@ -115,8 +116,11 @@ public class EditAccountController implements Initializable {
         if (validationChecker && !oldadminfield.getText().equals(newadminfield.getText())) {
             validationChecker = validateNewAdminStatus();
         }
+        if (validationChecker) {
+            validationChecker = validateNewImage();
+        }
 
-        if (validationChecker) {    // If all checks performed are passed the values are changed.
+        if (validationChecker && changeDone) {    // If all checks performed are passed the values are changed.
             newAccount.setUserName(newnamefield.getText());
             newAccount.setPassword(newpasswordfield.getText());
             newAccount.setEmail(newemailfield.getText());
@@ -125,9 +129,7 @@ public class EditAccountController implements Initializable {
             } else if (newadminfield.getText().equals("False") || newadminfield.getText().equals("false")) {
                 newAccount.setAdmin(false);
             }
-            if (newImage != null && !fileChecker.equals(newImage.getPath())) {
-                newAccount.setImageFile(newImage);
-            }
+            DBHandler.updateAccountInformation(accountToEdit, newAccount);
         }
         System.out.println("Old " + accountToEdit);
         System.out.println("-------------------");
@@ -137,7 +139,7 @@ public class EditAccountController implements Initializable {
 
     private boolean validateNewAccountName() {
         if (!newnamefield.getText().equals("") && newnamefield.getText().length() > 2) {
-
+            changeDone = true;
             return true;
         } else {
             MessageHandler.getErrorAlert("Error", "Error", "New name doesn't meet requirements.").showAndWait();
@@ -147,7 +149,7 @@ public class EditAccountController implements Initializable {
 
     private boolean validateNewPassword() {
         if (!newpasswordfield.getText().equals("") && newpasswordfield.getText().length() > 2) {
-
+            changeDone = true;
             return true;
         } else {
             MessageHandler.getErrorAlert("Error", "Error", "New password doesn't meet requirements.").showAndWait();
@@ -157,6 +159,7 @@ public class EditAccountController implements Initializable {
 
     private boolean validateNewEmail() {
         if (Account.validateEmail(newemailfield.getText()) && !DBHandler.seeIfEmailAlreadyRegistered(newemailfield.getText())) {
+            changeDone = true;
             return true;
         } else {
             MessageHandler.getErrorAlert("Error", "Error", "New email doesn't meet requirements.").showAndWait();
@@ -166,9 +169,24 @@ public class EditAccountController implements Initializable {
 
     private boolean validateNewAdminStatus() {
         if (newadminfield.getText().equals("True") || newadminfield.getText().equals("true") || newadminfield.getText().equals("False") || newadminfield.getText().equals("false")) {
+            changeDone = true;
             return true;
         } else {
             MessageHandler.getErrorAlert("Error", "Error", "New admin status doesn't meet requirements.").showAndWait();
+            return false;
+        }
+    }
+
+    private boolean validateNewImage() {
+        if (newImage == null) {
+            newAccount.setImageFile(null);
+            changeDone = true;
+            return true;
+        } else if (!fileChecker.equals(newImage.getPath())) {
+            newAccount.setImageFile(newImage);
+            changeDone = true;
+            return true;
+        } else {
             return false;
         }
     }
