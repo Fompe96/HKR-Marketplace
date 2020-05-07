@@ -1,10 +1,7 @@
 package Controllers;
 
 import Database.DBHandler;
-import Models.Account;
-import Models.Item;
-import Models.SceneChanger;
-import Models.Singleton;
+import Models.*;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,16 +9,29 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import javax.mail.AuthenticationFailedException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ContactSellerController implements Initializable {
+
+    @FXML
+    PasswordField password;
+
+    @FXML
+    TextField subject;
+
+    @FXML
+    TextArea message;
 
     private ObservableList<Account> accounts;
 
@@ -41,30 +51,42 @@ public class ContactSellerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        fetchAccountsDB();
+
+        initializeScene();
 
 
             System.out.println(Singleton.getInstance().getItem().getOwner());
-            for (Account account : accounts) {
-                System.out.println(account.getEmail());
-                if (Singleton.getInstance().getItem() != null && account != null) {
-                    if (account.getEmail().equals(Singleton.getInstance().getItem().getOwner())) {
-                        name.setText(account.getUserName());
-                        email.setText(account.getEmail());
-                            try {
-                                profilePic.setImage(account.getImage());
-                            }catch (NullPointerException e) {
-                            }
-                        }
-                        rating.setText("6.9");
-                    }
-                }
+
             }
 
 
 
     public void fetchAccountsDB(){
         accounts = DBHandler.retrieveAllAccounts();
+    }
+
+    public void initializeScene(){
+        fetchAccountsDB();
+        for (Account account : accounts) {
+            System.out.println(account.getEmail());
+            if (Singleton.getInstance().getItem() != null && account != null) {
+                if (account.getEmail().equals(Singleton.getInstance().getItem().getOwner())) {
+                    name.setText(account.getUserName());
+                    email.setText(account.getEmail());
+                    try {
+                        profilePic.setImage(account.getImage());
+                    }catch (NullPointerException e) {
+                    }
+                }
+                rating.setText("6.9");
+            }
+        }
+    }
+
+    public void sendEmail() {
+        if (password != null && subject != null && message != null) {
+            EmailSender.CustomerSendEmailToSeller(Singleton.getInstance().getLoggedInEmail(), password.getText(), Singleton.getInstance().getItem().getOwner(), subject.getText(), message.getText());
+        }
     }
 
     @FXML
