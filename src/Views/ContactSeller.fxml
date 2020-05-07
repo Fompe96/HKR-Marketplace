@@ -84,8 +84,11 @@
             <Font name="Arial" size="20.0" />
          </font>
       </Text>
-      <ImageView fx:id="profilePic" fitHeight="150.0" fitWidth="200.0" layoutX="79.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="name" layoutX="94.0" layoutY="105.0" text="Label" textFill="WHITE">
+      <ImageView fx:id="profilePic" fitHeight="150.0" fitWidth="201.0" layoutX="104.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Resources/LoggedInAsTemplate.png" />
+         </image></ImageView>
+      <Label fx:id="name" layoutX="104.0" layoutY="105.0" text="Label" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>

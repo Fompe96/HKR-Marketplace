@@ -169,6 +169,41 @@ public abstract class EmailSender {
 
     }
 
+    public static void userSendEmailToSender(String emailFrom,String emailTo, String emailSubject, String emailMessage) {
+
+        String host = "smtp.gmail.com";
+
+        Properties properties = System.getProperties();
+
+        properties.put("mail.smtp.host", host);
+        properties.put("mail.smtp.port", "465");
+        properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        properties.put("mail.smtp.ssl.enable", "true");
+        properties.put("mail.smtp.auth", "true");
+
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+
+            protected PasswordAuthentication getPasswordAuthentication() {
+
+                return new PasswordAuthentication("HKRMarketplace@gmail.com", "hkrmarketplace2020!");
+
+            }
+
+        });
+        session.setDebug(true);
+
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(emailFrom));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(emailTo));
+            message.setSubject(emailSubject);
+            message.setText(emailMessage);
+            Transport.send(message);
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
+    }
+
 
 
 }
