@@ -82,9 +82,9 @@
       <Button fx:id="logOutButton" layoutX="1069.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleLogOutButton" styleClass="regularbutton" text="Logout" />
       <TableView fx:id="table" layoutX="131.0" layoutY="81.0" prefHeight="567.0" prefWidth="1023.0" styleClass="marketplaceTableView" stylesheets="@../Resources/CSS.css">
         <columns>
-          <TableColumn fx:id="pic" prefWidth="192.800048828125" styleClass="marketplaceTableColumn" />
-          <TableColumn fx:id="title" prefWidth="219.19992065429688" styleClass="marketplaceTableColumn" />
-            <TableColumn fx:id="price" minWidth="0.0" prefWidth="175.20004882812498" styleClass="marketplaceTableColumn" />
+          <TableColumn fx:id="pic" prefWidth="293.0" styleClass="marketplaceTableColumn" text="Picture" />
+          <TableColumn fx:id="title" prefWidth="316.0" styleClass="marketplaceTableColumn" text="Product" />
+            <TableColumn fx:id="price" minWidth="0.0" prefWidth="413.0" styleClass="marketplaceTableColumn" text="Price" />
         </columns>
       </TableView>
       <ImageView fx:id="testImage" fitHeight="150.0" fitWidth="200.0" layoutX="869.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true" />
