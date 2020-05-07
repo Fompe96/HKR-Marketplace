@@ -36,7 +36,6 @@ public class ContactSellerController implements Initializable {
 
         if (Singleton.getInstance().getItem() != null){
             name.setText(Singleton.getInstance().getItem().getOwner());
-
         }
 
     }

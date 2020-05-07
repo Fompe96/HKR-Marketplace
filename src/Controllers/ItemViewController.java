@@ -54,6 +54,10 @@ public class ItemViewController implements Initializable {
     Singleton.getInstance().setItem(null);
     }
 
+    public void contactSeller(){
+        SceneChanger.changeScene("../Views/ContactSeller.fxml");
+    }
+
 
     @FXML
     private void handleClosingButton() {
