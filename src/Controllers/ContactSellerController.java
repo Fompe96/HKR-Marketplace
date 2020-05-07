@@ -52,8 +52,16 @@ public class ContactSellerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        initializeScene();
+
+    }
+
+
+    public void initializeScene(){
         Account itemOwner = DBHandler.findUser(Singleton.getInstance().getItem().getOwner());
-        //fetchAccountsDB();
+        subject.appendText("In regards of your " + Singleton.getInstance().getItem().getName());
+        message.appendText("Hi my name is " + Singleton.getInstance().getLoggedInName()+ "," + "\n" + "and i am interested in your "
+        + Singleton.getInstance().getItem().getName() + "\n" + "Please contact me," + "\n" + "my tel nr. is: " + "\n" + "and my email is " + Singleton.getInstance().getLoggedInEmail());
 
         if (Singleton.getInstance().getItem() != null && itemOwner != null) {
             if (itemOwner.getEmail().equals(Singleton.getInstance().getItem().getOwner())) {
@@ -67,38 +75,14 @@ public class ContactSellerController implements Initializable {
             rating.setText("6.9");
         }
     }
-            /*
->>>>>>> 3f58976d2de667f37efa39de5ea5136a9b0aa9fc
-            System.out.println(Singleton.getInstance().getItem().getOwner());
 
-            }
-
-    public void fetchAccountsDB(){
-        accounts = DBHandler.retrieveAllAccounts();
-    }
-    */
-
-
-    public void initializeScene(){
-        for (Account account : accounts) {
-            System.out.println(account.getEmail());
-            if (Singleton.getInstance().getItem() != null && account != null) {
-                if (account.getEmail().equals(Singleton.getInstance().getItem().getOwner())) {
-                    name.setText(account.getUserName());
-                    email.setText(account.getEmail());
-                    try {
-                        profilePic.setImage(account.getImage());
-                    }catch (NullPointerException e) {
-                    }
-                }
-                rating.setText("6.9");
-            }
-        }
+    public void goBackToItem() {
+        SceneChanger.changeScene("../Views/ItemView.fxml");
     }
 
     public void sendEmail() {
-        if (password != null && subject != null && message != null) {
-            EmailSender.CustomerSendEmailToSeller(Singleton.getInstance().getLoggedInEmail(), password.getText(), Singleton.getInstance().getItem().getOwner(), subject.getText(), message.getText());
+        if (subject != null && message != null) {
+            EmailSender.sendEmail(Singleton.getInstance().getItem().getOwner(), subject.getText(), message.getText());
         }
     }
 

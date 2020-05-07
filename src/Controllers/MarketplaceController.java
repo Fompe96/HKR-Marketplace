@@ -133,7 +133,6 @@ public class MarketplaceController implements Initializable {
             if (event.getClickCount() > 1) {
                 if (table.getSelectionModel().getSelectedItem() != null) {
                     Singleton.getInstance().setItem(table.getSelectionModel().getSelectedItem());
-                    System.out.println(Singleton.getInstance().getItem().getName());
                     SceneChanger.changeScene("../Views/ItemView.fxml");
                 }
             }
