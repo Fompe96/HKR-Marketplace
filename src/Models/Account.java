@@ -72,6 +72,11 @@ public class Account {
         return new Image(getImageFile().toURI().toString());
     }
 
+    public static boolean validateEmail(String userEmail) {
+        String regex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
+        return userEmail.matches(regex);
+    }
+
     @Override
     public String toString() {
         return "Account{" +
@@ -79,7 +84,7 @@ public class Account {
                 ", password='" + getPassword() + '\'' +
                 ", email='" + getEmail() + '\'' +
                 ", admin='" + isAdmin() + '\'' +
-                ", pictureImage='" + getImage() + '\'' +
+                ", pictureImage='" + getImageFile() + '\'' +
                 '}';
     }
 }

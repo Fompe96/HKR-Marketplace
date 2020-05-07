@@ -72,7 +72,7 @@
                   <Bloom />
                </effect>
             </ImageView>
-            <Button fx:id="openSellBuyButton" layoutX="14.0" layoutY="185.0" mnemonicParsing="false" onAction="#handleMonitoringButton" opacity="0.0" prefHeight="35.0" prefWidth="35.0" />
+            <Button layoutX="14.0" layoutY="185.0" mnemonicParsing="false" onAction="#handleMonitoringButton" opacity="0.0" prefHeight="35.0" prefWidth="35.0" />
          </children>
       </Pane>
       <Circle fill="#0073ff" layoutX="1193.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />

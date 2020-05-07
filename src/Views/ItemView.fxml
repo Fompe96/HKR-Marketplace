@@ -34,7 +34,7 @@
         <Label fx:id="conditionLabel" layoutX="271.0" layoutY="313.0" prefHeight="25.0" prefWidth="139.0" textFill="#e8e8e8" />
       <Button layoutX="740.0" layoutY="610.0" mnemonicParsing="false" onAction="#contactSeller" prefHeight="26.0" prefWidth="89.0" styleClass="regularbutton" text="Contact seller" />
       <Button layoutX="108.0" layoutY="610.0" mnemonicParsing="false" onAction="#goBack" styleClass="regularbutton" text="Back to menu" />
-      <Button layoutX="608.0" layoutY="610.0" mnemonicParsing="false" styleClass="favButton" text="Add To Favourite" />
+      <Button layoutX="608.0" layoutY="610.0" mnemonicParsing="false" onAction="#addProductToFavorite" styleClass="favButton" text="Add To Favourite" />
       <Button fx:id="closingButton" focusTraversable="false" layoutX="760.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
       <Button fx:id="minimizeButton1" focusTraversable="false" layoutX="787.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
 

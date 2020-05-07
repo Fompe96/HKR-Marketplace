@@ -89,6 +89,11 @@ public class MonitoringSalesController implements Initializable {
         SceneChanger.changeScene("../Views/MonitoringSales.fxml");
     }
 
+    @FXML
+    private void handleMarketButton() {
+        SceneChanger.changeScene("../Views/Marketplace.fxml");
+    }
+
     private void initializeTable() {
         for (Item item : favorites) {
             if (item.getImage() != null) {

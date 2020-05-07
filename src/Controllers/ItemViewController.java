@@ -32,7 +32,7 @@ public class ItemViewController implements Initializable {
     @FXML
     private ImageView image;
 
-    private double x , y;
+    private double x, y;
 
 
     @Override
@@ -49,9 +49,9 @@ public class ItemViewController implements Initializable {
     }
 
     @FXML
-    public void goBack(){
-    SceneChanger.changeScene("../Views/Marketplace.fxml");
-    Singleton.getInstance().setItem(null);
+    public void goBack() {
+        SceneChanger.changeScene("../Views/Marketplace.fxml");
+        Singleton.getInstance().setItem(null);
     }
 
     public void contactSeller(){
@@ -82,7 +82,13 @@ public class ItemViewController implements Initializable {
         y = event.getSceneY();
     }
 
-
+    @FXML
+    private void addProductToFavorite() throws FileNotFoundException, SQLException {
+        String userEmail = Singleton.getInstance().getLoggedInEmail();
+        int productId = Singleton.getInstance().getItem().getId();
+        DBHandler.addProductToFavorites(userEmail, productId);
+        MessageHandler.getConfirmationAlert("Success", "Success", "Product added to favorites").showAndWait();
+    }
 
 
 }
