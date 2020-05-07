@@ -78,12 +78,13 @@ public class LoginController implements Initializable {
                 ftSecond.setToValue(1);
                 ftSecond.play();
                 Platform.runLater(() -> root.requestFocus());
-                handleToolTip();
+
 
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        handleToolTip();
         loginButton.setCursor(Cursor.HAND);
     }
 

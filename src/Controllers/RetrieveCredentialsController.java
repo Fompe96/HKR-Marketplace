@@ -4,11 +4,14 @@ import Database.DBHandler;
 import Models.EmailSender;
 import Models.MessageHandler;
 import Models.SceneChanger;
+import Models.ToolTipHandler;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -22,11 +25,26 @@ public class RetrieveCredentialsController implements Initializable {
     private TextField userEmail;
     @FXML
     private AnchorPane root;
+    @FXML
+    private Button closingButton, minimizeButton, backButton, retrieveButton;
     private double x, y;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> root.requestFocus());
+
+        handleToolTip();
+        handleCursor();
+    }
+
+    private void handleCursor() {
+        backButton.setCursor(Cursor.HAND);
+        retrieveButton.setCursor(Cursor.HAND);
+    }
+
+    private void handleToolTip() {
+        ToolTipHandler.getToolTipCloseButton(closingButton);
+        ToolTipHandler.getToolTipMinimizeButton(minimizeButton);
     }
 
     @FXML

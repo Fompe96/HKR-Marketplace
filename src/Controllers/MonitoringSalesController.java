@@ -4,12 +4,15 @@ import Database.DBHandler;
 import Models.Item;
 import Models.SceneChanger;
 import Models.Singleton;
+import Models.ToolTipHandler;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -24,6 +27,9 @@ public class MonitoringSalesController implements Initializable {
 
     private ObservableList<Item> favorites;
     private double x, y;
+
+    @FXML
+    private Button sellButton, marketButton, settingsButton, adminButton, closingButton, minimizeButton;
 
     @FXML
     private TableView<Item> table;
@@ -106,6 +112,26 @@ public class MonitoringSalesController implements Initializable {
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
         table.setItems(favorites);
+
+        handleCursor();
+        handleToolTip();
+
+    }
+
+    private void handleToolTip() {
+        ToolTipHandler.getToolTipCloseButton(closingButton);
+        ToolTipHandler.getToolTipMinimizeButton(minimizeButton);
+        ToolTipHandler.getTooltipMarketPlace(marketButton);
+        ToolTipHandler.getToolTipSettings(settingsButton);
+        ToolTipHandler.getToolTipAdmin(adminButton);
+        ToolTipHandler.getToolTipSellScene(sellButton);
+    }
+
+    private void handleCursor() {
+        adminButton.setCursor(Cursor.HAND);
+        settingsButton.setCursor(Cursor.HAND);
+        marketButton.setCursor(Cursor.HAND);
+        sellButton.setCursor(Cursor.HAND);
     }
 
     private void fetchItemsFromDB() {
