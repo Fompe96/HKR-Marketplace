@@ -83,7 +83,13 @@ public class ContactSellerController implements Initializable {
     public void sendEmail() {
         if (subject != null && message != null) {
             EmailSender.sendEmail(Singleton.getInstance().getItem().getOwner(), subject.getText(), message.getText());
+            MessageHandler.getConfirmationAlert("Message sent", "Your message was sent", "Your message to " +
+                    Singleton.getInstance().getItem().getOwner() + " was successfully sent").showAndWait();
+        }else {
+            MessageHandler.getErrorAlert("Missing text in testfield", "Missing text in testfield", "You have not entered a message or subject in the fields").showAndWait();
+
         }
+
     }
 
     @FXML
