@@ -25,25 +25,38 @@ public class ContactSellerController implements Initializable {
 
     private ObservableList<Account> accounts;
 
-    double x,y;
+    private double x,y;
 
     @FXML
-    Label name;
+    private Label name;
 
     @FXML
-    Label email;
+    private Label email;
 
     @FXML
-    Label rating;
+    private Label rating;
 
     @FXML
-    ImageView profilePic;
+    private ImageView profilePic;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        fetchAccountsDB();
+        Account itemOwner = DBHandler.findUser(Singleton.getInstance().getItem().getOwner());
+        //fetchAccountsDB();
 
-
+        if (Singleton.getInstance().getItem() != null && itemOwner != null) {
+            if (itemOwner.getEmail().equals(Singleton.getInstance().getItem().getOwner())) {
+                name.setText(itemOwner.getUserName());
+                email.setText(itemOwner.getEmail());
+                try {
+                    profilePic.setImage(itemOwner.getImage());
+                } catch (NullPointerException e) {
+                }
+            }
+            rating.setText("6.9");
+        }
+    }
+            /*
             System.out.println(Singleton.getInstance().getItem().getOwner());
             for (Account account : accounts) {
                 System.out.println(account.getEmail());
@@ -61,11 +74,11 @@ public class ContactSellerController implements Initializable {
                 }
             }
 
-
-
     public void fetchAccountsDB(){
         accounts = DBHandler.retrieveAllAccounts();
     }
+    */
+
 
     @FXML
     private void handleLogOutButton() {
