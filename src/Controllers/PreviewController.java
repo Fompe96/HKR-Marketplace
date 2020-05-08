@@ -55,8 +55,8 @@ public class PreviewController implements Initializable {
         statement.setString(1, nameLabel.getText());
         statement.setDouble(2, Double.parseDouble(priceLabel.getText()));
         statement.setString(3, descriptionLabel.getText());
-        statement.setString(4, categoryLabel.getText());
-        statement.setString(5, conditionLabel.getText());
+        statement.setString(5, categoryLabel.getText());
+        statement.setString(4, conditionLabel.getText());
         FileInputStream fis = new FileInputStream(file);
         statement.setBinaryStream(6, fis, (int) file.length());
         statement.setString(7, Singleton.getInstance().getLoggedInEmail());
