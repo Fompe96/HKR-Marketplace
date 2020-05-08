@@ -21,6 +21,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class MarketplaceController implements Initializable {
@@ -154,10 +156,14 @@ public class MarketplaceController implements Initializable {
         title.setCellValueFactory(new PropertyValueFactory<>("name"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
         table.setItems(items);
+        table.sort();
     }
 
     private void fetchItemsFromDB() {
         items = DBHandler.retrieveAllSales();
+        if (items != null) {
+            Collections.reverse(items);
+        }
     }
 
 }

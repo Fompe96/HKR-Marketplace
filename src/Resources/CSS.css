@@ -98,6 +98,7 @@
     -fx-border-color: #e8e8e8;
 }
 .table-view {
+    -fx-font-size: 20px;
     -fx-background-color: #474747;
     -fx-background-radius: 30;
     -fx-fill: white;
@@ -137,7 +138,6 @@
   .marketplaceTableView .scroll-bar:vertical .track{
        -fx-background-color: transparent;
        -fx-border-color:derive( #6622CC,80%);
-
        -fx-background-radius: 2em;
        -fx-border-radius:2em;
   }
@@ -152,6 +152,10 @@
    .marketplaceTableColumn:hover{
       -fx-background-color: #e8e8e8;
       -fx-text-background-color:  #6622CC;
+   }
+
+   .marketplaceTableView{
+   -fx-text-fill: white;
    }
 
 .regularcombobox {
