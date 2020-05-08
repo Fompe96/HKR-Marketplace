@@ -3,12 +3,14 @@ package Controllers;
 import Database.DBHandler;
 import Models.Account;
 import Models.MessageHandler;
+import Models.SceneChanger;
 import Models.Singleton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -16,6 +18,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.util.Objects;
 
 import java.io.File;
 import java.net.URL;
@@ -25,29 +29,24 @@ public class EditAccountController implements Initializable {
     private double x, y;
     private boolean changeDone;
     @FXML
-    private Label titletext;
-    @FXML
     private Button closebutton;
     @FXML
-    private Pane editAccountsPane;
-    @FXML
     private TextField oldnamefield, oldpasswordfield, oldemailfield, oldadminfield,
-            newnamefield, newpasswordfield, newemailfield, newadminfield, accountuploadfield;
+            newnamefield, newpasswordfield, newemailfield, accountuploadfield;
     @FXML
     private ImageView oldimageview;
+    @FXML
+    private CheckBox truebox, falsebox;
     private File newImage;
     private Account accountToEdit;
     private Account newAccount;
-    private String fileChecker;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         displayOldAccount();
         fillNewAccountFields();
-        fileChecker = accountToEdit.getImageFile().getPath();
+        newImage = accountToEdit.getImageFile();
     }
-
-
 
     private void displayOldAccount() {
         accountToEdit = (Account) Singleton.getInstance().getObjectToEdit();
@@ -56,10 +55,14 @@ public class EditAccountController implements Initializable {
         oldemailfield.setText(accountToEdit.getEmail());
         if (accountToEdit.isAdmin()) {
             oldadminfield.setText("True");
+            truebox.setSelected(true);
+            falsebox.setSelected(false);
         } else {
             oldadminfield.setText("False");
+            falsebox.setSelected(true);
+            truebox.setSelected(false);
         }
-        if (accountToEdit.getImage() != null) {
+        if (accountToEdit.getImageFile() != null) {
             try {
                 oldimageview.setImage(accountToEdit.getImage());
             } catch (NullPointerException e) {
@@ -69,11 +72,37 @@ public class EditAccountController implements Initializable {
     }
 
     private void fillNewAccountFields() {
+        newImage = accountToEdit.getImageFile();
         newnamefield.setText(oldnamefield.getText());
         newpasswordfield.setText(oldpasswordfield.getText());
         newemailfield.setText(oldemailfield.getText());
-        newadminfield.setText(oldadminfield.getText());
-        accountuploadfield.setText("Null");
+        if (accountToEdit.isAdmin()) {
+            truebox.setSelected(true);
+            falsebox.setSelected(false);
+        } else {
+            truebox.setSelected(false);
+            falsebox.setSelected(true);
+        }
+        if (newImage != null) {
+            accountuploadfield.setText(newImage.getPath());
+        } else {
+            accountuploadfield.setText("Null");
+        }
+    }
+
+    @FXML
+    private void handleCheckboxes(ActionEvent event) {
+        if (event.getSource() == truebox) {
+            truebox.setSelected(true);
+            falsebox.setSelected(false);
+        } else if (event.getSource() == falsebox) {
+            falsebox.setSelected(true);
+            truebox.setSelected(false);
+        }
+    }
+
+    private boolean getSelectedCheckBox() {
+        return truebox.isSelected();
     }
 
     @FXML
@@ -86,6 +115,7 @@ public class EditAccountController implements Initializable {
             accountuploadfield.setText(newImage.getPath());
         } else {
             MessageHandler.getErrorAlert("Error", "Error", "File does not exist!").showAndWait();
+            accountuploadfield.setText("Null");
         }
     }
 
@@ -113,10 +143,10 @@ public class EditAccountController implements Initializable {
         if (validationChecker && !oldemailfield.getText().equals(newemailfield.getText())) {
             validationChecker = validateNewEmail();
         }
-        if (validationChecker && !oldadminfield.getText().equals(newadminfield.getText())) {
+        if (validationChecker && !Objects.equals(accountToEdit.isAdmin(), getSelectedCheckBox())) {
             validationChecker = validateNewAdminStatus();
         }
-        if (validationChecker) {
+        if (validationChecker && !Objects.equals(accountToEdit.getImageFile(), newImage)) {
             validationChecker = validateNewImage();
         }
 
@@ -124,17 +154,16 @@ public class EditAccountController implements Initializable {
             newAccount.setUserName(newnamefield.getText());
             newAccount.setPassword(newpasswordfield.getText());
             newAccount.setEmail(newemailfield.getText());
-            if (newadminfield.getText().equals("True") || newadminfield.getText().equals("true") ) {
+            if (getSelectedCheckBox()) {
                 newAccount.setAdmin(true);
-            } else if (newadminfield.getText().equals("False") || newadminfield.getText().equals("false")) {
+            } else {
                 newAccount.setAdmin(false);
             }
+            newAccount.setImageFile(newImage);
             DBHandler.updateAccountInformation(accountToEdit, newAccount);
+            SceneChanger.changeScene("../Views/Administration.fxml");
+            handleClosingButton();
         }
-        System.out.println("Old " + accountToEdit);
-        System.out.println("-------------------");
-        System.out.println("New " + newAccount);
-        System.out.println();
     }
 
     private boolean validateNewAccountName() {
@@ -168,27 +197,18 @@ public class EditAccountController implements Initializable {
     }
 
     private boolean validateNewAdminStatus() {
-        if (newadminfield.getText().equals("True") || newadminfield.getText().equals("true") || newadminfield.getText().equals("False") || newadminfield.getText().equals("false")) {
-            changeDone = true;
-            return true;
-        } else {
-            MessageHandler.getErrorAlert("Error", "Error", "New admin status doesn't meet requirements.").showAndWait();
-            return false;
-        }
+        changeDone = true;
+        return true;
     }
 
     private boolean validateNewImage() {
-        if (newImage == null) {
-            newAccount.setImageFile(null);
-            changeDone = true;
-            return true;
-        } else if (!fileChecker.equals(newImage.getPath())) {
-            newAccount.setImageFile(newImage);
-            changeDone = true;
-            return true;
-        } else {
-            return false;
-        }
+      if (!Objects.equals(accountToEdit.getImageFile(), newImage)) {
+          changeDone = true;
+          return true;
+      } else {
+          MessageHandler.getErrorAlert("Error", "Error", "Something went wrong with picture.").showAndWait();
+          return false;
+      }
     }
 
 

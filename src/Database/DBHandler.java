@@ -255,8 +255,40 @@ public abstract class DBHandler extends DBConfig {
     }
 
     public static void updateAccountInformation(Account oldAccount, Account newAccount) {
-        System.out.println("HELLO FROM DBHANDLER");
+        FileInputStream fis = null;
+        String query = "UPDATE account SET Username = ?, Password = ?, Email = ?, Admin = ?, Picture = ? WHERE Email = '" + oldAccount.getEmail() + "';";
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            statement.setString(1, newAccount.getUserName());
+            statement.setString(2, newAccount.getPassword());
+            statement.setString(3, newAccount.getEmail());
+            if (newAccount.isAdmin()) {
+                statement.setBoolean(4, true);
+            } else {
+                statement.setBoolean(4, false);
+            }
+            if (newAccount.getImageFile() != null) {
+                fis = new FileInputStream(newAccount.getImageFile());
+                statement.setBinaryStream(5, fis, newAccount.getImageFile().length());
+            } else {
+                statement.setNull(5, Types.BLOB);
+            }
+            statement.executeUpdate();
+            MessageHandler.getInformationAlert("Success!", "Success!", "Account is now updated!").showAndWait();
+        } catch (SQLException | FileNotFoundException e) {
+            e.printStackTrace();
+            //MessageHandler.getErrorAlert("Error", "Error", "Something went wrong when trying to update the account.").showAndWait();
+        } finally {
+            try {
+                if (fis != null) {
+                    fis.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
+
 
     // Method used to convert the retrieved blobs into File objects used by the model class constructors.
     private static File convertBlobToFile(Blob blob) {
