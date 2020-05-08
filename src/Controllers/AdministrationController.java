@@ -30,7 +30,7 @@ public class AdministrationController implements Initializable {
     private boolean accountsTableActive;
 
     @FXML
-    private Button editAccounts, editItems, minimizeButton, closingButton, sellButton, marketPlaceButton, settingsButton;
+    private Button editAccounts, editItems, minimizeButton, closingButton, sellButton, marketPlaceButton, settingsButton, monitoringButton;
     @FXML
     private AnchorPane root;
     @FXML
@@ -74,10 +74,15 @@ public class AdministrationController implements Initializable {
         setupColumns();
         determineTableToLoad();
         handleToolTip();
+        handleCursor();
+        Platform.runLater(() -> root.requestFocus());
+    }
+
+    private void handleCursor() {
         sellButton.setCursor(Cursor.HAND);
         settingsButton.setCursor(Cursor.HAND);
         marketPlaceButton.setCursor(Cursor.HAND);
-        Platform.runLater(() -> root.requestFocus());
+        monitoringButton.setCursor(Cursor.HAND);
     }
 
     private void determineTableToLoad() {
@@ -279,5 +284,10 @@ public class AdministrationController implements Initializable {
     void windowPressed(MouseEvent event) {
         x = event.getSceneX();
         y = event.getSceneY();
+    }
+
+    @FXML
+    private void handleMonitoringButton(){
+        SceneChanger.changeScene("../Views/MonitoringSales.fxml");
     }
 }

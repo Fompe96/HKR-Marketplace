@@ -33,7 +33,7 @@ public class MarketplaceController implements Initializable {
     private ImageView imageView, imageView1, adminview;
 
     @FXML
-    private Button adminButton, settingsButton, closingButton, minimizeButton, sellButton, logOutButton;
+    private Button adminButton, settingsButton, closingButton, minimizeButton, sellButton, logOutButton, monitoringButton;
 
     @FXML
     private TableView<Item> table;
@@ -73,6 +73,7 @@ public class MarketplaceController implements Initializable {
         settingsButton.setCursor(Cursor.HAND);
         sellButton.setCursor(Cursor.HAND);
         logOutButton.setCursor(Cursor.HAND);
+        monitoringButton.setCursor(Cursor.HAND);
     }
 
     private void handleToolTip() {

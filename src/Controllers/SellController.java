@@ -35,7 +35,7 @@ public class SellController implements Initializable {
     private CheckBox excellentBox, veryGoodBox, goodBox, poorBox, vehiclesBox, petsBox, homeBox, electronicsBox, otherBox;
 
     @FXML
-    private Button adminButton, addSaleButton, previewButton, marketPlaceButton, settingsButton, closingButton, minimizeButton, uploadImageButton, logOutButton;
+    private Button adminButton, addSaleButton, previewButton, marketPlaceButton, settingsButton, closingButton, minimizeButton, uploadImageButton, logOutButton, monitoringButton;
 
     @FXML
     private TextField filePathTextField;
@@ -65,6 +65,8 @@ public class SellController implements Initializable {
         addSaleButton.setCursor(Cursor.HAND);
         uploadImageButton.setCursor(Cursor.HAND);
         logOutButton.setCursor(Cursor.HAND);
+        monitoringButton.setCursor(Cursor.HAND);
+
     }
 
     private void handleAdminView() {

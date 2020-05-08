@@ -115,6 +115,6 @@
             <Bloom />
          </effect>
       </ImageView>
-      <Button fx:id="openSellBuyButton" layoutX="14.0" layoutY="185.0" mnemonicParsing="false" onAction="#handleMonitoringButton" opacity="0.0" prefHeight="35.0" prefWidth="35.0" />
+      <Button fx:id="monitoringButton" layoutX="14.0" layoutY="185.0" mnemonicParsing="false" onAction="#handleMonitoringButton" opacity="0.0" prefHeight="35.0" prefWidth="35.0" />
    </children>
 </AnchorPane>

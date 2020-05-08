@@ -43,7 +43,7 @@ public class SettingsController implements Initializable {
     @FXML
     private Pane changePasswordPane;
     @FXML
-    private Button adminButton, sellButton, marketButton;
+    private Button adminButton, sellButton, marketButton, monitoringButton;
     private double x, y;
 
     private File file;
@@ -129,6 +129,7 @@ public class SettingsController implements Initializable {
         adminButton.setCursor(Cursor.HAND);
         sellButton.setCursor(Cursor.HAND);
         marketButton.setCursor(Cursor.HAND);
+        monitoringButton.setCursor(Cursor.HAND);
     }
 
     private void getProfilePicture() throws SQLException {
