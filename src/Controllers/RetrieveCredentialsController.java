@@ -32,7 +32,6 @@ public class RetrieveCredentialsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Platform.runLater(() -> root.requestFocus());
-
         handleToolTip();
         handleCursor();
     }
@@ -45,6 +44,7 @@ public class RetrieveCredentialsController implements Initializable {
     private void handleToolTip() {
         ToolTipHandler.getToolTipCloseButton(closingButton);
         ToolTipHandler.getToolTipMinimizeButton(minimizeButton);
+
     }
 
     @FXML
