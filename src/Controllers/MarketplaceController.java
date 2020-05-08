@@ -45,6 +45,8 @@ public class MarketplaceController implements Initializable {
     @FXML
     private TableColumn<Item, Double> price;
 
+    @FXML
+    private TableColumn<Item,String> category;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -147,7 +149,7 @@ public class MarketplaceController implements Initializable {
                 item.setPic(item.getImage());   // Här sätter jag varje objekts imageview till dens aktuella bild
             }
         }
-
+        category.setCellValueFactory(new PropertyValueFactory<>("category"));
         pic.setCellValueFactory(new PropertyValueFactory<>("pic"));
         title.setCellValueFactory(new PropertyValueFactory<>("name"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
