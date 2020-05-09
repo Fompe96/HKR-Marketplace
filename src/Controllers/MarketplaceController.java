@@ -180,12 +180,12 @@ public class MarketplaceController implements Initializable {
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
 
             filteredData.setPredicate(item -> {
-                // If filter text is empty, display all persons.
+
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
 
-                // Compare first name and last name of every person with filter text.
+
                 String lowerCaseFilter = newValue.toLowerCase();
 
                 if (item.getName().toLowerCase().contains(lowerCaseFilter)) {

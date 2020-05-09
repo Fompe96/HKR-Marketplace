@@ -138,9 +138,21 @@ public class MonitoringSalesController implements Initializable {
         favorites = DBHandler.retrieveAllFavorites(Singleton.getInstance().getLoggedInEmail());
     }
 
+    private void handleClickOnItem() {
+        table.setOnMouseClicked((MouseEvent event) -> {
+            if (event.getClickCount() > 1) {
+                if (table.getSelectionModel().getSelectedItem() != null) {
+                    Singleton.getInstance().setItem(table.getSelectionModel().getSelectedItem());
+                    SceneChanger.changeScene("../Views/ItemView.fxml");
+                }
+            }
+        });
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         fetchItemsFromDB();
         initializeTable();
+        handleClickOnItem();
     }
 }
