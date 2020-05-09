@@ -7,6 +7,8 @@ import Models.Singleton;
 import Models.ToolTipHandler;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -50,6 +53,9 @@ public class MarketplaceController implements Initializable {
     @FXML
     private TableColumn<Item,String> category;
 
+    @FXML
+    private TextField filterField;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // imageView.setImage(new Image("https://usercontent1.hubstatic.com/11310434_f520.jpg"));
@@ -58,6 +64,7 @@ public class MarketplaceController implements Initializable {
 
         initializeTable();
         handleClickOnItem();
+        search();
 
         if (Singleton.getInstance().getLoggedInAccount().isAdmin()) {
             adminview.setVisible(true);
@@ -166,5 +173,35 @@ public class MarketplaceController implements Initializable {
             Collections.reverse(items);
         }
     }
+
+    private void search(){
+
+        FilteredList<Item> filteredData = new FilteredList<>(items, p -> true);
+        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+
+            filteredData.setPredicate(item -> {
+                // If filter text is empty, display all persons.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (item.getName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches first name.
+                } else if (item.getCategory().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches last name.
+                }
+                return false; // Does not match.
+            });
+        });
+
+        SortedList<Item> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(table.comparatorProperty());
+        table.setItems(sortedData);
+
+    }
+
 
 }
