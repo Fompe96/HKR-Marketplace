@@ -14,10 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -56,6 +53,9 @@ public class MarketplaceController implements Initializable {
     @FXML
     private TextField filterField;
 
+    @FXML
+    private ChoiceBox<String> categoryBox;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // imageView.setImage(new Image("https://usercontent1.hubstatic.com/11310434_f520.jpg"));
@@ -63,8 +63,11 @@ public class MarketplaceController implements Initializable {
         // System.out.println("The user who just logged in is: " + Singleton.getInstance().getLoggedInAccount()); // This is here for testing purposes!
 
         initializeTable();
+        initChoiceBox();
         handleClickOnItem();
         search();
+        filterCategory();
+
 
         if (Singleton.getInstance().getLoggedInAccount().isAdmin()) {
             adminview.setVisible(true);
@@ -202,6 +205,46 @@ public class MarketplaceController implements Initializable {
         table.setItems(sortedData);
 
     }
+
+    private void filterCategory(){
+        FilteredList<Item> filteredData = new FilteredList<>(items, p -> true);
+        categoryBox.valueProperty().addListener((observable, oldValue, newValue) -> {
+
+            filteredData.setPredicate(item -> {
+
+                if (newValue == null || newValue.isEmpty()|| newValue == "All") {
+                    return true;
+                }
+
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (item.getCategory().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches first name.
+                }
+                else {
+                    return false; // Does not match.
+                }
+            });
+        });
+
+        SortedList<Item> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(table.comparatorProperty());
+        table.setItems(sortedData);
+    }
+
+    private void initChoiceBox (){
+
+        categoryBox.getItems().add("All");
+        categoryBox.getItems().add("Vehicles");
+        categoryBox.getItems().add("Pets");
+        categoryBox.getItems().add("Home");
+        categoryBox.getItems().add("Electronics");
+        categoryBox.getItems().add("Other");
+        categoryBox.setValue("All");
+
+    }
+
 
 
 }
