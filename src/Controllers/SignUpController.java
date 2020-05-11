@@ -121,11 +121,7 @@ public class SignUpController implements Initializable {
     private void registerUser() {
         new Thread(() -> {
             if (validateUniqueNumberGiven(Integer.parseInt(validateEmailField.getText()))) {
-                try {
-                    DBHandler.insertUserIntoDatabase(userName.getText(), userPassword.getText(), userEmail.getText());
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                DBHandler.insertUserIntoDatabase(userName.getText(), userPassword.getText(), userEmail.getText());
                 Platform.runLater(this::backButtonAction);
             }
         }).start();

@@ -125,29 +125,33 @@ public abstract class DBHandler extends DBConfig {
         }
     }
 
-    public static void addProductToFavorites(String userEmail, int productId) throws SQLException {
-        try {
-            PreparedStatement ps = getConnection().prepareStatement("INSERT INTO `hkrmarketplace`.`favorite` (`account_Email`, `product_idProduct`) VALUES ('" + userEmail + "', '" + productId + "');");
+    public static void addProductToFavorites(String userEmail, int productId) {
+        String query = "INSERT INTO `hkrmarketplace`.`favorite` (`account_Email`, `product_idProduct`) VALUES ('" + userEmail + "', '" + productId + "');";
+        try (PreparedStatement ps = getConnection().prepareStatement(query)){
             ps.executeUpdate();
         } catch (SQLException e) {
             MessageHandler.getErrorAlert("Error", "Error", "Item already in favorites");
         }
     }
 
-    public static void removeProductFromFavorites(String userEmail, int productId) throws SQLException {
-        try {
-            PreparedStatement ps = getConnection().prepareStatement("DELETE FROM `hkrmarketplace`.`favorite` WHERE (`account_Email` = '" + userEmail + "') and (`product_idProduct` = '" + productId + "');");
+    public static void removeProductFromFavorites(String userEmail, int productId) {
+        String query = "DELETE FROM `hkrmarketplace`.`favorite` WHERE (`account_Email` = '" + userEmail + "') and (`product_idProduct` = '" + productId + "');";
+        try (PreparedStatement ps = getConnection().prepareStatement(query)){
             ps.executeUpdate();
         } catch (SQLException e) {
             MessageHandler.getErrorAlert("Error", "Error", "Item not in favorites");
         }
     }
 
-    public static void uploadImage(String userEmail, String imagePath) throws SQLException, FileNotFoundException {
-        PreparedStatement ps = getConnection().prepareStatement("UPDATE `hkrmarketplace`.`account` SET `Picture` = ? WHERE (`Email` = '" + userEmail + "');");
-        InputStream is = new FileInputStream(new File(imagePath));
-        ps.setBlob(1, is);
-        ps.executeUpdate();
+    public static void uploadImage(String userEmail, String imagePath) {
+        String query = "UPDATE `hkrmarketplace`.`account` SET `Picture` = ? WHERE (`Email` = '" + userEmail + "');";
+        try (PreparedStatement ps = getConnection().prepareStatement(query)) {
+            InputStream is = new FileInputStream(new File(imagePath));
+            ps.setBlob(1, is);
+            ps.executeUpdate();
+        } catch (SQLException | FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void removeAccounts(ArrayList<String> emailsToRemove) {  // Currently takes an arraylist of account emails and removes them from DB.
@@ -235,9 +239,13 @@ public abstract class DBHandler extends DBConfig {
         }
     }
 
-    public static void changeUserPassword(String userEmail, String newPassword) throws SQLException {
-        PreparedStatement stmt = getConnection().prepareStatement("UPDATE `hkrmarketplace`.`account` SET `Password` = '" + newPassword + "' WHERE (`Email` = '" + userEmail + "');\n");
-        stmt.executeUpdate();
+    public static void changeUserPassword(String userEmail, String newPassword) {
+        String query = "UPDATE `hkrmarketplace`.`account` SET `Password` = '" + newPassword + "' WHERE (`Email` = '" + userEmail + "');";
+        try (PreparedStatement stmt = getConnection().prepareStatement(query)) {
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -249,16 +257,17 @@ public abstract class DBHandler extends DBConfig {
         }
     }
 
-    public static void insertUserIntoDatabase(String userName, String userPassword, String userEmail) throws SQLException {
-        Connection dbConnection = DBHandler.getConnection();
-        PreparedStatement stmt = dbConnection.prepareStatement("INSERT INTO `hkrmarketplace`.`account` (`Username`, `Password`, `Email`, `Admin`) VALUES (?, ?, ?, ?);\n");
-
-        stmt.setString(1, userName);
-        stmt.setString(2, userPassword);
-        stmt.setString(3, userEmail);
-        stmt.setBoolean(4, false);
-        stmt.executeUpdate();
-        DBHandler.closeConnection();
+    public static void insertUserIntoDatabase(String userName, String userPassword, String userEmail) {
+        String query = "INSERT INTO `hkrmarketplace`.`account` (`Username`, `Password`, `Email`, `Admin`) VALUES (?, ?, ?, ?);";
+        try (PreparedStatement stmt = getConnection().prepareStatement(query)) {
+            stmt.setString(1, userName);
+            stmt.setString(2, userPassword);
+            stmt.setString(3, userEmail);
+            stmt.setBoolean(4, false);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         EmailSender.sendEmail(userEmail, "Your new account", "Welcome to HKR Marketplace! Here are your account details. \n \n" +
                 "Username: " + userName + "\n" + "Password: " + userPassword + "\n" + "Account-Email: " + userEmail);
     }
