@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -22,7 +23,10 @@ import java.util.ResourceBundle;
 public class MonitoringSalesPreviewController implements Initializable {
 
     @FXML
-    private Label nameLabel, priceLabel, descriptionLabel, categoryLabel, conditionLabel;
+    private Label nameLabel, priceLabel, categoryLabel, conditionLabel;
+
+    @FXML
+    private TextArea descriptionLabel;
 
     @FXML
     private ImageView image;
