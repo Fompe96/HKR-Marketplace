@@ -192,11 +192,11 @@ public class MarketplaceController implements Initializable {
                 String lowerCaseFilter = newValue.toLowerCase();
 
                 if (item.getName().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; // Filter matches first name.
+                    return true;
                 } else if (item.getCategory().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; // Filter matches last name.
+                    return true;
                 }
-                return false; // Does not match.
+                return false;
             });
         });
 

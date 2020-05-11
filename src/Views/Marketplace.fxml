@@ -91,7 +91,7 @@
         </columns>
       </TableView>
       <ImageView fx:id="testImage" fitHeight="150.0" fitWidth="200.0" layoutX="869.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true" />
-      <TextField fx:id="filterField" layoutX="104.0" layoutY="80.0" promptText="Search" styleClass="regulartextfield" stylesheets="@../Resources/CSS.css" />
+      <TextField fx:id="filterField" layoutX="104.0" layoutY="80.0" onAction="#search" promptText="Search" styleClass="regulartextfield" stylesheets="@../Resources/CSS.css" />
       <ChoiceBox fx:id="categoryBox" layoutX="818.0" layoutY="81.0" prefWidth="150.0" styleClass="regularbutton" stylesheets="@../Resources/CSS.css" />
    </children>
 </AnchorPane>
