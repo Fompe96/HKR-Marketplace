@@ -64,7 +64,7 @@
       <Circle fill="#fc2b2b" layoutX="1217.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
       <Button fx:id="closingButton" focusTraversable="false" layoutX="1209.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
       <Button fx:id="minimizeButton" focusTraversable="false" layoutX="1185.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
-      <TableView fx:id="table" layoutX="106.0" layoutY="129.0" prefHeight="415.0" prefWidth="1103.0" styleClass="..\Resources\FavoritesCSS.css" stylesheets="@../Resources/FavoritesCSS.css">
+      <TableView fx:id="table" layoutX="106.0" layoutY="129.0" prefHeight="415.0" prefWidth="1103.0" style="-fx-text-background-color: white;" styleClass="..\Resources\FavoritesCSS.css" stylesheets="@../Resources/FavoritesCSS.css">
         <columns>
           <TableColumn fx:id="pic" prefWidth="185.0" text="Picture" />
           <TableColumn fx:id="title" prefWidth="362.0" text="Item" />

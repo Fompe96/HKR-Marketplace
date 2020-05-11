@@ -134,6 +134,15 @@ public abstract class DBHandler extends DBConfig {
         }
     }
 
+    public static void removeProductFromFavorites(String userEmail, int productId) throws SQLException {
+        try {
+            PreparedStatement ps = getConnection().prepareStatement("DELETE FROM `hkrmarketplace`.`favorite` WHERE (`account_Email` = '" + userEmail + "') and (`product_idProduct` = '" + productId + "');");
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            MessageHandler.getErrorAlert("Error", "Error", "Item not in favorites");
+        }
+    }
+
     public static void uploadImage(String userEmail, String imagePath) throws SQLException, FileNotFoundException {
         PreparedStatement ps = getConnection().prepareStatement("UPDATE `hkrmarketplace`.`account` SET `Picture` = ? WHERE (`Email` = '" + userEmail + "');");
         InputStream is = new FileInputStream(new File(imagePath));

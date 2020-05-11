@@ -143,7 +143,7 @@ public class MonitoringSalesController implements Initializable {
             if (event.getClickCount() > 1) {
                 if (table.getSelectionModel().getSelectedItem() != null) {
                     Singleton.getInstance().setItem(table.getSelectionModel().getSelectedItem());
-                    SceneChanger.changeScene("../Views/ItemView.fxml");
+                    SceneChanger.changeScene("../Views/MonitoringSalesPreview.fxml");
                 }
             }
         });
