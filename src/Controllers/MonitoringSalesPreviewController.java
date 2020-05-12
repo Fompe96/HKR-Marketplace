@@ -83,6 +83,6 @@ public class MonitoringSalesPreviewController implements Initializable {
         descriptionLabel.setText(Singleton.getInstance().getItem().getDescription());
         categoryLabel.setText(Singleton.getInstance().getItem().getCategory());
         conditionLabel.setText(Singleton.getInstance().getItem().getCondition());
-
+        descriptionLabel.setEditable(false);
     }
 }
