@@ -24,11 +24,11 @@ import java.util.ResourceBundle;
 
 public class InsertAccountController implements Initializable {
     @FXML
-    private Button closebutton;
+    private Button closeButton;
     @FXML
-    private CheckBox truecheckbox, falsecheckbox;
+    private CheckBox trueCheckbox, falseCheckbox;
     @FXML
-    private TextField usernamefield, passwordfield, emailfield, uploadfield;
+    private TextField usernameField, passwordField, emailField, uploadField;
     @FXML
     private AnchorPane root;
     private double x, y;
@@ -36,26 +36,26 @@ public class InsertAccountController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        uploadfield.setEditable(false);
+        uploadField.setEditable(false);
         Platform.runLater(() -> root.requestFocus());
     }
 
     @FXML
     private void handleCheckboxes(ActionEvent event) {
-        if (event.getSource() == truecheckbox) {
-            truecheckbox.setSelected(true);
-            falsecheckbox.setSelected(false);
-        } else if (event.getSource() == falsecheckbox) {
-            falsecheckbox.setSelected(true);
-            truecheckbox.setSelected(false);
+        if (event.getSource() == trueCheckbox) {
+            trueCheckbox.setSelected(true);
+            falseCheckbox.setSelected(false);
+        } else if (event.getSource() == falseCheckbox) {
+            falseCheckbox.setSelected(true);
+            trueCheckbox.setSelected(false);
         }
     }
 
     @FXML
     private void handleInsertButton() {
-        if (!usernamefield.getText().equals("") && !passwordfield.getText().equals("") && !emailfield.getText().equals("")) {
-            if (Account.validateEmail(emailfield.getText()) && !DBHandler.seeIfEmailAlreadyRegistered(emailfield.getText())) {
-                Account account = new Account(usernamefield.getText(), passwordfield.getText(), emailfield.getText(), getSelectedCheckbox(), imageFile);
+        if (!usernameField.getText().equals("") && !passwordField.getText().equals("") && !emailField.getText().equals("")) {
+            if (Account.validateEmail(emailField.getText()) && !DBHandler.seeIfEmailAlreadyRegistered(emailField.getText())) {
+                Account account = new Account(usernameField.getText(), passwordField.getText(), emailField.getText(), getSelectedCheckbox(), imageFile);
                 DBHandler.insertAccountIntoDB(account);
                 MessageHandler.getInformationAlert("Success", "Success", "The account was successfully added to the database!").showAndWait();
                 Singleton.getInstance().setLastInsertedObject("Account");
@@ -70,7 +70,7 @@ public class InsertAccountController implements Initializable {
     }
 
     private boolean getSelectedCheckbox() {
-        return !falsecheckbox.isSelected();
+        return !falseCheckbox.isSelected();
     }
 
     @FXML
@@ -80,7 +80,7 @@ public class InsertAccountController implements Initializable {
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("IMAGE FILES", "*.jpg", "*.png", "*.gif"));
         imageFile = fileChooser.showOpenDialog(null);
         if (imageFile != null) {
-            uploadfield.setText(imageFile.getPath());
+            uploadField.setText(imageFile.getPath());
         } else {
             MessageHandler.getErrorAlert("Error", "Error", "File does not exist!").showAndWait();
         }
@@ -89,12 +89,12 @@ public class InsertAccountController implements Initializable {
     @FXML
     private void handleResetButton() {
         imageFile = null;
-        uploadfield.setText("");
+        uploadField.setText("");
     }
 
     @FXML
     private void handleClosingButton() {
-        Stage popupStage = (Stage) closebutton.getScene().getWindow();
+        Stage popupStage = (Stage) closeButton.getScene().getWindow();
         popupStage.close();
     }
 

@@ -25,15 +25,15 @@ import java.util.ResourceBundle;
 
 public class InsertItemController implements Initializable {
     @FXML
-    private Button closebutton;
+    private Button closeButton;
     @FXML
-    private CheckBox excellentbox, verygoodbox, goodbox, poorbox, vehiclesbox, petsbox, homebox, electronicsbox, otherbox;
+    private CheckBox excellentBox, veryGoodBox, goodBox, poorBox, vehiclesBox, petsBox, homeBox, electronicsBox, otherBox;
     @FXML
-    private TextField namefield, pricefield, uploadfield;
+    private TextField nameField, priceField, uploadField;
     @FXML
     private AnchorPane root;
     @FXML
-    private TextArea descriptionarea;
+    private TextArea descriptionArea;
     private double x, y;
     private String selectedCondition = "Excellent";
     private String selectedCategory = "Vehicles";
@@ -41,75 +41,75 @@ public class InsertItemController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        uploadfield.setEditable(false);
+        uploadField.setEditable(false);
         Platform.runLater(() -> root.requestFocus());
     }
     @FXML
     private void handleConditionCheckboxes(ActionEvent event) {
-        if (event.getSource() == excellentbox) {
-            selectedCondition = excellentbox.getText();
-            excellentbox.setSelected(true);
-            verygoodbox.setSelected(false);
-            goodbox.setSelected(false);
-            poorbox.setSelected(false);
-        } else if (event.getSource() == verygoodbox) {
-            selectedCondition = verygoodbox.getText();
-            verygoodbox.setSelected(true);
-            excellentbox.setSelected(false);
-            goodbox.setSelected(false);
-            poorbox.setSelected(false);
-        } else if (event.getSource() == goodbox) {
-            selectedCondition = goodbox.getText();
-            goodbox.setSelected(true);
-            excellentbox.setSelected(false);
-            verygoodbox.setSelected(false);
-            poorbox.setSelected(false);
-        } else if (event.getSource() == poorbox) {
-            selectedCondition = poorbox.getText();
-            poorbox.setSelected(true);
-            excellentbox.setSelected(false);
-            verygoodbox.setSelected(false);
-            goodbox.setSelected(false);
+        if (event.getSource() == excellentBox) {
+            selectedCondition = excellentBox.getText();
+            excellentBox.setSelected(true);
+            veryGoodBox.setSelected(false);
+            goodBox.setSelected(false);
+            poorBox.setSelected(false);
+        } else if (event.getSource() == veryGoodBox) {
+            selectedCondition = veryGoodBox.getText();
+            veryGoodBox.setSelected(true);
+            excellentBox.setSelected(false);
+            goodBox.setSelected(false);
+            poorBox.setSelected(false);
+        } else if (event.getSource() == goodBox) {
+            selectedCondition = goodBox.getText();
+            goodBox.setSelected(true);
+            excellentBox.setSelected(false);
+            veryGoodBox.setSelected(false);
+            poorBox.setSelected(false);
+        } else if (event.getSource() == poorBox) {
+            selectedCondition = poorBox.getText();
+            poorBox.setSelected(true);
+            excellentBox.setSelected(false);
+            veryGoodBox.setSelected(false);
+            goodBox.setSelected(false);
         }
     }
 
     @FXML
     private void handleCategoryCheckboxes(ActionEvent event) {
-        if (event.getSource() == vehiclesbox) {
-            selectedCategory = vehiclesbox.getText();
-            vehiclesbox.setSelected(true);
-            petsbox.setSelected(false);
-            homebox.setSelected(false);
-            electronicsbox.setSelected(false);
-            otherbox.setSelected(false);
-        } else if (event.getSource() == petsbox) {
-            selectedCategory = petsbox.getText();
-            petsbox.setSelected(true);
-            vehiclesbox.setSelected(false);
-            homebox.setSelected(false);
-            electronicsbox.setSelected(false);
-            otherbox.setSelected(false);
-        } else if (event.getSource() == homebox) {
-            selectedCategory = homebox.getText();
-            homebox.setSelected(true);
-            vehiclesbox.setSelected(false);
-            petsbox.setSelected(false);
-            electronicsbox.setSelected(false);
-            otherbox.setSelected(false);
-        } else if (event.getSource() == electronicsbox) {
-            selectedCategory = electronicsbox.getText();
-            electronicsbox.setSelected(true);
-            vehiclesbox.setSelected(false);
-            petsbox.setSelected(false);
-            homebox.setSelected(false);
-            otherbox.setSelected(false);
-        } else if (event.getSource() == otherbox) {
-            selectedCategory = otherbox.getText();
-            otherbox.setSelected(true);
-            vehiclesbox.setSelected(false);
-            petsbox.setSelected(false);
-            homebox.setSelected(false);
-            electronicsbox.setSelected(false);
+        if (event.getSource() == vehiclesBox) {
+            selectedCategory = vehiclesBox.getText();
+            vehiclesBox.setSelected(true);
+            petsBox.setSelected(false);
+            homeBox.setSelected(false);
+            electronicsBox.setSelected(false);
+            otherBox.setSelected(false);
+        } else if (event.getSource() == petsBox) {
+            selectedCategory = petsBox.getText();
+            petsBox.setSelected(true);
+            vehiclesBox.setSelected(false);
+            homeBox.setSelected(false);
+            electronicsBox.setSelected(false);
+            otherBox.setSelected(false);
+        } else if (event.getSource() == homeBox) {
+            selectedCategory = homeBox.getText();
+            homeBox.setSelected(true);
+            vehiclesBox.setSelected(false);
+            petsBox.setSelected(false);
+            electronicsBox.setSelected(false);
+            otherBox.setSelected(false);
+        } else if (event.getSource() == electronicsBox) {
+            selectedCategory = electronicsBox.getText();
+            electronicsBox.setSelected(true);
+            vehiclesBox.setSelected(false);
+            petsBox.setSelected(false);
+            homeBox.setSelected(false);
+            otherBox.setSelected(false);
+        } else if (event.getSource() == otherBox) {
+            selectedCategory = otherBox.getText();
+            otherBox.setSelected(true);
+            vehiclesBox.setSelected(false);
+            petsBox.setSelected(false);
+            homeBox.setSelected(false);
+            electronicsBox.setSelected(false);
         }
     }
 
@@ -120,7 +120,7 @@ public class InsertItemController implements Initializable {
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("IMAGE FILES", "*.jpg", "*.png", "*.gif"));
         imageFile = fileChooser.showOpenDialog(null);
         if (imageFile != null) {
-            uploadfield.setText(imageFile.getPath());
+            uploadField.setText(imageFile.getPath());
         } else {
             MessageHandler.getErrorAlert("Error", "Error", "File does not exist!").showAndWait();
         }
@@ -129,15 +129,15 @@ public class InsertItemController implements Initializable {
     @FXML
     private void handleResetButton() {
         imageFile = null;
-        uploadfield.setText("");
+        uploadField.setText("");
     }
 
     @FXML
     private void handleInsertButton() {
-        if (!namefield.getText().equals("") && !descriptionarea.getText().equals("") && !pricefield.getText().equals("")) {
-            if (pricefield.getText().matches("[0-9]+") && Double.parseDouble(pricefield.getText()) > 29) {
+        if (!nameField.getText().equals("") && !descriptionArea.getText().equals("") && !priceField.getText().equals("")) {
+            if (priceField.getText().matches("[0-9]+") && Double.parseDouble(priceField.getText()) > 29) {
                 if (imageFile != null) {
-                    Item createdItem = new Item(0, namefield.getText(), Double.parseDouble(pricefield.getText()), descriptionarea.getText(), selectedCondition, selectedCategory, imageFile, Singleton.getInstance().getLoggedInEmail(), true);
+                    Item createdItem = new Item(0, nameField.getText(), Double.parseDouble(priceField.getText()), descriptionArea.getText(), selectedCondition, selectedCategory, imageFile, Singleton.getInstance().getLoggedInEmail(), true);
                     DBHandler.insertItemIntoDB(createdItem);
                     MessageHandler.getInformationAlert("Success", "Success", "The account was successfully added to the database!").showAndWait();
                     Singleton.getInstance().setLastInsertedObject("Item");
@@ -157,7 +157,7 @@ public class InsertItemController implements Initializable {
 
     @FXML
     private void handleClosingButton() {
-        Stage popupStage = (Stage) closebutton.getScene().getWindow();
+        Stage popupStage = (Stage) closeButton.getScene().getWindow();
         popupStage.close();
     }
 

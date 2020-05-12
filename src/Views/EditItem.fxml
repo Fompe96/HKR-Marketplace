@@ -20,7 +20,7 @@
             <HBox layoutY="1.0" onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="30.0" prefWidth="900.0" styleClass="regularWindowBar" />
             <Circle fill="#0073ff" layoutX="856.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
             <Circle fill="#fc2b2b" layoutX="880.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
-            <Button fx:id="closebutton" focusTraversable="false" layoutX="872.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
+            <Button fx:id="closeButton" focusTraversable="false" layoutX="872.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
             <Button focusTraversable="false" layoutX="848.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
          </children>
       </Pane>
@@ -42,42 +42,42 @@
          <children>
             <HBox layoutX="22.0" layoutY="30.0" prefHeight="90.0" prefWidth="874.0">
                <children>
-                  <TextField fx:id="olditemname" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="113.0" styleClass="regulartextfield">
+                  <TextField fx:id="oldItemName" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="113.0" styleClass="regulartextfield">
                      <HBox.margin>
                         <Insets top="32.5" />
                      </HBox.margin>
                   </TextField>
-                  <TextField fx:id="olditemprice" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="77.0" styleClass="regulartextfield">
+                  <TextField fx:id="oldItemPrice" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="77.0" styleClass="regulartextfield">
                      <HBox.margin>
                         <Insets left="2.0" top="32.5" />
                      </HBox.margin>
                   </TextField>
-                  <TextArea fx:id="olditemdescription" editable="false" focusTraversable="false" prefHeight="15.0" prefWidth="133.0">
+                  <TextArea fx:id="oldItemDescription" editable="false" focusTraversable="false" prefHeight="15.0" prefWidth="133.0">
                      <HBox.margin>
                         <Insets left="2.0" top="12.0" />
                      </HBox.margin>
                   </TextArea>
-                  <TextField fx:id="olditemcondition" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="104.0" styleClass="regulartextfield">
+                  <TextField fx:id="oldItemCondition" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="104.0" styleClass="regulartextfield">
                      <HBox.margin>
                         <Insets left="2.0" top="32.5" />
                      </HBox.margin>
                   </TextField>
-                  <TextField fx:id="olditemcategory" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="104.0" styleClass="regulartextfield">
+                  <TextField fx:id="oldItemCategory" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="104.0" styleClass="regulartextfield">
                      <HBox.margin>
                         <Insets left="2.0" top="32.5" />
                      </HBox.margin>
                   </TextField>
-                  <TextField fx:id="olditemowner" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="123.0" styleClass="regulartextfield">
+                  <TextField fx:id="oldItemOwner" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="123.0" styleClass="regulartextfield">
                      <HBox.margin>
                         <Insets left="2.0" top="32.5" />
                      </HBox.margin>
                   </TextField>
-                  <ImageView fx:id="olditemimageview" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="oldItemImageView" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
                   </ImageView>
-                  <TextField fx:id="olditemactive" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="80.0" styleClass="regulartextfield">
+                  <TextField fx:id="oldItemActive" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="80.0" styleClass="regulartextfield">
                      <HBox.margin>
                         <Insets left="5.0" top="32.5" />
                      </HBox.margin>

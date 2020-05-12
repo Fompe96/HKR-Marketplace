@@ -85,7 +85,7 @@
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
-      <ImageView fx:id="adminview" fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="adminView" fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../Resources/admin.png" />
          </image>

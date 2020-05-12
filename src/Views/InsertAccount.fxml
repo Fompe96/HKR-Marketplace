@@ -27,10 +27,10 @@
             </Label>
          </children>
       </Pane>
-      <TextField fx:id="usernamefield" alignment="CENTER" layoutX="24.0" layoutY="143.0" prefHeight="25.0" prefWidth="118.0" promptText="&lt;Enter Name&gt;" styleClass="regulartextfield" />
-      <TextField fx:id="passwordfield" alignment="CENTER" layoutX="153.0" layoutY="143.0" prefHeight="25.0" promptText="&lt;Enter Password&gt;" styleClass="regulartextfield" />
-      <TextField fx:id="emailfield" alignment="CENTER" layoutX="311.0" layoutY="143.0" prefWidth="187.0" promptText="&lt;Enter Email&gt;" styleClass="regulartextfield" />
-      <TextField fx:id="uploadfield" disable="true" editable="false" focusTraversable="false" layoutX="575.0" layoutY="154.0" prefHeight="25.0" prefWidth="111.0" promptText="&lt;URL&gt;" styleClass="regulartextfield" />
+      <TextField fx:id="usernameField" alignment="CENTER" layoutX="24.0" layoutY="143.0" prefHeight="25.0" prefWidth="118.0" promptText="&lt;Enter Name&gt;" styleClass="regulartextfield" />
+      <TextField fx:id="passwordField" alignment="CENTER" layoutX="153.0" layoutY="143.0" prefHeight="25.0" promptText="&lt;Enter Password&gt;" styleClass="regulartextfield" />
+      <TextField fx:id="emailField" alignment="CENTER" layoutX="311.0" layoutY="143.0" prefWidth="187.0" promptText="&lt;Enter Email&gt;" styleClass="regulartextfield" />
+      <TextField fx:id="uploadField" disable="true" editable="false" focusTraversable="false" layoutX="575.0" layoutY="154.0" prefHeight="25.0" prefWidth="111.0" promptText="&lt;URL&gt;" styleClass="regulartextfield" />
       <Label layoutX="55.0" layoutY="103.0" text="Name" textFill="#dddddd">
          <font>
             <Font name="System Bold" size="20.0" />
@@ -51,8 +51,8 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <CheckBox fx:id="truecheckbox" layoutX="507.0" layoutY="137.0" mnemonicParsing="false" onAction="#handleCheckboxes" styleClass="regularcheckbox" text="True" textFill="#dddddd" />
-      <CheckBox fx:id="falsecheckbox" layoutX="507.0" layoutY="156.0" mnemonicParsing="false" onAction="#handleCheckboxes" selected="true" styleClass="regularcheckbox" text="False" textFill="#dddddd" />
+      <CheckBox fx:id="trueCheckbox" layoutX="507.0" layoutY="137.0" mnemonicParsing="false" onAction="#handleCheckboxes" styleClass="regularcheckbox" text="True" textFill="#dddddd" />
+      <CheckBox fx:id="falseCheckbox" layoutX="507.0" layoutY="156.0" mnemonicParsing="false" onAction="#handleCheckboxes" selected="true" styleClass="regularcheckbox" text="False" textFill="#dddddd" />
       <Button fx:id="uploadbutton" layoutX="575.0" layoutY="125.0" mnemonicParsing="false" onAction="#handleUploadButton" prefHeight="25.0" prefWidth="81.0" styleClass="regularbutton" text="Upload">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -67,7 +67,7 @@
             <HBox layoutY="1.0" onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="30.0" prefWidth="700.0" styleClass="regularWindowBar" />
             <Circle fill="#0073ff" layoutX="656.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
             <Circle fill="#fc2b2b" layoutX="680.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
-            <Button fx:id="closebutton" focusTraversable="false" layoutX="672.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
+            <Button fx:id="closeButton" focusTraversable="false" layoutX="672.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
             <Button focusTraversable="false" layoutX="648.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
          </children>
       </Pane>

@@ -30,26 +30,26 @@
                   </Label>
                </children>
             </Pane>
-            <TextField fx:id="namefield" alignment="CENTER" layoutX="14.0" layoutY="136.0" prefHeight="25.0" prefWidth="118.0" promptText="&lt;Enter Name&gt;" styleClass="regulartextfield" />
-            <TextField fx:id="pricefield" alignment="CENTER" layoutX="138.0" layoutY="136.0" prefHeight="25.0" prefWidth="87.0" promptText="&lt;Enter Price&gt;" styleClass="regulartextfield" />
+            <TextField fx:id="nameField" alignment="CENTER" layoutX="14.0" layoutY="136.0" prefHeight="25.0" prefWidth="118.0" promptText="&lt;Enter Name&gt;" styleClass="regulartextfield" />
+            <TextField fx:id="priceField" alignment="CENTER" layoutX="138.0" layoutY="136.0" prefHeight="25.0" prefWidth="87.0" promptText="&lt;Enter Price&gt;" styleClass="regulartextfield" />
             <Pane layoutX="226.0" layoutY="127.0" prefHeight="90.0" prefWidth="90.0">
                <children>
-                  <CheckBox fx:id="excellentbox" layoutY="7.0" mnemonicParsing="false" onAction="#handleConditionCheckboxes" selected="true" styleClass="regularcheckbox" text="Excellent" textFill="#e8e8e8">
+                  <CheckBox fx:id="excellentBox" layoutY="7.0" mnemonicParsing="false" onAction="#handleConditionCheckboxes" selected="true" styleClass="regularcheckbox" text="Excellent" textFill="#e8e8e8">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </CheckBox>
-                  <CheckBox fx:id="verygoodbox" layoutY="28.0" mnemonicParsing="false" onAction="#handleConditionCheckboxes" styleClass="regularcheckbox" text="Very Good" textFill="#e8e8e8">
+                  <CheckBox fx:id="veryGoodBox" layoutY="28.0" mnemonicParsing="false" onAction="#handleConditionCheckboxes" styleClass="regularcheckbox" text="Very Good" textFill="#e8e8e8">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </CheckBox>
-                  <CheckBox fx:id="goodbox" layoutY="49.0" mnemonicParsing="false" onAction="#handleConditionCheckboxes" styleClass="regularcheckbox" text="Good" textFill="#e8e8e8">
+                  <CheckBox fx:id="goodBox" layoutY="49.0" mnemonicParsing="false" onAction="#handleConditionCheckboxes" styleClass="regularcheckbox" text="Good" textFill="#e8e8e8">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </CheckBox>
-                  <CheckBox fx:id="poorbox" layoutY="70.0" mnemonicParsing="false" onAction="#handleConditionCheckboxes" styleClass="regularcheckbox" text="Poor" textFill="#e8e8e8">
+                  <CheckBox fx:id="poorBox" layoutY="70.0" mnemonicParsing="false" onAction="#handleConditionCheckboxes" styleClass="regularcheckbox" text="Poor" textFill="#e8e8e8">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
@@ -58,34 +58,34 @@
             </Pane>
             <Pane layoutX="312.0" layoutY="126.0" prefHeight="108.0" prefWidth="90.0">
                <children>
-                  <CheckBox fx:id="vehiclesbox" layoutY="7.0" mnemonicParsing="false" onAction="#handleCategoryCheckboxes" selected="true" styleClass="regularcheckbox" text="Vehicles" textFill="#e8e8e8">
+                  <CheckBox fx:id="vehiclesBox" layoutY="7.0" mnemonicParsing="false" onAction="#handleCategoryCheckboxes" selected="true" styleClass="regularcheckbox" text="Vehicles" textFill="#e8e8e8">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </CheckBox>
-                  <CheckBox fx:id="petsbox" layoutY="28.0" mnemonicParsing="false" onAction="#handleCategoryCheckboxes" styleClass="regularcheckbox" text="Pets" textFill="#e8e8e8">
+                  <CheckBox fx:id="petsBox" layoutY="28.0" mnemonicParsing="false" onAction="#handleCategoryCheckboxes" styleClass="regularcheckbox" text="Pets" textFill="#e8e8e8">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </CheckBox>
-                  <CheckBox fx:id="homebox" layoutY="49.0" mnemonicParsing="false" onAction="#handleCategoryCheckboxes" styleClass="regularcheckbox" text="Home" textFill="#e8e8e8">
+                  <CheckBox fx:id="homeBox" layoutY="49.0" mnemonicParsing="false" onAction="#handleCategoryCheckboxes" styleClass="regularcheckbox" text="Home" textFill="#e8e8e8">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </CheckBox>
-                  <CheckBox fx:id="electronicsbox" layoutY="70.0" mnemonicParsing="false" onAction="#handleCategoryCheckboxes" styleClass="regularcheckbox" text="Electronics" textFill="#e8e8e8">
+                  <CheckBox fx:id="electronicsBox" layoutY="70.0" mnemonicParsing="false" onAction="#handleCategoryCheckboxes" styleClass="regularcheckbox" text="Electronics" textFill="#e8e8e8">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </CheckBox>
-                  <CheckBox fx:id="otherbox" layoutY="91.0" mnemonicParsing="false" onAction="#handleCategoryCheckboxes" styleClass="regularcheckbox" text="Other" textFill="#e8e8e8">
+                  <CheckBox fx:id="otherBox" layoutY="91.0" mnemonicParsing="false" onAction="#handleCategoryCheckboxes" styleClass="regularcheckbox" text="Other" textFill="#e8e8e8">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                   </CheckBox>
                </children>
             </Pane>
-            <TextField fx:id="uploadfield" disable="true" editable="false" focusTraversable="false" layoutX="571.0" layoutY="161.0" prefHeight="25.0" prefWidth="111.0" promptText="&lt;URL&gt;" styleClass="regulartextfield" />
+            <TextField fx:id="uploadField" disable="true" editable="false" focusTraversable="false" layoutX="571.0" layoutY="161.0" prefHeight="25.0" prefWidth="111.0" promptText="&lt;URL&gt;" styleClass="regulartextfield" />
             <Button fx:id="uploadbutton" layoutX="571.0" layoutY="133.0" mnemonicParsing="false" onAction="#handleUploadButton" prefHeight="25.0" prefWidth="81.0" styleClass="regularbutton" text="Upload">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -96,7 +96,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <TextArea fx:id="descriptionarea" layoutX="412.0" layoutY="131.0" prefHeight="108.0" prefWidth="147.0" />
+            <TextArea fx:id="descriptionArea" layoutX="412.0" layoutY="131.0" prefHeight="108.0" prefWidth="147.0" />
             <Label layoutX="45.0" layoutY="96.0" text="Name" textFill="#dddddd">
                <font>
                   <Font name="System Bold" size="20.0" />
@@ -139,7 +139,7 @@
             <HBox onMouseDragged="#windowDragged" onMousePressed="#windowPressed" prefHeight="30.0" prefWidth="700.0" styleClass="regularWindowBar" />
             <Circle fill="#0073ff" layoutX="656.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
             <Circle fill="#fc2b2b" layoutX="680.0" layoutY="15.0" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
-            <Button fx:id="closebutton" focusTraversable="false" layoutX="672.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
+            <Button fx:id="closeButton" focusTraversable="false" layoutX="672.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleClosingButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
             <Button focusTraversable="false" layoutX="648.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleMinimizeButton" opacity="0.0" prefHeight="16.0" prefWidth="2.0" />
          </children>
       </Pane>

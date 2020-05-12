@@ -173,6 +173,7 @@ public abstract class DBHandler extends DBConfig {
     }
 
     public static void removeSales(ArrayList<Integer> salesIDsToRemove) {  // Currently takes an arraylist of sale IDS and removes them from DB.
+        //DELETE favorite, product FROM favorite INNER JOIN product ON product.idProduct = favorite.product_idProduct WHERE product.idProduct = ?;      REPLACE ? WITH ID's TO BE REMOVED
         StringBuilder query = new StringBuilder("DELETE FROM product WHERE idProduct IN (");
         for (int i = 0; i < salesIDsToRemove.size(); i++) {
             if (i == salesIDsToRemove.size() - 1) {

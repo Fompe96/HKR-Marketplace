@@ -25,13 +25,13 @@ import java.util.ResourceBundle;
 public class ContactSellerController implements Initializable {
 
     @FXML
-    PasswordField password;
+    private PasswordField password;
 
     @FXML
-    TextField subject;
+    private TextField subject;
 
     @FXML
-    TextArea message;
+    private TextArea message;
 
     private ObservableList<Account> accounts;
 

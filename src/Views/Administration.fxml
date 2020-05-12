@@ -50,7 +50,7 @@
                 <TableColumn fx:id="password" prefWidth="159.0" text="Password" />
                   <TableColumn fx:id="email" prefWidth="194.0" text="Email" />
                   <TableColumn fx:id="admin" prefWidth="102.0" text="Admin" />
-                  <TableColumn fx:id="accpicture" prefWidth="216.0" text="Picture" />
+                  <TableColumn fx:id="accPicture" prefWidth="216.0" text="Picture" />
               </columns>
             </TableView>
          </children>

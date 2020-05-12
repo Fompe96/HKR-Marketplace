@@ -49,7 +49,7 @@ public class SettingsController implements Initializable {
     private File file;
 
     @FXML
-    private ImageView imageToUpload, adminview;
+    private ImageView imageToUpload, adminView;
 
     @FXML
     private void handleClosingButton() {
@@ -115,7 +115,7 @@ public class SettingsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loggedInAs.setText(Singleton.getInstance().getLoggedInName());
         if (Singleton.getInstance().getLoggedInAccount().isAdmin()) {
-            adminview.setVisible(true);
+            adminView.setVisible(true);
             adminButton.setDisable(false);
         }
         try {

@@ -22,13 +22,13 @@ import java.util.ResourceBundle;
 
 public class EditItemController implements Initializable {
     @FXML
-    private TextArea olditemdescription;
+    private TextArea oldItemDescription;
     @FXML
-    private TextField olditemname, olditemprice, olditemcondition, olditemcategory, olditemowner, olditemactive;
+    private TextField oldItemName, oldItemPrice, oldItemCondition, oldItemCategory, oldItemOwner, oldItemActive;
     @FXML
-    private ImageView olditemimageview;
+    private ImageView oldItemImageView;
     @FXML
-    private Button closebutton;
+    private Button closeButton;
     private double x,y;
     private Item itemToEdit;
     private File newImage;
@@ -39,23 +39,23 @@ public class EditItemController implements Initializable {
     }
     private void displayOldItem() {
         itemToEdit = (Item) Singleton.getInstance().getObjectToEdit();
-        olditemname.setText(itemToEdit.getName());
-        olditemprice.setText(String.valueOf(itemToEdit.getPrice()));
-        olditemdescription.setText(itemToEdit.getDescription());
-        olditemcondition.setText(itemToEdit.getCondition());
-        olditemcategory.setText(itemToEdit.getCategory());
-        olditemowner.setText(itemToEdit.getOwner());
+        oldItemName.setText(itemToEdit.getName());
+        oldItemPrice.setText(String.valueOf(itemToEdit.getPrice()));
+        oldItemDescription.setText(itemToEdit.getDescription());
+        oldItemCondition.setText(itemToEdit.getCondition());
+        oldItemCategory.setText(itemToEdit.getCategory());
+        oldItemOwner.setText(itemToEdit.getOwner());
         if (itemToEdit.getImage() != null) {
             try {
-                olditemimageview.setImage(itemToEdit.getImage());
+                oldItemImageView.setImage(itemToEdit.getImage());
             } catch (NullPointerException e) {
                 MessageHandler.getErrorAlert("Error", "Error", "Something went wrong when trying to display the picture.").showAndWait();
             }
         }
         if (itemToEdit.isSaleActive()) {
-            olditemactive.setText("True");
+            oldItemActive.setText("True");
         } else {
-            olditemactive.setText("False");
+            oldItemActive.setText("False");
         }
     }
 
@@ -84,7 +84,7 @@ public class EditItemController implements Initializable {
 
     @FXML
     private void handleClosingButton() {
-        Stage popupStage = (Stage) closebutton.getScene().getWindow();
+        Stage popupStage = (Stage) closeButton.getScene().getWindow();
         popupStage.close();
     }
 

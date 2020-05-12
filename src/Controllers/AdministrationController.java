@@ -44,7 +44,7 @@ public class AdministrationController implements Initializable {
     @FXML
     private TableColumn<Account, Boolean> admin;
     @FXML
-    private TableColumn<Account, File> accpicture;
+    private TableColumn<Account, File> accPicture;
 
     @FXML
     private TableView<Item> itemTableView;
@@ -139,7 +139,7 @@ public class AdministrationController implements Initializable {
         password.setCellValueFactory(new PropertyValueFactory<>("Password"));
         email.setCellValueFactory(new PropertyValueFactory<>("Email"));
         admin.setCellValueFactory(new PropertyValueFactory<>("Admin"));
-        accpicture.setCellValueFactory(new PropertyValueFactory<>("imageFile"));
+        accPicture.setCellValueFactory(new PropertyValueFactory<>("imageFile"));
         accountsTableView.setItems(accounts);
         accountsTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE); // Allows for multiple rows to be selected
         // Sales Columns

@@ -27,7 +27,7 @@ public class PreviewController implements Initializable {
     @FXML
     private ImageView image;
 
-    File file = Singleton.getInstance().getItem().getImageFile();
+    private File file = Singleton.getInstance().getItem().getImageFile();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

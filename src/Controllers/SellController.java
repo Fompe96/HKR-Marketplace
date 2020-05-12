@@ -41,7 +41,7 @@ public class SellController implements Initializable {
     private TextField filePathTextField;
 
     @FXML
-    private ImageView adminview;
+    private ImageView adminView;
 
     private File file;
 
@@ -71,7 +71,7 @@ public class SellController implements Initializable {
 
     private void handleAdminView() {
         if (Singleton.getInstance().getLoggedInAccount().isAdmin()) {
-            adminview.setVisible(true);
+            adminView.setVisible(true);
             adminButton.setDisable(false);
         }
     }
