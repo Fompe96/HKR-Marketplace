@@ -18,6 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -26,6 +27,7 @@ import java.util.ResourceBundle;
 public class MonitoringSalesController implements Initializable {
 
     private ObservableList<Item> favorites;
+    private ObservableList<Item> userSales;
     private double x, y;
 
     @FXML
@@ -48,6 +50,9 @@ public class MonitoringSalesController implements Initializable {
 
     @FXML
     private TableColumn<Item, String> description;
+
+    @FXML
+    private Text text;
 
     @FXML
     private void handleMinimizeButton(ActionEvent event) {
@@ -103,7 +108,7 @@ public class MonitoringSalesController implements Initializable {
         SceneChanger.changeScene("../Views/Marketplace.fxml");
     }
 
-    private void initializeTable() {
+    private void initializeFavTable() {
         for (Item item : favorites) {
             if (item.getImage() != null) {
                 item.setPic(item.getImage());   // Här sätter jag varje objekts imageview till dens aktuella bild
@@ -137,8 +142,12 @@ public class MonitoringSalesController implements Initializable {
         sellButton.setCursor(Cursor.HAND);
     }
 
-    private void fetchItemsFromDB() {
+    private void fetchFavFromDB() {
         favorites = DBHandler.retrieveAllFavorites(Singleton.getInstance().getLoggedInEmail());
+    }
+
+    private void fetchSalesFromDB(){
+        userSales = DBHandler.retrieveUserSales(Singleton.getInstance().getLoggedInEmail());
     }
 
     private void handleClickOnItem() {
@@ -161,8 +170,35 @@ public class MonitoringSalesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        fetchItemsFromDB();
-        initializeTable();
+        fetchFavFromDB();
+        fetchSalesFromDB();
+        initializeFavTable();
         handleClickOnItem();
     }
+
+    @FXML
+    private void toggleSalesButton(){
+        text.setText("Sales");
+        System.out.println(userSales.get(1));
+        for (Item item : userSales) {
+            if (item.getImage() != null) {
+                item.setPic(item.getImage());   // Här sätter jag varje objekts imageview till dens aktuella bild
+            }
+        }
+        /*
+        pic.setCellValueFactory(new PropertyValueFactory<>("pic"));
+        title.setCellValueFactory(new PropertyValueFactory<>("name"));
+        price.setCellValueFactory(new PropertyValueFactory<>("price"));
+        description.setCellValueFactory(new PropertyValueFactory<>("description"));
+       */
+        table.setItems(userSales);
+
+    }
+
+    @FXML
+    private void toggleFavouriteButton(){
+        text.setText("Favourites");
+        initializeFavTable();
+    }
+
 }
