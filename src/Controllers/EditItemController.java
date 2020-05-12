@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -22,23 +23,35 @@ import java.util.ResourceBundle;
 
 public class EditItemController implements Initializable {
     @FXML
-    private TextArea oldItemDescription;
+    private TextArea oldItemDescription, newItemDescription;
     @FXML
-    private TextField oldItemName, oldItemPrice, oldItemCondition, oldItemCategory, oldItemOwner, oldItemActive;
+    private TextField oldItemName, oldItemPrice, oldItemCondition, oldItemCategory, oldItemOwner, oldItemActive,
+            newItemName, newItemPrice, newItemOwner, itemUploadField;
     @FXML
     private ImageView oldItemImageView;
     @FXML
     private Button closeButton;
+    @FXML
+    private CheckBox conditionExcellent, conditionVeryGood, conditionGood, conditionPoor,
+        categoryVehicles, categoryPets, categoryHome, categoryElectronics, categoryOther,
+        activeTrue, activeFalse;
+    private String selectedCondition;
+    private String selectedCategory;
+    private boolean active;
     private double x,y;
     private Item itemToEdit;
+    private Item newItem;
     private File newImage;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        displayOldItem();
-    }
-    private void displayOldItem() {
         itemToEdit = (Item) Singleton.getInstance().getObjectToEdit();
+        displayOldItem();
+        displayNewItemFields();
+
+    }
+    // Displays the old values of the item to be edited
+    private void displayOldItem() {
         oldItemName.setText(itemToEdit.getName());
         oldItemPrice.setText(String.valueOf(itemToEdit.getPrice()));
         oldItemDescription.setText(itemToEdit.getDescription());
@@ -58,6 +71,142 @@ public class EditItemController implements Initializable {
             oldItemActive.setText("False");
         }
     }
+    // Fills the new fields with the old information when loaded so that the item can be edited faster
+    private void displayNewItemFields() {
+        newImage = itemToEdit.getImageFile();
+        newItemName.setText(oldItemName.getText());
+        newItemPrice.setText(oldItemPrice.getText());
+        newItemDescription.setText(oldItemDescription.getText());
+        setNewConditionBox();
+        setNewCategoryBox();
+        newItemOwner.setText(oldItemOwner.getText());
+        setNewActiveBox();
+        if (newImage != null) {
+            itemUploadField.setText(newImage.getPath());
+        } else {
+            itemUploadField.setText("Null");
+        }
+    }
+
+    // Checks the condition of the item to edit and checks the correct checkBox
+    private void setNewConditionBox() {
+        String condition = itemToEdit.getCondition();
+        if (condition.equals("Excellent")) {
+            conditionExcellent.setSelected(true);
+        } else if (condition.equals("Very Good")) {
+            conditionVeryGood.setSelected(true);
+        } else if (condition.equals("Good")) {
+            conditionGood.setSelected(true);
+        } else if (condition.equals("Poor")) {
+            conditionPoor.setSelected(true);
+        }
+    }
+    // Method that checks and unchecks all condition boxes appropriately depending no which is clicked.
+    @FXML
+    private void handleConditionCheckboxes(ActionEvent event) {
+        if (event.getSource() == conditionExcellent) {
+            selectedCondition = conditionExcellent.getText();
+            conditionExcellent.setSelected(true);
+            conditionVeryGood.setSelected(false);
+            conditionGood.setSelected(false);
+            conditionPoor.setSelected(false);
+        } else if (event.getSource() == conditionVeryGood) {
+            selectedCondition = conditionVeryGood.getText();
+            conditionVeryGood.setSelected(true);
+            conditionExcellent.setSelected(false);
+            conditionGood.setSelected(false);
+            conditionPoor.setSelected(false);
+        } else if (event.getSource() == conditionGood) {
+            selectedCondition = conditionGood.getText();
+            conditionGood.setSelected(true);
+            conditionExcellent.setSelected(false);
+            conditionVeryGood.setSelected(false);
+            conditionPoor.setSelected(false);
+        } else if (event.getSource() == conditionPoor) {
+            selectedCondition = conditionPoor.getText();
+            conditionPoor.setSelected(true);
+            conditionExcellent.setSelected(false);
+            conditionVeryGood.setSelected(false);
+            conditionGood.setSelected(false);
+        }
+    }
+
+    private void setNewCategoryBox() {
+        String category = itemToEdit.getCategory();
+        if (category.equals("Vehicles")) {
+            categoryVehicles.setSelected(true);
+        } else if (category.equals("Pets")) {
+            categoryPets.setSelected(true);
+        } else if (category.equals("Home")) {
+            categoryHome.setSelected(true);
+        } else if (category.equals("Electronics")) {
+            categoryElectronics.setSelected(true);
+        } else if (category.equals("Other")) {
+            categoryOther.setSelected(true);
+        }
+    }
+
+    // Method that checks and unchecks all category boxes appropriately depending no which is clicked.
+    @FXML
+    private void handleCategoryCheckboxes(ActionEvent event) {
+        if (event.getSource() == categoryVehicles) {
+            selectedCategory = categoryVehicles.getText();
+            categoryVehicles.setSelected(true);
+            categoryPets.setSelected(false);
+            categoryHome.setSelected(false);
+            categoryElectronics.setSelected(false);
+            categoryOther.setSelected(false);
+        } else if (event.getSource() == categoryPets) {
+            selectedCategory = categoryPets.getText();
+            categoryPets.setSelected(true);
+            categoryVehicles.setSelected(false);
+            categoryHome.setSelected(false);
+            categoryElectronics.setSelected(false);
+            categoryOther.setSelected(false);
+        } else if (event.getSource() == categoryHome) {
+            selectedCategory = categoryHome.getText();
+            categoryHome.setSelected(true);
+            categoryVehicles.setSelected(false);
+            categoryPets.setSelected(false);
+            categoryElectronics.setSelected(false);
+            categoryOther.setSelected(false);
+        } else if (event.getSource() == categoryElectronics) {
+            selectedCategory = categoryElectronics.getText();
+            categoryElectronics.setSelected(true);
+            categoryVehicles.setSelected(false);
+            categoryPets.setSelected(false);
+            categoryHome.setSelected(false);
+            categoryOther.setSelected(false);
+        } else if (event.getSource() == categoryOther) {
+            selectedCategory = categoryOther.getText();
+            categoryOther.setSelected(true);
+            categoryVehicles.setSelected(false);
+            categoryPets.setSelected(false);
+            categoryHome.setSelected(false);
+            categoryElectronics.setSelected(false);
+        }
+    }
+
+    private void setNewActiveBox() {
+        if (itemToEdit.isSaleActive()) {
+            activeTrue.setSelected(true);
+        } else if (!itemToEdit.isSaleActive()) {
+            activeFalse.setSelected(true);
+        }
+    }
+
+    @FXML
+    private void handleActiveCheckboxes(ActionEvent event) {
+        if (event.getSource() == activeTrue) {
+            active = true;
+            activeTrue.setSelected(true);
+            activeFalse.setSelected(false);
+        } else if (event.getSource() == activeFalse) {
+            active = false;
+            activeFalse.setSelected(true);
+            activeTrue.setSelected(false);
+        }
+    }
 
     @FXML
     private void handleUploadButton() {
@@ -66,7 +215,7 @@ public class EditItemController implements Initializable {
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("IMAGE FILES", "*.jpg", "*.png", "*.gif"));
         newImage = fileChooser.showOpenDialog(null);
         if (newImage != null) {
-            //itemuploadfield.setText(newImage.getPath());      NOT YET ADDED
+            itemUploadField.setText(newImage.getPath());
         } else {
             MessageHandler.getErrorAlert("Error", "Error", "File does not exist!").showAndWait();
         }
@@ -74,7 +223,8 @@ public class EditItemController implements Initializable {
 
     @FXML
     private void handleResetButton() {
-
+        newImage = null;
+        itemUploadField.setText("Null");
     }
 
     @FXML

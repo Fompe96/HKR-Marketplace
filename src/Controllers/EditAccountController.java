@@ -89,7 +89,7 @@ public class EditAccountController implements Initializable {
     }
 
     @FXML
-    private void handleCheckboxes(ActionEvent event) {
+    private void handleCheckBoxes(ActionEvent event) {
         if (event.getSource() == trueBox) {
             trueBox.setSelected(true);
             falseBox.setSelected(false);

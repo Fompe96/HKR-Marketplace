@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -16,7 +17,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.effect.Bloom?>
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="1235.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdministrationController">
    <children>
       <Pane layoutX="159.0" layoutY="78.0" prefHeight="579.0" prefWidth="871.0">
@@ -31,10 +31,10 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <TableView fx:id="itemTableView" editable="true" layoutX="21.0" layoutY="40.0" prefHeight="530.0" prefWidth="830.0">
+            <TableView fx:id="itemTableView" editable="true" layoutX="21.0" layoutY="40.0" prefHeight="530.0" prefWidth="830.0" visible="false">
                <columns>
-                  <TableColumn fx:id="id" prefWidth="31.0" text="ID" />
-                  <TableColumn fx:id="itemName" prefWidth="107.0" text="Name" />
+                  <TableColumn fx:id="id" prefWidth="39.0" text="ID" />
+                  <TableColumn fx:id="itemName" prefWidth="99.0" text="Name" />
                   <TableColumn fx:id="price" prefWidth="73.0" text="Price" />
                   <TableColumn fx:id="description" prefWidth="122.0" text="Description" />
                   <TableColumn fx:id="condition" prefWidth="109.0" text="Condition" />

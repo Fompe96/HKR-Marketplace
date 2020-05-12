@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="350.0" prefWidth="900.0" style="-fx-background-color: #3c3c3c;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EditItemController">
+<AnchorPane prefHeight="400.0" prefWidth="900.0" style="-fx-background-color: #3c3c3c;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EditItemController">
    <children>
       <Pane layoutY="-1.0" prefHeight="30.0" prefWidth="900.0">
          <children>
@@ -38,11 +39,11 @@
             </Label>
          </children>
       </Pane>
-      <Pane fx:id="editItemsPane" layoutX="1.0" layoutY="83.0" prefHeight="267.0" prefWidth="900.0">
+      <Pane fx:id="editItemsPane" layoutX="1.0" layoutY="83.0" prefHeight="317.0" prefWidth="900.0">
          <children>
-            <HBox layoutX="22.0" layoutY="30.0" prefHeight="90.0" prefWidth="874.0">
+            <HBox layoutX="12.0" layoutY="30.0" prefHeight="90.0" prefWidth="884.0">
                <children>
-                  <TextField fx:id="oldItemName" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="113.0" styleClass="regulartextfield">
+                  <TextField fx:id="oldItemName" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="124.0" styleClass="regulartextfield">
                      <HBox.margin>
                         <Insets top="32.5" />
                      </HBox.margin>
@@ -52,24 +53,24 @@
                         <Insets left="2.0" top="32.5" />
                      </HBox.margin>
                   </TextField>
-                  <TextArea fx:id="oldItemDescription" editable="false" focusTraversable="false" prefHeight="15.0" prefWidth="133.0">
+                  <TextArea fx:id="oldItemDescription" editable="false" focusTraversable="false" prefHeight="15.0" prefWidth="133.0" style="-fx-text-fill: white;" wrapText="true">
                      <HBox.margin>
                         <Insets left="2.0" top="12.0" />
                      </HBox.margin>
                   </TextArea>
-                  <TextField fx:id="oldItemCondition" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="104.0" styleClass="regulartextfield">
+                  <TextField fx:id="oldItemCondition" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="80.0" styleClass="regulartextfield">
                      <HBox.margin>
-                        <Insets left="2.0" top="32.5" />
+                        <Insets left="15.0" top="32.5" />
                      </HBox.margin>
                   </TextField>
-                  <TextField fx:id="oldItemCategory" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="104.0" styleClass="regulartextfield">
+                  <TextField fx:id="oldItemCategory" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="85.0" styleClass="regulartextfield">
                      <HBox.margin>
-                        <Insets left="2.0" top="32.5" />
+                        <Insets left="10.0" top="32.5" />
                      </HBox.margin>
                   </TextField>
                   <TextField fx:id="oldItemOwner" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="123.0" styleClass="regulartextfield">
                      <HBox.margin>
-                        <Insets left="2.0" top="32.5" />
+                        <Insets left="20.0" top="32.5" />
                      </HBox.margin>
                   </TextField>
                   <ImageView fx:id="oldItemImageView" fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
@@ -94,12 +95,12 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="357.0" layoutY="15.0" text="Condition" textFill="#dddddd">
+            <Label layoutX="358.0" layoutY="15.0" text="Condition" textFill="#dddddd">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="465.0" layoutY="15.0" text="Category" textFill="#dddddd">
+            <Label layoutX="460.0" layoutY="15.0" text="Category" textFill="#dddddd">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -114,7 +115,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="717.0" layoutY="1.0" text="Picture" textFill="#dddddd">
+            <Label layoutX="715.0" layoutY="1.0" text="Picture" textFill="#dddddd">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -131,12 +132,38 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
+            <Button layoutX="394.0" layoutY="269.0" minHeight="40.0" mnemonicParsing="false" onAction="#handleUpdateButton" prefWidth="110.0" styleClass="regularbutton" text="Update">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <TextField fx:id="newItemName" layoutX="12.0" layoutY="196.0" prefHeight="25.0" prefWidth="124.0" styleClass="regulartextfield" />
+            <TextField fx:id="newItemPrice" layoutX="138.0" layoutY="196.0" prefHeight="25.0" prefWidth="77.0" styleClass="regulartextfield" />
+            <TextArea fx:id="newItemDescription" layoutX="217.0" layoutY="173.0" prefHeight="78.0" prefWidth="133.0" style="-fx-text-fill: white;" wrapText="true" />
+            <TextField fx:id="newItemOwner" layoutX="561.0" layoutY="197.0" prefHeight="25.0" prefWidth="123.0" styleClass="regulartextfield" />
+            <TextField fx:id="itemUploadField" disable="true" editable="false" focusTraversable="false" layoutX="690.0" layoutY="211.0" prefHeight="25.0" prefWidth="111.0" promptText="&lt;URL&gt;" styleClass="regulartextfield" />
+            <Button fx:id="itemUploadButton" layoutX="690.0" layoutY="183.0" mnemonicParsing="false" onAction="#handleUploadButton" prefHeight="25.0" prefWidth="81.0" styleClass="regularbutton" text="Upload">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="itemResetButton" layoutX="773.0" layoutY="183.0" mnemonicParsing="false" onAction="#handleResetButton" prefHeight="25.0" prefWidth="27.0" styleClass="regularbutton" text="R">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <CheckBox fx:id="activeTrue" layoutX="814.0" layoutY="191.0" mnemonicParsing="false" onAction="#handleActiveCheckboxes" styleClass="regularcheckbox" text="True" textFill="WHITE" />
+            <CheckBox fx:id="activeFalse" layoutX="814.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleActiveCheckboxes" styleClass="regularcheckbox" text="False" textFill="WHITE" />
+            <CheckBox fx:id="conditionExcellent" layoutX="367.0" layoutY="173.0" mnemonicParsing="false" onAction="#handleConditionCheckboxes" styleClass="regularcheckbox" text="Excellent" textFill="WHITE" />
+            <CheckBox fx:id="conditionVeryGood" layoutX="367.0" layoutY="193.0" mnemonicParsing="false" onAction="#handleConditionCheckboxes" styleClass="regularcheckbox" text="Very Good" textFill="WHITE" />
+            <CheckBox fx:id="conditionGood" layoutX="367.0" layoutY="213.0" mnemonicParsing="false" onAction="#handleConditionCheckboxes" styleClass="regularcheckbox" text="Good" textFill="WHITE" />
+            <CheckBox fx:id="conditionPoor" layoutX="367.0" layoutY="233.0" mnemonicParsing="false" onAction="#handleConditionCheckboxes" styleClass="regularcheckbox" text="Poor" textFill="WHITE" />
+            <CheckBox fx:id="categoryVehicles" layoutX="464.0" layoutY="164.0" mnemonicParsing="false" onAction="#handleCategoryCheckboxes" styleClass="regularcheckbox" text="Vehicles" textFill="WHITE" />
+            <CheckBox fx:id="categoryPets" layoutX="464.0" layoutY="184.0" mnemonicParsing="false" onAction="#handleCategoryCheckboxes" styleClass="regularcheckbox" text="Pets" textFill="WHITE" />
+            <CheckBox fx:id="categoryHome" layoutX="464.0" layoutY="204.0" mnemonicParsing="false" onAction="#handleCategoryCheckboxes" styleClass="regularcheckbox" text="Home" textFill="WHITE" />
+            <CheckBox fx:id="categoryElectronics" layoutX="464.0" layoutY="224.0" mnemonicParsing="false" onAction="#handleCategoryCheckboxes" styleClass="regularcheckbox" text="Electronics" textFill="WHITE" />
+            <CheckBox fx:id="categoryOther" layoutX="464.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleCategoryCheckboxes" styleClass="regularcheckbox" text="Other" textFill="WHITE" />
          </children>
       </Pane>
-      <Button layoutX="399.0" layoutY="299.0" minHeight="40.0" mnemonicParsing="false" onAction="#handleUpdateButton" prefWidth="110.0" styleClass="regularbutton" text="Update">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>
