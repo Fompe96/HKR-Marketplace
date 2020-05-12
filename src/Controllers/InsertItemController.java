@@ -134,20 +134,24 @@ public class InsertItemController implements Initializable {
 
     @FXML
     private void handleInsertButton() {
-        if (!nameField.getText().equals("") && !descriptionArea.getText().equals("") && !priceField.getText().equals("")) {
-            if (priceField.getText().matches("[0-9]+") && Double.parseDouble(priceField.getText()) > 29) {
-                if (imageFile != null) {
-                    Item createdItem = new Item(0, nameField.getText(), Double.parseDouble(priceField.getText()), descriptionArea.getText(), selectedCondition, selectedCategory, imageFile, Singleton.getInstance().getLoggedInEmail(), true);
-                    DBHandler.insertItemIntoDB(createdItem);
-                    MessageHandler.getInformationAlert("Success", "Success", "The account was successfully added to the database!").showAndWait();
-                    Singleton.getInstance().setLastInsertedObject("Item");
-                    SceneChanger.changeScene("../Views/Administration.fxml"); // Might replace by transfering the added account to tableview later
-                    handleClosingButton();
+        if (!nameField.getText().equals("") && !priceField.getText().equals("")) {
+            if (!descriptionArea.getText().equals("") && descriptionArea.getText().length() > 10) {
+                if (priceField.getText().matches("[0-9]+") && Double.parseDouble(priceField.getText()) >= 0 && Double.parseDouble(priceField.getText()) <= 1000000) {
+                    if (imageFile != null) {
+                        Item createdItem = new Item(0, nameField.getText(), Double.parseDouble(priceField.getText()), descriptionArea.getText(), selectedCondition, selectedCategory, imageFile, Singleton.getInstance().getLoggedInEmail(), true);
+                        DBHandler.insertItemIntoDB(createdItem);
+                        MessageHandler.getInformationAlert("Success", "Success", "The account was successfully added to the database!").showAndWait();
+                        Singleton.getInstance().setLastInsertedObject("Item");
+                        SceneChanger.changeScene("../Views/Administration.fxml"); // Might replace by transfering the added account to tableview later
+                        handleClosingButton();
+                    } else {
+                        MessageHandler.getErrorAlert("Error", "Error", "You have to choose a picture of your item.").showAndWait();
+                    }
                 } else {
-                    MessageHandler.getErrorAlert("Error", "Error", "You have to choose a picture of your item.").showAndWait();
+                    MessageHandler.getErrorAlert("Error", "Error", "Price has to be between 0 - 1.000.000 kr and only contain numbers.").showAndWait();
                 }
             } else {
-                MessageHandler.getErrorAlert("Error", "Error", "Price has to be atleast 30 kr and only contain numbers.").showAndWait();
+                MessageHandler.getErrorAlert("Error", "Error", "Description needs to be atleast 10 letters long.").showAndWait();
             }
         } else {
             MessageHandler.getErrorAlert("Error", "Error", "All information needs to be entered.").showAndWait();

@@ -19,18 +19,16 @@ public class Singleton {
 
     private Account loggedInAccount;  // Variable used to keep track of the currently logged in account.
     private Item item;
-    private ObservableList<Item> itemObservableList;
     private String lastInsertedObject;
     private Object objectToEdit;
+    private ObservableList<Account> accounts;
 
-
-
-    public void setItemObservableList(){
-         itemObservableList = FXCollections.observableArrayList();
+    public ObservableList<Account> getAccounts() {
+        return accounts;
     }
 
-    public ObservableList getItemObservableList(){
-        return itemObservableList;
+    public void setAccounts(ObservableList<Account> accounts) {
+        this.accounts = accounts;
     }
 
     public void setItem(Item item) {

@@ -127,7 +127,7 @@ public abstract class DBHandler extends DBConfig {
 
     public static void addProductToFavorites(String userEmail, int productId) {
         String query = "INSERT INTO `hkrmarketplace`.`favorite` (`account_Email`, `product_idProduct`) VALUES ('" + userEmail + "', '" + productId + "');";
-        try (PreparedStatement ps = getConnection().prepareStatement(query)){
+        try (PreparedStatement ps = getConnection().prepareStatement(query)) {
             ps.executeUpdate();
         } catch (SQLException e) {
             MessageHandler.getErrorAlert("Error", "Error", "Item already in favorites");
@@ -136,7 +136,7 @@ public abstract class DBHandler extends DBConfig {
 
     public static void removeProductFromFavorites(String userEmail, int productId) {
         String query = "DELETE FROM `hkrmarketplace`.`favorite` WHERE (`account_Email` = '" + userEmail + "') and (`product_idProduct` = '" + productId + "');";
-        try (PreparedStatement ps = getConnection().prepareStatement(query)){
+        try (PreparedStatement ps = getConnection().prepareStatement(query)) {
             ps.executeUpdate();
         } catch (SQLException e) {
             MessageHandler.getErrorAlert("Error", "Error", "Item not in favorites");
@@ -304,10 +304,41 @@ public abstract class DBHandler extends DBConfig {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
     }
 
+    public static void updateItemInformation(Item newItem) {
+        FileInputStream fis = null;
+        String query = "UPDATE product SET name = ?, price = ?, description = ?, condition = ?, product.category = ?, picture = ?, email = ?, saleActive = ? WHERE idProduct = " + newItem.getId() + ";";
+        try (PreparedStatement statement = getConnection().prepareStatement(query)) {
+            statement.setString(1, newItem.getName());
+            statement.setDouble(2, newItem.getPrice());
+            statement.setString(3, newItem.getDescription());
+            statement.setString(4, newItem.getCondition());
+            statement.setString(5, newItem.getCategory());
+            if (newItem.getImageFile() != null) {
+                fis = new FileInputStream(newItem.getImageFile());
+                statement.setBinaryStream(6, fis, newItem.getImageFile().length());
+            } else {
+                statement.setNull(6, Types.BLOB);
+            }
+            statement.setString(7, newItem.getOwner());
+            statement.setBoolean(8, newItem.isSaleActive());
+            statement.executeUpdate();
+            MessageHandler.getInformationAlert("Success!", "Success!", "Item is now updated!").showAndWait();
+        } catch (SQLException | FileNotFoundException e) {
+            e.printStackTrace();
+            //MessageHandler.getErrorAlert("Error", "Error", "Something went wrong when trying to update the account.").showAndWait();
+        } finally {
+            try {
+                if (fis != null) {
+                    fis.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     // Method used to convert the retrieved blobs into File objects used by the model class constructors.
     private static File convertBlobToFile(Blob blob) {

@@ -126,6 +126,7 @@ public class AdministrationController implements Initializable {
     private void retrieveAccounts() {    // Retrievees all accounts from DB and places them as objects in observable list accounts.
         accounts = FXCollections.observableArrayList();
         accounts = DBHandler.retrieveAllAccounts();
+        Singleton.getInstance().setAccounts(accounts);
     }
 
     private void retrieveItems() {   // Retrieves all sales from the DB and places them as objects in observable list items

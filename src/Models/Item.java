@@ -79,6 +79,10 @@ public class Item {
         return owner.get();
     }
 
+    public void setOwner(String owner) {
+        this.owner.set(owner);
+    }
+
     public void setId(int id) {
         this.id = new SimpleIntegerProperty(id);
     }
@@ -128,6 +132,7 @@ public class Item {
     @Override
     public String toString() {
         return "Sale{" +
+                "Id='" + getId() + '\'' +
                 "name='" + getName() + '\'' +
                 ", price=" + getPrice() +
                 ", description='" + getDescription() + '\'' +

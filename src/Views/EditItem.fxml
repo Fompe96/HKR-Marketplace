@@ -132,7 +132,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="394.0" layoutY="269.0" minHeight="40.0" mnemonicParsing="false" onAction="#handleUpdateButton" prefWidth="110.0" styleClass="regularbutton" text="Update">
+            <Button fx:id="updateButton" layoutX="394.0" layoutY="269.0" minHeight="40.0" mnemonicParsing="false" onAction="#handleUpdateButton" prefWidth="110.0" styleClass="regularbutton" text="Update">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

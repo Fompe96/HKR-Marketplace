@@ -148,28 +148,32 @@ public class EditAccountController implements Initializable {
             validationChecker = validateNewImage();
         }
 
-        if (validationChecker && changeDone) {    // If all checks performed are passed the values are changed.
-            newAccount.setUserName(newNameField.getText());
-            newAccount.setPassword(newPasswordField.getText());
-            newAccount.setEmail(newEmailField.getText());
-            if (getSelectedCheckBox()) {
-                newAccount.setAdmin(true);
+        if (validationChecker ) {    // If all checks performed are passed the values are changed.
+            if (changeDone) {
+                newAccount.setUserName(newNameField.getText());
+                newAccount.setPassword(newPasswordField.getText());
+                newAccount.setEmail(newEmailField.getText());
+                if (getSelectedCheckBox()) {
+                    newAccount.setAdmin(true);
+                } else {
+                    newAccount.setAdmin(false);
+                }
+                newAccount.setImageFile(newImage);
+                DBHandler.updateAccountInformation(accountToEdit, newAccount);
+                SceneChanger.changeScene("../Views/Administration.fxml");
+                handleClosingButton();
             } else {
-                newAccount.setAdmin(false);
+                MessageHandler.getErrorAlert("Error", "Error", "No changes have been made to the account.").showAndWait();
             }
-            newAccount.setImageFile(newImage);
-            DBHandler.updateAccountInformation(accountToEdit, newAccount);
-            SceneChanger.changeScene("../Views/Administration.fxml");
-            handleClosingButton();
         }
     }
 
     private boolean validateNewAccountName() {
-        if (!newNameField.getText().equals("") && newNameField.getText().length() > 2) {
+        if (!newNameField.getText().equals("") && newNameField.getText().length() > 4) {
             changeDone = true;
             return true;
         } else {
-            MessageHandler.getErrorAlert("Error", "Error", "New name doesn't meet requirements.").showAndWait();
+            MessageHandler.getErrorAlert("Error", "Error", "New name has to be atleast 5 letters").showAndWait();
             return false;
         }
     }

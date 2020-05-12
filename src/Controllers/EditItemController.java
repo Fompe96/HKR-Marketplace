@@ -1,8 +1,11 @@
 package Controllers;
 
+import Database.DBHandler;
+import Models.Account;
 import Models.Item;
 import Models.MessageHandler;
 import Models.Singleton;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,6 +22,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class EditItemController implements Initializable {
@@ -30,25 +34,27 @@ public class EditItemController implements Initializable {
     @FXML
     private ImageView oldItemImageView;
     @FXML
-    private Button closeButton;
+    private Button closeButton, updateButton;
     @FXML
     private CheckBox conditionExcellent, conditionVeryGood, conditionGood, conditionPoor,
         categoryVehicles, categoryPets, categoryHome, categoryElectronics, categoryOther,
         activeTrue, activeFalse;
+
     private String selectedCondition;
     private String selectedCategory;
-    private boolean active;
+    private boolean newActiveStatus;
     private double x,y;
     private Item itemToEdit;
     private Item newItem;
     private File newImage;
+    private boolean changeDone; // Keeps track if any new information has been entered
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         itemToEdit = (Item) Singleton.getInstance().getObjectToEdit();
         displayOldItem();
         displayNewItemFields();
-
+        //updateButton.setDisable(true);
     }
     // Displays the old values of the item to be edited
     private void displayOldItem() {
@@ -88,9 +94,10 @@ public class EditItemController implements Initializable {
         }
     }
 
-    // Checks the condition of the item to edit and checks the correct checkBox
+    // Sets the correct condition checkbox depending on item to be edited.
     private void setNewConditionBox() {
         String condition = itemToEdit.getCondition();
+        selectedCondition = itemToEdit.getCondition();
         if (condition.equals("Excellent")) {
             conditionExcellent.setSelected(true);
         } else if (condition.equals("Very Good")) {
@@ -130,9 +137,10 @@ public class EditItemController implements Initializable {
             conditionGood.setSelected(false);
         }
     }
-
+    // Sets the correct category checkbox depending on item to be edited.
     private void setNewCategoryBox() {
         String category = itemToEdit.getCategory();
+        selectedCategory = itemToEdit.getCategory();
         if (category.equals("Vehicles")) {
             categoryVehicles.setSelected(true);
         } else if (category.equals("Pets")) {
@@ -186,28 +194,29 @@ public class EditItemController implements Initializable {
             categoryElectronics.setSelected(false);
         }
     }
-
+    // Sets the correct active checkbox depending on item to be edited.
     private void setNewActiveBox() {
+        newActiveStatus = itemToEdit.isSaleActive();
         if (itemToEdit.isSaleActive()) {
             activeTrue.setSelected(true);
         } else if (!itemToEdit.isSaleActive()) {
             activeFalse.setSelected(true);
         }
     }
-
+    // Method that checks and unchecks all category boxes appropriately depending no which is clicked.
     @FXML
     private void handleActiveCheckboxes(ActionEvent event) {
         if (event.getSource() == activeTrue) {
-            active = true;
+            newActiveStatus = true;
             activeTrue.setSelected(true);
             activeFalse.setSelected(false);
         } else if (event.getSource() == activeFalse) {
-            active = false;
+            newActiveStatus = false;
             activeFalse.setSelected(true);
             activeTrue.setSelected(false);
         }
     }
-
+    // Allows user to upload an image associated with the item
     @FXML
     private void handleUploadButton() {
         FileChooser fileChooser = new FileChooser();
@@ -220,7 +229,7 @@ public class EditItemController implements Initializable {
             MessageHandler.getErrorAlert("Error", "Error", "File does not exist!").showAndWait();
         }
     }
-
+    // Resets the currently selected picture
     @FXML
     private void handleResetButton() {
         newImage = null;
@@ -229,7 +238,101 @@ public class EditItemController implements Initializable {
 
     @FXML
     private void handleUpdateButton() {
+        newItem = new Item(itemToEdit.getId(), itemToEdit.getName(), itemToEdit.getPrice(), itemToEdit.getDescription(), itemToEdit.getCondition(), itemToEdit.getCategory(), itemToEdit.getImageFile(), itemToEdit.getOwner(), itemToEdit.isSaleActive());
+        boolean validationChecker = true;
+        changeDone = false;
+        if (!newItemName.getText().equals(oldItemName.getText())) {
+            validationChecker = validateNewName();
+        }
+        if (validationChecker && !newItemPrice.getText().equals(oldItemPrice.getText())) {
+            validationChecker = validateNewPrice();
+        }
+        if (validationChecker && !newItemDescription.getText().equals(oldItemDescription.getText())) {
+            validationChecker = validateNewDescription();
+        }
+        if (validationChecker && !selectedCondition.equals(oldItemCondition.getText())) {
+            newItem.setCondition(selectedCondition);
+            changeDone = true;
+        }
+        if (validationChecker && !selectedCategory.equals(oldItemCategory.getText())) {
+            newItem.setCategory(selectedCategory);
+            changeDone = true;
+        }
+        if (validationChecker && !newItemOwner.getText().equals(oldItemOwner.getText())) {
+            validationChecker = validateNewOwner();
+        }
+        if (validationChecker && !Objects.equals(itemToEdit.getImageFile(), newImage)) {
+            validationChecker = validateNewImage();
+        }
+        if (validationChecker && !Objects.equals(itemToEdit.isSaleActive(), newActiveStatus)) {
+            newItem.setSaleActive(newActiveStatus);
+            changeDone = true;
+        }
+        if (validationChecker) {
+            if (changeDone) {
+                newItem.setName(newItemName.getText());
+                newItem.setPrice(Double.parseDouble(newItemPrice.getText()));
+                newItem.setDescription(newItemDescription.getText());
+                newItem.setOwner(newItemOwner.getText());
+                newItem.setImageFile(newImage);
+                DBHandler.updateItemInformation(newItem);
+            } else {
+                MessageHandler.getErrorAlert("Error", "Error", "No changes have been made to the item.").showAndWait();
+            }
+        }
+    }
 
+    private boolean validateNewName() {
+        if (!newItemName.getText().equals("") && newItemName.getText().length() > 2) {
+            changeDone = true;
+            return true;
+        } else {
+            MessageHandler.getErrorAlert("Error", "Error", "New name has to be atleast 3 letters").showAndWait();
+            return false;
+        }
+    }
+
+    private boolean validateNewPrice() {
+        if (newItemPrice.getText().matches("[0-9]+") && Double.parseDouble(newItemPrice.getText()) >= 0 && Double.parseDouble(newItemPrice.getText()) <= 1000000) {
+            changeDone = true;
+            return true;
+        } else {
+            MessageHandler.getErrorAlert("Error", "Error", "Price has to be between 0 - 1.000.000 and only contain numbers.").showAndWait();
+            return false;
+        }
+
+    }
+
+    private boolean validateNewDescription() {
+        if (!newItemDescription.getText().equals("") && newItemDescription.getText().length() > 10) {
+            changeDone = true;
+            return true;
+        } else {
+            MessageHandler.getErrorAlert("Error", "Error", "Description needs to be atleast 10 letters long.").showAndWait();
+            return false;
+        }
+    }
+
+    private boolean validateNewOwner() {
+        ObservableList<Account> registeredAccounts = Singleton.getInstance().getAccounts();
+        for (Account account : registeredAccounts) {
+            if (account.getEmail().equals(newItemOwner.getText())) {
+                changeDone = true;
+                return true;
+            }
+        }
+        MessageHandler.getErrorAlert("Error", "Error", "Entered owner doesn't exist.").showAndWait();
+        return false;
+    }
+
+    private boolean validateNewImage() {
+        if (!Objects.equals(itemToEdit.getImageFile(), newImage)) {
+            changeDone = true;
+            return true;
+        } else {
+            MessageHandler.getErrorAlert("Error", "Error", "Something went wrong with picture.").showAndWait();
+            return false;
+        }
     }
 
     @FXML
