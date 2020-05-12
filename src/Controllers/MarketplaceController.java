@@ -21,7 +21,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.ResourceBundle;
 
@@ -30,7 +29,7 @@ public class MarketplaceController implements Initializable {
     private ObservableList<Item> items; // List contains all sales used throughout the scene.
     private double x, y;
     @FXML
-    private ImageView imageView, imageView1, adminview;
+    private ImageView imageView, imageView1, adminView;
 
     @FXML
     private Button adminButton, settingsButton, closingButton, minimizeButton, sellButton, logOutButton, monitoringButton;
@@ -69,7 +68,7 @@ public class MarketplaceController implements Initializable {
 
 
         if (Singleton.getInstance().getLoggedInAccount().isAdmin()) {
-            adminview.setVisible(true);
+            adminView.setVisible(true);
             adminButton.setDisable(false);
         }
 
