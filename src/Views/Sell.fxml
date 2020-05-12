@@ -22,7 +22,7 @@
    <children>
       <TextField fx:id="nameOfProductTextField" layoutX="156.0" layoutY="139.0" prefHeight="30.0" prefWidth="175.0" styleClass="regulartextfield" />
       <TextField fx:id="priceOfProductTextField" layoutX="156.0" layoutY="211.0" prefHeight="30.0" prefWidth="175.0" styleClass="regulartextfield" />
-      <TextArea fx:id="descriptionTextArea" layoutX="713.0" layoutY="139.0" prefHeight="235.0" prefWidth="250.0" style="-fx-wrap-text: true; -fx-border-color: #e8e8e8;" />
+      <TextArea fx:id="descriptionTextArea" layoutX="713.0" layoutY="139.0" prefHeight="235.0" prefWidth="250.0" style="-fx-wrap-text: true; -fx-border-color: #e8e8e8; -fx-text-fill: white;" />
       <Label layoutX="156.0" layoutY="120.0" text="Name of product:" textFill="#e8e8e8">
          <font>
             <Font size="14.0" />

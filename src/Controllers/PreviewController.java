@@ -7,6 +7,7 @@ import Models.Singleton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -22,7 +23,10 @@ import java.util.ResourceBundle;
 public class PreviewController implements Initializable {
 
     @FXML
-    private Label nameLabel, priceLabel, descriptionLabel, categoryLabel, conditionLabel;
+    private Label nameLabel, priceLabel, categoryLabel, conditionLabel;
+
+    @FXML
+    private TextArea descriptionLabel;
 
     @FXML
     private ImageView image;
@@ -39,7 +43,7 @@ public class PreviewController implements Initializable {
         descriptionLabel.setText(Singleton.getInstance().getItem().getDescription());
         categoryLabel.setText(Singleton.getInstance().getItem().getCategory());
         conditionLabel.setText(Singleton.getInstance().getItem().getCondition());
-
+        descriptionLabel.setEditable(false);
     }
 
     @FXML

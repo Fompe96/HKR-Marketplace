@@ -65,8 +65,7 @@ public class MarketplaceController implements Initializable {
         initializeTable();
         initChoiceBox();
         handleClickOnItem();
-        search();
-        filterCategory();
+        searchAndFilterCategories();
 
 
         if (Singleton.getInstance().getLoggedInAccount().isAdmin()) {
@@ -177,14 +176,14 @@ public class MarketplaceController implements Initializable {
         }
     }
 
-    private void search(){
+    private void searchAndFilterCategories(){
 
         FilteredList<Item> filteredData = new FilteredList<>(items, p -> true);
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
 
             filteredData.setPredicate(item -> {
 
-                if (newValue == null || newValue.isEmpty()) {
+                if (newValue == null || newValue.isEmpty() || newValue == "All" ) {
                     return true;
                 }
 
@@ -192,13 +191,42 @@ public class MarketplaceController implements Initializable {
                 String lowerCaseFilter = newValue.toLowerCase();
 
                 if (item.getName().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; // Filter matches first name.
+                    return true;
                 } else if (item.getCategory().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; // Filter matches last name.
+                    return true;
                 }
-                return false; // Does not match.
+
+                else return false;
+
+
+
+
             });
         });
+
+
+        categoryBox.valueProperty().addListener((observable, oldValue, newValue) -> {
+
+            filteredData.setPredicate(item -> {
+
+                if (newValue == null || newValue.isEmpty() || newValue == "All" ) {
+                    return true;
+                }
+
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (item.getCategory().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+                else return false;
+
+
+
+
+            });
+        });
+
 
         SortedList<Item> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(table.comparatorProperty());
@@ -206,11 +234,13 @@ public class MarketplaceController implements Initializable {
 
     }
 
+/*
     private void filterCategory(){
-        FilteredList<Item> filteredData = new FilteredList<>(items, p -> true);
+
+        FilteredList<Item> filteredData1 = new FilteredList<>(items, p -> true);
         categoryBox.valueProperty().addListener((observable, oldValue, newValue) -> {
 
-            filteredData.setPredicate(item -> {
+            filteredData1.setPredicate(item -> {
 
                 if (newValue == null || newValue.isEmpty()|| newValue == "All") {
                     return true;
@@ -219,19 +249,15 @@ public class MarketplaceController implements Initializable {
 
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if (item.getCategory().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; // Filter matches first name.
-                }
-                else {
-                    return false; // Does not match.
-                }
             });
         });
 
-        SortedList<Item> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(table.comparatorProperty());
-        table.setItems(sortedData);
+        SortedList<Item> sortedData1 = new SortedList<>(filteredData1);
+        sortedData1.comparatorProperty().bind(table.comparatorProperty());
+        table.setItems(sortedData1);
     }
+
+ */
 
     private void initChoiceBox (){
 

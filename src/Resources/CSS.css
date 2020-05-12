@@ -172,5 +172,10 @@
     -fx-border-color: #46ab57;
 }
 
+.text-area .content {
+    -fx-background-color: #3c3c3c;
+    -fx-wrap-text: true;
+}
+
 
 
