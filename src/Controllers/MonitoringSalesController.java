@@ -32,6 +32,9 @@ public class MonitoringSalesController implements Initializable {
     private Button sellButton, marketButton, settingsButton, adminButton, closingButton, minimizeButton;
 
     @FXML
+    private ImageView adminView;
+
+    @FXML
     private TableView<Item> table;
 
     @FXML
@@ -115,7 +118,7 @@ public class MonitoringSalesController implements Initializable {
 
         handleCursor();
         handleToolTip();
-
+        handleAdminView();
     }
 
     private void handleToolTip() {
@@ -147,6 +150,13 @@ public class MonitoringSalesController implements Initializable {
                 }
             }
         });
+    }
+
+    private void handleAdminView() {
+        if (Singleton.getInstance().getLoggedInAccount().isAdmin()) {
+            adminView.setVisible(true);
+            adminButton.setDisable(false);
+        }
     }
 
     @Override
