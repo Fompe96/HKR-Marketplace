@@ -309,7 +309,7 @@ public abstract class DBHandler extends DBConfig {
 
     public static void updateItemInformation(Item newItem) {
         FileInputStream fis = null;
-        String query = "UPDATE product SET name = ?, price = ?, description = ?, condition = ?, product.category = ?, picture = ?, email = ?, saleActive = ? WHERE idProduct = " + newItem.getId() + ";";
+        String query = "UPDATE product SET name = ?, price = ?, description = ?, product.condition = ?, category = ?, picture = ?, email = ?, saleActive = ? WHERE idProduct = " + newItem.getId() + ";";
         try (PreparedStatement statement = getConnection().prepareStatement(query)) {
             statement.setString(1, newItem.getName());
             statement.setDouble(2, newItem.getPrice());

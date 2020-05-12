@@ -1,10 +1,7 @@
 package Controllers;
 
 import Database.DBHandler;
-import Models.Account;
-import Models.Item;
-import Models.MessageHandler;
-import Models.Singleton;
+import Models.*;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -276,6 +273,8 @@ public class EditItemController implements Initializable {
                 newItem.setOwner(newItemOwner.getText());
                 newItem.setImageFile(newImage);
                 DBHandler.updateItemInformation(newItem);
+                SceneChanger.changeScene("../Views/Administration.fxml");
+                handleClosingButton();
             } else {
                 MessageHandler.getErrorAlert("Error", "Error", "No changes have been made to the item.").showAndWait();
             }
@@ -314,9 +313,10 @@ public class EditItemController implements Initializable {
     }
 
     private boolean validateNewOwner() {
+        // MAKE NON CASE SENSITIVE
         ObservableList<Account> registeredAccounts = Singleton.getInstance().getAccounts();
         for (Account account : registeredAccounts) {
-            if (account.getEmail().equals(newItemOwner.getText())) {
+            if (account.getEmail().equalsIgnoreCase(newItemOwner.getText())) {
                 changeDone = true;
                 return true;
             }
