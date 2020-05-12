@@ -73,6 +73,7 @@ public class MonitoringSalesPreviewController implements Initializable {
         int productId = Singleton.getInstance().getItem().getId();
         DBHandler.removeProductFromFavorites(userEmail, productId);
         MessageHandler.getConfirmationAlert("Success", "Success", "Product removed from favorites").showAndWait();
+        SceneChanger.changeScene("../Views/MonitoringSales.fxml");
     }
 
     @Override
