@@ -1,10 +1,7 @@
 package Controllers;
 
 import Database.DBHandler;
-import Models.Item;
-import Models.SceneChanger;
-import Models.Singleton;
-import Models.ToolTipHandler;
+import Models.*;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,9 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -22,6 +17,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MonitoringSalesController implements Initializable {
@@ -29,9 +26,14 @@ public class MonitoringSalesController implements Initializable {
     private ObservableList<Item> favorites;
     private ObservableList<Item> userSales;
     private double x, y;
+    private boolean activateClickOnItem;
+
 
     @FXML
-    private Button sellButton, marketButton, settingsButton, adminButton, closingButton, minimizeButton;
+    private Button sellButton, marketButton, settingsButton, adminButton, closingButton, minimizeButton,removeSale;
+
+    @FXML
+    private ToggleButton viewFav,viewSale;
 
     @FXML
     private ImageView adminView;
@@ -151,15 +153,41 @@ public class MonitoringSalesController implements Initializable {
     }
 
     private void handleClickOnItem() {
+
         table.setOnMouseClicked((MouseEvent event) -> {
             if (event.getClickCount() > 1) {
-                if (table.getSelectionModel().getSelectedItem() != null) {
+                if (table.getSelectionModel().getSelectedItem() != null && activateClickOnItem) {
                     Singleton.getInstance().setItem(table.getSelectionModel().getSelectedItem());
                     SceneChanger.changeScene("../Views/MonitoringSalesPreview.fxml");
                 }
             }
         });
     }
+
+    @FXML
+    private void removeSale() {
+        ObservableList<Item> selectedItems = table.getSelectionModel().getSelectedItems();
+        if (!selectedItems.isEmpty()) {
+            ArrayList<Integer> saleIdsToBeRemoved = new ArrayList<>();
+            StringBuilder confirmationMessage = new StringBuilder("Are you sure you wish to delete the following sales: ");
+            for (int i = 0; i < selectedItems.size(); i++) {
+                confirmationMessage.append("\n [Sale ").append(i + 1).append(" Name: ").append(selectedItems.get(i).getName());
+                saleIdsToBeRemoved.add(selectedItems.get(i).getId());
+            }
+            confirmationMessage.append("\n\n").append("They will be permanently removed!");
+            Optional<ButtonType> action = MessageHandler.getConfirmationAlert("Confirmation", null, confirmationMessage.toString()).showAndWait();
+
+            if (action.get() == ButtonType.OK) {
+                DBHandler.removeSales(saleIdsToBeRemoved);
+                userSales.removeAll(selectedItems);
+            }
+
+        } else {
+            MessageHandler.getErrorAlert("Error", null, "No sales selected.").showAndWait();
+        }
+    }
+
+
 
     private void handleAdminView() {
         if (Singleton.getInstance().getLoggedInAccount().isAdmin()) {
@@ -173,13 +201,20 @@ public class MonitoringSalesController implements Initializable {
         fetchFavFromDB();
         fetchSalesFromDB();
         initializeFavTable();
+        activateClickOnItem = true;
         handleClickOnItem();
+        removeSale.setVisible(false);
+        viewSale.setVisible(true);
+        viewFav.setVisible(false);
     }
 
     @FXML
     private void toggleSalesButton(){
         text.setText("Sales");
-        System.out.println(userSales.get(1));
+        removeSale.setVisible(true);
+        viewSale.setVisible(false);
+        viewFav.setVisible(true);
+        activateClickOnItem = false;
         for (Item item : userSales) {
             if (item.getImage() != null) {
                 item.setPic(item.getImage());   // Här sätter jag varje objekts imageview till dens aktuella bild
@@ -198,6 +233,10 @@ public class MonitoringSalesController implements Initializable {
     @FXML
     private void toggleFavouriteButton(){
         text.setText("Favourites");
+        removeSale.setVisible(false);
+        activateClickOnItem = true;
+        viewSale.setVisible(true);
+        viewFav.setVisible(false);
         initializeFavTable();
     }
 
