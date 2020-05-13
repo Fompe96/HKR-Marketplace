@@ -121,9 +121,6 @@ public class MonitoringSalesController implements Initializable {
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
         table.setItems(favorites);
 
-        handleCursor();
-        handleToolTip();
-        handleAdminView();
     }
 
     private void handleToolTip() {
@@ -174,6 +171,14 @@ public class MonitoringSalesController implements Initializable {
         fetchSalesFromDB();
         initializeFavTable();
         handleClickOnItem();
+        handleCursor();
+        handleToolTip();
+        handleAdminView();
+    }
+
+    @FXML
+    public void initSaleTable(){
+
     }
 
     @FXML
