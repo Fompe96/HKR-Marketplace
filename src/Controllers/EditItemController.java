@@ -232,7 +232,7 @@ public class EditItemController implements Initializable {
         newImage = null;
         itemUploadField.setText("Null");
     }
-
+    // Methods that calls validation methods and if everything is in order for an update updates the selected item in DB
     @FXML
     private void handleUpdateButton() {
         newItem = new Item(itemToEdit.getId(), itemToEdit.getName(), itemToEdit.getPrice(), itemToEdit.getDescription(), itemToEdit.getCondition(), itemToEdit.getCategory(), itemToEdit.getImageFile(), itemToEdit.getOwner(), itemToEdit.isSaleActive());
@@ -280,7 +280,7 @@ public class EditItemController implements Initializable {
             }
         }
     }
-
+    // Validates the newName value in the textfield
     private boolean validateNewName() {
         if (!newItemName.getText().equals("") && newItemName.getText().length() > 2) {
             changeDone = true;
@@ -290,7 +290,7 @@ public class EditItemController implements Initializable {
             return false;
         }
     }
-
+    // Validates that the new price is legit
     private boolean validateNewPrice() {
         if (newItemPrice.getText().matches("[0-9]+") && Double.parseDouble(newItemPrice.getText()) >= 0 && Double.parseDouble(newItemPrice.getText()) <= 1000000) {
             changeDone = true;
@@ -301,7 +301,7 @@ public class EditItemController implements Initializable {
         }
 
     }
-
+    // Validates new description
     private boolean validateNewDescription() {
         if (!newItemDescription.getText().equals("") && newItemDescription.getText().length() > 10) {
             changeDone = true;
@@ -311,9 +311,8 @@ public class EditItemController implements Initializable {
             return false;
         }
     }
-
+    // Validates that the new owner of the item actually exists in the database.
     private boolean validateNewOwner() {
-        // MAKE NON CASE SENSITIVE
         ObservableList<Account> registeredAccounts = Singleton.getInstance().getAccounts();
         for (Account account : registeredAccounts) {
             if (account.getEmail().equalsIgnoreCase(newItemOwner.getText())) {
@@ -324,7 +323,7 @@ public class EditItemController implements Initializable {
         MessageHandler.getErrorAlert("Error", "Error", "Entered owner doesn't exist.").showAndWait();
         return false;
     }
-
+    // validates the new image
     private boolean validateNewImage() {
         if (!Objects.equals(itemToEdit.getImageFile(), newImage)) {
             changeDone = true;

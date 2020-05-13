@@ -73,7 +73,7 @@
             <TableColumn fx:id="price" prefWidth="207.0" text="Price" />
         </columns>
       </TableView>
-      <Text fx:id="text" fill="#46ab57" layoutX="581.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Favorites">
+      <Text fx:id="text" fill="#46ab57" layoutX="581.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Favorites">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
@@ -88,7 +88,18 @@
       </ImageView>
       <Line endX="100.0" layoutX="-100.0" layoutY="217.0" startX="100.0" startY="-29.2431640625" stroke="#6ea5ff" strokeWidth="5.0" />
       <Button fx:id="marketButton" layoutX="12.0" layoutY="92.0" mnemonicParsing="false" onAction="#handleMarketButton" opacity="0.0" prefHeight="35.0" prefWidth="35.0" />
-      <ToggleButton layoutX="131.0" layoutY="80.0" mnemonicParsing="false" onAction="#toggleSalesButton" styleClass="regularbutton" stylesheets="@../Resources/CSS.css" text="View Sales" />
-      <ToggleButton layoutX="224.0" layoutY="79.0" mnemonicParsing="false" onAction="#toggleFavouriteButton" styleClass="regularbutton" stylesheets="@../Resources/CSS.css" text="View Favourites" />
+      <ToggleButton layoutX="432.0" layoutY="91.0" mnemonicParsing="false" onAction="#toggleSalesButton" prefHeight="35.0" prefWidth="225.0" styleClass="regularbutton" stylesheets="@../Resources/CSS.css" text="View Sales">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></ToggleButton>
+      <ToggleButton layoutX="659.0" layoutY="91.0" mnemonicParsing="false" onAction="#toggleFavouriteButton" prefHeight="35.0" prefWidth="225.0" styleClass="regularbutton" stylesheets="@../Resources/CSS.css" text="View Favourites">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></ToggleButton>
+      <Button layoutX="558.0" layoutY="595.0" mnemonicParsing="false" onAction="#handleRemoveButton" prefHeight="56.0" prefWidth="199.0" text="Remove Favorite">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
