@@ -230,7 +230,7 @@ public abstract class DBHandler extends DBConfig {
             statement.setString(2, account.getPassword());
             statement.setString(3, account.getEmail());
             statement.setBoolean(4, account.isAdmin());
-            if (account.getImage() == null) {
+            if (account.getImageFile() == null) {
                 statement.setBinaryStream(5, null);
             } else {
                 FileInputStream fis = new FileInputStream(account.getImageFile());

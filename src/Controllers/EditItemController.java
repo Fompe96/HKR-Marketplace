@@ -273,6 +273,7 @@ public class EditItemController implements Initializable {
                 newItem.setOwner(newItemOwner.getText());
                 newItem.setImageFile(newImage);
                 DBHandler.updateItemInformation(newItem);
+                Singleton.getInstance().setLastInsertedObject("Item");
                 SceneChanger.changeScene("../Views/Administration.fxml");
                 handleClosingButton();
             } else {
