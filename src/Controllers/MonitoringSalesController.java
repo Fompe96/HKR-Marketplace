@@ -117,15 +117,13 @@ public class MonitoringSalesController implements Initializable {
             }
         }
 
+        table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE); // Allows for multiple rows to be selected
         pic.setCellValueFactory(new PropertyValueFactory<>("pic"));
         title.setCellValueFactory(new PropertyValueFactory<>("name"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
         table.setItems(favorites);
 
-        handleCursor();
-        handleToolTip();
-        handleAdminView();
     }
 
     private void handleToolTip() {
@@ -171,7 +169,7 @@ public class MonitoringSalesController implements Initializable {
             ArrayList<Integer> saleIdsToBeRemoved = new ArrayList<>();
             StringBuilder confirmationMessage = new StringBuilder("Are you sure you wish to delete the following sales: ");
             for (int i = 0; i < selectedItems.size(); i++) {
-                confirmationMessage.append("\n [Sale ").append(i + 1).append(" Name: ").append(selectedItems.get(i).getName());
+                confirmationMessage.append("\n Sale ").append(i + 1).append(" Name: ").append(selectedItems.get(i).getName());
                 saleIdsToBeRemoved.add(selectedItems.get(i).getId());
             }
             confirmationMessage.append("\n\n").append("They will be permanently removed!");
@@ -203,6 +201,9 @@ public class MonitoringSalesController implements Initializable {
         initializeFavTable();
         activateClickOnItem = true;
         handleClickOnItem();
+        handleCursor();
+        handleToolTip();
+        handleAdminView();
         removeSale.setVisible(false);
         viewSale.setVisible(true);
         viewFav.setVisible(false);
