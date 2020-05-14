@@ -68,8 +68,8 @@
       <TableView fx:id="table" layoutX="106.0" layoutY="129.0" prefHeight="415.0" prefWidth="1103.0" style="-fx-text-background-color: white;" styleClass="..\Resources\FavoritesCSS.css" stylesheets="@../Resources/FavoritesCSS.css">
         <columns>
           <TableColumn fx:id="pic" prefWidth="185.0" text="Picture" />
-          <TableColumn fx:id="title" prefWidth="362.0" text="Item" />
-            <TableColumn fx:id="description" prefWidth="348.0" text="Description" />
+          <TableColumn fx:id="title" prefWidth="235.0" style="-fx-wrap-text: true;" text="Item" />
+            <TableColumn fx:id="description" prefWidth="475.0" style="-fx-wrap-text: true;" text="Description" />
             <TableColumn fx:id="price" prefWidth="207.0" text="Price" />
         </columns>
       </TableView>
