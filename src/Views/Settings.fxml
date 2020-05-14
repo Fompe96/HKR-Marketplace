@@ -69,8 +69,7 @@
                   <Image url="@../Resources/LoggedInAsTemplate.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="imageToUpload" fitHeight="200.0" fitWidth="200.0" layoutX="195.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" />
-            <Circle fill="#1f93ff00" layoutX="295.0" layoutY="183.0" radius="132.0" stroke="#242424" strokeType="INSIDE" strokeWidth="20.0" />
+            <ImageView fx:id="imageToUpload" fitHeight="200.0" fitWidth="200.0" layoutX="195.0" layoutY="82.0" pickOnBounds="true" />
             <Button layoutX="228.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleUploadImage" style="-fx-background-color: gray; -fx-border-color: #46ab57;" text="Change Profile Picture" />
             <Line endX="297.7197265625" endY="-29.0" layoutX="95.0" layoutY="98.0" startX="100.0" startY="-27.98046875" stroke="#6ea5ff" strokeWidth="2.0" />
             <Label fx:id="loggedInAs" layoutX="198.0" layoutY="30.0" text="Logged in as" textFill="WHITE">

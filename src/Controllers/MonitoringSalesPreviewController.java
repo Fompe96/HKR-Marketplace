@@ -1,6 +1,7 @@
 package Controllers;
 
 import Database.DBHandler;
+import Models.Item;
 import Models.MessageHandler;
 import Models.SceneChanger;
 import Models.Singleton;
@@ -30,7 +31,6 @@ public class MonitoringSalesPreviewController implements Initializable {
 
     @FXML
     private ImageView image;
-
     private double x, y;
 
     @FXML
@@ -73,6 +73,8 @@ public class MonitoringSalesPreviewController implements Initializable {
         int productId = Singleton.getInstance().getItem().getId();
         DBHandler.removeProductFromFavorites(userEmail, productId);
         MessageHandler.getConfirmationAlert("Success", "Success", "Product removed from favorites").showAndWait();
+        Singleton.getInstance().getUserFavorites().remove(Singleton.getInstance().getItem());
+        System.out.println("removed: " + Singleton.getInstance().getItem());
         SceneChanger.changeScene("../Views/MonitoringSales.fxml");
     }
 

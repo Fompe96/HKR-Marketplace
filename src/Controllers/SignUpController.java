@@ -19,7 +19,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.sql.*;
 import java.util.ResourceBundle;
 import java.util.concurrent.ThreadLocalRandom;
 

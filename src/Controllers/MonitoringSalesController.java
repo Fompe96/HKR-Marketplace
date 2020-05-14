@@ -111,6 +111,7 @@ public class MonitoringSalesController implements Initializable {
     }
 
     private void initializeFavTable() {
+        ObservableList <Item> favorites = Singleton.getInstance().getUserFavorites();
         for (Item item : favorites) {
             if (item.getImage() != null) {
                 item.setPic(item.getImage());   // Här sätter jag varje objekts imageview till dens aktuella bild
@@ -123,7 +124,6 @@ public class MonitoringSalesController implements Initializable {
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
         table.setItems(favorites);
-
     }
 
     private void handleToolTip() {

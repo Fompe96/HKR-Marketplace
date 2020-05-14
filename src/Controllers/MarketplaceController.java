@@ -21,6 +21,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.ResourceBundle;
 
@@ -28,6 +29,7 @@ public class MarketplaceController implements Initializable {
 
     private ObservableList<Item> items; // List contains all sales used throughout the scene.
     private double x, y;
+    private ObservableList<Item> favorites;
     @FXML
     private ImageView imageView, imageView1, adminView;
 
@@ -47,7 +49,7 @@ public class MarketplaceController implements Initializable {
     private TableColumn<Item, Double> price;
 
     @FXML
-    private TableColumn<Item,String> category;
+    private TableColumn<Item, String> category;
 
     @FXML
     private TextField filterField;
@@ -65,6 +67,7 @@ public class MarketplaceController implements Initializable {
         initChoiceBox();
         handleClickOnItem();
         searchAndFilterCategories();
+        loadFavoriteIdsIntoLocalArray();
 
 
         if (Singleton.getInstance().getLoggedInAccount().isAdmin()) {
@@ -175,14 +178,14 @@ public class MarketplaceController implements Initializable {
         }
     }
 
-    private void searchAndFilterCategories(){
+    private void searchAndFilterCategories() {
 
         FilteredList<Item> filteredData = new FilteredList<>(items, p -> true);
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
 
             filteredData.setPredicate(item -> {
 
-                if (newValue == null || newValue.isEmpty() || newValue == "All" ) {
+                if (newValue == null || newValue.isEmpty() || newValue == "All") {
                     return true;
                 }
 
@@ -193,11 +196,7 @@ public class MarketplaceController implements Initializable {
                     return true;
                 } else if (item.getCategory().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
-                }
-
-                else return false;
-
-
+                } else return false;
 
 
             });
@@ -208,7 +207,7 @@ public class MarketplaceController implements Initializable {
 
             filteredData.setPredicate(item -> {
 
-                if (newValue == null || newValue.isEmpty() || newValue == "All" ) {
+                if (newValue == null || newValue.isEmpty() || newValue == "All") {
                     return true;
                 }
 
@@ -217,10 +216,7 @@ public class MarketplaceController implements Initializable {
 
                 if (item.getCategory().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
-                }
-                else return false;
-
-
+                } else return false;
 
 
             });
@@ -258,7 +254,7 @@ public class MarketplaceController implements Initializable {
 
  */
 
-    private void initChoiceBox (){
+    private void initChoiceBox() {
 
         categoryBox.getItems().add("All");
         categoryBox.getItems().add("Vehicles");
@@ -270,6 +266,9 @@ public class MarketplaceController implements Initializable {
 
     }
 
-
+    private void loadFavoriteIdsIntoLocalArray() {
+        favorites = DBHandler.retrieveAllFavorites(Singleton.getInstance().getLoggedInEmail());
+        Singleton.getInstance().setUserFavorites(favorites);
+    }
 
 }

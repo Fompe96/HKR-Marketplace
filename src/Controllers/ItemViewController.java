@@ -1,10 +1,13 @@
 package Controllers;
 
 import Database.DBHandler;
+import Models.Item;
 import Models.MessageHandler;
 import Models.SceneChanger;
 import Models.Singleton;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -58,7 +61,7 @@ public class ItemViewController implements Initializable {
         Singleton.getInstance().setItem(null);
     }
 
-    public void contactSeller(){
+    public void contactSeller() {
         SceneChanger.changeScene("../Views/ContactSeller.fxml");
     }
 
@@ -88,8 +91,15 @@ public class ItemViewController implements Initializable {
 
     @FXML
     private void addProductToFavorite() throws FileNotFoundException, SQLException {
-        String userEmail = Singleton.getInstance().getLoggedInEmail();
+        ObservableList<Item> seeIfSalesIdExists = Singleton.getInstance().getUserFavorites();
+        for (Item item : seeIfSalesIdExists) {
+            if (item.getId() == Singleton.getInstance().getItem().getId()) {
+                MessageHandler.getInformationAlert("Error", "Error", "Item already in favorites").showAndWait();
+                return;
+            }
+        }
         int productId = Singleton.getInstance().getItem().getId();
+        String userEmail = Singleton.getInstance().getLoggedInEmail();
         DBHandler.addProductToFavorites(userEmail, productId);
         MessageHandler.getConfirmationAlert("Success", "Success", "Product added to favorites").showAndWait();
     }

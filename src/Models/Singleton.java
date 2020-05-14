@@ -3,6 +3,8 @@ package Models;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
+
 public class Singleton {
 
     private static Singleton instance = null;
@@ -22,6 +24,15 @@ public class Singleton {
     private String lastInsertedObject;
     private Object objectToEdit;
     private ObservableList<Account> accounts;
+    private ObservableList <Item> userFavorites;
+
+    public ObservableList getUserFavorites() {
+        return userFavorites;
+    }
+
+    public void setUserFavorites(ObservableList userFavorites) {
+        this.userFavorites = userFavorites;
+    }
 
     public ObservableList<Account> getAccounts() {
         return accounts;
