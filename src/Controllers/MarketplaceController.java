@@ -1,10 +1,7 @@
 package Controllers;
 
 import Database.DBHandler;
-import Models.Item;
-import Models.SceneChanger;
-import Models.Singleton;
-import Models.ToolTipHandler;
+import Models.*;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -16,6 +13,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -30,8 +28,13 @@ public class MarketplaceController implements Initializable {
     private ObservableList<Item> items; // List contains all sales used throughout the scene.
     private double x, y;
     private ObservableList<Item> favorites;
+
     @FXML
-    private ImageView imageView, imageView1, adminView;
+    Label loggingInLabel;
+
+
+    @FXML
+    private ImageView imageView, imageView1, adminView,loadingImage;
 
     @FXML
     private Button adminButton, settingsButton, closingButton, minimizeButton, sellButton, logOutButton, monitoringButton;
@@ -141,6 +144,16 @@ public class MarketplaceController implements Initializable {
 
     @FXML
     private void handleMonitoringButton() {
+        //Testing thread
+        /* new Thread(() -> {
+            Image image = new Image("Resources/loadingImage.gif");
+            loadingImage.setImage(image);
+            loadingImage.setOpacity(100);
+            Platform.runLater(() -> loggingInLabel.setText("Loading.."));
+            loggingInLabel.setOpacity(100);
+            SceneChanger.changeScene("../Views/MonitoringSales.fxml");
+        }).start();
+        */
         SceneChanger.changeScene("../Views/MonitoringSales.fxml");
     }
 
