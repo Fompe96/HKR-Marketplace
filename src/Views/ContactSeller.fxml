@@ -111,7 +111,7 @@
          </font>
       </Label>
       <TextField fx:id="subject" layoutX="105.0" layoutY="337.0" prefHeight="26.0" prefWidth="181.0" promptText="Subject" styleClass="regulartextfield" stylesheets="@../Resources/CSS.css" />
-      <TextArea fx:id="message" layoutX="104.0" layoutY="398.0" prefHeight="135.0" prefWidth="251.0" promptText="Message" stylesheets="@../Resources/CSS.css" />
+      <TextArea fx:id="message" layoutX="104.0" layoutY="398.0" prefHeight="135.0" prefWidth="251.0" promptText="Message" style="-fx-text-fill: white;" stylesheets="@../Resources/CSS.css" />
       <Button layoutX="382.0" layoutY="432.0" mnemonicParsing="false" onAction="#sendEmail" prefHeight="68.0" prefWidth="100.0" styleClass="regularbutton" stylesheets="@../Resources/CSS.css" text="Send email" />
       <Button layoutX="125.0" layoutY="600.0" mnemonicParsing="false" onAction="#goBackToItem" styleClass="regularbutton" stylesheets="@../Resources/CSS.css" text="Go back to item" />
     </children>
